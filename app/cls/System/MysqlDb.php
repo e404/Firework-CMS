@@ -1,0 +1,153 @@
+<?php
+
+class MysqlDb extends AbstractDatabaseConnector {
+
+	protected $last_error = null;
+	protected $ignore_long_queries = false;
+
+	protected function error() {
+		$error = mysqli_error($this->connection);
+		if($error) {
+			$this->last_error = $error;
+			trigger_error($error,E_USER_WARNING);
+			return true;
+		}
+		$this->last_error = null;
+		return false;
+	}
+
+	public function ignoreLongQueries($ignore=true) {
+		$this->ignore_long_queries = (bool) $ignore;
+	}
+
+	final public function connect($host,$username,$password,$database=null,$port=-1) {
+		$this->connection = null;
+		$this->host = $host;
+		$this->database = $database;
+		$this->username = $username;
+		$this->password = $password;
+		$this->port = $port;
+	}
+
+	protected function openConnection() {
+		if($this->connection) return true;
+		if($this->connection = @mysqli_connect(
+				$this->host.($this->port===-1?"":":".$this->port),
+				$this->username,
+				$this->password
+			)
+		) {
+			if(!mysqli_set_charset($this->connection, 'utf8')) {
+				trigger_error("MySQL charset utf8 not supported",E_USER_ERROR);
+				return false;
+			}
+			if($this->database===null) {
+				return true;
+			}elseif(mysqli_select_db($this->connection,$this->database)) {
+				return true;
+			}else{
+				trigger_error("Database could not be selected",E_USER_ERROR);
+				return false;
+			}
+		}else{
+			trigger_error("Database connection could not be established: ".mysqli_error(),E_USER_ERROR);
+			return false;
+		}
+	}
+
+	public function query($query) {
+		if(func_num_args()>1) {
+			$result = array();
+			foreach(func_get_args() as $query) {
+				$result[] = $this->query($query);
+			}
+			return $result;
+		}
+		$this->openConnection();
+		$time_start = microtime(true);
+		$query_obj = mysqli_query($this->connection,$query);
+		$this->error();
+		$duration = round(microtime(true)-$time_start, 4);
+		if(Config::get('debug') && Config::get('debug','db_queries')) {
+			Error::debug('DB Query: "'.$query."\"\n→ ".$duration.' sec');
+		}
+		if(!$this->ignore_long_queries && $duration>0.2) {
+			Error::warning('DB Query took a long time ('.$duration.' sec)');
+		}
+		if(is_bool($query_obj)) return $query_obj;
+		$result = array();
+		while($row = mysqli_fetch_assoc($query_obj)) {
+			$result[] = $row;
+		}
+		$this->lastQuery = $result;
+		$this->lastRowOffset = null;
+		return $result;
+	}
+
+	final public function getId($query) {
+		if(!preg_match("/^\s*(INSERT|REPLACE)\s/si",$query)) return null;
+		$success = $this->query($query);
+		return $success===true ? mysqli_insert_id($this->connection) : null;
+	}
+
+	public function importSqlFile($filename) {
+		exec("mysql --host=".$this->host." --user=".$this->username." --password=".$this->password." ".$this->database." < ".$filename,$output,$return_var);
+		return ($return_var===0);
+	}
+
+	public function exportSqlFile($filename) {
+		exec("mysqldump --host=".$this->host." --user=".$this->username." --password=".$this->password." ".$this->database." > ".$filename,$output,$return_var);
+		return ($return_var===0);
+	}
+
+	public function escape($str) {
+		$this->openConnection();
+		return mysqli_real_escape_string($this->connection,$str);
+	}
+
+	public function startTransaction() {
+		$this->transaction = true;
+		return $this->query("START TRANSACTION");
+	}
+
+	public function rollback() {
+		$this->transaction = false;
+		return $this->query("ROLLBACK");
+	}
+
+	public function commit() {
+		$this->transaction = false;
+		return $this->query("COMMIT");
+	}
+
+	public function info() {
+		$info = "";
+		foreach($this->query("SHOW TABLES") as $table) {
+			$table = array_values($table);
+			$table = $table[0];
+			$info.= "\n<b>\n+".str_repeat("-",44)."+\n|".str_pad($table,44," ")."|\n+".str_repeat("-",44)."+\n</b>\n";
+			$def = $this->query("SHOW COLUMNS FROM `".$table."`");
+			foreach($def as $d) {
+				$info.= "   +".str_repeat("-",41)."+\n";
+				foreach($d as $key=>$val) {
+					$info.= "   |".str_pad($key,8," ").": ".str_pad($val,31," ")."|\n";
+				}
+				$info.= "   +".str_repeat("-",41)."+\n";
+			}
+		}
+		return $info;
+	}
+
+	public function lockTable($table) {
+		return $this->query("LOCK TABLES `".$this->escape($table)."` WRITE");
+	}
+
+	public function unlockTables() {
+		return (bool) @mysqli_query($this->connection,"UNLOCK TABLES");
+	}
+
+	public function getLastError() {
+		return $this->last_error;
+	}
+
+}

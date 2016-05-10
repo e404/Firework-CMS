@@ -1,0 +1,8 @@
+Order deny,allow
+Deny from all
+
+<FilesMatch "\.js$">
+	Order allow,deny
+	Allow from all
+	Header set Cache-Control "max-age=290304000, public"
+</FilesMatch>

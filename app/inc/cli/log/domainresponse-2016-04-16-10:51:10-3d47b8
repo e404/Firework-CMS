@@ -1,0 +1,71 @@
+From test-robot@autodns2.de  Sat Apr 16 10:51:10 2016
+Return-Path: <test-robot@autodns2.de>
+X-Original-To: bws_de_domain@localhost
+Delivered-To: bws_de_domain@localhost
+Received: by mail.srv.at (Postfix, from userid 5032)
+	id 622FE3645466; Sat, 16 Apr 2016 10:51:10 +0200 (CEST)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on srv.at
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=4.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+	URIBL_BLOCKED autolearn=ham version=3.3.2
+Received: from mail.domain-robot.org (mail.domain-robot.org [62.116.129.216])
+	by mail.srv.at (Postfix) with ESMTPS id 7CFAC3644D0E
+	for <autodns@100bws.com>; Sat, 16 Apr 2016 10:51:09 +0200 (CEST)
+Received: from appa1.autodns2.de (appa1.autodns2.de [192.168.110.109] (may be forged))
+	by mail.domain-robot.org (8.13.8/8.13.8/Debian-3) with ESMTP id u3G8p6Xf005226;
+	Sat, 16 Apr 2016 10:51:06 +0200
+Received: from appa1 (localhost.localdomain [127.0.0.1])
+	by appa1.autodns2.de (Postfix) with ESMTP id 10521E58070;
+	Sat, 16 Apr 2016 10:51:09 +0200 (CEST)
+To: autodns@100bws.com
+From: AUTODNS MAILROBOT (ALL) <test-robot@autodns2.de>
+Reply-to: domain-support@internetx.de
+Subject: Re: 0102 vriendly.org (OK)
+Date: Sat, 16 Apr 2016 10:51:09 +0200
+Message-ID: <20160416_085109_098334.test-robot@autodns2.de>
+X-C-ID: 4
+MIME-Version: 1.0
+Content-type: text/plain; charset=utf-8
+Content-transfer-encoding: 8bit
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+<system>
+user: schittenhelm
+task: 0102
+status: S0102 [Die Domain wurde erfolgreich aktualisiert.]
+autoupdate: true
+
+</system>
+
+
+<reply>
+tld: org
+sld: vriendly
+owner: schittenhelm
+owner_context: 4
+owner-c: 16704715
+admin-c: 16692366
+tech-c: 16692366
+zone-c: 16692366
+nserver: a.ns14.net
+nserver: b.ns14.net
+nserver: c.ns14.net
+nserver: d.ns14.net
+period: 1
+status: success
+registry_status: LOCK
+registrar_status: ACTIVE
+autorenew: true
+authinfo: zt7Uu2/37YivNa8J
+
+</reply>
+-----BEGIN PGP SIGNATURE-----
+Version: Crypt::OpenPGP 1.04
+
+iQBGBAERAgAGBQJXEfz8AAoJEP1u0kolCTvPwCsAoI4ZiSB1t0ZskCEcNLRsSHsj
+RNdNAJ9gGolwjm+ND27fFPm93v3W1kK8aw==
+=M9DM
+-----END PGP SIGNATURE-----
+
