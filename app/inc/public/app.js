@@ -2,9 +2,7 @@ if(!window.$) $ = jQuery;
 
 var app = {
 	init: function(){
-		app.restrictlegacybrowsers();
 		app.preload.init();
-		app.payment.init();
 		app.forms.init();
 		app.email.init();
 		app.fullwidth.init();
@@ -34,21 +32,6 @@ var app = {
 	plugins: {},
 	firstvisit: false,
 	mobile: false,
-	restrictlegacybrowsers: function(){
-		if($('html').hasClass('all-browsers')) return;
-		var browser_mismatch_link = 'modern-browser-only';
-		var is_browser_mismatch_page = location.href.match(browser_mismatch_link);
-		var canvas_test = document.createElement('canvas');
-		if(!canvas_test.getContext || !canvas_test.getContext('2d')) {
-			if(!is_browser_mismatch_page) location.replace(browser_mismatch_link);
-			return;
-		}
-		if(is_browser_mismatch_page) {
-			location.replace('/');
-			return;
-		}
-		delete(canvas_test);
-	},
 	preload: {
 		init: function(){
 			$('body').addClass('loading');
@@ -245,46 +228,6 @@ var app = {
 					html+= String.fromCharCode(parseInt(code.substr(i,2),16));
 				}
 				$(this).replaceWith(html);
-			});
-		}
-	},
-	payment: {
-		init: function(){
-			var el = $('#payment-form');
-			if(el.length!==1) return;
-			var script = document.createElement('script');
-			script.src = 'https://js.braintreegateway.com/v2/braintree.js';
-			document.getElementsByTagName('head')[0].appendChild(script);
-			var execBraintree = function(fn){
-				if(window.braintree) {
-					return fn();
-				}else{
-					setTimeout(function(){
-						execBraintree(fn);
-					},100);
-				}
-			};
-			$.ajax({
-				type: 'POST',
-				timeout: 15000,
-				url: 'ajax/PaymentProcess',
-				data: {
-					action: 'get_client_token'
-				},
-				success: function(token){
-					execBraintree(function(){
-						$('#payment-form').addClass('ready');
-						$('#payment-form + .loading').remove();
-						braintree.setup(
-							token,
-							'dropin',
-							{container: 'payment-form'}
-						);
-					});
-				},
-				error: function(e){
-					alert('Something went wrong. Please check your Internet connection and reload this page.');
-				}
 			});
 		}
 	},
