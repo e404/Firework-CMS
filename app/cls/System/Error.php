@@ -28,7 +28,7 @@ class Error {
 	}
 
 	public static function debugErrorGetRelativeFilePath($file) {
-		return substr($file,strlen(realpath(__DIR__.'/../../'))+1);
+		return substr($file,strlen(realpath(__DIR__.'/../../../'))+1);
 	}
 
 	public static function setMode($mode) {
