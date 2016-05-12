@@ -22,13 +22,14 @@ a:after {
 	content: ' ▶︎';
 }
 a:hover { border-style: inset; box-shadow: none; background: #fd5; color: #000; }
-input, select { color: #fd5; background: transparent; margin: 0; border: 0; border-left: 0.2em solid #888; padding-left: 0.3em; width: 100%; line-height: 2em; }
+input, select { color: #fd5; background: transparent; margin: 0; border: 0; border-left: 0.2em solid #555; padding-left: 0.3em; width: 100%; line-height: 2em; transition: all 0.5s; }
 input { cursor: text; }
 select { -webkit-appearance: none; cursor: pointer; border-radius: 0; color: #888; }
-input:valid, input:hover, input:focus, select:valid, select:hover, select:focus { border-left-color: #fd5; color: #fd5; }
+input:valid, select:valid { border-left-color: #fd5; color: #fd5; }
+input:hover, input:focus, select:hover, select:focus { border-left-color: #555 !important; box-shadow: #555 0 1px 0 !important; }
 label { display: block; cursor: pointer; color: #aaa; }
 :focus { outline: none; }
-::selection { background: #fd0; color: #000; }
+::selection { background: #fd0; color: #fff; }
 .ok { color: #0f0; }
 .fail { color: #f00; }
 </style>
@@ -70,7 +71,7 @@ switch((int) $_GET['install']) {
 		if(array_search(false, $check)===false):
 ?>
 			<p>
-				<a href="?install=2">Start Setup</a>
+				<a href="?install=2">Continue</a>
 			</p>
 <?php
 		endif;
@@ -124,7 +125,7 @@ switch((int) $_GET['install']) {
 <?php
 					else:
 ?>
-						<input id="<?php echo $field ?>" type="text" name="<?php echo $field ?>" value="<?php echo htmlspecialchars($value) ?>" required>
+						<input id="<?php echo $field ?>" type="text" name="<?php echo $field ?>" value="<?php echo htmlspecialchars($value) ?>" autocomplete="off" spellcheck="false" required>
 <?php
 					endif;
 ?>
@@ -146,7 +147,7 @@ switch((int) $_GET['install']) {
 		<ul>
 
 			<li>
-				<strong>Testing MySQL connection</strong><br>
+				<strong>MySQL connection</strong><br>
 <?php
 				$mysqli = new mysqli($_POST['MYSQL_HOST'], $_POST['MYSQL_USERNAME'], $_POST['MYSQL_PASSWORD'], $_POST['MYSQL_DBNAME']);
 				if($mysqli->connect_error) {
