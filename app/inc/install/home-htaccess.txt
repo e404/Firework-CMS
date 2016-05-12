@@ -1,0 +1,22 @@
+Options -Indexes
+ServerSignature Off
+
+ErrorDocument 403 /inc/public/403.php
+ErrorDocument 404 /inc/public/404.php
+
+<Files config.ini>
+	Order deny,allow
+	Deny from all
+</Files>
+
+RewriteEngine on
+
+RewriteCond %{HTTP_HOST} !^www\. [NC]
+RewriteRule ^ https://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+RewriteRule ^ajax/(.*) index.php [L,E=IS_AJAX_REQUEST:yes]
+RewriteRule ^link/(.*) index.php [L,E=IS_LINK_REQUEST:yes]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [L]

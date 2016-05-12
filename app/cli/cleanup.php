@@ -6,7 +6,7 @@ if(PHP_SAPI!=='cli') die('Error: Only CLI access allowed.');
 
 // Load environment
 chdir(__DIR__);
-require_once('../global.php');
+require_once('../inc/global.php');
 
-// Call App cron (triggers 'cron' hooks)
-App::cron(isset($_SERVER['argv'][1]) ? $_SERVER['argv'][1] : null);
+// Call App cleanup
+App::cleanup();
