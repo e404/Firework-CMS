@@ -479,7 +479,7 @@ class App {
 	}
 
 	public static function getTitle() {
-		return self::$title.(self::$title_skip_suffix ? '' : ' '.Config::get('htmlhead','titlesuffix'));
+		return self::$title.(self::$title_skip_suffix ? '' : ' '.trim(Config::get('htmlhead','titlesuffix')));
 	}
 
 	public static function widget($name) {
