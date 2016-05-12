@@ -1,3 +1,0 @@
-<?php
-
-// Enter Project Hooks

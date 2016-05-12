@@ -28,11 +28,7 @@ class Error {
 	}
 
 	public static function debugErrorGetRelativeFilePath($file) {
-		$app_dir = App::getAppDir();
-		if(substr($file, 0, strlen($app_dir))===$app_dir) {
-			return substr($file,strlen($app_dir));
-		}
-		return $file;
+		return substr($file,strlen(realpath(__DIR__.'/../../../'))+1);
 	}
 
 	public static function setMode($mode) {

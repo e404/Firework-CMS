@@ -16,7 +16,7 @@ if(Config::get('env','published')) {
 }
 
 if($forbidden) {
-	include(App::getAppDir().'inc/public/403.php');
+	include('inc/public/403.php');
 	die();
 }elseif(isset($_SERVER['REDIRECT_IS_AJAX_REQUEST'])) {
 	header('Expires: Sat, 26 Jul 1997 05:00:00 GMT');

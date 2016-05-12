@@ -3,7 +3,6 @@
 class App {
 
 	static $start_time;
-	static $app_dir = './';
 	static $path = null;
 	static $languages = array();
 	static $lang = null;
@@ -20,14 +19,6 @@ class App {
 	static $sandboxed = false;
 	static $custom_tags = array();
 	static $js_files = array();
-
-	public static function setAppDir($dir) {
-		self::$app_dir = rtrim($dir,'/').'/';
-	}
-
-	public static function getAppDir() {
-		return self::$app_dir;
-	}
 
 	// Cleanup function, should be called at least once a day
 	public static function cleanup() {
@@ -57,13 +48,13 @@ class App {
 
 	// Autoloader registration
 	public static function initAutoloader() {
-		foreach(glob(self::getAppDir().'cls/*') as $path) {
-			if(preg_match('@^'.self::getAppDir().'cls/([^\.]+)\.php$@', $path, $matches)) {
+		foreach(glob('cls/*') as $path) {
+			if(preg_match('@^cls/([^\.]+)\.php$@', $path, $matches)) {
 				if(isset(self::$cls_files[$matches[1]])) Error::fatal('Class is already defined: '.$matches[1]);
 				self::$cls_files[$matches[1]] = $path;
 			}elseif(is_dir($path)) {
 				foreach(glob($path.'/*.php') as $subpath) {
-					if(preg_match('@^'.self::getAppDir().'cls/[^/]+/([^\.]+)\.php$@', $subpath, $matches)) {
+					if(preg_match('@^cls/[^/]+/([^\.]+)\.php$@', $subpath, $matches)) {
 						if(isset(self::$cls_files[$matches[1]])) Error::fatal('Class is already defined: '.$matches[1]);
 						self::$cls_files[$matches[1]] = $subpath;
 					}
@@ -181,12 +172,12 @@ class App {
 		$doc = '';
 		for($i=0; $i<count($parts); $i++) {
 			$part = $parts[$i];
-			if(file_exists("pages/$part.php")) {
+			if(file_exists("../pages/$part.php")) {
 				$doc = $parts[$i];
 				break;
 			}
 		}
-		$contentfile = "pages/$doc.php";
+		$contentfile = "../pages/$doc.php";
 		// Start buffered output
 		ob_start();
 		// Load plugins
@@ -214,11 +205,11 @@ class App {
 		if($pathok && file_exists($contentfile)) {
 			require_once($contentfile);
 		}elseif(!$pathok) {
-			require_once('pages/+start.php');
+			require_once('../pages/+start.php');
 		}elseif(preg_match('/\.(jpe?g|gif|png)$/i',self::$path)) {
-			require_once('pages/+404+image.php');
+			require_once('../pages/+404+image.php');
 		}else{
-			require_once('pages/+404.php');
+			require_once('../pages/+404.php');
 		}
 		// Load foot
 		$tpl_foot_file = self::getSkinPath().'tpl-foot.php';
@@ -248,11 +239,11 @@ class App {
 			$html = str_replace('[[[CANONICAL]]]',$canonical,$html);
 		}else{
 			$html = str_replace('[[[TITLE]]]',Config::get('htmlhead','title'),$html);
-			$html = str_replace('[[[CANONICAL]]]',self::getLink(self::getPage()),$html);
+			$html = str_replace('[[[CANONICAL]]]',self::getLink(self::getTnt()),$html);
 		}
 		$html = str_replace('[[[LANG]]]',self::getLang(),$html);
 		$html = str_replace('[[[DESCRIPTION]]]',Config::get('htmlhead','description'),$html);
-		$html = str_replace('[[[BODYCLASS]]]', self::getLang().' '.(self::getPage(0) ? 'page-'.self::getPage(0) : 'page-start').' '.(count(self::getPage())>1 ? 'sub' : 'root').' '.(self::isSandboxed() ? 'sandboxed' : 'production'),$html);
+		$html = str_replace('[[[BODYCLASS]]]', self::getLang().' '.(self::q(0) ? 'page-'.self::q(0) : 'page-start').' '.(count(self::q())>1 ? 'sub' : 'root').' '.(self::isSandboxed() ? 'sandboxed' : 'production'),$html);
 		$html = preg_replace_callback('/\[\[\[HOOK:([^\]]+)\]\]\]\n?/', function($matches){
 			return self::executeHooks($matches[1]);
 		}, $html);
@@ -422,6 +413,11 @@ class App {
 		return $html;
 	}
 
+	// Get query (path parts) shortcut
+	public static function q($number=null) {
+		return $number===null ? self::$query : (isset(self::$query[$number]) ? self::$query[$number] : null);
+	}
+
 	// Ajax request handling, renders out JSON or single string
 	public static function renderajax($uri=null,$return=false) {
 		self::$path = self::resolver($uri===null ? $_SERVER['REQUEST_URI'] : $uri);
@@ -459,13 +455,13 @@ class App {
 	}
 
 	public static function getLink($tnt=-1,$seostr=null) {
-		if($tnt===-1 || !$tnt || $tnt===true) $tnt = self::getPage();
+		if($tnt===-1 || !$tnt || $tnt===true) $tnt = self::getTnt();
 		return self::link($tnt,$seostr,true);
 	}
 
 	public static function switchLangLink($newlang) {
 		if(self::getLang()===$newlang) {
-			$uri = self::getPage().'/';
+			$uri = self::getTnt().'/';
 		}else{
 			$uri = self::getSeofreeTnt($uri).'/';
 		}
@@ -486,7 +482,7 @@ class App {
 		include(Config::get('env','widgets_dir',true)."/$name.php");
 	}
 
-	public static function getPage($part=-1) {
+	public static function getTnt($part=-1) {
 		$tnt = self::getSeofreeTnt();
 		if($part<0) return $tnt;
 		$tnt = explode('/',$tnt);
@@ -494,7 +490,7 @@ class App {
 	}
 
 	public static function getUri($get=array()) {
-		$uri = self::getPage();
+		$uri = self::getTnt();
 		if($get) {
 			if(is_array($get)) $uri.= '?'.http_build_query($get);
 			else $uri.= '?'.$get;
@@ -573,7 +569,7 @@ class App {
 	}
 
 	public static function getSkinPath() {
-		return 'skins/'.Config::get('env','skin').'/';
+		return '../skins/'.Config::get('env','skin').'/';
 	}
 
 	public static function getTempDir() {
@@ -608,8 +604,8 @@ class App {
 	}
 
 	public static function processLinkTrackerAction() {
-		$id = self::getPage(1);
-		$tracker = LinkTracker::action(self::getPage(1));
+		$id = self::getTnt(1);
+		$tracker = LinkTracker::action(self::getTnt(1));
 	}
 
 	public static function executeHooks($id, $param=null) {
