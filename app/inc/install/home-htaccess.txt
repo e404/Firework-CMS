@@ -1,8 +1,8 @@
 Options -Indexes
 ServerSignature Off
 
-ErrorDocument 403 %APP_DIR%inc/public/403.php
-ErrorDocument 404 %APP_DIR%inc/public/404.php
+ErrorDocument 403 /%APP_DIR%inc/public/403.php
+ErrorDocument 404 /%APP_DIR%inc/public/404.php
 
 <Files config.ini>
 	Order deny,allow
