@@ -14,6 +14,7 @@ RewriteEngine on
 RewriteCond %{HTTP_HOST} !^www\. [NC]
 RewriteRule ^ https://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
+RewriteRule (^|/)\. - [F,L]
 RewriteRule ^config\.ini$ - [F,L]
 RewriteRule ^(cache|pages|lang)/ - [F,L]
 RewriteRule ^(skins|plugins)/.*\.php - [F,L]
