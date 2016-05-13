@@ -203,6 +203,14 @@ switch((int) $_GET['install']) {
 ?>
 			</li>
 			<li>
+				<strong>Create cache/ directory</strong><br>
+				<?php echo is_dir(HOME_DIR.'cache') ? '<span class="ok">Skipped</span> (already existing)' : (@mkdir(HOME_DIR.'cache/') ? '<span class="ok">OK</span> (directory created)' : die('<span class="fail">FAILED</span>')) ?>
+			</li>
+			<li>
+				<strong>Make cache/ dir unaccessible from public</strong><br>
+				<?php echo file_exists(HOME_DIR.'cache/.htaccess') ? '<span class="ok">Skipped</span> (already existing)' : (@file_put_contents(HOME_DIR.'cache/.htaccess', "Order deny,allow\nDeny from all") ? '<span class="ok">OK</span> (.htaccess created)' : die('<span class="fail">FAILED</span>')) ?>
+			</li>
+			<li>
 				<strong>Writing config.ini</strong><br>
 <?php
 				if(file_exists(HOME_DIR.'config.ini')):
