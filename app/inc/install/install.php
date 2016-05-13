@@ -160,7 +160,7 @@ switch((int) $_GET['install']) {
 			</li>
 			<li>
 				<strong>Writing .htaccess</strong><br>
-				<?php echo (file_exists(HOME_DIR.'.htaccess') && strstr(file_get_contents(HOME_DIR.'.htaccess'), 'config.ini')) ? '<span class="ok">Skipped</span> (propper .htaccess file found)' : (@copy(APP_DIR.'inc/install/home-htaccess.txt', HOME_DIR.'.htaccess') ? '<span class="ok">OK</span> (file written)' : '<span class="fail">FAILED</span>') ?>
+				<?php echo (file_exists(HOME_DIR.'.htaccess') && strstr(file_get_contents(HOME_DIR.'.htaccess'), 'config.ini')) ? '<span class="ok">Skipped</span> (propper .htaccess file found)' : (@file_put_contents(HOME_DIR.'.htaccess', str_replace('%APP_DIR%', APP_DIR, file_get_contents(APP_DIR.'inc/install/home-htaccess.txt'))) ? '<span class="ok">OK</span> (file written)' : '<span class="fail">FAILED</span>') ?>
 			</li>
 			<li>
 				<strong>Creating pages/ directory</strong><br>
@@ -207,8 +207,8 @@ switch((int) $_GET['install']) {
 				<?php echo is_dir(HOME_DIR.'cache') ? '<span class="ok">Skipped</span> (already existing)' : (@mkdir(HOME_DIR.'cache/') ? '<span class="ok">OK</span> (directory created)' : die('<span class="fail">FAILED</span>')) ?>
 			</li>
 			<li>
-				<strong>Make cache/ dir unaccessible from public</strong><br>
-				<?php echo file_exists(HOME_DIR.'cache/.htaccess') ? '<span class="ok">Skipped</span> (already existing)' : (@file_put_contents(HOME_DIR.'cache/.htaccess', "Order deny,allow\nDeny from all") ? '<span class="ok">OK</span> (.htaccess created)' : die('<span class="fail">FAILED</span>')) ?>
+				<strong>Create lang/ directory</strong><br>
+				<?php echo is_dir(HOME_DIR.'lang') ? '<span class="ok">Skipped</span> (already existing)' : (@mkdir(HOME_DIR.'lang/') ? '<span class="ok">OK</span> (directory created)' : die('<span class="fail">FAILED</span>')) ?>
 			</li>
 			<li>
 				<strong>Writing config.ini</strong><br>

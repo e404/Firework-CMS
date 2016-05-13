@@ -1,8 +1,8 @@
 Options -Indexes
 ServerSignature Off
 
-ErrorDocument 403 /inc/public/403.php
-ErrorDocument 404 /inc/public/404.php
+ErrorDocument 403 %APP_DIR%inc/public/403.php
+ErrorDocument 404 %APP_DIR%inc/public/404.php
 
 <Files config.ini>
 	Order deny,allow
@@ -13,6 +13,10 @@ RewriteEngine on
 
 RewriteCond %{HTTP_HOST} !^www\. [NC]
 RewriteRule ^ https://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+RewriteRule ^config\.ini$ - [F,L]
+RewriteRule ^(cache|pages|lang)/ - [F,L]
+RewriteRule ^(skins|plugins)/.*\.php - [F,L]
 
 RewriteRule ^ajax/(.*) index.php [L,E=IS_AJAX_REQUEST:yes]
 RewriteRule ^link/(.*) index.php [L,E=IS_LINK_REQUEST:yes]
