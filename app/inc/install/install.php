@@ -142,6 +142,55 @@ switch((int) $_GET['install']) {
 		break;
 	case 3:
 		if($_SERVER['REQUEST_METHOD']!=='POST') die('<span class="fail">Wrong request method.</span>');
+		function maybe_mkdir($dir) {
+			echo '<strong>Creating directory '.$dir.'</strong><br>';
+			if(file_exists($dir) && is_dir($dir)) {
+				echo '<span class="ok">Skipped</span> (directory already exists)';
+				return true;
+			}elseif(@mkdir($dir)) {
+				echo '<span class="ok">OK</span> (directory created)';
+				return true;
+			}else{
+				die('<span class="fail">FAILED</span>');
+			}
+		}
+		function maybe_copy($src, $dst) {
+			echo '<strong>Copying file '.$dst.'</strong><br>';
+			if(file_exists($dst)) {
+				echo '<span class="ok">Skipped</span> (file existing)';
+				return true;
+			}elseif(@copy($src, $dst)) {
+				echo '<span class="ok">OK</span> (file copied)';
+				return true;
+			}else{
+				die('<span class="fail">FAILED</span>');
+			}
+		}
+		function maybe_write($filename, $content) {
+			echo '<strong>Writing file '.$filename.'</strong><br>';
+			if(file_exists($filename)) {
+				echo '<span class="ok">Skipped</span> (file existing)';
+				return true;
+			}elseif(@file_put_contents($filename, $content)) {
+				echo '<span class="ok">OK</span> (file created)';
+				return true;
+			}else{
+				die('<span class="fail">FAILED</span>');
+			}
+		}
+		function maybe_deny_access($dir) {
+			echo '<strong>Denying public access for '.$dir.'</strong><br>';
+			$file = rtrim($dir, '/').'/.htaccess';
+			if(file_exists($file)) {
+				echo '<span class="ok">Skipped</span> (.htaccess file existing)';
+				return true;
+			}elseif(@file_put_contents($file, "Order deny,allow\nDeny from all")) {
+				echo '<span class="ok">OK</span> (.htaccess file created)';
+				return true;
+			}else{
+				die('<span class="fail">FAILED</span>');
+			}
+		}
 ?>
 		<h2>Installation</h2>
 		<ul>
@@ -158,58 +207,28 @@ switch((int) $_GET['install']) {
 ?>
 				<span class="ok">OK</span> (connection established)
 			</li>
-			<li>
-				<strong>Writing .htaccess</strong><br>
-				<?php echo (file_exists(HOME_DIR.'.htaccess') && strstr(file_get_contents(HOME_DIR.'.htaccess'), 'config.ini')) ? '<span class="ok">Skipped</span> (propper .htaccess file found)' : (@file_put_contents(HOME_DIR.'.htaccess', str_replace('%APP_DIR%', APP_DIR, file_get_contents(APP_DIR.'inc/install/home-htaccess.txt'))) ? '<span class="ok">OK</span> (file written)' : '<span class="fail">FAILED</span>') ?>
-			</li>
-			<li>
-				<strong>Creating pages/ directory</strong><br>
-				<?php echo is_dir(HOME_DIR.'pages/') ? '<span class="ok">Skipped</span> (already existing)' : (@mkdir(HOME_DIR.'pages/') ? '<span class="ok">OK</span> (directory created)' : die('<span class="fail">FAILED</span>')) ?>
-			</li>
-			<li>
-				<strong>Copying default text 404 page</strong><br>
-				<?php echo file_exists(HOME_DIR.'pages/+404.php') ? '<span class="ok">Skipped</span> (already existing)' : (@copy(APP_DIR.'inc/install/defaults/+404.php', HOME_DIR.'pages/+404.php') ? '<span class="ok">OK</span> (file copied)' : die('<span class="fail">FAILED</span>')) ?>
-			</li>
-			<li>
-				<strong>Copying default image 404 page</strong><br>
-				<?php echo file_exists(HOME_DIR.'pages/+404+image.php') ? '<span class="ok">Skipped</span> (already existing)' : (@copy(APP_DIR.'inc/install/defaults/+404+image.php', HOME_DIR.'pages/+404+image.php') ? '<span class="ok">OK</span> (file copied)' : die('<span class="fail">FAILED</span>')) ?>
-			</li>
-			<li>
-				<strong>Copying default start page</strong><br>
-				<?php echo file_exists(HOME_DIR.'pages/+start.php') ? '<span class="ok">Skipped</span> (already existing)' : (@copy(APP_DIR.'inc/install/defaults/+start.php', HOME_DIR.'pages/+start.php') ? '<span class="ok">OK</span> (file copied)' : die('<span class="fail">FAILED</span>')) ?>
-			</li>
-			<li>
-				<strong>Creating skins/ directory</strong><br>
-				<?php echo is_dir(HOME_DIR.'skins/') ? '<span class="ok">Skipped</span> (already existing)' : (@mkdir(HOME_DIR.'skins/') ? '<span class="ok">OK</span> (directory created)' : die('<span class="fail">FAILED</span>')) ?>
-			</li>
-			<li>
-				<strong>Copying default skin</strong><br>
-<?php
-				if(is_dir(HOME_DIR.'skins/default/')) {
-					echo '<span class="ok">Skipped</span> (already existing)';
-				}else{
-					if(
-						@mkdir(HOME_DIR.'skins/default/')
-						&& @copy(APP_DIR.'inc/install/defaults/skin/tpl-head.php', HOME_DIR.'skins/default/tpl-head.php')
-						&& @copy(APP_DIR.'inc/install/defaults/skin/tpl-foot.php', HOME_DIR.'skins/default/tpl-foot.php')
-						&& @copy(APP_DIR.'inc/install/defaults/skin/styles.css', HOME_DIR.'skins/default/styles.css')
-						&& @copy(APP_DIR.'inc/install/defaults/skin/functions.php', HOME_DIR.'skins/default/functions.php')
-					) {
-						echo '<span class="ok">OK</span> (skin copied)';
-					}else{
-						die('<span class="fail">FAILED</span>');
-					}
-				}
-?>
-			</li>
-			<li>
-				<strong>Create cache/ directory</strong><br>
-				<?php echo is_dir(HOME_DIR.'cache') ? '<span class="ok">Skipped</span> (already existing)' : (@mkdir(HOME_DIR.'cache/') ? '<span class="ok">OK</span> (directory created)' : die('<span class="fail">FAILED</span>')) ?>
-			</li>
-			<li>
-				<strong>Create lang/ directory</strong><br>
-				<?php echo is_dir(HOME_DIR.'lang') ? '<span class="ok">Skipped</span> (already existing)' : (@mkdir(HOME_DIR.'lang/') ? '<span class="ok">OK</span> (directory created)' : die('<span class="fail">FAILED</span>')) ?>
-			</li>
+			<li><?php maybe_write(HOME_DIR.'.htaccess', str_replace('%APP_DIR%', APP_DIR, file_get_contents(APP_DIR.'inc/install/home-htaccess.txt'))) ?></li>
+			<li><?php maybe_mkdir(HOME_DIR.'cache') ?></li>
+			<li><?php maybe_deny_access(HOME_DIR.'cache') ?></li>
+			<li><?php maybe_mkdir(HOME_DIR.'site') ?></li>
+			<li><?php maybe_mkdir(HOME_DIR.'site/cls') ?></li>
+			<li><?php maybe_deny_access(HOME_DIR.'site/cls') ?></li>
+			<li><?php maybe_mkdir(HOME_DIR.'site/lang') ?></li>
+			<li><?php maybe_deny_access(HOME_DIR.'site/lang') ?></li>
+			<li><?php maybe_mkdir(HOME_DIR.'site/pages') ?></li>
+			<li><?php maybe_deny_access(HOME_DIR.'site/pages') ?></li>
+			<li><?php maybe_mkdir(HOME_DIR.'site/skins') ?></li>
+			<li><?php maybe_mkdir(HOME_DIR.'site/skins/default') ?></li>
+			<li><?php maybe_mkdir(HOME_DIR.'site/u') ?></li>
+			<li><?php maybe_mkdir(HOME_DIR.'site/widgets') ?></li>
+			<li><?php maybe_deny_access(HOME_DIR.'site/widgets') ?></li>
+			<li><?php maybe_copy(APP_DIR.'inc/install/defaults/+404.php', HOME_DIR.'site/pages/+404.php') ?></li>
+			<li><?php maybe_copy(APP_DIR.'inc/install/defaults/+404+image.php', HOME_DIR.'site/pages/+404+image.php') ?></li>
+			<li><?php maybe_copy(APP_DIR.'inc/install/defaults/+start.php', HOME_DIR.'site/pages/+start.php') ?></li>
+			<li><?php maybe_copy(APP_DIR.'inc/install/defaults/skin/tpl-head.php', HOME_DIR.'site/skins/default/tpl-head.php') ?></li>
+			<li><?php maybe_copy(APP_DIR.'inc/install/defaults/skin/tpl-foot.php', HOME_DIR.'site/skins/default/tpl-foot.php') ?></li>
+			<li><?php maybe_copy(APP_DIR.'inc/install/defaults/skin/styles.php', HOME_DIR.'site/skins/default/styles.php') ?></li>
+			<li><?php maybe_copy(APP_DIR.'inc/install/defaults/skin/functions.php', HOME_DIR.'site/skins/default/functions.php') ?></li>
 			<li>
 				<strong>Writing config.ini</strong><br>
 <?php
@@ -251,7 +270,7 @@ switch((int) $_GET['install']) {
 <?php
 		break;
 	default:
-		echo 'Unknown Installation Status.';
+		echo '<span class="fail">Unknown Installation Status.</span>';
 }
 
 ?>

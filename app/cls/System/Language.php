@@ -64,7 +64,8 @@ class Language {
 	}
 
 	public function isSupported($lang) {
-		return $lang===$this->base || file_exists("lang/$lang.csv");
+		$lang_dir = rtrim(Config::get('dirs', 'lang'),'/').'/';
+		return $lang===$this->base || file_exists($lang_dir.$lang.'.csv');
 	}
 
 	public function getSupportedLanguages() {
@@ -73,9 +74,10 @@ class Language {
 			Error::warning('Language system not yet loaded.');
 			return array();
 		}
+		$lang_dir = rtrim(Config::get('dirs', 'lang'),'/').'/';
 		$supported = array($this->base => true);
-		foreach(glob('lang/*.csv') as $path) {
-			if(preg_match('@^lang/([a-z]{2})\.csv$@',$path,$matches)) $supported[$matches[1]] = true;
+		foreach(glob($lang_dir.'*.csv') as $path) {
+			if(preg_match('@^'.preg_quote($lang_dir,'@').'([a-z]{2})\.csv$@',$path,$matches)) $supported[$matches[1]] = true;
 		}
 		$this->supported = array_keys($supported);
 		return $this->supported;
@@ -83,7 +85,8 @@ class Language {
 
 	protected function load() {
 		if($this->loaded) return;
-		$filename = "lang/{$this->lang}.csv";
+		$lang_dir = rtrim(Config::get('dirs', 'lang'),'/').'/';
+		$filename = $lang_dir.$this->lang.'.csv';
 		$cachefile = "lang.{$this->lang}.private.phpdata";
 		if(Cache::exists($cachefile) && !Cache::isOutdated($cachefile,$filename)) {
 			$this->strings = Cache::readFile($cachefile,true);
@@ -113,7 +116,8 @@ class Language {
 		$this->load();
 		if(isset($this->strings[$str])) return $this->strings[$str];
 		if($this->autoappend) {
-			if(!$this->filehandle) $this->filehandle = fopen("lang/{$this->lang}.csv",$this->autoappend ? 'a+' : 'r');
+			$lang_dir = rtrim(Config::get('dirs', 'lang'),'/').'/';
+			if(!$this->filehandle) $this->filehandle = fopen($lang_dir.$this->lang.'.csv',$this->autoappend ? 'a+' : 'r');
 			if(!isset($this->autoappend_added[$str])) {
 				fputcsv($this->filehandle,array($str,$str),"\t",'"');
 				$this->autoappend_added[$str] = true;

@@ -4,6 +4,7 @@ class App {
 
 	static $start_time;
 	static $app_dir = './';
+	static $site_dir = './site/';
 	static $path = null;
 	static $languages = array();
 	static $lang = null;
@@ -29,6 +30,14 @@ class App {
 		return self::$app_dir;
 	}
 
+	public static function setSiteDir($dir) {
+		self::$site_dir = rtrim($dir,'/').'/';
+	}
+
+	public static function getSiteDir() {
+		return self::$site_dir;
+	}
+
 	// Cleanup function, should be called at least once a day
 	public static function cleanup() {
 		MysqlDb::getInstance()->query(
@@ -40,7 +49,7 @@ class App {
 			'DELETE FROM links WHERE expires<=NOW()'
 		);
 		// Empty file cache
-		foreach(glob('cache/*') as $file) {
+		foreach(glob(rtrim(Config::get('dirs', 'cache'),'/').'/*') as $file) {
 			unlink($file);
 		}
 		// Delete old temp files
@@ -77,6 +86,8 @@ class App {
 	public static function autoload($cls) {
 		if(isset(self::$cls_files[$cls])) {
 			require_once(self::$cls_files[$cls]);
+		}elseif(($cls_dir = Config::get('dirs', 'classes_autoload')) && file_exists($cls_file = $cls_dir.'/'.$cls.'.php')) {
+			require_once($cls_file);
 		}elseif(count(spl_autoload_functions())<=1) {
 			Error::fatal("Class could not be found: $cls");
 		}
@@ -84,7 +95,7 @@ class App {
 
 	// Main Application initialization
 	public static function init() {
-		date_default_timezone_set(Config::get('env','timezone'));
+		date_default_timezone_set(Config::get('env', 'timezone'));
 		if(PHP_SAPI!=='cli') {
 			// Handle CDN requests at first
 			$cdn_host = Config::get('env', 'cdn_host');
@@ -162,7 +173,7 @@ class App {
 	// Resolve a URI relative to config [env] baseuri
 	public static function resolver($uri) {
 		$uri = preg_replace('/\?.*$/','',$uri);
-		$base = rtrim(Config::get('env','baseuri'),'/');
+		$base = rtrim(Config::get('env', 'baseuri'),'/');
 		return trim(substr($uri,strlen($base)),'/');
 	}
 
@@ -172,6 +183,7 @@ class App {
 
 	// Main render method, loads propper site template
 	public static function render($uri=null,$return=false) {
+		$pages_dir = rtrim(Config::get('dirs', 'pages'),'/').'/';
 		self::$start_time = microtime(true);
 		self::$path = self::getSeofreeTnt();
 		$pathok = preg_match('/^[A-Za-z0-9\-_\/\.]+$/',self::$path) && !strstr(self::$path,'..');
@@ -181,12 +193,12 @@ class App {
 		$doc = '';
 		for($i=0; $i<count($parts); $i++) {
 			$part = $parts[$i];
-			if(file_exists("pages/$part.php")) {
+			if(file_exists($pages_dir.$part.'.php')) {
 				$doc = $parts[$i];
 				break;
 			}
 		}
-		$contentfile = "pages/$doc.php";
+		$contentfile = $pages_dir.$doc.'.php';
 		// Start buffered output
 		ob_start();
 		// Load plugins
@@ -214,11 +226,11 @@ class App {
 		if($pathok && file_exists($contentfile)) {
 			require_once($contentfile);
 		}elseif(!$pathok) {
-			require_once('pages/+start.php');
+			require_once($pages_dir.'+start.php');
 		}elseif(preg_match('/\.(jpe?g|gif|png)$/i',self::$path)) {
-			require_once('pages/+404+image.php');
+			require_once($pages_dir.'+404+image.php');
 		}else{
-			require_once('pages/+404.php');
+			require_once($pages_dir.'+404.php');
 		}
 		// Load foot
 		$tpl_foot_file = self::getSkinPath().'tpl-foot.php';
@@ -407,7 +419,7 @@ class App {
 			if($regex_ends && !preg_match('@'.$regex_ends.'($|\?)@i', $matches[3])) {
 				return $matches[0];
 			}
-			if(strstr($matches[3],'//') && !strstr($matches[3],'//'.Config::get('env','host').'/')) return $matches[0];
+			if(strstr($matches[3],'//') && !strstr($matches[3],'//'.Config::get('env', 'host').'/')) return $matches[0];
 			$html = '<'.$tag.' '.$matches[1].$attr.'='.$matches[2].call_user_func($replace_callback, $matches[3]).$matches[2].$matches[4].'>';
 			if(Config::get('debug')) return '<!--CDN-->'.$html.'<!--/CDN-->';
 			return $html;
@@ -483,7 +495,7 @@ class App {
 	}
 
 	public static function widget($name) {
-		include(Config::get('env','widgets_dir',true)."/$name.php");
+		include(rtrim(Config::get('dirs', 'widgets', true),'/').'/'.$name.'.php');
 	}
 
 	public static function getPage($part=-1) {
@@ -507,8 +519,9 @@ class App {
 	}
 
 	public static function getLanguages() {
+		$lang_dir = rtrim(Config::get('dirs', 'lang'),'/').'/';
 		if(!self::$languages) {
-			self::$languages = glob('lang/*.csv');
+			self::$languages = glob($lang_dir.'*.csv');
 			foreach(self::$languages as $key=>$lang) {
 				self::$languages[$key] = substr($lang,5,2);
 			}
@@ -561,7 +574,7 @@ class App {
 	}
 
 	public static function linkFile($path, $return=false) {
-		$link = Config::get('env','baseuri').trim($path,'/');
+		$link = Config::get('env', 'baseuri').trim($path,'/');
 		if($return) return $link;
 		echo $link;
 	}
@@ -573,16 +586,16 @@ class App {
 	}
 
 	public static function getSkinPath() {
-		return 'skins/'.Config::get('env','skin').'/';
+		return 'skins/'.Config::get('env', 'skin').'/';
 	}
 
 	public static function getTempDir() {
-		$dir = realpath(Config::get('env','tmp_dir'));
+		$dir = realpath(Config::get('dirs', 'temp'));
 		return rtrim($dir,'/').'/';
 	}
 
 	public static function getUserUploadDir() {
-		$dir = Config::get('env','user_upload_dir');
+		$dir = Config::get('dirs', 'user_upload');
 		return rtrim($dir,'/').'/';
 	}
 
