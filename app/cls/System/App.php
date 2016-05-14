@@ -49,7 +49,7 @@ class App {
 			'DELETE FROM links WHERE expires<=NOW()'
 		);
 		// Empty file cache
-		foreach(glob(rtrim(Config::get('dirs', 'cache'),'/').'/*') as $file) {
+		foreach(glob(rtrim(Config::get('dirs', 'cache', true),'/').'/*') as $file) {
 			unlink($file);
 		}
 		// Delete old temp files
@@ -183,7 +183,7 @@ class App {
 
 	// Main render method, loads propper site template
 	public static function render($uri=null,$return=false) {
-		$pages_dir = rtrim(Config::get('dirs', 'pages'),'/').'/';
+		$pages_dir = rtrim(Config::get('dirs', 'pages', true),'/').'/';
 		self::$start_time = microtime(true);
 		self::$path = self::getSeofreeTnt();
 		$pathok = preg_match('/^[A-Za-z0-9\-_\/\.]+$/',self::$path) && !strstr(self::$path,'..');
@@ -519,7 +519,7 @@ class App {
 	}
 
 	public static function getLanguages() {
-		$lang_dir = rtrim(Config::get('dirs', 'lang'),'/').'/';
+		$lang_dir = rtrim(Config::get('dirs', 'lang', true),'/').'/';
 		if(!self::$languages) {
 			self::$languages = glob($lang_dir.'*.csv');
 			foreach(self::$languages as $key=>$lang) {
@@ -590,12 +590,12 @@ class App {
 	}
 
 	public static function getTempDir() {
-		$dir = realpath(Config::get('dirs', 'temp'));
+		$dir = realpath(Config::get('dirs', 'temp', true));
 		return rtrim($dir,'/').'/';
 	}
 
 	public static function getUserUploadDir() {
-		$dir = Config::get('dirs', 'user_upload');
+		$dir = Config::get('dirs', 'user_upload', true);
 		return rtrim($dir,'/').'/';
 	}
 
