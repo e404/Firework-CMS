@@ -2,6 +2,9 @@
 
 class App {
 
+	const PRODUCT = 'Firework CMS';
+	const VERSION = '1.0.3';
+
 	static $start_time;
 	static $app_dir = './';
 	static $site_dir = './site/';
@@ -181,6 +184,10 @@ class App {
 		self::$custom_tags[] = $tag;
 	}
 
+	public static function getVersion($product_name=false) {
+		return $product_name ? self::PRODUCT.' '.self::VERSION : self::VERSION;
+	}
+
 	// Main render method, loads propper site template
 	public static function render($uri=null,$return=false) {
 		$pages_dir = rtrim(Config::get('dirs', 'pages', true),'/').'/';
@@ -241,8 +248,14 @@ class App {
 				return '<script type="text/javascript" id="notifyscript">'."\napp.notify.query();\n</script>\n";
 			});
 		}
+		if(!Config::get('env', 'skip_generator')) {
+			self::addHook('head',function(){
+				return '<meta name="Generator" content="'.self::getVersion(true).'">'."\n";
+			});
+		}
 		// End buffered output
-		$html = self::renderReplacements(ob_get_clean());
+		$html = ob_get_clean();
+		$html = self::renderReplacements($html);
 		// Debug information
 		if(Config::get('debug')) {
 			$html = self::renderDebugInformation($html);
