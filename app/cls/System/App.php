@@ -11,33 +11,48 @@
  */
 class App {
 
-	/**
-	 * @internal
-	 */
+	/** @internal */
 	const PRODUCT = 'Firework CMS';
-	/**
-	 * @internal
-	 */
+	/** @internal */
 	const VERSION = '1.0.3';
 
+	/** @internal */
 	protected static $start_time;
+	/** @internal */
 	protected static $app_dir = './';
+	/** @internal */
 	protected static $site_dir = './site/';
+	/** @internal */
 	protected static $path = null;
+	/** @internal */
 	protected static $languages = array();
+	/** @internal */
 	protected static $lang = null;
+	/** @internal */
 	protected static $session = null;
+	/** @internal */
 	protected static $query = array();
+	/** @internal */
 	protected static $title = '';
+	/** @internal */
 	protected static $title_skip_suffix = false;
+	/** @internal */
 	protected static $protocol = 'http://';
+	/** @internal */
 	protected static $host = '';
+	/** @internal */
 	protected static $uriprefix = '';
+	/** @internal */
 	protected static $preload = array();
+	/** @internal */
 	protected static $hooks = array();
+	/** @internal */
 	protected static $cls_files = array();
+	/** @internal */
 	protected static $sandboxed = false;
+	/** @internal */
 	protected static $custom_tags = array();
+	/** @internal */
 	protected static $js_files = array();
 
 	/**
@@ -71,6 +86,11 @@ class App {
 	 * Sets the site directory.
 	 *
 	 * This is usually just "site", however, you are free to adjust it.
+	 * In your `config.ini` write
+	 * ```
+	 * [dirs]
+	 * site = "site"
+	 * ```
 	 * 
 	 * @access public
 	 * @static
@@ -97,7 +117,8 @@ class App {
 	/**
 	 * Method for cleaning up the application.
 	 *
-	 * This function should be called once a day via cron scheduler or something similar.
+	 * This function **should be called once a day** via cron scheduler or something similar.
+	 * It cleans up the database, expired cache files, obsolete sessions and so forth.
 	 * 
 	 * @access public
 	 * @static
@@ -127,9 +148,10 @@ class App {
 	/**
 	 * Adds a resource to the preload chain.
 	 *
-	 * The $preload resource (e.g. image) will be loaded with every HTTP request the client's browser makes.
+	 * The $preload resource (e.g. image) will be **loaded with every HTTP request** the client's browser makes.
 	 * This makes sure that the resource is available instantaniously.
-	 * Remember to cache the resource to avoid unnecessary HTTP overhead.
+	 *
+	 * - Remember to cache the resource to avoid unnecessary HTTP overhead.
 	 * 
 	 * @access public
 	 * @static
@@ -169,10 +191,13 @@ class App {
 	/**
 	 * The actual autoload handler.
 	 *
-	 * Tries to find a class that is not yet known.
-	 * You can add a lookup path using <code>[dirs]
-	 * classes_autoload = "site/cls"</code>
-	 * in your <em>config.ini</em>.
+	 * Tries to **find a class that is not yet known**.
+	 * You can add a lookup path using
+	 * ```
+	 * [dirs]
+	 * classes_autoload = "site/cls"
+	 * ```
+	 * in your `config.ini`.
 	 * 
 	 * @access public
 	 * @static
@@ -243,7 +268,15 @@ class App {
 		}
 	}
 
-	// CDN request handler
+	/**
+	 * Responds to CDN requests.
+	 *
+	 * TODO: Handle ***CDN requests* directly with App::handleCdnRequest()
+	 * 
+	 * @access protected
+	 * @static
+	 * @return void
+	 */
 	protected static function handleCdnRequest() {
 		echo 'CDN REQUEST'; // TODO
 	}
@@ -358,6 +391,7 @@ class App {
 		else echo $html;
 	}
 
+	/** @internal */
 	protected static function renderReplacements($html) {
 		// Insert title and description
 		if(self::$title) {
@@ -514,12 +548,14 @@ class App {
 		return $html;
 	}
 
+	/** @internal */
 	protected static function replaceTags($html, $tag_regex, $replace_callback) {
 		return preg_replace_callback("@$tag_regex@", function($matches) use ($replace_callback) {
 			return call_user_func($replace_callback, $matches);
 		}, $html);
 	}
 
+	/** @internal */
 	protected static function replaceUrisInHtmlToCdnVersion($html, $tag, $attr, $regex_ends, $replace_callback) {
 		return preg_replace_callback("@<$tag (.*?)$attr=([\"'])([^\"']+)[\"']([^>]*)>@", function($matches) use ($tag, $attr, $regex_ends, $replace_callback) {
 			if($regex_ends && !preg_match('@'.$regex_ends.'($|\?)@i', $matches[3])) {
@@ -532,6 +568,7 @@ class App {
 		}, $html);
 	}
 
+	/** @internal */
 	protected static function renderDebugInformation($html) {
 		$sec = round(microtime(true)-self::$start_time,3).'000';
 		$dot = strpos($sec,'.');
