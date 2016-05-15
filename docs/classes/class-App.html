@@ -1,0 +1,1833 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Class App</title>
+
+	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+		</div>
+
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-AbstractDatabaseConnector.html">AbstractDatabaseConnector</a></li>
+				<li><a href="class-AbstractDbCollection.html">AbstractDbCollection</a></li>
+				<li><a href="class-AbstractDbEntity.html">AbstractDbEntity</a></li>
+				<li><a href="class-AbstractDbRecord.html">AbstractDbRecord</a></li>
+				<li><a href="class-AbstractFormField.html">AbstractFormField</a></li>
+				<li><a href="class-AbstractFormFieldWithOptions.html">AbstractFormFieldWithOptions</a></li>
+				<li><a href="class-AbstractHtmlElement.html">AbstractHtmlElement</a></li>
+				<li class="active"><a href="class-App.html">App</a></li>
+				<li><a href="class-Button.html">Button</a></li>
+				<li><a href="class-Cache.html">Cache</a></li>
+				<li><a href="class-CachedQuery.html">CachedQuery</a></li>
+				<li><a href="class-CheckboxField.html">CheckboxField</a></li>
+				<li><a href="class-Config.html">Config</a></li>
+				<li><a href="class-CurrencyField.html">CurrencyField</a></li>
+				<li><a href="class-CustomHtmlTag.html">CustomHtmlTag</a></li>
+				<li><a href="class-Db.html">Db</a></li>
+				<li><a href="class-DropdownField.html">DropdownField</a></li>
+				<li><a href="class-EMail.html">EMail</a></li>
+				<li><a href="class-EMailAttachment.html">EMailAttachment</a></li>
+				<li><a href="class-EMailField.html">EMailField</a></li>
+				<li><a href="class-Error.html">Error</a></li>
+				<li><a href="class-FileField.html">FileField</a></li>
+				<li><a href="class-Form.html">Form</a></li>
+				<li><a href="class-HiddenField.html">HiddenField</a></li>
+				<li><a href="class-Instantiable.html">Instantiable</a></li>
+				<li><a href="class-Language.html">Language</a></li>
+				<li><a href="class-LinkTracker.html">LinkTracker</a></li>
+				<li><a href="class-ListField.html">ListField</a></li>
+				<li><a href="class-MysqlDb.html">MysqlDb</a></li>
+				<li><a href="class-Notify.html">Notify</a></li>
+				<li><a href="class-PasswordField.html">PasswordField</a></li>
+				<li><a href="class-PaymentField.html">PaymentField</a></li>
+				<li><a href="class-Pdf.html">Pdf</a></li>
+				<li><a href="class-RadioFields.html">RadioFields</a></li>
+				<li><a href="class-Random.html">Random</a></li>
+				<li><a href="class-Session.html">Session</a></li>
+				<li><a href="class-SubmitButton.html">SubmitButton</a></li>
+				<li><a href="class-SymbolTag.html">SymbolTag</a></li>
+				<li><a href="class-TCPDF_modified.html">TCPDF_modified</a></li>
+				<li><a href="class-TextField.html">TextField</a></li>
+				<li><a href="class-VimeoVideo.html">VimeoVideo</a></li>
+				<li><a href="class-YoutubeVideo.html">YoutubeVideo</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text" placeholder="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class App</h1>
+
+
+	<div class="description">
+	<p>** Main Application. **</p>
+
+<p>This main class is not instantiable.
+However, you can call various static methods.</p>
+	</div>
+
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		
+		
+
+				<b>Copyright:</b>
+				Roadfamily LLC, 2016<br>
+				<b>License:</b>
+				<a href="../license.txt">../license.txt</a><br>
+			<b>Located at</b> app/cls/System/App.php		<br>
+	</div>
+
+
+
+	<table class="summary methods" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="setAppDir" id="_setAppDir">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setAppDir">#</a>
+		<code>setAppDir( <span>string <var>$dir</var></span> )</code>
+
+		<div class="description short">
+			<p>Sets the application base directory.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Sets the application base directory.</p>
+
+<p>This could be the vhost's root dir.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$dir</var></dt>
+					<dd>App directory path</dd>
+				</dl></div>
+
+
+
+				<h4>See</h4>
+				<div class="list">
+						<code><a href="class-App.html#_getAppDir">App::getAppDir()</a></code><br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getAppDir" id="_getAppDir">
+
+		<td class="attributes"><code>
+			 public static
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getAppDir">#</a>
+		<code>getAppDir( )</code>
+
+		<div class="description short">
+			<p>Returns the application base directory.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Returns the application base directory.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					string<br>App directory path
+				</div>
+
+
+				<h4>See</h4>
+				<div class="list">
+						<code><a href="class-App.html#_setAppDir">App::setAppDir()</a></code><br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setSiteDir" id="_setSiteDir">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setSiteDir">#</a>
+		<code>setSiteDir( <span>string <var>$dir</var></span> )</code>
+
+		<div class="description short">
+			<p>Sets the site directory.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Sets the site directory.</p>
+
+<p>This is usually just "site", however, you are free to adjust it.
+In your <code>config.ini</code> write</p>
+
+<pre><code>[dirs]
+site = "site"
+</code></pre>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$dir</var></dt>
+					<dd>Site directory path</dd>
+				</dl></div>
+
+
+
+				<h4>See</h4>
+				<div class="list">
+						<code><a href="class-App.html#_getSiteDir">App::getSiteDir()</a></code><br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getSiteDir" id="_getSiteDir">
+
+		<td class="attributes"><code>
+			 public static
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getSiteDir">#</a>
+		<code>getSiteDir( )</code>
+
+		<div class="description short">
+			<p>Returns the site directory.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Returns the site directory.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					string<br>Site directory path
+				</div>
+
+
+				<h4>See</h4>
+				<div class="list">
+						<code><a href="class-App.html#_setSiteDir">App::setSiteDir()</a></code><br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="cleanup" id="_cleanup">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_cleanup">#</a>
+		<code>cleanup( )</code>
+
+		<div class="description short">
+			<p>Method for cleaning up the application.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Method for cleaning up the application.</p>
+
+<p>This function <strong>should be called once a day</strong> via cron scheduler or something similar.
+It cleans up the database, expired cache files, obsolete sessions and so forth.</p>
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="preload" id="_preload">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_preload">#</a>
+		<code>preload( <span>string <var>$preload</var></span> )</code>
+
+		<div class="description short">
+			<p>Adds a resource to the preload chain.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Adds a resource to the preload chain.</p>
+
+<p>The $preload resource (e.g. image) will be <strong>loaded with every HTTP request</strong> the client's browser makes.
+This makes sure that the resource is available instantaniously.</p>
+
+<ul>
+<li>Remember to cache the resource to avoid unnecessary HTTP overhead.</li>
+</ul>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$preload</var></dt>
+					<dd></dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="initAutoloader" id="_initAutoloader">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_initAutoloader">#</a>
+		<code>initAutoloader( )</code>
+
+		<div class="description short">
+			<p>Initializes the application's class autoloader.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Initializes the application's class autoloader.</p>
+
+<p>System classes will be crawled and cached for later use for improved efficiency.</p>
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="autoload" id="_autoload">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_autoload">#</a>
+		<code>autoload( <span>string <var>$cls</var></span> )</code>
+
+		<div class="description short">
+			<p>The actual autoload handler.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>The actual autoload handler.</p>
+
+<p>Tries to <strong>find a class that is not yet known</strong>.
+You can add a lookup path using</p>
+
+<pre><code>[dirs]
+classes_autoload = "site/cls"
+</code></pre>
+
+<p>in your <code>config.ini</code>.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$cls</var></dt>
+					<dd></dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="init" id="_init">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_init">#</a>
+		<code>init( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="handleCdnRequest" id="_handleCdnRequest">
+
+		<td class="attributes"><code>
+			 protected static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_handleCdnRequest">#</a>
+		<code>handleCdnRequest( )</code>
+
+		<div class="description short">
+			<p>Responds to CDN requests.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Responds to CDN requests.</p>
+
+<p>TODO: Handle **<em>CDN requests</em> directly with App::handleCdnRequest()</p>
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="resolver" id="_resolver">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_resolver">#</a>
+		<code>resolver( <span> <var>$uri</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="addCustomHtmlTag" id="_addCustomHtmlTag">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_addCustomHtmlTag">#</a>
+		<code>addCustomHtmlTag( <span><code><a href="class-CustomHtmlTag.html">CustomHtmlTag</a></code> <var>$tag</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getVersion" id="_getVersion">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getVersion">#</a>
+		<code>getVersion( <span> <var>$product_name</var> = <span class="php-keyword1">false</span></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="render" id="_render">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_render">#</a>
+		<code>render( <span> <var>$uri</var> = <span class="php-keyword1">null</span></span>, <span> <var>$return</var> = <span class="php-keyword1">false</span></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getCdnUrl" id="_getCdnUrl">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getCdnUrl">#</a>
+		<code>getCdnUrl( <span> <var>$url</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="renderCdnReplacements" id="_renderCdnReplacements">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_renderCdnReplacements">#</a>
+		<code>renderCdnReplacements( <span> <var>$html</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="renderajax" id="_renderajax">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_renderajax">#</a>
+		<code>renderajax( <span> <var>$uri</var> = <span class="php-keyword1">null</span></span>, <span> <var>$return</var> = <span class="php-keyword1">false</span></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="seostr" id="_seostr">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_seostr">#</a>
+		<code>seostr( <span> <var>$str</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getSeofreeTnt" id="_getSeofreeTnt">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getSeofreeTnt">#</a>
+		<code>getSeofreeTnt( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="link" id="_link">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_link">#</a>
+		<code>link( <span> <var>$tnt</var></span>, <span> <var>$seostr</var> = <span class="php-keyword1">null</span></span>, <span> <var>$return</var> = <span class="php-keyword1">false</span></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getLink" id="_getLink">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getLink">#</a>
+		<code>getLink( <span> <var>$tnt</var> = -<span class="php-num">1</span></span>, <span> <var>$seostr</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="switchLangLink" id="_switchLangLink">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_switchLangLink">#</a>
+		<code>switchLangLink( <span> <var>$newlang</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setTitle" id="_setTitle">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setTitle">#</a>
+		<code>setTitle( <span> <var>$str</var></span>, <span> <var>$skip_suffix</var> = <span class="php-keyword1">false</span></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getTitle" id="_getTitle">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getTitle">#</a>
+		<code>getTitle( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="widget" id="_widget">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_widget">#</a>
+		<code>widget( <span> <var>$name</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getPage" id="_getPage">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getPage">#</a>
+		<code>getPage( <span> <var>$part</var> = -<span class="php-num">1</span></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getUri" id="_getUri">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getUri">#</a>
+		<code>getUri( <span> <var>$get</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getLang" id="_getLang">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getLang">#</a>
+		<code>getLang( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getLanguages" id="_getLanguages">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getLanguages">#</a>
+		<code>getLanguages( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getSession" id="_getSession">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getSession">#</a>
+		<code>getSession( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getSid" id="_getSid">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getSid">#</a>
+		<code>getSid( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getUid" id="_getUid">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getUid">#</a>
+		<code>getUid( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getUrl" id="_getUrl">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getUrl">#</a>
+		<code>getUrl( <span> <var>$urlencode</var> = <span class="php-keyword1">false</span></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="clear" id="_clear">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_clear">#</a>
+		<code>clear( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="halt" id="_halt">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_halt">#</a>
+		<code>halt( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="redirect" id="_redirect">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_redirect">#</a>
+		<code>redirect( <span> <var>$url</var> = <span class="php-quote">'/'</span></span>, <span> <var>$fullurl</var> = <span class="php-keyword1">false</span></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="refresh" id="_refresh">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_refresh">#</a>
+		<code>refresh( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="linkFile" id="_linkFile">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_linkFile">#</a>
+		<code>linkFile( <span> <var>$path</var></span>, <span> <var>$return</var> = <span class="php-keyword1">false</span></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="linkVersionedFile" id="_linkVersionedFile">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_linkVersionedFile">#</a>
+		<code>linkVersionedFile( <span> <var>$path</var></span>, <span> <var>$return</var> = <span class="php-keyword1">false</span></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getSkinPath" id="_getSkinPath">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getSkinPath">#</a>
+		<code>getSkinPath( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getTempDir" id="_getTempDir">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getTempDir">#</a>
+		<code>getTempDir( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getUserUploadDir" id="_getUserUploadDir">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getUserUploadDir">#</a>
+		<code>getUserUploadDir( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="createTempFile" id="_createTempFile">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_createTempFile">#</a>
+		<code>createTempFile( <span> <var>$prefix</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="createUserUploadFile" id="_createUserUploadFile">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_createUserUploadFile">#</a>
+		<code>createUserUploadFile( <span> <var>$suffix</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="processLinkTrackerAction" id="_processLinkTrackerAction">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_processLinkTrackerAction">#</a>
+		<code>processLinkTrackerAction( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="executeHooks" id="_executeHooks">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_executeHooks">#</a>
+		<code>executeHooks( <span> <var>$id</var></span>, <span> <var>$param</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="addHook" id="_addHook">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_addHook">#</a>
+		<code>addHook( <span> <var>$id</var></span>, <span> <var>$function</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="sendCustomerMail" id="_sendCustomerMail">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_sendCustomerMail">#</a>
+		<code>sendCustomerMail( <span> <var>$email</var></span>, <span> <var>$firstname</var></span>, <span> <var>$lastname</var></span>, <span> <var>$subject</var></span>, <span> <var>$body</var></span>, <span>array <var>$attachments</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="isSandboxed" id="_isSandboxed">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isSandboxed">#</a>
+		<code>isSandboxed( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setSandboxed" id="_setSandboxed">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setSandboxed">#</a>
+		<code>setSandboxed( <span> <var>$sandboxed</var> = <span class="php-keyword1">true</span></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="cron" id="_cron">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_cron">#</a>
+		<code>cron( <span> <var>$period</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="adminNotification" id="_adminNotification">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_adminNotification">#</a>
+		<code>adminNotification( <span> <var>$msg</var></span>, <span> <var>$subject</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getHost" id="_getHost">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getHost">#</a>
+		<code>getHost( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 Firework CMS
+	</div>
+</div>
+</div>
+<script src="resources/combined.js"></script>
+<script src="elementlist.js"></script>
+</body>
+</html>
