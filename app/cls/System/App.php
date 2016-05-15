@@ -340,15 +340,15 @@ class App {
 	 * ```php
 	 * // Custom tag: <custom attr="xyz">
 	 * class CustomTag extends CustomHtmlTag {
-	 * 	public function __construct() {
-	 * 		parent::__construct('custom');
-	 * 		$this->attr('attr'); // required attribute
-	 * 		$this->attr('class', null); // optional attribute with default fallback
-	 * 		$this->setHandler(function($atts){
-	 * 			// Deal with $atts
-	 * 			return '<div class="custom">'.$atts['attr'].'</div>';
-	 * 		});
-	 * 	}
+	 *   public function __construct() {
+	 *     parent::__construct('custom');
+	 *     $this->attr('attr'); // required attribute
+	 *     $this->attr('class', null); // optional attribute with default fallback
+	 *     $this->setHandler(function($atts){
+	 *       // Deal with $atts
+	 *       return '<div class="custom">'.$atts['attr'].'</div>';
+	 *     });
+	 *   }
 	 * }
 	 * // Tell application to parse custom HTML tag
 	 * App::addCustomHtmlTag(SymbolTag::newInstance());
