@@ -292,7 +292,7 @@ class App {
 		echo 'CDN REQUEST'; // TODO
 	}
 
-	// Fill main menu
+	/** @internal */
 	private static function fillMenu() {
 		self::addHook('menu',function(){
 			$html = '';
@@ -310,13 +310,55 @@ class App {
 		});
 	}
 
-	// Resolve a URI relative to config [env] baseuri
+	// 
+	/**
+	 * Resolves a URI relative to base URI.
+	 *
+	 * Base URI can be modified in `config.ini` writing
+	 * ```
+	 * [env]
+	 * baseuri = "/"
+	 * ```
+	 * 
+	 * @access public
+	 * @static
+	 * @param mixed $uri
+	 * @return void
+	 */
 	public static function resolver($uri) {
 		$uri = preg_replace('/\?.*$/','',$uri);
 		$base = rtrim(Config::get('env', 'baseuri'),'/');
 		return trim(substr($uri,strlen($base)),'/');
 	}
 
+	/**
+	 * Adds a custom HTML tag handler.
+	 *
+	 * Handler must be created using and given as argument.
+	 *
+	 * *Example:*
+	 * ```php
+	 * // Custom tag: <custom attr="xyz">
+	 * class CustomTag extends CustomHtmlTag {
+	 * 	public function __construct() {
+	 * 		parent::__construct('custom');
+	 * 		$this->attr('attr'); // required attribute
+	 * 		$this->attr('class', null); // optional attribute with default fallback
+	 * 		$this->setHandler(function($atts){
+	 * 			// Deal with $atts
+	 * 			return '<div class="custom">'.$atts['attr'].'</div>';
+	 * 		});
+	 * 	}
+	 * }
+	 * // Tell application to parse custom HTML tag
+	 * App::addCustomHtmlTag(SymbolTag::newInstance());
+	 * ```
+	 * 
+	 * @access public
+	 * @static
+	 * @param CustomHtmlTag $tag
+	 * @return void
+	 */
 	public static function addCustomHtmlTag(CustomHtmlTag $tag) {
 		self::$custom_tags[] = $tag;
 	}
