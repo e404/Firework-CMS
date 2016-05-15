@@ -59,6 +59,7 @@ class App {
 	 * Sets the application base directory.
 	 *
 	 * This could be the vhost's root dir.
+	 * However, this path is automatically determined by the application.
 	 * 
 	 * @access public
 	 * @static
