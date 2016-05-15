@@ -103,6 +103,12 @@
 	<h1>Class App</h1>
 
 
+	<div class="description">
+	<p>** Main Application. **</p>
+
+<p>This main class is not instantiable.
+However, you can call various static methods.</p>
+	</div>
 
 
 
@@ -118,6 +124,10 @@
 		
 		
 
+				<b>Copyright:</b>
+				Roadfamily LLC, 2016<br>
+				<b>License:</b>
+				<a href="../license.txt">../license.txt</a><br>
 			<b>Located at</b> app/cls/System/App.php		<br>
 	</div>
 
@@ -137,19 +147,30 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setAppDir">#</a>
-		<code>setAppDir( <span> <var>$dir</var></span> )</code>
+		<code>setAppDir( <span>string <var>$dir</var></span> )</code>
 
 		<div class="description short">
-			
+			<p>Sets the application base directory.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Sets the application base directory.</p>
+
+<p>This could be the vhost's root dir.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$dir</var></dt>
+					<dd>App directory path</dd>
+				</dl></div>
 
 
 
-
-
+				<h4>See</h4>
+				<div class="list">
+						<code><a href="class-App.html#_getAppDir">App::getAppDir()</a></code><br>
+				</div>
 
 
 		</div>
@@ -160,7 +181,7 @@
 		<td class="attributes"><code>
 			 public static
 
-			
+			string
 			
 			</code>
 		</td>
@@ -170,16 +191,24 @@
 		<code>getAppDir( )</code>
 
 		<div class="description short">
-			
+			<p>Returns the application base directory.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Returns the application base directory.</p>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					string<br>App directory path
+				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						<code><a href="class-App.html#_setAppDir">App::setAppDir()</a></code><br>
+				</div>
 
 
 		</div>
@@ -197,19 +226,30 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setSiteDir">#</a>
-		<code>setSiteDir( <span> <var>$dir</var></span> )</code>
+		<code>setSiteDir( <span>string <var>$dir</var></span> )</code>
 
 		<div class="description short">
-			
+			<p>Sets the site directory.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Sets the site directory.</p>
+
+<p>This is usually just "site", however, you are free to adjust it.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$dir</var></dt>
+					<dd>Site directory path</dd>
+				</dl></div>
 
 
 
-
-
+				<h4>See</h4>
+				<div class="list">
+						<code><a href="class-App.html#_getSiteDir">App::getSiteDir()</a></code><br>
+				</div>
 
 
 		</div>
@@ -220,7 +260,7 @@
 		<td class="attributes"><code>
 			 public static
 
-			
+			string
 			
 			</code>
 		</td>
@@ -230,16 +270,24 @@
 		<code>getSiteDir( )</code>
 
 		<div class="description short">
-			
+			<p>Returns the site directory.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Returns the site directory.</p>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					string<br>Site directory path
+				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						<code><a href="class-App.html#_setSiteDir">App::setSiteDir()</a></code><br>
+				</div>
 
 
 		</div>
@@ -260,11 +308,13 @@
 		<code>cleanup( )</code>
 
 		<div class="description short">
-			
+			<p>Method for cleaning up the application.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Method for cleaning up the application.</p>
+
+<p>This function should be called once a day via cron scheduler or something similar.</p>
 
 
 
@@ -287,16 +337,25 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_preload">#</a>
-		<code>preload( <span> <var>$preload</var></span> )</code>
+		<code>preload( <span>string <var>$preload</var></span> )</code>
 
 		<div class="description short">
-			
+			<p>Adds a resource to the preload chain.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Adds a resource to the preload chain.</p>
+
+<p>The $preload resource (e.g. image) will be loaded with every HTTP request the client's browser makes.
+This makes sure that the resource is available instantaniously.
+Remember to cache the resource to avoid unnecessary HTTP overhead.</p>
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$preload</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -320,11 +379,13 @@
 		<code>initAutoloader( )</code>
 
 		<div class="description short">
-			
+			<p>Initializes the application's class autoloader.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Initializes the application's class autoloader.</p>
+
+<p>System classes will be crawled and cached for later use for improved efficiency.</p>
 
 
 
@@ -347,16 +408,29 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_autoload">#</a>
-		<code>autoload( <span> <var>$cls</var></span> )</code>
+		<code>autoload( <span>string <var>$cls</var></span> )</code>
 
 		<div class="description short">
-			
+			<p>The actual autoload handler.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>The actual autoload handler.</p>
+
+<p>Tries to find a class that is not yet known.
+You can add a lookup path using</p>
+
+<pre>[dirs]
+classes_autoload = <span class="php-quote">&quot;site/cls&quot;</span></pre>
+
+<p>in your <em>config.ini</em>.</p>
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$cls</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -1844,55 +1918,6 @@
 
 
 
-	<table class="summary constants" id="constants">
-	<caption>Constants summary</caption>
-	<tr data-order="PRODUCT" id="PRODUCT">
-
-		<td class="attributes"><code>string</code></td>
-		<td class="name">
-			<code>
-<b>PRODUCT</b>			</code>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#PRODUCT" class="anchor">#</a>
-				<code><span class="php-quote">'Firework CMS'</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="VERSION" id="VERSION">
-
-		<td class="attributes"><code>string</code></td>
-		<td class="name">
-			<code>
-<b>VERSION</b>			</code>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#VERSION" class="anchor">#</a>
-				<code><span class="php-quote">'1.0.3'</span></code>
-			</div>
-		</td>
-	</tr>
-	</table>
 
 
 
@@ -1901,7 +1926,7 @@
 	<caption>Properties summary</caption>
 	<tr data-order="start_time" id="$start_time">
 		<td class="attributes"><code>
-			public static 
+			protected static 
 			
 		</code></td>
 
@@ -1925,7 +1950,7 @@
 	</tr>
 	<tr data-order="app_dir" id="$app_dir">
 		<td class="attributes"><code>
-			public static 
+			protected static 
 			string
 		</code></td>
 
@@ -1949,7 +1974,7 @@
 	</tr>
 	<tr data-order="site_dir" id="$site_dir">
 		<td class="attributes"><code>
-			public static 
+			protected static 
 			string
 		</code></td>
 
@@ -1973,7 +1998,7 @@
 	</tr>
 	<tr data-order="path" id="$path">
 		<td class="attributes"><code>
-			public static 
+			protected static 
 			
 		</code></td>
 
@@ -1997,7 +2022,7 @@
 	</tr>
 	<tr data-order="languages" id="$languages">
 		<td class="attributes"><code>
-			public static 
+			protected static 
 			array
 		</code></td>
 
@@ -2021,7 +2046,7 @@
 	</tr>
 	<tr data-order="lang" id="$lang">
 		<td class="attributes"><code>
-			public static 
+			protected static 
 			
 		</code></td>
 
@@ -2045,7 +2070,7 @@
 	</tr>
 	<tr data-order="session" id="$session">
 		<td class="attributes"><code>
-			public static 
+			protected static 
 			
 		</code></td>
 
@@ -2069,7 +2094,7 @@
 	</tr>
 	<tr data-order="query" id="$query">
 		<td class="attributes"><code>
-			public static 
+			protected static 
 			array
 		</code></td>
 
@@ -2093,7 +2118,7 @@
 	</tr>
 	<tr data-order="title" id="$title">
 		<td class="attributes"><code>
-			public static 
+			protected static 
 			string
 		</code></td>
 
@@ -2117,7 +2142,7 @@
 	</tr>
 	<tr data-order="title_skip_suffix" id="$title_skip_suffix">
 		<td class="attributes"><code>
-			public static 
+			protected static 
 			boolean
 		</code></td>
 
@@ -2141,7 +2166,7 @@
 	</tr>
 	<tr data-order="protocol" id="$protocol">
 		<td class="attributes"><code>
-			public static 
+			protected static 
 			string
 		</code></td>
 
@@ -2165,7 +2190,7 @@
 	</tr>
 	<tr data-order="host" id="$host">
 		<td class="attributes"><code>
-			public static 
+			protected static 
 			string
 		</code></td>
 
@@ -2189,7 +2214,7 @@
 	</tr>
 	<tr data-order="uriprefix" id="$uriprefix">
 		<td class="attributes"><code>
-			public static 
+			protected static 
 			string
 		</code></td>
 
@@ -2213,7 +2238,7 @@
 	</tr>
 	<tr data-order="preload" id="$preload">
 		<td class="attributes"><code>
-			public static 
+			protected static 
 			array
 		</code></td>
 
@@ -2237,7 +2262,7 @@
 	</tr>
 	<tr data-order="hooks" id="$hooks">
 		<td class="attributes"><code>
-			public static 
+			protected static 
 			array
 		</code></td>
 
@@ -2261,7 +2286,7 @@
 	</tr>
 	<tr data-order="cls_files" id="$cls_files">
 		<td class="attributes"><code>
-			public static 
+			protected static 
 			array
 		</code></td>
 
@@ -2285,7 +2310,7 @@
 	</tr>
 	<tr data-order="sandboxed" id="$sandboxed">
 		<td class="attributes"><code>
-			public static 
+			protected static 
 			boolean
 		</code></td>
 
@@ -2309,7 +2334,7 @@
 	</tr>
 	<tr data-order="custom_tags" id="$custom_tags">
 		<td class="attributes"><code>
-			public static 
+			protected static 
 			array
 		</code></td>
 
@@ -2333,7 +2358,7 @@
 	</tr>
 	<tr data-order="js_files" id="$js_files">
 		<td class="attributes"><code>
-			public static 
+			protected static 
 			array
 		</code></td>
 
@@ -2365,7 +2390,7 @@
 </div>
 
 	<div id="footer">
-		 API documentation generated by <a href="http://apigen.org">ApiGen</a>
+		 Firework CMS
 	</div>
 </div>
 </div>

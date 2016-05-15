@@ -1,47 +1,108 @@
 <?php
 
+/**
+ * ** Main Application. **
+ *
+ * This main class is not instantiable.
+ * However, you can call various static methods.
+ *
+ * @copyright Roadfamily LLC, 2016
+ * @license ../license.txt
+ */
 class App {
 
+	/**
+	 * @internal
+	 */
 	const PRODUCT = 'Firework CMS';
+	/**
+	 * @internal
+	 */
 	const VERSION = '1.0.3';
 
-	static $start_time;
-	static $app_dir = './';
-	static $site_dir = './site/';
-	static $path = null;
-	static $languages = array();
-	static $lang = null;
-	static $session = null;
-	static $query = array();
-	static $title = '';
-	static $title_skip_suffix = false;
-	static $protocol = 'http://';
-	static $host = '';
-	static $uriprefix = '';
-	static $preload = array();
-	static $hooks = array();
-	static $cls_files = array();
-	static $sandboxed = false;
-	static $custom_tags = array();
-	static $js_files = array();
+	protected static $start_time;
+	protected static $app_dir = './';
+	protected static $site_dir = './site/';
+	protected static $path = null;
+	protected static $languages = array();
+	protected static $lang = null;
+	protected static $session = null;
+	protected static $query = array();
+	protected static $title = '';
+	protected static $title_skip_suffix = false;
+	protected static $protocol = 'http://';
+	protected static $host = '';
+	protected static $uriprefix = '';
+	protected static $preload = array();
+	protected static $hooks = array();
+	protected static $cls_files = array();
+	protected static $sandboxed = false;
+	protected static $custom_tags = array();
+	protected static $js_files = array();
 
-	public static function setAppDir($dir) {
+	/**
+	 * Sets the application base directory.
+	 *
+	 * This could be the vhost's root dir.
+	 * 
+	 * @access public
+	 * @static
+	 * @param string $dir App directory path
+	 * @return void
+	 * @see self::getAppDir()
+	 */
+	public static function setAppDir(string $dir) {
 		self::$app_dir = rtrim($dir,'/').'/';
 	}
 
+	/**
+	 * Returns the application base directory.
+	 *
+	 * @access public
+	 * @static
+	 * @return string App directory path
+	 * @see self::setAppDir()
+	 */
 	public static function getAppDir() {
 		return self::$app_dir;
 	}
 
-	public static function setSiteDir($dir) {
+	/**
+	 * Sets the site directory.
+	 *
+	 * This is usually just "site", however, you are free to adjust it.
+	 * 
+	 * @access public
+	 * @static
+	 * @param string $dir Site directory path
+	 * @return void
+	 * @see self::getSiteDir()
+	 */
+	public static function setSiteDir(string $dir) {
 		self::$site_dir = rtrim($dir,'/').'/';
 	}
 
+	/**
+	 * Returns the site directory.
+	 * 
+	 * @access public
+	 * @static
+	 * @return string Site directory path
+	 * @see self::setSiteDir()
+	 */
 	public static function getSiteDir() {
 		return self::$site_dir;
 	}
 
-	// Cleanup function, should be called at least once a day
+	/**
+	 * Method for cleaning up the application.
+	 *
+	 * This function should be called once a day via cron scheduler or something similar.
+	 * 
+	 * @access public
+	 * @static
+	 * @return void
+	 */
 	public static function cleanup() {
 		MysqlDb::getInstance()->query(
 			// Delete old sessions
@@ -63,11 +124,31 @@ class App {
 		}
 	}
 
-	public static function preload($preload) {
+	/**
+	 * Adds a resource to the preload chain.
+	 *
+	 * The $preload resource (e.g. image) will be loaded with every HTTP request the client's browser makes.
+	 * This makes sure that the resource is available instantaniously.
+	 * Remember to cache the resource to avoid unnecessary HTTP overhead.
+	 * 
+	 * @access public
+	 * @static
+	 * @param string $preload
+	 * @return void
+	 */
+	public static function preload(string $preload) {
 		self::$preload = $preload;
 	}
 
-	// Autoloader registration
+	/**
+	 * Initializes the application's class autoloader.
+	 *
+	 * System classes will be crawled and cached for later use for improved efficiency.
+	 * 
+	 * @access public
+	 * @static
+	 * @return void
+	 */
 	public static function initAutoloader() {
 		foreach(glob(self::getAppDir().'cls/*') as $path) {
 			if(preg_match('@^'.self::getAppDir().'cls/([^\.]+)\.php$@', $path, $matches)) {
@@ -85,8 +166,20 @@ class App {
 		spl_autoload_register('App::autoload');
 	}
 
-	// Autoloader - has to be used explicitly
-	public static function autoload($cls) {
+	/**
+	 * The actual autoload handler.
+	 *
+	 * Tries to find a class that is not yet known.
+	 * You can add a lookup path using <code>[dirs]
+	 * classes_autoload = "site/cls"</code>
+	 * in your <em>config.ini</em>.
+	 * 
+	 * @access public
+	 * @static
+	 * @param string $cls
+	 * @return void
+	 */
+	public static function autoload(string $cls) {
 		if(isset(self::$cls_files[$cls])) {
 			require_once(self::$cls_files[$cls]);
 		}elseif(($cls_dir = Config::get('dirs', 'classes_autoload')) && file_exists($cls_file = $cls_dir.'/'.$cls.'.php')) {
