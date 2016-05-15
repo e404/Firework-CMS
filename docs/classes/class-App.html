@@ -156,7 +156,8 @@ However, you can call various static methods.</p>
 		<div class="description detailed hidden">
 			<p>Sets the application base directory.</p>
 
-<p>This could be the vhost's root dir.</p>
+<p>This could be the vhost's root dir.
+However, this path is automatically determined by the application.</p>
 
 
 				<h4>Parameters</h4>
@@ -464,11 +465,15 @@ classes_autoload = "site/cls"
 		<code>init( )</code>
 
 		<div class="description short">
-			
+			<p>Main application initialization.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Main application initialization.</p>
+
+<p>Should be <strong>called once with every HTTP request</strong>.
+This method loads and prepares all required processes and variables.
+Also, the request will be directed to the right handler.</p>
 
 
 
@@ -500,7 +505,7 @@ classes_autoload = "site/cls"
 		<div class="description detailed hidden">
 			<p>Responds to CDN requests.</p>
 
-<p>TODO: Handle **<em>CDN requests</em> directly with App::handleCdnRequest()</p>
+<p><strong><em>TODO:</em></strong> Handle CDN requests directly with App::handleCdnRequest()</p>
 
 
 

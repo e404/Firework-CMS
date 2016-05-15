@@ -215,7 +215,17 @@ class App {
 		}
 	}
 
-	// Main Application initialization
+	/**
+	 * Main application initialization.
+	 *
+	 * Should be **called once with every HTTP request**.
+	 * This method loads and prepares all required processes and variables.
+	 * Also, the request will be directed to the right handler.
+	 * 
+	 * @access public
+	 * @static
+	 * @return void
+	 */
 	public static function init() {
 		date_default_timezone_set(Config::get('env', 'timezone'));
 		if(PHP_SAPI!=='cli') {
@@ -272,7 +282,7 @@ class App {
 	/**
 	 * Responds to CDN requests.
 	 *
-	 * TODO: Handle ***CDN requests* directly with App::handleCdnRequest()
+	 * ***TODO:*** Handle CDN requests directly with App::handleCdnRequest()
 	 * 
 	 * @access protected
 	 * @static
