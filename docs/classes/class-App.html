@@ -528,16 +528,27 @@ Also, the request will be directed to the right handler.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_resolver">#</a>
-		<code>resolver( <span> <var>$uri</var></span> )</code>
+		<code>resolver( <span>mixed <var>$uri</var></span> )</code>
 
 		<div class="description short">
-			
+			<p>Resolves a URI relative to base URI.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Resolves a URI relative to base URI.</p>
+
+<p>Base URI can be modified in <code>config.ini</code> writing</p>
+
+<pre><code>[env]
+baseuri = "/"
+</code></pre>
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$uri</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -561,13 +572,28 @@ Also, the request will be directed to the right handler.</p>
 		<code>addCustomHtmlTag( <span><code><a href="class-CustomHtmlTag.html">CustomHtmlTag</a></code> <var>$tag</var></span> )</code>
 
 		<div class="description short">
-			
+			<p>Adds a custom HTML tag handler.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Adds a custom HTML tag handler.</p>
+
+<p>Handler must be created using and given as argument.</p>
+
+<p><em>Example:</em></p>
+
+<pre><span class="php-comment">// Custom tag: &lt;custom attr=&quot;xyz&quot;&gt;</span>
+<span class="php-keyword1">class</span> CustomTag <span class="php-keyword1">extends</span> CustomHtmlTag { <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> __construct() { parent::__construct(<span class="php-quote">'custom'</span>); <span class="php-var">$this</span>-&gt;attr(<span class="php-quote">'attr'</span>); <span class="php-comment">// required attribute $this-&gt;attr('class', null); // optional attribute with default fallback $this-&gt;setHandler(function($atts){ // Deal with $atts return '&lt;div class=&quot;custom&quot;&gt;'.$atts['attr'].'&lt;/div&gt;'; }); }</span>
+}
+<span class="php-comment">// Tell application to parse custom HTML tag</span>
+App::addCustomHtmlTag(SymbolTag::newInstance());</pre>
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$tag</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
