@@ -88,10 +88,10 @@ class App {
 	 *
 	 * This is usually just "site", however, you are free to adjust it.
 	 * In your `config.ini` write
-	 * ```
+	 * <code>
 	 * [dirs]
 	 * site = "site"
-	 * ```
+	 * </code>
 	 * 
 	 * @access public
 	 * @static
@@ -194,10 +194,10 @@ class App {
 	 *
 	 * Tries to **find a class that is not yet known**.
 	 * You can add a lookup path using
-	 * ```
+	 * <code>
 	 * [dirs]
 	 * classes_autoload = "site/cls"
-	 * ```
+	 * </code>
 	 * in your `config.ini`.
 	 * 
 	 * @access public
@@ -315,10 +315,10 @@ class App {
 	 * Resolves a URI relative to base URI.
 	 *
 	 * Base URI can be modified in `config.ini` writing
-	 * ```
+	 * <code>
 	 * [env]
 	 * baseuri = "/"
-	 * ```
+	 * </code>
 	 * 
 	 * @access public
 	 * @static
@@ -335,39 +335,58 @@ class App {
 	 * Adds a custom HTML tag handler.
 	 *
 	 * Handler must be created using and given as argument.
-	 *
-	 * *Example:*
-	 * ```php
-	 * // Custom tag: <custom attr="xyz">
-	 * class CustomTag extends CustomHtmlTag {
-	 *   public function __construct() {
-	 *     parent::__construct('custom');
-	 *     $this->attr('attr'); // required attribute
-	 *     $this->attr('class', null); // optional attribute with default fallback
-	 *     $this->setHandler(function($atts){
-	 *       // Deal with $atts
-	 *       return '<div class="custom">'.$atts['attr'].'</div>';
-	 *     });
-	 *   }
-	 * }
-	 * // Tell application to parse custom HTML tag
-	 * App::addCustomHtmlTag(SymbolTag::newInstance());
-	 * ```
 	 * 
 	 * @access public
 	 * @static
 	 * @param CustomHtmlTag $tag
 	 * @return void
+	 * @see CustomHtmlTag
+	 *
+	 * @example
+	 * <code>
+	 * // Custom tag: <custom attr="xyz">
+	 * class CustomTag extends CustomHtmlTag {
+	 * 	public function __construct() {
+	 * 		parent::__construct('custom');
+	 * 		$this->attr('attr'); // required attribute
+	 * 		$this->attr('class', null); // optional attribute with default fallback
+	 * 		$this->setHandler(function($atts){
+	 * 			// Deal with $atts
+	 * 			return '<div class="custom">'.$atts['attr'].'</div>';
+	 * 		});
+	 * 	}
+	 * }
+	 * // Tell application to parse custom HTML tag
+	 * App::addCustomHtmlTag(SymbolTag::newInstance());
+	 * </code>
 	 */
 	public static function addCustomHtmlTag(CustomHtmlTag $tag) {
 		self::$custom_tags[] = $tag;
 	}
 
+	/**
+	 * Returns the current version of the application framework.
+	 *
+	 * If `$product_name` is given, the version number will be prefixed with the name of the application framework.
+	 * 
+	 * @access public
+	 * @static
+	 * @param bool $product_name (default: false)
+	 * @return string
+	 */
 	public static function getVersion($product_name=false) {
 		return $product_name ? self::PRODUCT.' '.self::VERSION : self::VERSION;
 	}
 
-	// Main render method, loads propper site template
+	/**
+	 * Main render method, loads propper site templates and renders the requested page.
+	 * 
+	 * @access public
+	 * @static
+	 * @param mixed $uri (default: null)
+	 * @param bool $return (default: false)
+	 * @return string HTML
+	 */
 	public static function render($uri=null,$return=false) {
 		$pages_dir = rtrim(Config::get('dirs', 'pages', true),'/').'/';
 		self::$start_time = microtime(true);
