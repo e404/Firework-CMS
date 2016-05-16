@@ -1,6 +1,9 @@
 <?php
 
-class Language {
+/**
+ * Language Translation.
+ */
+class Language extends Instantiable {
 
 	protected $autoappend = false;
 	protected $autoappend_added = array();
@@ -16,14 +19,38 @@ class Language {
 	protected $currency_suffix = '';
 	protected $currency_decimals = 2;
 
+	/**
+	 * Sets the auto-append mode.
+	 *
+	 * If enabled, the auto-append mode automatically appends language translation strings at the end of the current language file.
+	 * This makes it easier to find and edit not yet translated strings.
+	 * 
+	 * @access public
+	 * @param bool $autoappend (default: true)
+	 * @return void
+	 */
 	public function setAutoappend($autoappend=true) {
 		$this->autoappend = (bool) $autoappend;
 	}
 
+	/**
+	 * Defines the base language.
+	 * 
+	 * @access public
+	 * @param string $lang Language code
+	 * @return void
+	 */
 	public function setBase($lang) {
 		$this->base = $lang;
 	}
 
+	/**
+	 * Specifies the current language.
+	 * 
+	 * @access public
+	 * @param string $lang Language code
+	 * @return bool true on success, false if language is unsupported
+	 */
 	public function setLanguage($lang) {
 		if(!$this->isSupported($lang)) return false;
 		$this->lang = $lang;
@@ -59,15 +86,36 @@ class Language {
 		return true;
 	}
 
+	/**
+	 * Returns the current language code.
+	 * 
+	 * @access public
+	 * @return string Language code
+	 */
 	public function getLangString() {
 		return $this->lang;
 	}
 
+	/**
+	 * Checks if the language code is supported.
+	 * 
+	 * @access public
+	 * @param string $lang
+	 * @return bool true if supported, false if not
+	 */
 	public function isSupported($lang) {
 		$lang_dir = rtrim(Config::get('dirs', 'lang'),'/').'/';
 		return $lang===$this->base || file_exists($lang_dir.$lang.'.csv');
 	}
 
+	/**
+	 * Returns an array with all supported language codes.
+	 *
+	 * This list includes the base language.
+	 * 
+	 * @access public
+	 * @return array
+	 */
 	public function getSupportedLanguages() {
 		if($this->supported) return $this->supported;
 		if(!$this->base) {
@@ -111,6 +159,14 @@ class Language {
 		Cache::writeFile($cachefile,$this->strings,true);
 	}
 
+	/**
+	 * Translates a string from the base language to the language set via `setLanguage`.
+	 *
+	 * @access public
+	 * @param string $str
+	 * @return string Translated string or the original string if no translation is available
+	 * @see self::setLanguage()
+	 */
 	public function translateString($str) {
 		if($this->lang===$this->base) return $str;
 		$this->load();
@@ -126,6 +182,23 @@ class Language {
 		return $str;
 	}
 
+	/**
+	 * Translates every marked string within HTML code.
+	 * 
+	 * @access public
+	 * @param string $html
+	 * @param string $prefix (default: '{{')
+	 * @param string $suffix (default: '}}')
+	 * @return string The translated HTML string
+	 * @see self::setLanguage()
+	 *
+	 * @example
+	 * <code>
+	 * // ...
+	 * $lang->setLanguage('es');
+	 * $lang->translateHtml('<div>{{Hello world.}}</div>'); // returns '<div>Hola mundo.</div>'
+	 * </code>
+	 */
 	public function translateHtml($html,$prefix='{{',$suffix='}}') {
 		$parts = preg_split('/('.preg_quote($prefix,'/').'(.*?)'.preg_quote($suffix,'/').')/',$html,null,PREG_SPLIT_DELIM_CAPTURE);
 		$html = '';
@@ -140,11 +213,28 @@ class Language {
 		return $html;
 	}
 
+	/**
+	 * Translates a number to the right format.
+	 * 
+	 * @access public
+	 * @param mixed $number
+	 * @param int $decimals (default: 0)
+	 * @param bool $separator (default: true)
+	 * @return string
+	 */
 	public function number($number, $decimals=0, $separator=true) {
 		if(!is_numeric($number) || !$this->lang) return $number;
 		return number_format($number, $decimals, $this->number_dec_point, $separator ? $this->number_thsd_sep : '');
 	}
 
+	/**
+	 * Translates a number to the right currency format.
+	 * 
+	 * @access public
+	 * @param mixed $number
+	 * @param bool $simple If set to true, '.00' will be removed if applicable (default: false)
+	 * @return string
+	 */
 	public function currency($number, $simple=false) {
 		if(!is_numeric($number) || !$this->lang) return $number;
 		$number = trim($this->currency_prefix.' '.$this->number($number, $this->currency_decimals, true).' '.$this->currency_suffix);
@@ -152,10 +242,26 @@ class Language {
 		return $number;
 	}
 
+	/**
+	 * Gets the current language code.
+	 * 
+	 * @access public
+	 * @return void
+	 */
 	public function __toString() {
 		return $this->getLangString();
 	}
 
+	/**
+	 * Returns the native language name for the specified language.
+	 *
+	 * The language names are in UTF-8 charset.
+	 * 
+	 * @access public
+	 * @static
+	 * @param string $lang
+	 * @return string
+	 */
 	public static function getNativeName($lang) {
 		$lang = (string) $lang;
 		$names = array(

@@ -1,5 +1,25 @@
 <?php
 
+/**
+ * Handles short links, tracks its usage and expands application functionality.
+ *
+ * A `LinkTracker` can create links that can be use once or several times.
+ * Those `LinkTracker`s can receive a maximum lifetime, so they can automatically get invalid after a predefined amount of time.
+ * Also, `LinkTracker`s may have a context and a value assigned. As those values are stored in the `Session`, they are available across the entire application.
+ *
+ * @example
+ * <code>
+ * // ...
+ * $tracker = new LinkTracker();
+ * $tracker->setUrl('http://www.example.com/');
+ * $tracker->setLifetime(5); // After 5 days the link gets invalid
+ * $tracker->setContextValue('activation', $userid); // The context-value pair will be available after clicking the link
+ * $url = $tracker->getLink();
+ * // ...
+ * // After clicking the link
+ * $context_value = LinkTracker::getContextValue(); // $context_value is now ['context' => 'activation', 'value' => '5129872392']
+ * </code>
+ */
 class LinkTracker extends Db {
 
 	protected $lifetime_days = 14;
@@ -63,7 +83,8 @@ class LinkTracker extends Db {
 		);
 	}
 
-	public static function purge($link_id=null) { // if $link_id is null, it will be taken from sessionstore
+	// if $link_id is null, it will be taken from sessionstore
+	public static function purge($link_id=null) {
 		if(!$link_id) {
 			$link_id = App::getSession()->get('link_id');
 			App::getSession()->remove('link_id');

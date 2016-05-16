@@ -7,10 +7,14 @@
  */
 class Db extends Instantiable {
 
-	/** @internal */
 	protected static $db = null;
 
-	/** @internal */
+	/**
+	 * Initializes the database.
+	 * 
+	 * @access public
+	 * @return void
+	 */
 	public function __construct() {
 		self::db();
 	}

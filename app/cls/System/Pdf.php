@@ -21,7 +21,7 @@ class TCPDF_modified extends TCPDF {
 
 }
 
-class Pdf {
+class Pdf extends Instantiable {
 
 	protected $pdf;
 

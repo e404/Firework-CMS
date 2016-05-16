@@ -114,6 +114,20 @@
 	<p>EMail sending and handling class.</p>
 	</div>
 
+	<dl class="tree well">
+		<dd style="padding-left:0px">
+			<a href="class-Instantiable.html"><span>Instantiable</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by">
+<b><span>EMail</span></b>			
+			
+			
+		</dd>
+	</dl>
 
 
 
@@ -128,6 +142,8 @@
 		
 		
 
+				<b>See:</b>
+				<code><a href="class-EMailAttachment.html">EMailAttachment</a></code><br>
 			<b>Located at</b> app/cls/System/EMail.php		<br>
 	</div>
 
@@ -140,53 +156,35 @@
 
 			<td class="attributes"><code>
 				 public static
-				
+				string
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getLink">#</a>
-			<code>getLink( <span> <var>$config_key</var></span>, <span> <var>$text</var> = <span class="php-keyword1">null</span></span> )</code>
+			<code>getLink( <span>string <var>$config_key</var></span>, <span>string <var>$text</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
-				
+				<p>Returns a obfuscated clickable email link.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Returns a obfuscated clickable email link.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$config_key</var></dt>
+						<dd>Reads the email address from this config value</dd>
+						<dt><var>$text</var></dt>
+						<dd>(optional) Defines a different link text (default: null)</dd>
+					</dl></div>
 
-
-
-
-
-			</div>
-			</div></td>
-		</tr>
-		<tr data-order="base64chunk" id="_base64chunk">
-
-			<td class="attributes"><code>
-				 protected 
-				
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#_base64chunk">#</a>
-			<code>base64chunk( <span> <var>$str</var></span> )</code>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-
-
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
 
 
 
@@ -205,16 +203,21 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_setCharset">#</a>
-			<code>setCharset( <span> <var>$charet</var></span> )</code>
+			<code>setCharset( <span>string <var>$charet</var></span> )</code>
 
 			<div class="description short">
-				
+				<p>Defines the character set.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Defines the character set.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$charet</var></dt>
+						<dd></dd>
+					</dl></div>
 
 
 
@@ -234,16 +237,21 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_useBase64">#</a>
-			<code>useBase64( <span> <var>$useBase64</var> = <span class="php-keyword1">true</span></span> )</code>
+			<code>useBase64( <span>boolean <var>$useBase64</var> = <span class="php-keyword1">true</span></span> )</code>
 
 			<div class="description short">
-				
+				<p>Tells the generator to use Base64 encoding.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Tells the generator to use Base64 encoding.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$useBase64</var></dt>
+						<dd>(optional) If set to true, Base64 encoding will be used (default: true)</dd>
+					</dl></div>
 
 
 
@@ -263,16 +271,23 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_setFrom">#</a>
-			<code>setFrom( <span> <var>$from</var></span>, <span> <var>$name</var> = <span class="php-quote">''</span></span> )</code>
+			<code>setFrom( <span>string <var>$from</var></span>, <span>string <var>$name</var> = <span class="php-quote">''</span></span> )</code>
 
 			<div class="description short">
-				
+				<p>Specifies the email sender address and name.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Specifies the email sender address and name.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$from</var></dt>
+						<dd>The sender's email address</dd>
+						<dt><var>$name</var></dt>
+						<dd>(optional) The sender's name (default: '')</dd>
+					</dl></div>
 
 
 
@@ -285,7 +300,7 @@
 
 			<td class="attributes"><code>
 				 public 
-				
+				string
 				
 				</code>
 			</td>
@@ -295,14 +310,18 @@
 			<code>getFrom( )</code>
 
 			<div class="description short">
-				
+				<p>Returns the sender.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Returns the sender.</p>
 
 
 
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
 
 
 
@@ -321,16 +340,23 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_addTo">#</a>
-			<code>addTo( <span> <var>$to</var></span>, <span> <var>$name</var> = <span class="php-quote">''</span></span> )</code>
+			<code>addTo( <span>string <var>$to</var></span>, <span>string <var>$name</var> = <span class="php-quote">''</span></span> )</code>
 
 			<div class="description short">
-				
+				<p>Adds a recipient.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Adds a recipient.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$to</var></dt>
+						<dd>The recipient's email address</dd>
+						<dt><var>$name</var></dt>
+						<dd>(optional) The recipient's name (default: '')</dd>
+					</dl></div>
 
 
 
@@ -350,16 +376,23 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_addCc">#</a>
-			<code>addCc( <span> <var>$cc</var></span>, <span> <var>$name</var> = <span class="php-quote">''</span></span> )</code>
+			<code>addCc( <span>string <var>$cc</var></span>, <span>string <var>$name</var> = <span class="php-quote">''</span></span> )</code>
 
 			<div class="description short">
-				
+				<p>Adds a recipient via CC.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Adds a recipient via CC.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$cc</var></dt>
+						<dd>The recipient's email address</dd>
+						<dt><var>$name</var></dt>
+						<dd>(optional) The recipient's name (default: '')</dd>
+					</dl></div>
 
 
 
@@ -379,16 +412,25 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_addBcc">#</a>
-			<code>addBcc( <span> <var>$bcc</var></span> )</code>
+			<code>addBcc( <span>string <var>$bcc</var></span>, <span>string <var>$name</var>,…</span> )</code>
 
 			<div class="description short">
-				
+				<p>Adds a recipient via BCC.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Adds a recipient via BCC.</p>
+
+<p>BCC addresses are hidden to recipients.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$bcc</var></dt>
+						<dd>The recipient's email address</dd>
+						<dt><var>$name</var>,…</dt>
+						<dd>(optional) The recipient's name (default: '')</dd>
+					</dl></div>
 
 
 
@@ -408,19 +450,34 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getRecipients">#</a>
-			<code>getRecipients( <span> <var>$mix_types</var> = <span class="php-keyword1">false</span></span> )</code>
+			<code>getRecipients( <span>boolean <var>$mix_types</var> = <span class="php-keyword1">false</span></span> )</code>
 
 			<div class="description short">
-				
+				<p>Returns a list of all recipients.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Returns a list of all recipients.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$mix_types</var></dt>
+						<dd>(optional) If set to true, there will be no separation between To, CC and BCC recipients (default: false)</dd>
+					</dl></div>
 
 
 
-
-
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-EMail.html#_addTo">EMail::addTo()</a></code><br>
+							<code><a href="class-EMail.html#_addCc">EMail::addCc()</a></code><br>
+							<code><a href="class-EMail.html#_addBcc">EMail::addBcc()</a></code><br>
+					</div>
+					<h4>Example</h4>
+					<div class="list">
+							<span class="php-var">$email</span>-&gt;getRecipients(); <span class="php-comment">// Returns ['to' =&gt; ['test@example.com'], 'cc' =&gt; [], 'bcc' =&gt; []]</span><br>
+					</div>
 
 
 			</div>
@@ -437,16 +494,21 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_setSubject">#</a>
-			<code>setSubject( <span> <var>$subject</var></span> )</code>
+			<code>setSubject( <span>string <var>$subject</var></span> )</code>
 
 			<div class="description short">
-				
+				<p>Defines the email subject text.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Defines the email subject text.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$subject</var></dt>
+						<dd></dd>
+					</dl></div>
 
 
 
@@ -466,19 +528,28 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_setText">#</a>
-			<code>setText( <span> <var>$text</var></span> )</code>
+			<code>setText( <span>string <var>$text</var></span> )</code>
 
 			<div class="description short">
-				
+				<p>Specifies the email text content (text-only body).</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Specifies the email text content (text-only body).</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$text</var></dt>
+						<dd></dd>
+					</dl></div>
 
 
 
-
-
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-EMail.html#_setHtml">EMail::setHtml()</a></code><br>
+					</div>
 
 
 			</div>
@@ -495,19 +566,30 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_setHtml">#</a>
-			<code>setHtml( <span> <var>$html</var></span> )</code>
+			<code>setHtml( <span>string <var>$html</var></span> )</code>
 
 			<div class="description short">
-				
+				<p>Specifies the email HTML content (body).</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Specifies the email HTML content (body).</p>
+
+<p>If no text content is set via <code>setText</code> it will be auto-generated from the HTML content.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$html</var></dt>
+						<dd></dd>
+					</dl></div>
 
 
 
-
-
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-EMail.html#_setText">EMail::setText()</a></code><br>
+					</div>
 
 
 			</div>
@@ -524,16 +606,21 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_attachFile">#</a>
-			<code>attachFile( <span> <var>$filename</var></span> )</code>
+			<code>attachFile( <span>string <var>$filename</var></span> )</code>
 
 			<div class="description short">
-				
+				<p>Attaches a file.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Attaches a file.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$filename</var></dt>
+						<dd></dd>
+					</dl></div>
 
 
 
@@ -556,13 +643,18 @@
 			<code>addAttachment( <span><code><a href="class-EMailAttachment.html">EMailAttachment</a></code> <var>$attachment</var></span> )</code>
 
 			<div class="description short">
-				
+				<p>Adds an attachment via <code>EMailAttachment</code> object.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Adds an attachment via <code>EMailAttachment</code> object.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$attachment</var></dt>
+						<dd></dd>
+					</dl></div>
 
 
 
@@ -575,7 +667,7 @@
 
 			<td class="attributes"><code>
 				 public 
-				
+				boolean
 				
 				</code>
 			</td>
@@ -585,43 +677,18 @@
 			<code>send( )</code>
 
 			<div class="description short">
-				
+				<p>Generates and sends the email.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Generates and sends the email.</p>
 
 
 
-
-
-
-
-			</div>
-			</div></td>
-		</tr>
-		<tr data-order="transformHtmlToText" id="_transformHtmlToText">
-
-			<td class="attributes"><code>
-				 protected 
-				
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#_transformHtmlToText">#</a>
-			<code>transformHtmlToText( <span> <var>$html</var></span> )</code>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-
-
+					<h4>Returns</h4>
+					<div class="list">
+						boolean<br>true on success, false on error
+					</div>
 
 
 
@@ -640,19 +707,30 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_setHtmlHeader">#</a>
-			<code>setHtmlHeader( <span> <var>$htmlheaderfile</var></span> )</code>
+			<code>setHtmlHeader( <span>string <var>$htmlheaderfile</var></span> )</code>
 
 			<div class="description short">
-				
+				<p>Defines the HTML template header filename.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Defines the HTML template header filename.</p>
+
+<p>This header will be prepended to the HTML content set via <code>setHtml</code>.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$htmlheaderfile</var></dt>
+						<dd></dd>
+					</dl></div>
 
 
 
-
-
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-EMail.html#_setHtml">EMail::setHtml()</a></code><br>
+					</div>
 
 
 			</div>
@@ -669,19 +747,30 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_setHtmlFooter">#</a>
-			<code>setHtmlFooter( <span> <var>$htmlfooterfile</var></span> )</code>
+			<code>setHtmlFooter( <span>string <var>$htmlfooterfile</var></span> )</code>
 
 			<div class="description short">
-				
+				<p>Defines the HTML template footer filename.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Defines the HTML template footer filename.</p>
+
+<p>This footer will be appended to the HTML content set via <code>setHtml</code>.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$htmlfooterfile</var></dt>
+						<dd></dd>
+					</dl></div>
 
 
 
-
-
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-EMail.html#_setHtml">EMail::setHtml()</a></code><br>
+					</div>
 
 
 			</div>
@@ -698,19 +787,44 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_setHtmlTemplate">#</a>
-			<code>setHtmlTemplate( <span> <var>$htmltemplatefile</var></span> )</code>
+			<code>setHtmlTemplate( <span>string <var>$htmltemplatefile</var></span> )</code>
 
 			<div class="description short">
-				
+				<p>Defines the HTML template body file.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Defines the HTML template body file.</p>
+
+<p>The contents of this file will be read and set as HTML content.
+Custom fields can later be replaced using <code>setReplacement</code>.
+Those custom fields can be masked using curly brackets (e.g. <code>{firstname}</code>, <code>{lastname}</code>)</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$htmltemplatefile</var></dt>
+						<dd></dd>
+					</dl></div>
 
 
 
-
-
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-EMail.html#_setTextTemplate">EMail::setTextTemplate()</a></code><br>
+							<code><a href="class-EMail.html#_setHtml">EMail::setHtml()</a></code><br>
+							<code><a href="class-EMail.html#_setReplacement">EMail::setReplacement()</a></code><br>
+					</div>
+					<h4>Example</h4>
+					<div class="list">
+							<pre><span class="php-comment">// ...</span>
+<span class="php-var">$email</span>-&gt;setHtmlTemplate(<span class="php-quote">'templates/email_html.tpl'</span>);
+<span class="php-var">$email</span>-&gt;setReplacement(<span class="php-quote">'firstname'</span>, <span class="php-quote">'John'</span>);
+<span class="php-var">$email</span>-&gt;setReplacement(<span class="php-quote">'lastname'</span>, <span class="php-quote">'Doe'</span>);
+<span class="php-var">$email</span>-&gt;applyTemplates();
+<span class="php-comment">// ...</span>
+<span class="php-var">$email</span>-&gt;send();</pre><br>
+					</div>
 
 
 			</div>
@@ -727,19 +841,44 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_setTextTemplate">#</a>
-			<code>setTextTemplate( <span> <var>$texttemplatefile</var></span> )</code>
+			<code>setTextTemplate( <span>string <var>$texttemplatefile</var></span> )</code>
 
 			<div class="description short">
-				
+				<p>Defines the text template body file.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Defines the text template body file.</p>
+
+<p>The contents of this file will be read and set as text content.
+Custom fields can later be replaced using <code>setReplacement</code>.
+Those custom fields can be masked using curly brackets (e.g. <code>{firstname}</code>, <code>{lastname}</code>)</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$texttemplatefile</var></dt>
+						<dd></dd>
+					</dl></div>
 
 
 
-
-
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-EMail.html#_setHtmlTemplate">EMail::setHtmlTemplate()</a></code><br>
+							<code><a href="class-EMail.html#_setText">EMail::setText()</a></code><br>
+							<code><a href="class-EMail.html#_setReplacement">EMail::setReplacement()</a></code><br>
+					</div>
+					<h4>Example</h4>
+					<div class="list">
+							<pre><span class="php-comment">// ...</span>
+<span class="php-var">$email</span>-&gt;setTextTemplate(<span class="php-quote">'templates/email_text.tpl'</span>);
+<span class="php-var">$email</span>-&gt;setReplacement(<span class="php-quote">'firstname'</span>, <span class="php-quote">'John'</span>);
+<span class="php-var">$email</span>-&gt;setReplacement(<span class="php-quote">'lastname'</span>, <span class="php-quote">'Doe'</span>);
+<span class="php-var">$email</span>-&gt;applyTemplates();
+<span class="php-comment">// ...</span>
+<span class="php-var">$email</span>-&gt;send();</pre><br>
+					</div>
 
 
 			</div>
@@ -756,19 +895,31 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_setReplacement">#</a>
-			<code>setReplacement( <span> <var>$field</var></span>, <span> <var>$value</var></span> )</code>
+			<code>setReplacement( <span>string <var>$field</var></span>, <span>string <var>$value</var></span> )</code>
 
 			<div class="description short">
-				
+				<p>Sets a custom replacement field for templates.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Sets a custom replacement field for templates.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$field</var></dt>
+						<dd></dd>
+						<dt><var>$value</var></dt>
+						<dd></dd>
+					</dl></div>
 
 
 
-
-
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-EMail.html#_setHtmlTemplate">EMail::setHtmlTemplate()</a></code><br>
+							<code><a href="class-EMail.html#_setTextTemplate">EMail::setTextTemplate()</a></code><br>
+					</div>
 
 
 			</div>
@@ -785,16 +936,23 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_applyTemplates">#</a>
-			<code>applyTemplates( <span> <var>$fields</var> = <span class="php-keyword1">null</span></span>, <span> <var>$html_escape</var> = <span class="php-keyword1">true</span></span> )</code>
+			<code>applyTemplates( <span>array <var>$fields</var> = <span class="php-keyword1">null</span></span>, <span>boolean <var>$html_escape</var> = <span class="php-keyword1">true</span></span> )</code>
 
 			<div class="description short">
-				
+				<p>Applies the previously set template files and replacements.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Applies the previously set template files and replacements.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$fields</var></dt>
+						<dd>(optional) Replacement field array like in <code>setReplacement</code> (default: null)</dd>
+						<dt><var>$html_escape</var></dt>
+						<dd>(optional) If set to true, the replacement fields will be HTML escaped (default: true)</dd>
+					</dl></div>
 
 
 
@@ -806,6 +964,12 @@
 			</table>
 		</div>
 
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods inherited from <a href="class-Instantiable.html#methods">Instantiable</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-Instantiable.html#_newInstance">newInstance()</a></code>
+			</p>
+		</div>
 
 
 
@@ -820,7 +984,7 @@
 	</div>
 
 	<div id="footer">
-		 Firework CMS
+		 <a href="http://www.fireworkcms.com/" target="_blank">Firework CMS</a> - Copyright 2016 - All Rights Reserved.
 	</div>
 </div>
 <script src="resources/combined.js"></script>

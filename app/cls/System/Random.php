@@ -1,6 +1,6 @@
 <?
 
-class Random {
+class Random extends NonInstantiable {
 
 	public static function generate($length=6) {
 

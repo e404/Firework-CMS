@@ -1,7 +1,7 @@
 <?php
 
 /**
- * ** Main Application. **
+ * <u> Firework CMS (Main Application). </u>
  *
  * ***TODO:*** (system wide) optimize path handling:
  *
@@ -18,43 +18,24 @@ class App extends NonInstantiable {
 	/** @internal */
 	const VERSION = '1.0.3';
 
-	/** @internal */
 	protected static $start_time;
-	/** @internal */
 	protected static $app_dir = './';
-	/** @internal */
 	protected static $site_dir = './site/';
-	/** @internal */
 	protected static $path = null;
-	/** @internal */
 	protected static $languages = array();
-	/** @internal */
 	protected static $lang = null;
-	/** @internal */
 	protected static $session = null;
-	/** @internal */
 	protected static $query = array();
-	/** @internal */
 	protected static $title = '';
-	/** @internal */
 	protected static $title_skip_suffix = false;
-	/** @internal */
 	protected static $protocol = 'http://';
-	/** @internal */
 	protected static $host = '';
-	/** @internal */
 	protected static $uriprefix = '';
-	/** @internal */
 	protected static $preload = array();
-	/** @internal */
 	protected static $hooks = array();
-	/** @internal */
 	protected static $cls_files = array();
-	/** @internal */
 	protected static $sandboxed = false;
-	/** @internal */
 	protected static $custom_tags = array();
-	/** @internal */
 	protected static $js_files = array();
 
 	/**
@@ -294,7 +275,6 @@ class App extends NonInstantiable {
 		echo 'CDN REQUEST'; // TODO
 	}
 
-	/** @internal */
 	private static function fillMenu() {
 		self::addHook('menu',function(){
 			$html = '';
@@ -658,14 +638,12 @@ class App extends NonInstantiable {
 		return $html;
 	}
 
-	/** @internal */
 	protected static function replaceTags($html, $tag_regex, callable $replace_callback) {
 		return preg_replace_callback("@$tag_regex@", function($matches) use ($replace_callback) {
 			return call_user_func($replace_callback, $matches);
 		}, $html);
 	}
 
-	/** @internal */
 	protected static function replaceUrisInHtmlToCdnVersion($html, $tag, $attr, $regex_ends, callable $replace_callback) {
 		return preg_replace_callback("@<$tag (.*?)$attr=([\"'])([^\"']+)[\"']([^>]*)>@", function($matches) use ($tag, $attr, $regex_ends, $replace_callback) {
 			if($regex_ends && !preg_match('@'.$regex_ends.'($|\?)@i', $matches[3])) {
@@ -678,7 +656,6 @@ class App extends NonInstantiable {
 		}, $html);
 	}
 
-	/** @internal */
 	protected static function renderDebugInformation($html) {
 		$sec = round(microtime(true)-self::$start_time,3).'000';
 		$dot = strpos($sec,'.');

@@ -110,7 +110,24 @@
 	<h1>Class Error</h1>
 
 
+	<div class="description">
+	<p>Error class.</p>
+	</div>
 
+	<dl class="tree well">
+		<dd style="padding-left:0px">
+			<a href="class-NonInstantiable.html"><span>NonInstantiable</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by">
+<b><span>Error</span></b>			
+			
+			
+		</dd>
+	</dl>
 
 
 
@@ -144,16 +161,24 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_warning">#</a>
-			<code>warning( <span> <var>$msg</var> = <span class="php-quote">''</span></span> )</code>
+			<code>warning( <span>string <var>$msg</var> = <span class="php-quote">''</span></span> )</code>
 
 			<div class="description short">
-				
+				<p>Throws an error warning.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Throws an error warning.</p>
+
+<p>This will not halt the application.
+Depending on your settings, the warning might be sent to the administrator's email address.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$msg</var></dt>
+						<dd>The actual error message</dd>
+					</dl></div>
 
 
 
@@ -173,45 +198,24 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_fatal">#</a>
-			<code>fatal( <span> <var>$msg</var> = <span class="php-quote">''</span></span> )</code>
+			<code>fatal( <span>string <var>$msg</var> = <span class="php-quote">''</span></span> )</code>
 
 			<div class="description short">
-				
+				<p>Throws a fatal error.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Throws a fatal error.</p>
+
+<p><strong>This will halt the application</strong>.
+Depending on your settings, the error might be sent to the administrator's email address.</p>
 
 
-
-
-
-
-
-			</div>
-			</div></td>
-		</tr>
-		<tr data-order="deprecated" id="_deprecated">
-
-			<td class="attributes"><code>
-				 public static
-				
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#_deprecated">#</a>
-			<code>deprecated( <span>string <var>$use_instead</var> = <span class="php-keyword1">null</span></span> )</code>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$msg</var></dt>
+						<dd>The actual error message</dd>
+					</dl></div>
 
 
 
@@ -231,16 +235,23 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_debug">#</a>
-			<code>debug( <span> <var>$msg</var> = <span class="php-quote">''</span></span> )</code>
+			<code>debug( <span>string <var>$msg</var> = <span class="php-quote">''</span></span> )</code>
 
 			<div class="description short">
-				
+				<p>Logs a debug message.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Logs a debug message.</p>
+
+<p>Depending on your settings, the message might be sent to the administrator's email address.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$msg</var></dt>
+						<dd>The actual debug message</dd>
+					</dl></div>
 
 
 
@@ -253,7 +264,7 @@
 
 			<td class="attributes"><code>
 				 public static
-				
+				string
 				
 				</code>
 			</td>
@@ -263,14 +274,18 @@
 			<code>emptyField( )</code>
 
 			<div class="description short">
-				
+				<p>Return a placeholder text for an empty field.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Return a placeholder text for an empty field.</p>
 
 
 
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
 
 
 
@@ -289,45 +304,21 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_setEmptyFieldPlaceholder">#</a>
-			<code>setEmptyFieldPlaceholder( <span> <var>$str</var></span> )</code>
+			<code>setEmptyFieldPlaceholder( <span>string <var>$str</var></span> )</code>
 
 			<div class="description short">
-				
+				<p>Sets the placeholder text for an empty field.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Sets the placeholder text for an empty field.</p>
 
 
-
-
-
-
-
-			</div>
-			</div></td>
-		</tr>
-		<tr data-order="debugErrorGetRelativeFilePath" id="_debugErrorGetRelativeFilePath">
-
-			<td class="attributes"><code>
-				 public static
-				
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#_debugErrorGetRelativeFilePath">#</a>
-			<code>debugErrorGetRelativeFilePath( <span> <var>$file</var></span> )</code>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$str</var></dt>
+						<dd></dd>
+					</dl></div>
 
 
 
@@ -347,16 +338,21 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_setMode">#</a>
-			<code>setMode( <span> <var>$mode</var></span> )</code>
+			<code>setMode( <span>string <var>$mode</var></span> )</code>
 
 			<div class="description short">
-				
+				<p>Sets the error handler mode.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Sets the error handler mode.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$mode</var></dt>
+						<dd>'debug' or 'production'</dd>
+					</dl></div>
 
 
 
@@ -369,7 +365,7 @@
 
 			<td class="attributes"><code>
 				 public static
-				
+				string
 				
 				</code>
 			</td>
@@ -379,132 +375,24 @@
 			<code>getMode( )</code>
 
 			<div class="description short">
-				
+				<p>Returns the error handler mode.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Returns the error handler mode.</p>
 
 
 
+					<h4>Returns</h4>
+					<div class="list">
+						string<br>'debug' or 'production'
+					</div>
 
 
-
-
-			</div>
-			</div></td>
-		</tr>
-		<tr data-order="debugErrorHandlerReturn" id="_debugErrorHandlerReturn">
-
-			<td class="attributes"><code>
-				 public static
-				
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#_debugErrorHandlerReturn">#</a>
-			<code>debugErrorHandlerReturn( <span> <var>$errno</var></span>, <span> <var>$errstr</var></span>, <span> <var>$errfile</var></span>, <span> <var>$errline</var></span> )</code>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-
-
-
-
-
-
-			</div>
-			</div></td>
-		</tr>
-		<tr data-order="debugErrorHandler" id="_debugErrorHandler">
-
-			<td class="attributes"><code>
-				 public static
-				
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#_debugErrorHandler">#</a>
-			<code>debugErrorHandler( <span> <var>$errno</var></span>, <span> <var>$errstr</var></span>, <span> <var>$errfile</var></span>, <span> <var>$errline</var></span> )</code>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-
-
-
-
-
-
-			</div>
-			</div></td>
-		</tr>
-		<tr data-order="productionErrorHandler" id="_productionErrorHandler">
-
-			<td class="attributes"><code>
-				 public static
-				
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#_productionErrorHandler">#</a>
-			<code>productionErrorHandler( <span> <var>$errno</var></span>, <span> <var>$errstr</var></span>, <span> <var>$errfile</var></span>, <span> <var>$errline</var></span> )</code>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-
-
-
-
-
-
-			</div>
-			</div></td>
-		</tr>
-		<tr data-order="fatalErrorHandler" id="_fatalErrorHandler">
-
-			<td class="attributes"><code>
-				 public static
-				
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#_fatalErrorHandler">#</a>
-			<code>fatalErrorHandler( )</code>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-
-
-
-
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-Error.html#_setMode">Error::setMode()</a></code><br>
+					</div>
 
 
 			</div>
@@ -514,7 +402,7 @@
 
 			<td class="attributes"><code>
 				 public static
-				
+				integer
 				
 				</code>
 			</td>
@@ -524,14 +412,18 @@
 			<code>getErrorsCount( )</code>
 
 			<div class="description short">
-				
+				<p>Get the number of encountered errors so far.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Get the number of encountered errors so far.</p>
 
 
 
+					<h4>Returns</h4>
+					<div class="list">
+						integer
+					</div>
 
 
 
@@ -556,7 +448,7 @@
 	</div>
 
 	<div id="footer">
-		 Firework CMS
+		 <a href="http://www.fireworkcms.com/" target="_blank">Firework CMS</a> - Copyright 2016 - All Rights Reserved.
 	</div>
 </div>
 <script src="resources/combined.js"></script>

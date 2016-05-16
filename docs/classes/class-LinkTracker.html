@@ -111,9 +111,11 @@
 
 
 	<div class="description">
-	<p>Database Object.</p>
+	<p>Handles short links, tracks its usage and expands application functionality.</p>
 
-<p>Implements <code>$this-&gt;db</code> to any extending class</p>
+<p>A <code>LinkTracker</code> can create links that can be use once or several times.
+Those <code>LinkTracker</code>s can receive a maximum lifetime, so they can automatically get invalid after a predefined amount of time.
+Also, <code>LinkTracker</code>s may have a context and a value assigned. As those values are stored in the <code>Session</code>, they are available across the entire application.</p>
 	</div>
 
 	<dl class="tree well">
@@ -151,6 +153,16 @@
 		
 		
 
+				<b>Example:</b>
+				<pre><span class="php-comment">// ...</span>
+<span class="php-var">$tracker</span> = <span class="php-keyword1">new</span> LinkTracker();
+<span class="php-var">$tracker</span>-&gt;setUrl(<span class="php-quote">'http://www.example.com/'</span>);
+<span class="php-var">$tracker</span>-&gt;setLifetime(<span class="php-num">5</span>); <span class="php-comment">// After 5 days the link gets invalid</span>
+<span class="php-var">$tracker</span>-&gt;setContextValue(<span class="php-quote">'activation'</span>, <span class="php-var">$userid</span>); <span class="php-comment">// The context-value pair will be available after clicking the link</span>
+<span class="php-var">$url</span> = <span class="php-var">$tracker</span>-&gt;getLink();
+<span class="php-comment">// ...</span>
+<span class="php-comment">// After clicking the link</span>
+<span class="php-var">$context_value</span> = LinkTracker::getContextValue(); <span class="php-comment">// $context_value is now ['context' =&gt; 'activation', 'value' =&gt; '5129872392']</span></pre><br>
 			<b>Located at</b> app/cls/System/LinkTracker.php		<br>
 	</div>
 
@@ -426,6 +438,7 @@
 		<div class="panel panel-default">
 	        <div class="panel-heading"><h3>Methods inherited from <a href="class-Db.html#methods">Db</a></h3></div>
 			<p class="elementList">
+				<code><a href="class-Db.html#___construct">__construct()</a></code>, 
 				<code><a href="class-Db.html#_db">db()</a></code>
 			</p>
 		</div>
@@ -445,166 +458,11 @@
 
 
 
-		<div class="panel panel-default">
-            <div class="panel-heading"><h2>Properties summary</h2></div>
-			<table class="summary table table-bordered table-striped properties" id="properties">
-		<tr data-order="lifetime_days" id="$lifetime_days">
-			<td class="attributes"><code>
-				protected  
-				integer
-			</code></td>
-
-			<td class="name">
-<var>$lifetime_days</var>
-				<div class="description short">
-					
-				</div>
-
-				<div class="description detailed hidden">
-					
-
-				</div>
-			</td>
-			<td class="value">
-				<div>
-					<a href="#$lifetime_days" class="anchor">#</a>
-					<code><span class="php-num">14</span></code>
-				</div>
-			</td>
-		</tr>
-		<tr data-order="url" id="$url">
-			<td class="attributes"><code>
-				protected  
-				
-			</code></td>
-
-			<td class="name">
-<var>$url</var>
-				<div class="description short">
-					
-				</div>
-
-				<div class="description detailed hidden">
-					
-
-				</div>
-			</td>
-			<td class="value">
-				<div>
-					<a href="#$url" class="anchor">#</a>
-					<code><span class="php-keyword1">null</span></code>
-				</div>
-			</td>
-		</tr>
-		<tr data-order="desc" id="$desc">
-			<td class="attributes"><code>
-				protected  
-				
-			</code></td>
-
-			<td class="name">
-<var>$desc</var>
-				<div class="description short">
-					
-				</div>
-
-				<div class="description detailed hidden">
-					
-
-				</div>
-			</td>
-			<td class="value">
-				<div>
-					<a href="#$desc" class="anchor">#</a>
-					<code><span class="php-keyword1">null</span></code>
-				</div>
-			</td>
-		</tr>
-		<tr data-order="context" id="$context">
-			<td class="attributes"><code>
-				protected  
-				
-			</code></td>
-
-			<td class="name">
-<var>$context</var>
-				<div class="description short">
-					
-				</div>
-
-				<div class="description detailed hidden">
-					
-
-				</div>
-			</td>
-			<td class="value">
-				<div>
-					<a href="#$context" class="anchor">#</a>
-					<code><span class="php-keyword1">null</span></code>
-				</div>
-			</td>
-		</tr>
-		<tr data-order="value" id="$value">
-			<td class="attributes"><code>
-				protected  
-				
-			</code></td>
-
-			<td class="name">
-<var>$value</var>
-				<div class="description short">
-					
-				</div>
-
-				<div class="description detailed hidden">
-					
-
-				</div>
-			</td>
-			<td class="value">
-				<div>
-					<a href="#$value" class="anchor">#</a>
-					<code><span class="php-keyword1">null</span></code>
-				</div>
-			</td>
-		</tr>
-		<tr data-order="pretty_filename" id="$pretty_filename">
-			<td class="attributes"><code>
-				protected  
-				
-			</code></td>
-
-			<td class="name">
-<var>$pretty_filename</var>
-				<div class="description short">
-					
-				</div>
-
-				<div class="description detailed hidden">
-					
-
-				</div>
-			</td>
-			<td class="value">
-				<div>
-					<a href="#$pretty_filename" class="anchor">#</a>
-					<code><span class="php-keyword1">null</span></code>
-				</div>
-			</td>
-		</tr>
-			</table>
-		</div>
-
-
-
-
-
-
 </div>
 	</div>
 
 	<div id="footer">
-		 Firework CMS
+		 <a href="http://www.fireworkcms.com/" target="_blank">Firework CMS</a> - Copyright 2016 - All Rights Reserved.
 	</div>
 </div>
 <script src="resources/combined.js"></script>

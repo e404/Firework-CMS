@@ -5,11 +5,8 @@
  */
 class CustomHtmlTag extends Instantiable {
 
-	/** internal */
 	protected $tag = '';
-	/** internal */
 	protected $atts = array();
-	/** internal */
 	protected $handler = null;
 
 	/**

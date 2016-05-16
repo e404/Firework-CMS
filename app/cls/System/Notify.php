@@ -1,6 +1,6 @@
 <?php
 
-class Notify {
+class Notify extends NonInstantiable {
 
 	public static function ajax() {
 		return array(

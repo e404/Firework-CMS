@@ -5,7 +5,6 @@
  */
 class CachedQuery extends Db {
 
-	/** @internal */
 	protected $lifetime_sec = null;
 
 	/**

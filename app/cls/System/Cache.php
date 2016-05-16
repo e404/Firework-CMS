@@ -5,11 +5,8 @@
  */
 class Cache extends NonInstantiable {
 
-	/** @internal */
 	private static $dir = null;
-	/** @internal */
 	private static $last_inline_id = null;
-	/** @internal */
 	private static $last_inline_error_count = 0;
 
 	/**

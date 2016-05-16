@@ -5,7 +5,6 @@
  */
 class Config extends NonInstantiable {
 
-	/** @internal */
 	private static $conf = array();
 
 	/**
