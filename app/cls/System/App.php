@@ -797,19 +797,64 @@ class App {
 		echo $link;
 	}
 
-	public static function setTitle($str, $skip_suffix=false) {
+	/**
+	 * Defines the title of the HTML page.
+	 *
+	 * If applicable, the title suffix will be appended.
+	 * 
+	 * @access public
+	 * @static
+	 * @param string $str The title
+	 * @param bool $skip_suffix (optional) If set to true, no title suffix will be appended. (default: false)
+	 * @return void
+	 */
+	public static function setTitle(string $str, $skip_suffix=false) {
 		self::$title = trim($str);
 		self::$title_skip_suffix = $skip_suffix;
 	}
 
+	/**
+	 * Returns the page title previously set.
+	 * 
+	 * @access public
+	 * @static
+	 * @return string The title
+	 */
 	public static function getTitle() {
 		return self::$title.(self::$title_skip_suffix ? '' : ' '.trim(Config::get('htmlhead','titlesuffix')));
 	}
 
-	public static function widget($name) {
+	/**
+	 * Renders a widget.
+	 * 
+	 * @access public
+	 * @static
+	 * @param string $name The widget identifier
+	 * @return void
+	 */
+	public static function widget(string $name) {
 		include(rtrim(Config::get('dirs', 'widgets', true),'/').'/'.$name.'.php');
 	}
 
+	/**
+	 * Returns the current page's URI parts or one specific part.
+	 *
+	 * This method is error safe, which means if the given part number does not exist, `null` will be returned and no error will be triggered.
+	 *
+	 * @access public
+	 * @static
+	 * @param integer $part (optional) The part number (default: -1)
+	 * @return void
+	 *
+	 * @example
+	 * <code>
+	 * //Current URL: http://www.example.com/about/more/info
+	 * App::getPage(); // returns (array) ['about', 'more', 'info']
+	 * App::getPage(0); // returns (string) 'about'
+	 * App::getPage(2); // returns (string) 'info'
+	 * App::getPage(99); // returns null
+	 * </code>
+	 */
 	public static function getPage($part=-1) {
 		$page = self::getSeofreePage();
 		if($part<0) return $page;
@@ -817,7 +862,22 @@ class App {
 		return isset($page[$part]) ? $page[$part] : null;
 	}
 
-	public static function getUri($get=array()) {
+	/**
+	 * Builds up the URI of the current page.
+	 *
+	 * @access public
+	 * @static
+	 * @param array $get (optional) If set, these GET parameters are attached (default: array())
+	 * @return string The URI
+	 *
+	 * @example
+	 * <code>
+	 * // Current URL: http://www.example.com/about/more/info
+	 * App::getUri(); // returns 'about/more/info'
+	 * App::getUri(['name' => 'John']); // returns 'about/more/info?name=John'
+	 * </code>
+	 */
+	public static function getUri(array $get=array()) {
 		$uri = self::getPage();
 		if($get) {
 			if(is_array($get)) $uri.= '?'.http_build_query($get);
@@ -826,10 +886,24 @@ class App {
 		return $uri;
 	}
 
+	/**
+	 * Returns the current `Language` object.
+	 * 
+	 * @access public
+	 * @static
+	 * @return Language
+	 */
 	public static function getLang() {
 		return self::$lang;
 	}
 
+	/**
+	 * Returns an array containing all available language codes.
+	 * 
+	 * @access public
+	 * @static
+	 * @return array
+	 */
 	public static function getLanguages() {
 		$lang_dir = rtrim(Config::get('dirs', 'lang', true),'/').'/';
 		if(!self::$languages) {
@@ -841,16 +915,43 @@ class App {
 		return self::$languages;
 	}
 
+	/**
+	 * Returns the current `Session` object.
+	 * 
+	 * @access public
+	 * @static
+	 * @return Session
+	 */
 	public static function getSession() {
 		if(!self::$session) return null;
 		return self::$session;
 	}
 
+	/**
+	 * Returns the current `Session` ID.
+	 *
+	 * This method is failsafe, which means if no `Session` ID can be found, `null` will be returned and no error will be triggered.
+	 * 
+	 * @access public
+	 * @static
+	 * @return string Session ID
+	 */
 	public static function getSid() {
 		if(!self::$session) return null;
 		return self::$session->getSid();
 	}
 
+	/**
+	 * Returns the current `User` ID if a user is logged in.
+	 *
+	 * This method is failsafe, which means if no `User` ID can be found, `null` will be returned and no error will be triggered.
+	 * This function can be used to check if a user is currently logged in.
+	 * 
+	 * @access public
+	 * @static
+	 * @return string User ID
+	 * @deprecated This function will be removed and replaced by User::getSessionUid()
+	 */
 	public static function getUid() {
 		if(!self::$session) return null;
 		return self::$session->get('uid');
