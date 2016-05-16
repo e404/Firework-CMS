@@ -59,7 +59,7 @@ class Config extends NonInstantiable {
 	/**
 	 * Fakes a config value.
 	 *
-	 * This method temporaril sets a config value.
+	 * This method temporarily sets a config value.
 	 * Nothing will be saved though.
 	 * This is useful for debugging or special cases.
 	 * 
