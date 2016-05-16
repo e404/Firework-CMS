@@ -950,29 +950,65 @@ class App {
 	 * @access public
 	 * @static
 	 * @return string User ID
-	 * @deprecated This function will be removed and replaced by User::getSessionUid()
+	 * @deprecated Use User::getSessionUid() instead
 	 */
 	public static function getUid() {
-		if(!self::$session) return null;
-		return self::$session->get('uid');
+		Error::deprecated('User::getSessionUid()');
+		return User::getSessionUid();
 	}
 
+	/**
+	 * getUrl function.
+	 * 
+	 * @access public
+	 * @static
+	 * @param bool $urlencode (default: false)
+	 * @return void
+	 */
 	public static function getUrl($urlencode=false) {
 		$url = $_SERVER["REQUEST_URI"];
 		if($pos = strpos($url,'?')) $url = substr($url,0,$pos-1);
 		return $urlencode ? urlencode($url) : $url;
 	}
 
+	/**
+	 * Erases the entire output buffer.
+	 * 
+	 * @access public
+	 * @static
+	 * @return void
+	 */
 	public static function clear() {
 		ob_end_clean();
 	}
 
+	/**
+	 * Causes the application to stop.
+	 * 
+	 * @access public
+	 * @static
+	 * @return void
+	 */
 	public static function halt() {
 		die();
 	}
 
-	public static function redirect($url='/',$fullurl=false) {
+	/**
+	 * Redirects the user to a specified URL.
+	 *
+	 * This function clears every output and halts the application after execution.
+	 * 
+	 * @access public
+	 * @static
+	 * @param string $url (optional) The URL to redirect to. (default: '/')
+	 * @param bool $fullurl If set to false, an internal page is assumed (default: false)
+	 * @return void
+	 * @see self::clear()
+	 * @see self::halt()
+	 */
+	public static function redirect(string $url=null, $fullurl=false) {
 		self::clear();
+		if($url===null) $url = '/';
 		if(!$fullurl) {
 			$url = App::getLink($url);
 		}
@@ -980,45 +1016,125 @@ class App {
 		self::halt();
 	}
 
+	/**
+	 * Causes the current location to be reloaded.
+	 * 
+	 * @access public
+	 * @static
+	 * @return void
+	 * @deprecated
+	 */
 	public static function refresh() {
+		Error::deprecated();
 		self::clear();
 		header("Location: ".self::getUrl());
 		self::halt();
 	}
 
-	public static function linkFile($path, $return=false) {
+	/**
+	 * Writes / returns the absolute URL of the given `$path`.
+	 * 
+	 * @access public
+	 * @static
+	 * @param string $path The relative file path
+	 * @param bool $return If true, returns the absolute URL instead of writing it to the output (default: false)
+	 * @return void or string
+	 * @see self::linkVersionedFile()
+	 *
+	 * @example
+	 * <code>
+	 * App::linkFile('lib/script.js'); // writes 'http://www.example.com/lib/script.js' to the output
+	 * </code>
+	 */
+	public static function linkFile(string $path, $return=false) {
 		$link = Config::get('env', 'baseuri').trim($path,'/');
 		if($return) return $link;
 		echo $link;
 	}
 
-	public static function linkVersionedFile($path, $return=false) {
+	/**
+	 * Writes / returns a versioned absolute URL of the given file `$path`.
+	 *
+	 * This function appends the file modified time to make sure no old cached version will be delivered to the visitor.
+	 *
+	 * @access public
+	 * @static
+	 * @param string $path The relative file path
+	 * @param bool $return If true, returns the absolute URL instead of writing it to the output (default: false)
+	 * @return void or string
+	 * @see self::linkFile()
+	 *
+	 * @example
+	 * <code>
+	 * App::linkVersionedFile('lib/script.js'); // writes 'http://www.example.com/lib/script.js?t=946681200' to the output
+	 * </code>
+	 */
+	public static function linkVersionedFile(string $path, $return=false) {
 		$link = self::linkFile($path,true).'?t='.filemtime($path);
 		if($return) return $link;
 		echo $link;
 	}
 
+	/**
+	 * Returns the relative path to the current skin.
+	 * 
+	 * @access public
+	 * @static
+	 * @return string
+	 */
 	public static function getSkinPath() {
 		return 'skins/'.Config::get('env', 'skin').'/';
 	}
 
+	/**
+	 * Returns the absolute path to the temp directory.
+	 * 
+	 * @access public
+	 * @static
+	 * @return string
+	 */
 	public static function getTempDir() {
 		$dir = realpath(Config::get('dirs', 'temp', true));
 		return rtrim($dir,'/').'/';
 	}
 
+	/**
+	 * Returns the path to user uploaded files meant for permanent storage.
+	 * 
+	 * @access public
+	 * @static
+	 * @return string
+	 * @deprecated Use User::getUploadDir() instead
+	 */
 	public static function getUserUploadDir() {
 		$dir = Config::get('dirs', 'user_upload', true);
 		return rtrim($dir,'/').'/';
 	}
 
-	public static function createTempFile($prefix) {
+	/**
+	 * Creates a temp file and returns its path.
+	 * 
+	 * @access public
+	 * @static
+	 * @param string $prefix The prefix of the temp file.
+	 * @return string File path
+	 */
+	public static function createTempFile(string $prefix) {
 		$tempfile = tempnam(self::getTempDir(), $prefix.'_');
 		chmod($tempfile, 0777);
 		return $tempfile;
 	}
 
-	public static function createUserUploadFile($suffix) {
+	/**
+	 * Creates a file in the user upload directory and returns its path.
+	 * 
+	 * @access public
+	 * @static
+	 * @param string $suffix The suffix of the file.
+	 * @return string File path
+	 * @deprecated Use User::createUploadFile() instead
+	 */
+	public static function createUserUploadFile(string $suffix) {
 		$path = self::getUserUploadDir();
 		do {
 			$subdir = mt_rand(10,99);
@@ -1033,6 +1149,14 @@ class App {
 		return $file;
 	}
 
+	/**
+	 * processLinkTrackerAction function.
+	 * 
+	 * @access public
+	 * @static
+	 * @return void
+	 * @deprecated Use LinkTracker::processAction() instead
+	 */
 	public static function processLinkTrackerAction() {
 		$id = self::getPage(1);
 		$tracker = LinkTracker::action(self::getPage(1));

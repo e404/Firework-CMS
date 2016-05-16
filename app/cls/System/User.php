@@ -56,6 +56,12 @@ class User extends AbstractDbRecord {
 		return self::$db->query(self::$db->prepare("UPDATE `users` SET `expires`=@VAL WHERE `uid`=@VAL LIMIT 1", $expires, $this->getId()));
 	}
 
+	public static function getSessionUid() {
+		$session = App::getSession();
+		if(!$session) return null;
+		return $session->get('uid');
+	}
+
 	public static function getUserByEMail($email) {
 		if(!$email) return null;
 		$uid = self::db()->single(self::db()->prepare("SELECT `uid` FROM `users` WHERE `email`=@VAL LIMIT 1", $email));

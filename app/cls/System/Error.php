@@ -15,6 +15,10 @@ class Error {
 		trigger_error($msg, E_USER_ERROR);
 	}
 
+	public static function deprecated(string $use_instead=null) {
+		trigger_error('This function is deprecated and will be removed in a future version.'.($use_instead ? ' Use '.$use_instead.' instead.' : ''), E_USER_WARNING);
+	}
+
 	public static function debug($msg='') {
 		trigger_error($msg, E_USER_NOTICE);
 	}
