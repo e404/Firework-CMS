@@ -296,7 +296,7 @@ class App {
 	private static function fillMenu() {
 		self::addHook('menu',function(){
 			$html = '';
-			$current = self::getSeofreeTnt();
+			$current = self::getSeofreePage();
 			$loggedin = self::getUid();
 			foreach(Config::get('menu','main') as $item=>$text) {
 				if(strstr($item,':')) {
@@ -310,7 +310,6 @@ class App {
 		});
 	}
 
-	// 
 	/**
 	 * Resolves a URI relative to base URI.
 	 *
@@ -390,7 +389,7 @@ class App {
 	public static function render($uri=null,$return=false) {
 		$pages_dir = rtrim(Config::get('dirs', 'pages', true),'/').'/';
 		self::$start_time = microtime(true);
-		self::$path = self::getSeofreeTnt();
+		self::$path = self::getSeofreePage();
 		$pathok = preg_match('/^[A-Za-z0-9\-_\/\.]+$/',self::$path) && !strstr(self::$path,'..');
 		$parts = explode('/',self::$path);
 		if($pathok && $parts) self::$query = $parts;
@@ -463,12 +462,26 @@ class App {
 		else echo $html;
 	}
 
-	/** @internal */
-	protected static function renderReplacements($html) {
+	/**
+	 * Renders HTML replacements.
+	 *
+	 * Replaces things like `[[[TITLE]]]` and builds up the row and box system.
+	 * Hooks (`[[[HOOK:xyz]]]`) are rendered / executed too, as well as custom tags.
+	 * If CDN is set, resource links are also replaced.
+	 * 
+	 * @access public
+	 * @static
+	 * @param string $html
+	 * @return string HTML
+	 * @see self::addHook()
+	 * @see self::addCustomHtmlTag()
+	 * @see self::getCdnUrl()
+	 */
+	public static function renderReplacements(string $html) {
 		// Insert title and description
 		if(self::$title) {
 			$html = str_replace('[[[TITLE]]]',self::getTitle(),$html);
-			$canonical = strpos(self::getSeofreeTnt(), strtolower(self::$title))===false ? self::getLink(self::getSeofreeTnt()) : self::getLink(self::getSeofreeTnt(), self::$title);
+			$canonical = strpos(self::getSeofreePage(), strtolower(self::$title))===false ? self::getLink(self::getSeofreePage()) : self::getLink(self::getSeofreePage(), self::$title);
 			$html = str_replace('[[[CANONICAL]]]',$canonical,$html);
 		}else{
 			$html = str_replace('[[[TITLE]]]',Config::get('htmlhead','title'),$html);
@@ -590,14 +603,37 @@ class App {
 		return $html;
 	}
 
-	// get CDN URL if available
+	/**
+	 * Returns the CDN URL if available.
+	 *
+	 * You can set the CDN handling domain by writing it into `config.ini`:
+	 * <code>
+	 * [env]
+	 * cdn_host = "cdn.example.com"
+	 * </code>
+	 * 
+	 * @access public
+	 * @static
+	 * @param mixed $url
+	 * @return void
+	 */
 	public static function getCdnUrl($url) {
 		$cdn_host = Config::get('env', 'cdn_host');
 		if(!$cdn_host) return $url;
 		return '//'.$cdn_host.'/'.strtr(rtrim(base64_encode($url),'='),'+/','-_');
 	}
 
-	// Render CDN replacements
+	/**
+	 * Returns HTML with resource links replaced by CDN versions.
+	 *
+	 * If no CDN host is set, the HTML will be returned without modification.
+	 * 
+	 * @access public
+	 * @static
+	 * @param mixed $html
+	 * @return void
+	 * @see self::getCdnUrl()
+	 */
 	public static function renderCdnReplacements($html) {
 		$cdn_host = Config::get('env', 'cdn_host');
 		if(!$cdn_host) return $html;
@@ -665,36 +701,97 @@ class App {
 		}
 	}
 
-	public static function seostr($str) {
-		$str = str_replace(array('Ä','Ö','Ü','ä','ö','ü','ß'),array('Ae','Oe','Ue','ae','oe','ue','sz'),$str);
+	/**
+	 * Converts arbitrary text to URL safe version.
+	 * 
+	 * @access public
+	 * @static
+	 * @param string $str
+	 * @return string
+	 *
+	 * @example
+	 * <code>
+	 * App::seostr('Brünnlein Spaß') // This becomes 'Bruennlein-Spass'
+	 * </code>
+	 */
+	public static function seostr(string $str) {
+		$str = str_replace(array('Ä','Ö','Ü','ä','ö','ü','ß'),array('Ae','Oe','Ue','ae','oe','ue','ss'),$str);
 		$str = strtr(utf8_decode($str),utf8_decode('ŠŒŽšœžŸ¥µÀÁÂÃÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕØÙÚÛÝàáâãåæçèéêëìíîïðñòóôõøùúûýÿ'),'SOZsozYYuAAAAAACEEEEIIIIDNOOOOOUUUYaaaaaaceeeeiiiionooooouuuyy');
 		$str = trim(preg_replace('/\W+/','-',$str),'-');
 		return preg_replace('/[^A-Za-z0-9_-]/','',$str);
 	}
 
-	public static function getSeofreeTnt() {
-		$tnt = self::resolver($_SERVER["REQUEST_URI"]);
-		return preg_replace('@/_/[^/]+/?$@','',$tnt);
+	/**
+	 * Returns the current URL without SEO string.
+	 * 
+	 * @access public
+	 * @static
+	 * @return string
+	 * @see self::link()
+	 * @see self::getLink()
+	 */
+	public static function getSeofreePage() {
+		$page = self::resolver($_SERVER["REQUEST_URI"]);
+		return preg_replace('@/_/[^/]+/?$@','',$page);
 	}
-
-	public static function link($tnt,$seostr=null,$return=false) {
-		$link = rtrim($tnt,'/');
+	
+	/**
+	 * Prints (or returns) the URL to a specific page.
+	 * 
+	 * @access public
+	 * @static
+	 * @param string $page The page identifier
+	 * @param string $seostr (optional) A string attached at the end of the URL (default: null)
+	 * @param bool $return (optional) If set to true, the URL is returned instead of written to the output (default: false)
+	 * @return string or void
+	 * @see self::getLink()
+	 */
+	public static function link(string $page, string $seostr=null, $return=false) {
+		$link = rtrim($page,'/');
 		if($seostr) $link.= '/_/'.self::seostr($seostr);
 		$link = self::$uriprefix.ltrim($link,'/');
 		if($return) return $link;
 		echo $link;
 	}
 
-	public static function getLink($tnt=-1,$seostr=null) {
-		if($tnt===-1 || !$tnt || $tnt===true) $tnt = self::getPage();
-		return self::link($tnt,$seostr,true);
+	/**
+	 * Returns an URL for a page or the current page.
+	 * 
+	 * @access public
+	 * @static
+	 * @param string $page (optional) A page identifier. If omitted, the current page will be used. (default: null)
+	 * @param string $seostr (optional) A string attached at the end of the URL (default: null)
+	 * @return string URL
+	 * @see self::link()
+	 *
+	 * @example
+	 * <code>
+	 * echo '<a href="'.App::getLink('mypage').'">My Link</a>';
+	 * </code>
+	 */
+	public static function getLink(string $page=null, string $seostr=null) {
+		if($page===null) $page = self::getPage();
+		return self::link($page,$seostr,true);
 	}
 
-	public static function switchLangLink($newlang) {
+	/**
+	 * Prints an URL for switching the language to `$newlang`.
+	 * 
+	 * @access public
+	 * @static
+	 * @param string $newlang The new language identifier
+	 * @return string URL
+	 *
+	 * @example
+	 * <code>
+	 * App::switchLangLink('en')
+	 * </code>
+	 */
+	public static function switchLangLink(string $newlang) {
 		if(self::getLang()===$newlang) {
 			$uri = self::getPage().'/';
 		}else{
-			$uri = self::getSeofreeTnt($uri).'/';
+			$uri = self::getSeofreePage($uri).'/';
 		}
 		$link = self::$protocol.$newlang.substr($_SERVER['HTTP_HOST'],strpos($_SERVER['HTTP_HOST'],'.')).'/'.ltrim($uri,'/');
 		echo $link;
@@ -714,10 +811,10 @@ class App {
 	}
 
 	public static function getPage($part=-1) {
-		$tnt = self::getSeofreeTnt();
-		if($part<0) return $tnt;
-		$tnt = explode('/',$tnt);
-		return isset($tnt[$part]) ? $tnt[$part] : null;
+		$page = self::getSeofreePage();
+		if($part<0) return $page;
+		$page = explode('/',$page);
+		return isset($page[$part]) ? $page[$part] : null;
 	}
 
 	public static function getUri($get=array()) {
