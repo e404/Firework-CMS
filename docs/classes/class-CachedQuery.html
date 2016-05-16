@@ -104,6 +104,9 @@
 	<h1>Class CachedQuery</h1>
 
 
+	<div class="description">
+	<p>Queries the database and caches the result for later use.</p>
+	</div>
 
 	<dl class="tree">
 		<dd style="padding-left:0px">
@@ -159,7 +162,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code>__construct( <span> <var>$lifetime_sec</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code>__construct( <span>integer <var>$lifetime_sec</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -169,12 +172,15 @@
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$lifetime_sec</var></dt>
+					<dd>(optional) Defines the cache lifetime in seconds (default: null)</dd>
+				</dl></div>
 
 
 
 
-				<h4>Overrides</h4>
-				<div class="list"><code><a href="class-Db.html#___construct">Db::__construct()</a></code></div>
 
 		</div>
 		</div></td>
@@ -191,16 +197,21 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setLifetime">#</a>
-		<code>setLifetime( <span> <var>$lifetime_sec</var></span> )</code>
+		<code>setLifetime( <span>integer <var>$lifetime_sec</var></span> )</code>
 
 		<div class="description short">
-			
+			<p>Defines the cache lifetime in seconds.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Defines the cache lifetime in seconds.</p>
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$lifetime_sec</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -214,7 +225,7 @@
 		<td class="attributes"><code>
 			 public 
 
-			
+			integer
 			
 			</code>
 		</td>
@@ -224,14 +235,18 @@
 		<code>getLifetime( )</code>
 
 		<div class="description short">
-			
+			<p>Returns the cache lifetime in seconds.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Returns the cache lifetime in seconds.</p>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					integer
+				</div>
 
 
 
@@ -251,16 +266,21 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_execute">#</a>
-		<code>execute( <span> <var>$query</var></span> )</code>
+		<code>execute( <span>mixed <var>$query</var></span> )</code>
 
 		<div class="description short">
-			
+			<p>Runs a query.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Runs a query.</p>
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -274,7 +294,7 @@
 		<td class="attributes"><code>
 			 public 
 
-			
+			<code><a href="class-Db.html">Db</a></code>
 			
 			</code>
 		</td>
@@ -284,14 +304,18 @@
 		<code>getDb( )</code>
 
 		<div class="description short">
-			
+			<p>Returns the internal <code>Db</code> object.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Returns the internal <code>Db</code> object.</p>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-Db.html">Db</a></code>
+				</div>
 
 
 
@@ -328,42 +352,7 @@
 
 
 
-	<table class="summary properties" id="properties">
-	<caption>Properties summary</caption>
-	<tr data-order="lifetime_sec" id="$lifetime_sec">
-		<td class="attributes"><code>
-			protected  
-			
-		</code></td>
 
-		<td class="name">
-<var>$lifetime_sec</var>
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$lifetime_sec" class="anchor">#</a>
-				<code><span class="php-keyword1">null</span></code>
-			</div>
-		</td>
-	</tr>
-	</table>
-
-	<table class="summary inherited">
-	<caption>Properties inherited from <a href="class-Db.html#properties">Db</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-Db.html#$db"><var>$db</var></a>
-		</code></td>
-	</tr>
-	</table>
 
 
 

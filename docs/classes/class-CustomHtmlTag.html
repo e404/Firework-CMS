@@ -104,6 +104,9 @@
 	<h1>Class CustomHtmlTag</h1>
 
 
+	<div class="description">
+	<p>Creates a custom HTML tag that can be rendered within the application.</p>
+	</div>
 
 	<dl class="tree">
 		<dd style="padding-left:0px">
@@ -158,16 +161,21 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code>__construct( <span> <var>$tag</var></span> )</code>
+		<code>__construct( <span>string <var>$tag</var></span> )</code>
 
 		<div class="description short">
-			
+			<p>Sets the HTML tag</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Sets the HTML tag</p>
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$tag</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -181,7 +189,7 @@
 		<td class="attributes"><code>
 			 public 
 
-			
+			string
 			
 			</code>
 		</td>
@@ -191,14 +199,18 @@
 		<code>getTag( )</code>
 
 		<div class="description short">
-			
+			<p>Returns the HTML tag.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Returns the HTML tag.</p>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
 
 
 
@@ -218,16 +230,23 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_attr">#</a>
-		<code>attr( <span> <var>$attr</var></span>, <span> <var>$default</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code>attr( <span>string <var>$attr</var></span>, <span>string <var>$default</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
-			
+			<p>Adds an attribute to the custom HTML tag.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Adds an attribute to the custom HTML tag.</p>
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$attr</var></dt>
+					<dd></dd>
+					<dt><var>$default</var></dt>
+					<dd>(optional) Default value; if omitted, the attribute is mandatory and throws an error when empty (default: null)</dd>
+				</dl></div>
 
 
 
@@ -241,7 +260,7 @@
 		<td class="attributes"><code>
 			 public 
 
-			
+			array
 			
 			</code>
 		</td>
@@ -251,14 +270,18 @@
 		<code>getAttributes( )</code>
 
 		<div class="description short">
-			
+			<p>Returns the attributes.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Returns the attributes.</p>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					array
+				</div>
 
 
 
@@ -278,16 +301,21 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setHandler">#</a>
-		<code>setHandler( <span> <var>$handler</var></span> )</code>
+		<code>setHandler( <span>callable <var>$handler</var></span> )</code>
 
 		<div class="description short">
-			
+			<p>Sets the custom HTML tag handler function.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Sets the custom HTML tag handler function.</p>
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$handler</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -301,7 +329,7 @@
 		<td class="attributes"><code>
 			 public 
 
-			
+			callable
 			
 			</code>
 		</td>
@@ -311,14 +339,18 @@
 		<code>getHandler( )</code>
 
 		<div class="description short">
-			
+			<p>Returns the custom HTML tag handler function.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Returns the custom HTML tag handler function.</p>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					callable
+				</div>
 
 
 
@@ -338,19 +370,30 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_renderReplacement">#</a>
-		<code>renderReplacement( <span> <var>$html</var></span>, <span><code><a href="class-CustomHtmlTag.html">CustomHtmlTag</a></code> <var>$customtag</var></span> )</code>
+		<code>renderReplacement( <span>mixed <var>$html</var></span>, <span><code><a href="class-CustomHtmlTag.html">CustomHtmlTag</a></code> <var>$customtag</var></span> )</code>
 
 		<div class="description short">
-			
+			<p>Renders a custom HTML tag within a given HTML string, using the defined handler.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Renders a custom HTML tag within a given HTML string, using the defined handler.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$html</var></dt>
+					<dd></dd>
+					<dt><var>$customtag</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
-
-
+				<h4>See</h4>
+				<div class="list">
+						<code><a href="class-CustomHtmlTag.html#_setHandler">CustomHtmlTag::setHandler()</a></code><br>
+				</div>
 
 
 		</div>
@@ -388,11 +431,11 @@
 		<td class="name">
 <var>$tag</var>
 			<div class="description short">
-				
+				<p>internal</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>internal</p>
 
 			</div>
 		</td>
@@ -412,11 +455,11 @@
 		<td class="name">
 <var>$atts</var>
 			<div class="description short">
-				
+				<p>internal</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>internal</p>
 
 			</div>
 		</td>
@@ -436,11 +479,11 @@
 		<td class="name">
 <var>$handler</var>
 			<div class="description short">
-				
+				<p>internal</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>internal</p>
 
 			</div>
 		</td>
