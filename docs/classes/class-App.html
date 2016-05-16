@@ -108,6 +108,13 @@
 
 <p>This main class is not instantiable.
 However, you can call various static methods.</p>
+
+<p><strong><em>TODO:</em></strong> (system wide) optimize path handling:</p>
+
+<ul>
+<li>Never end a path with trailing /</li>
+<li>Never use hard-coded / as dir separator (use DIRECTORY_SEPARATOR global constant)</li>
+</ul>
 	</div>
 
 
@@ -202,7 +209,7 @@ However, this path is automatically determined by the application.</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					string<br>App directory path
+					string
 				</div>
 
 
@@ -285,7 +292,7 @@ site = <span class="php-quote">&quot;site&quot;</span></pre>
 
 				<h4>Returns</h4>
 				<div class="list">
-					string<br>Site directory path
+					string
 				</div>
 
 
@@ -519,7 +526,7 @@ Also, the request will be directed to the right handler.</p>
 		<td class="attributes"><code>
 			 public static
 
-			
+			string
 			
 			</code>
 		</td>
@@ -547,6 +554,10 @@ baseuri = <span class="php-quote">&quot;/&quot;</span></pre>
 					<dd></dd>
 				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
 
 
 
@@ -658,14 +669,14 @@ App::addCustomHtmlTag(SymbolTag::newInstance());</pre><br>
 		<td class="attributes"><code>
 			 public static
 
-			string
+			
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_render">#</a>
-		<code>render( <span>string <var>$uri</var> = <span class="php-keyword1">null</span></span>, <span>boolean <var>$return</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code>render( <span>mixed <var>$uri</var> = <span class="php-keyword1">null</span></span>, <span>boolean <var>$return</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			<p>Main render method, loads propper site templates and renders the requested page.</p>
@@ -683,10 +694,6 @@ App::addCustomHtmlTag(SymbolTag::newInstance());</pre><br>
 					<dd>(default: false)</dd>
 				</dl></div>
 
-				<h4>Returns</h4>
-				<div class="list">
-					string<br>HTML
-				</div>
 
 
 
@@ -728,7 +735,7 @@ If CDN is set, resource links are also replaced.</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					string<br>HTML
+					string
 				</div>
 
 
@@ -748,7 +755,7 @@ If CDN is set, resource links are also replaced.</p>
 		<td class="attributes"><code>
 			 public static
 
-			
+			string
 			
 			</code>
 		</td>
@@ -776,6 +783,10 @@ cdn_host = <span class="php-quote">&quot;cdn.example.com&quot;</span></pre>
 					<dd></dd>
 				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
 
 
 
@@ -788,7 +799,7 @@ cdn_host = <span class="php-quote">&quot;cdn.example.com&quot;</span></pre>
 		<td class="attributes"><code>
 			 public static
 
-			
+			string
 			
 			</code>
 		</td>
@@ -813,6 +824,10 @@ cdn_host = <span class="php-quote">&quot;cdn.example.com&quot;</span></pre>
 					<dd></dd>
 				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
 
 
 				<h4>See</h4>
@@ -948,7 +963,7 @@ cdn_host = <span class="php-quote">&quot;cdn.example.com&quot;</span></pre>
 		<td class="attributes"><code>
 			 public static
 
-			string
+			
 			
 			</code>
 		</td>
@@ -975,10 +990,6 @@ cdn_host = <span class="php-quote">&quot;cdn.example.com&quot;</span></pre>
 					<dd>(optional) If set to true, the URL is returned instead of written to the output (default: false)</dd>
 				</dl></div>
 
-				<h4>Returns</h4>
-				<div class="list">
-					string<br>or void
-				</div>
 
 
 				<h4>See</h4>
@@ -1022,7 +1033,7 @@ cdn_host = <span class="php-quote">&quot;cdn.example.com&quot;</span></pre>
 
 				<h4>Returns</h4>
 				<div class="list">
-					string<br>URL
+					string
 				</div>
 
 
@@ -1044,7 +1055,7 @@ cdn_host = <span class="php-quote">&quot;cdn.example.com&quot;</span></pre>
 		<td class="attributes"><code>
 			 public static
 
-			string
+			
 			
 			</code>
 		</td>
@@ -1054,11 +1065,11 @@ cdn_host = <span class="php-quote">&quot;cdn.example.com&quot;</span></pre>
 		<code>switchLangLink( <span>string <var>$newlang</var></span> )</code>
 
 		<div class="description short">
-			<p>Prints an URL for switching the language to <code>$newlang</code>.</p>
+			<p>Writes an URL for switching the language to <code>$newlang</code> to the output.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Prints an URL for switching the language to <code>$newlang</code>.</p>
+			<p>Writes an URL for switching the language to <code>$newlang</code> to the output.</p>
 
 
 				<h4>Parameters</h4>
@@ -1067,10 +1078,6 @@ cdn_host = <span class="php-quote">&quot;cdn.example.com&quot;</span></pre>
 					<dd>The new language identifier</dd>
 				</dl></div>
 
-				<h4>Returns</h4>
-				<div class="list">
-					string<br>URL
-				</div>
 
 
 				<h4>Example</h4>
@@ -1146,7 +1153,7 @@ cdn_host = <span class="php-quote">&quot;cdn.example.com&quot;</span></pre>
 
 				<h4>Returns</h4>
 				<div class="list">
-					string<br>The title
+					string
 				</div>
 
 
@@ -1195,7 +1202,7 @@ cdn_host = <span class="php-quote">&quot;cdn.example.com&quot;</span></pre>
 		<td class="attributes"><code>
 			 public static
 
-			
+			mixed
 			
 			</code>
 		</td>
@@ -1220,6 +1227,10 @@ cdn_host = <span class="php-quote">&quot;cdn.example.com&quot;</span></pre>
 					<dd>(optional) The part number (default: null)</dd>
 				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					mixed
+				</div>
 
 
 				<h4>Example</h4>
@@ -1265,7 +1276,7 @@ App::getPage(<span class="php-num">99</span>); <span class="php-comment">// retu
 
 				<h4>Returns</h4>
 				<div class="list">
-					string<br>The URI
+					string
 				</div>
 
 
@@ -1409,7 +1420,7 @@ App::getUri([<span class="php-quote">'name'</span> =&gt; <span class="php-quote"
 
 				<h4>Returns</h4>
 				<div class="list">
-					string<br>Session ID
+					string
 				</div>
 
 
@@ -1450,7 +1461,7 @@ This function can be used to check if a user is currently logged in.</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					string<br>User ID
+					string
 				</div>
 
 
@@ -1464,7 +1475,7 @@ This function can be used to check if a user is currently logged in.</p>
 		<td class="attributes"><code>
 			 public static
 
-			
+			string
 			
 			</code>
 		</td>
@@ -1487,6 +1498,10 @@ This function can be used to check if a user is currently logged in.</p>
 					<dd>(default: false)</dd>
 				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
 
 
 
@@ -1566,7 +1581,7 @@ This function can be used to check if a user is currently logged in.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_redirect">#</a>
-		<code>redirect( <span>string <var>$url</var> = <span class="php-keyword1">null</span></span>, <span>boolean <var>$fullurl</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code>redirect( <span>string <var>$url</var> = <span class="php-keyword1">null</span></span>, <span>boolean <var>$fullurl</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			<p>Redirects the user to a specified URL.</p>
@@ -1643,7 +1658,7 @@ This function can be used to check if a user is currently logged in.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_linkFile">#</a>
-		<code>linkFile( <span>string <var>$path</var></span>, <span>boolean <var>$return</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code>linkFile( <span>string <var>$path</var></span>, <span>boolean <var>$return</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			<p>Writes / returns the absolute URL of the given <code>$path</code>.</p>
@@ -1661,10 +1676,6 @@ This function can be used to check if a user is currently logged in.</p>
 					<dd>If true, returns the absolute URL instead of writing it to the output (default: false)</dd>
 				</dl></div>
 
-				<h4>Returns</h4>
-				<div class="list">
-					<br>or string
-				</div>
 
 
 				<h4>See</h4>
@@ -1692,7 +1703,7 @@ This function can be used to check if a user is currently logged in.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_linkVersionedFile">#</a>
-		<code>linkVersionedFile( <span>string <var>$path</var></span>, <span>boolean <var>$return</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code>linkVersionedFile( <span>string <var>$path</var></span>, <span>boolean <var>$return</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			<p>Writes / returns a versioned absolute URL of the given file <code>$path</code>.</p>
@@ -1712,10 +1723,6 @@ This function can be used to check if a user is currently logged in.</p>
 					<dd>If true, returns the absolute URL instead of writing it to the output (default: false)</dd>
 				</dl></div>
 
-				<h4>Returns</h4>
-				<div class="list">
-					<br>or string
-				</div>
 
 
 				<h4>See</h4>
@@ -1867,7 +1874,7 @@ This function can be used to check if a user is currently logged in.</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					string<br>File path
+					string
 				</div>
 
 
@@ -1910,7 +1917,7 @@ This function can be used to check if a user is currently logged in.</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					string<br>File path
+					string
 				</div>
 
 
@@ -1985,7 +1992,7 @@ This function can be used to check if a user is currently logged in.</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					string<br>Hooks return results
+					string
 				</div>
 
 
@@ -2044,7 +2051,7 @@ This function can be used to check if a user is currently logged in.</p>
 		<td class="attributes"><code>
 			 public static
 
-			
+			boolean
 			
 			</code>
 		</td>
@@ -2077,6 +2084,10 @@ This function can be used to check if a user is currently logged in.</p>
 					<dd>(optional) A list of <code>EMailAttachment</code> objects (default: array())</dd>
 				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					boolean<br>false on error, otherwise true
+				</div>
 
 
 
@@ -2243,7 +2254,7 @@ App::cron(<span class="php-quote">'daily'</span>);</pre><br>
 		<td class="attributes"><code>
 			 public static
 
-			
+			string
 			
 			</code>
 		</td>
@@ -2261,6 +2272,10 @@ App::cron(<span class="php-quote">'daily'</span>);</pre><br>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
 
 
 				<h4>See</h4>
