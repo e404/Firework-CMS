@@ -61,7 +61,6 @@
 				<li><a href="class-Session.html">Session</a></li>
 				<li><a href="class-SubmitButton.html">SubmitButton</a></li>
 				<li><a href="class-SymbolTag.html">SymbolTag</a></li>
-				<li><a href="class-TCPDF_modified.html">TCPDF_modified</a></li>
 				<li><a href="class-TextField.html">TextField</a></li>
 				<li><a href="class-User.html">User</a></li>
 				<li><a href="class-VimeoVideo.html">VimeoVideo</a></li>
@@ -138,7 +137,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setDirectory">#</a>
-		<code>setDirectory( <span> <var>$dir</var></span> )</code>
+		<code>setDirectory( <span>string <var>$dir</var></span> )</code>
 
 		<div class="description short">
 			
@@ -198,7 +197,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setUri">#</a>
-		<code>setUri( <span> <var>$uri</var></span> )</code>
+		<code>setUri( <span>string <var>$uri</var></span> )</code>
 
 		<div class="description short">
 			
@@ -258,7 +257,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getFilename">#</a>
-		<code>getFilename( <span> <var>$cachefile</var></span> )</code>
+		<code>getFilename( <span>string <var>$cachefile</var></span> )</code>
 
 		<div class="description short">
 			
@@ -288,7 +287,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_exists">#</a>
-		<code>exists( <span> <var>$cachefile</var></span> )</code>
+		<code>exists( <span>string <var>$cachefile</var></span> )</code>
 
 		<div class="description short">
 			
@@ -318,7 +317,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getAge">#</a>
-		<code>getAge( <span> <var>$cachefile</var></span> )</code>
+		<code>getAge( <span>string <var>$cachefile</var></span> )</code>
 
 		<div class="description short">
 			
@@ -348,7 +347,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isOutdated">#</a>
-		<code>isOutdated( <span> <var>$cachefile</var></span>, <span> <var>$filename</var></span> )</code>
+		<code>isOutdated( <span>string <var>$cachefile</var></span>, <span>string <var>$filename</var></span> )</code>
 
 		<div class="description short">
 			
@@ -378,7 +377,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_writeFile">#</a>
-		<code>writeFile( <span> <var>$cachefile</var></span>, <span> <var>$data</var></span>, <span> <var>$phpdata</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code>writeFile( <span>string <var>$cachefile</var></span>, <span>string <var>$data</var></span>, <span> <var>$is_phpdata</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -408,7 +407,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_readFile">#</a>
-		<code>readFile( <span> <var>$cachefile</var></span>, <span> <var>$phpdata</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code>readFile( <span>string <var>$cachefile</var></span>, <span> <var>$is_phpdata</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -438,7 +437,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getAutoCachename">#</a>
-		<code>getAutoCachename( <span> <var>$filename</var></span> )</code>
+		<code>getAutoCachename( <span>string <var>$filename</var></span> )</code>
 
 		<div class="description short">
 			
@@ -468,7 +467,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_get">#</a>
-		<code>get( <span> <var>$filename</var></span>, <span> <var>$max_age_sec</var></span> )</code>
+		<code>get( <span>string <var>$filename</var></span>, <span>integer <var>$max_age_sec</var></span> )</code>
 
 		<div class="description short">
 			
