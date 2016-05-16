@@ -3,7 +3,7 @@
 /**
  * Automated caching of files and other data.
  */
-class Cache {
+class Cache extends NonInstantiable {
 
 	/** @internal */
 	private static $dir = null;
@@ -247,7 +247,7 @@ class Cache {
 	 * @example
 	 * <code>
 	 * <? if(Cache::inlineOpen('my-identifier')): ?>
-	 * <h1>Do whatever <?= 'you' ?> want</h1>
+	 * <h1>Make some <?= 'black' ?> coffee.</h1>
 	 * <? Cache::inlineClose(); endif; ?>
 	 * </code>
 	 */

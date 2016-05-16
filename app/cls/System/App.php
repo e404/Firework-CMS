@@ -14,7 +14,7 @@
  * @copyright Roadfamily LLC, 2016
  * @license ../license.txt
  */
-class App {
+class App extends NonInstantiable {
 
 	/** @internal */
 	const PRODUCT = 'Firework CMS';
