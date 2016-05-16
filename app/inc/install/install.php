@@ -39,12 +39,13 @@ label { display: block; cursor: pointer; color: #aaa; }
 
 define('APP_DIR', App::getAppDir());
 define('HOME_DIR', realpath(APP_DIR.'..').'/');
+define('REQUIRE_PHP_VERSION', '5.4.0');
 
 switch((int) $_GET['install']) {
 	case 1:
 		$check = array();
 		$check['server'] = strstr($_SERVER["SERVER_SOFTWARE"], 'Apache');
-		$check['php_version'] = version_compare(PHP_VERSION, '5.4.0')>=0;
+		$check['php_version'] = version_compare(PHP_VERSION, REQUIRE_PHP_VERSION)>=0;
 		$check['write_access'] = is_writable(HOME_DIR);
 ?>
 		<h2>Checking Requirements</h2>
@@ -54,7 +55,7 @@ switch((int) $_GET['install']) {
 				<?php echo $check['php_version'] ? '<span class="ok">OK</span> (is '.$_SERVER["SERVER_SOFTWARE"].')' : '<span class="fail">FAILED</span> (using '.$_SERVER["SERVER_SOFTWARE"].')' ?>
 			</li>
 			<li>
-				<strong>PHP Version</strong> ≥ 5.4<br>
+				<strong>PHP Version</strong> ≥ <?= REQUIRE_PHP_VERSION ?><br>
 				<?php echo $check['php_version'] ? '<span class="ok">OK</span> (using '.PHP_VERSION.')' : '<span class="fail">FAILED</span> (using '.PHP_VERSION.')' ?>
 			</li>
 			<li>

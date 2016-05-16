@@ -6,6 +6,11 @@
  * This main class is not instantiable.
  * However, you can call various static methods.
  *
+ * ***TODO:*** (system wide) optimize path handling:
+ *
+ * - Never end a path with trailing /
+ * - Never use hard-coded / as dir separator (use DIRECTORY_SEPARATOR global constant)
+ *
  * @copyright Roadfamily LLC, 2016
  * @license ../license.txt
  */
@@ -67,7 +72,7 @@ class App {
 	 * @return void
 	 * @see self::getAppDir()
 	 */
-	public static function setAppDir(string $dir) {
+	public static function setAppDir($dir) {
 		self::$app_dir = rtrim($dir,'/').'/';
 	}
 
@@ -76,7 +81,7 @@ class App {
 	 *
 	 * @access public
 	 * @static
-	 * @return string App directory path
+	 * @return string
 	 * @see self::setAppDir()
 	 */
 	public static function getAppDir() {
@@ -99,7 +104,7 @@ class App {
 	 * @return void
 	 * @see self::getSiteDir()
 	 */
-	public static function setSiteDir(string $dir) {
+	public static function setSiteDir($dir) {
 		self::$site_dir = rtrim($dir,'/').'/';
 	}
 
@@ -108,7 +113,7 @@ class App {
 	 * 
 	 * @access public
 	 * @static
-	 * @return string Site directory path
+	 * @return string
 	 * @see self::setSiteDir()
 	 */
 	public static function getSiteDir() {
@@ -159,7 +164,7 @@ class App {
 	 * @param string $preload
 	 * @return void
 	 */
-	public static function preload(string $preload) {
+	public static function preload($preload) {
 		self::$preload = $preload;
 	}
 
@@ -205,7 +210,7 @@ class App {
 	 * @param string $cls
 	 * @return void
 	 */
-	public static function autoload(string $cls) {
+	public static function autoload($cls) {
 		if(isset(self::$cls_files[$cls])) {
 			require_once(self::$cls_files[$cls]);
 		}elseif(($cls_dir = Config::get('dirs', 'classes_autoload')) && file_exists($cls_file = $cls_dir.'/'.$cls.'.php')) {
@@ -322,9 +327,9 @@ class App {
 	 * @access public
 	 * @static
 	 * @param string $uri
-	 * @return void
+	 * @return string
 	 */
-	public static function resolver(string $uri) {
+	public static function resolver($uri) {
 		$uri = preg_replace('/\?.*$/','',$uri);
 		$base = rtrim(Config::get('env', 'baseuri'),'/');
 		return trim(substr($uri,strlen($base)),'/');
@@ -373,7 +378,7 @@ class App {
 	 * @param bool $product_name (default: false)
 	 * @return string
 	 */
-	public static function getVersion(bool $product_name=null) {
+	public static function getVersion($product_name=null) {
 		return $product_name ? self::PRODUCT.' '.self::VERSION : self::VERSION;
 	}
 
@@ -384,9 +389,9 @@ class App {
 	 * @static
 	 * @param mixed $uri (default: null)
 	 * @param bool $return (default: false)
-	 * @return string HTML
+	 * @return void
 	 */
-	public static function render(string $uri=null, bool $return=null) {
+	public static function render($uri=null, $return=null) {
 		$pages_dir = rtrim(Config::get('dirs', 'pages', true),'/').'/';
 		self::$start_time = microtime(true);
 		self::$path = self::getSeofreePage();
@@ -472,12 +477,12 @@ class App {
 	 * @access public
 	 * @static
 	 * @param string $html
-	 * @return string HTML
+	 * @return string
 	 * @see self::addHook()
 	 * @see self::addCustomHtmlTag()
 	 * @see self::getCdnUrl()
 	 */
-	public static function renderReplacements(string $html) {
+	public static function renderReplacements($html) {
 		// Insert title and description
 		if(self::$title) {
 			$html = str_replace('[[[TITLE]]]',self::getTitle(),$html);
@@ -615,9 +620,9 @@ class App {
 	 * @access public
 	 * @static
 	 * @param string $url
-	 * @return void
+	 * @return string
 	 */
-	public static function getCdnUrl(string $url) {
+	public static function getCdnUrl($url) {
 		$cdn_host = Config::get('env', 'cdn_host');
 		if(!$cdn_host) return $url;
 		return '//'.$cdn_host.'/'.strtr(rtrim(base64_encode($url),'='),'+/','-_');
@@ -631,10 +636,10 @@ class App {
 	 * @access public
 	 * @static
 	 * @param string $html
-	 * @return void
+	 * @return string
 	 * @see self::getCdnUrl()
 	 */
-	public static function renderCdnReplacements(string $html) {
+	public static function renderCdnReplacements($html) {
 		$cdn_host = Config::get('env', 'cdn_host');
 		if(!$cdn_host) return $html;
 		// links
@@ -657,14 +662,14 @@ class App {
 	}
 
 	/** @internal */
-	protected static function replaceTags(string $html, string $tag_regex, callable $replace_callback) {
+	protected static function replaceTags($html, $tag_regex, callable $replace_callback) {
 		return preg_replace_callback("@$tag_regex@", function($matches) use ($replace_callback) {
 			return call_user_func($replace_callback, $matches);
 		}, $html);
 	}
 
 	/** @internal */
-	protected static function replaceUrisInHtmlToCdnVersion(string $html, string $tag, string $attr, string $regex_ends, callable $replace_callback) {
+	protected static function replaceUrisInHtmlToCdnVersion($html, $tag, $attr, $regex_ends, callable $replace_callback) {
 		return preg_replace_callback("@<$tag (.*?)$attr=([\"'])([^\"']+)[\"']([^>]*)>@", function($matches) use ($tag, $attr, $regex_ends, $replace_callback) {
 			if($regex_ends && !preg_match('@'.$regex_ends.'($|\?)@i', $matches[3])) {
 				return $matches[0];
@@ -677,7 +682,7 @@ class App {
 	}
 
 	/** @internal */
-	protected static function renderDebugInformation(string $html) {
+	protected static function renderDebugInformation($html) {
 		$sec = round(microtime(true)-self::$start_time,3).'000';
 		$dot = strpos($sec,'.');
 		$sec = '<b>'.substr($sec,0,$dot).'.'.substr($sec,$dot+1,1).'</b>'.substr($sec,$dot+2,2);
@@ -694,7 +699,7 @@ class App {
 	 * @param bool $return (default: false)
 	 * @return void
 	 */
-	public static function renderajax(string $uri=null, bool $return=null) {
+	public static function renderajax($uri=null, $return=null) {
 		self::$path = self::resolver($uri===null ? $_SERVER['REQUEST_URI'] : $uri);
 		$class = substr(self::$path,5);
 		$class = preg_replace('/[^A-Za-z]+/','',$class);
@@ -722,7 +727,7 @@ class App {
 	 * App::seostr('Münster Land') // This becomes 'Muenster-Land'
 	 * </code>
 	 */
-	public static function seostr(string $str) {
+	public static function seostr($str) {
 		$str = str_replace(array('Ä','Ö','Ü','ä','ö','ü','ß'),array('Ae','Oe','Ue','ae','oe','ue','ss'),$str);
 		$str = strtr(utf8_decode($str),utf8_decode('ŠŒŽšœžŸ¥µÀÁÂÃÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕØÙÚÛÝàáâãåæçèéêëìíîïðñòóôõøùúûýÿ'),'SOZsozYYuAAAAAACEEEEIIIIDNOOOOOUUUYaaaaaaceeeeiiiionooooouuuyy');
 		$str = trim(preg_replace('/\W+/','-',$str),'-');
@@ -751,10 +756,10 @@ class App {
 	 * @param string $page The page identifier
 	 * @param string $seostr (optional) A string attached at the end of the URL (default: null)
 	 * @param bool $return (optional) If set to true, the URL is returned instead of written to the output (default: false)
-	 * @return string or void
+	 * @return void
 	 * @see self::getLink()
 	 */
-	public static function link(string $page, string $seostr=null, bool $return=null) {
+	public static function link($page, $seostr=null, $return=null) {
 		$link = rtrim($page,'/');
 		if($seostr) $link.= '/_/'.self::seostr($seostr);
 		$link = self::$uriprefix.ltrim($link,'/');
@@ -769,7 +774,7 @@ class App {
 	 * @static
 	 * @param string $page (optional) A page identifier. If omitted, the current page will be used. (default: null)
 	 * @param string $seostr (optional) A string attached at the end of the URL (default: null)
-	 * @return string URL
+	 * @return string
 	 * @see self::link()
 	 *
 	 * @example
@@ -777,25 +782,25 @@ class App {
 	 * echo '<a href="'.App::getLink('mypage').'">My Link</a>';
 	 * </code>
 	 */
-	public static function getLink(string $page=null, string $seostr=null) {
+	public static function getLink($page=null, $seostr=null) {
 		if($page===null) $page = self::getPage();
 		return self::link($page,$seostr,true);
 	}
 
 	/**
-	 * Prints an URL for switching the language to `$newlang`.
+	 * Writes an URL for switching the language to `$newlang` to the output.
 	 * 
 	 * @access public
 	 * @static
 	 * @param string $newlang The new language identifier
-	 * @return string URL
+	 * @return void
 	 *
 	 * @example
 	 * <code>
 	 * App::switchLangLink('en')
 	 * </code>
 	 */
-	public static function switchLangLink(string $newlang) {
+	public static function switchLangLink($newlang) {
 		if(self::getLang()===$newlang) {
 			$uri = self::getPage().'/';
 		}else{
@@ -816,7 +821,7 @@ class App {
 	 * @param bool $skip_suffix (optional) If set to true, no title suffix will be appended. (default: false)
 	 * @return void
 	 */
-	public static function setTitle(string $str, bool $skip_suffix=null) {
+	public static function setTitle($str, $skip_suffix=null) {
 		self::$title = trim($str);
 		self::$title_skip_suffix = $skip_suffix;
 	}
@@ -826,7 +831,7 @@ class App {
 	 * 
 	 * @access public
 	 * @static
-	 * @return string The title
+	 * @return string
 	 */
 	public static function getTitle() {
 		return self::$title.(self::$title_skip_suffix ? '' : ' '.trim(Config::get('htmlhead','titlesuffix')));
@@ -840,7 +845,7 @@ class App {
 	 * @param string $name The widget identifier
 	 * @return void
 	 */
-	public static function widget(string $name) {
+	public static function widget($name) {
 		include(rtrim(Config::get('dirs', 'widgets', true),'/').'/'.$name.'.php');
 	}
 
@@ -852,7 +857,7 @@ class App {
 	 * @access public
 	 * @static
 	 * @param integer $part (optional) The part number (default: null)
-	 * @return void
+	 * @return mixed
 	 *
 	 * @example
 	 * <code>
@@ -863,7 +868,7 @@ class App {
 	 * App::getPage(99); // returns null
 	 * </code>
 	 */
-	public static function getPage(integer $part=null) {
+	public static function getPage($part=null) {
 		$page = self::getSeofreePage();
 		if($part===null) return $page;
 		$page = explode('/',$page);
@@ -876,7 +881,7 @@ class App {
 	 * @access public
 	 * @static
 	 * @param array $get (optional) If set, these GET parameters are attached (default: array())
-	 * @return string The URI
+	 * @return string
 	 *
 	 * @example
 	 * <code>
@@ -942,7 +947,7 @@ class App {
 	 * 
 	 * @access public
 	 * @static
-	 * @return string Session ID
+	 * @return string
 	 */
 	public static function getSid() {
 		if(!self::$session) return null;
@@ -957,7 +962,7 @@ class App {
 	 * 
 	 * @access public
 	 * @static
-	 * @return string User ID
+	 * @return string
 	 * @deprecated Use User::getSessionUid() instead
 	 */
 	public static function getUid() {
@@ -971,9 +976,9 @@ class App {
 	 * @access public
 	 * @static
 	 * @param bool $urlencode (default: false)
-	 * @return void
+	 * @return string
 	 */
-	public static function getUrl(bool $urlencode=null) {
+	public static function getUrl($urlencode=null) {
 		$url = $_SERVER["REQUEST_URI"];
 		if($pos = strpos($url,'?')) $url = substr($url,0,$pos-1);
 		return $urlencode ? urlencode($url) : $url;
@@ -1014,7 +1019,7 @@ class App {
 	 * @see self::clear()
 	 * @see self::halt()
 	 */
-	public static function redirect(string $url=null, bool $fullurl=null) {
+	public static function redirect($url=null, $fullurl=false) {
 		self::clear();
 		if($url===null) $url = '/';
 		if(!$fullurl) {
@@ -1046,7 +1051,7 @@ class App {
 	 * @static
 	 * @param string $path The relative file path
 	 * @param bool $return If true, returns the absolute URL instead of writing it to the output (default: false)
-	 * @return void or string
+	 * @return void
 	 * @see self::linkVersionedFile()
 	 *
 	 * @example
@@ -1054,7 +1059,7 @@ class App {
 	 * App::linkFile('lib/script.js'); // writes 'http://www.example.com/lib/script.js' to the output
 	 * </code>
 	 */
-	public static function linkFile(string $path, bool $return=null) {
+	public static function linkFile($path, $return=false) {
 		$link = Config::get('env', 'baseuri').trim($path,'/');
 		if($return) return $link;
 		echo $link;
@@ -1069,7 +1074,7 @@ class App {
 	 * @static
 	 * @param string $path The relative file path
 	 * @param bool $return If true, returns the absolute URL instead of writing it to the output (default: false)
-	 * @return void or string
+	 * @return void
 	 * @see self::linkFile()
 	 *
 	 * @example
@@ -1077,7 +1082,7 @@ class App {
 	 * App::linkVersionedFile('lib/script.js'); // writes 'http://www.example.com/lib/script.js?t=946681200' to the output
 	 * </code>
 	 */
-	public static function linkVersionedFile(string $path, bool $return=null) {
+	public static function linkVersionedFile($path, $return=false) {
 		$link = self::linkFile($path,true).'?t='.filemtime($path);
 		if($return) return $link;
 		echo $link;
@@ -1125,9 +1130,9 @@ class App {
 	 * @access public
 	 * @static
 	 * @param string $prefix The prefix of the temp file.
-	 * @return string File path
+	 * @return string
 	 */
-	public static function createTempFile(string $prefix) {
+	public static function createTempFile($prefix) {
 		$tempfile = tempnam(self::getTempDir(), $prefix.'_');
 		chmod($tempfile, 0777);
 		return $tempfile;
@@ -1139,10 +1144,10 @@ class App {
 	 * @access public
 	 * @static
 	 * @param string $suffix The suffix of the file.
-	 * @return string File path
+	 * @return string
 	 * @deprecated Use User::createUploadFile() instead
 	 */
-	public static function createUserUploadFile(string $suffix) {
+	public static function createUserUploadFile($suffix) {
 		Error::deprecated('User::createUploadFile()');
 		return User::createUploadFile();
 	}
@@ -1157,7 +1162,7 @@ class App {
 	 */
 	public static function processLinkTrackerAction() {
 		Error::deprecated('LinkTracker::processAction()');
-		return LinkTracker::action(self::getPage(1));
+		LinkTracker::action(self::getPage(1));
 	}
 
 	/**
@@ -1167,10 +1172,10 @@ class App {
 	 * @static
 	 * @param string $id
 	 * @param mixed $param (default: null)
-	 * @return string Hooks return results
+	 * @return string
 	 * @see self::addHook()
 	 */
-	public static function executeHooks(string $id, $param=null) {
+	public static function executeHooks($id, $param=null) {
 		if(!isset(self::$hooks[$id])) return;
 		$result = '';
 		foreach(self::$hooks[$id] as $function) {
@@ -1189,7 +1194,7 @@ class App {
 	 * @return void
 	 * @see self::executeHooks()
 	 */
-	public static function addHook(string $id, callable $function) {
+	public static function addHook($id, callable $function) {
 		if(!isset(self::$hooks[$id])) self::$hooks[$id] = array();
 		self::$hooks[$id][] = $function;
 	}
@@ -1205,9 +1210,9 @@ class App {
 	 * @param string $subject Mailing subject
 	 * @param string $body The email message (HTML format)
 	 * @param array $attachments (optional) A list of `EMailAttachment` objects (default: array())
-	 * @return void
+	 * @return bool false on error, otherwise true
 	 */
-	public static function sendCustomerMail(string $email, string $firstname, string $lastname, string $subject, string $body, array $attachments=array()) {
+	public static function sendCustomerMail($email, $firstname, $lastname, $subject, $body, array $attachments=array()) {
 		$subject = self::$lang->translateHtml($subject);
 		$body = self::$lang->translateHtml($body);
 		$mail = new EMail;
@@ -1237,7 +1242,7 @@ class App {
 	 * 
 	 * @access public
 	 * @static
-	 * @return boolean
+	 * @return bool
 	 */
 	public static function isSandboxed() {
 		return self::$sandboxed;
@@ -1251,7 +1256,7 @@ class App {
 	 * @param bool $sandboxed (default: true)
 	 * @return void
 	 */
-	public static function setSandboxed(bool $sandboxed=null) {
+	public static function setSandboxed($sandboxed=null) {
 		self::$sandboxed = (bool) $sandboxed;
 	}
 
@@ -1274,7 +1279,7 @@ class App {
 	 * App::cron('daily');
 	 * </code>
 	 */
-	public static function cron(string $period) {
+	public static function cron($period) {
 		if(!$period) return;
 		self::executeHooks('cron', $period);
 	}
@@ -1288,7 +1293,7 @@ class App {
 	 * @param string $subject (optional) The email subject (default: 'Admin Notification')
 	 * @return void
 	 */
-	public static function adminNotification(string $msg, string $subject=null) {
+	public static function adminNotification($msg, $subject=null) {
 		if(!$subject) $subject = 'Admin Notification';
 		mail(Config::get('email', 'admin_notify_addr'), $subject, $msg, "From: ".Config::get('email', 'admin_notify_addr')."\nContent-Type: text/plain; charset=utf-8");
 	}
@@ -1298,7 +1303,7 @@ class App {
 	 * 
 	 * @access public
 	 * @static
-	 * @return void
+	 * @return string
 	 * @see self::addHook()
 	 */
 	public static function getHost() {
