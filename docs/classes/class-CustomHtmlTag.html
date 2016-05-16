@@ -5,19 +5,45 @@
 
 	<title>Class CustomHtmlTag</title>
 
-	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
+	<link rel="stylesheet" href="resources/bootstrap.min.css?973e37a8502921d56bc02bb55321f45b072b6f71">
+	<link rel="stylesheet" href="resources/style.css?49f43d3208c5d7e33fa16d36107a345bf11cc00d">
 
 </head>
 
 <body>
-<div id="left">
-	<div id="menu">
-		<a href="index.html" title="Overview"><span>Overview</span></a>
+	<nav id="navigation" class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a href="index.html" class="navbar-brand">Overview</a>
+			</div>
+			<div class="collapse navbar-collapse">
 
+                <form id="search" class="navbar-form navbar-left" role="search">
+                    <input type="hidden" name="cx" value="">
+                    <input type="hidden" name="ie" value="UTF-8">
+                    <div class="form-group">
+                        <input type="text" name="q" class="search-query form-control" placeholder="Search">
+					</div>
+				</form>
+
+				<ul class="nav navbar-nav">
+					<li class="active">
+<span>Class</span>					</li>
+
+
+
+
+
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div id="left">
+	<div id="menu">
 
 		<div id="groups">
 		</div>
-
 
 
 		<div id="elements">
@@ -79,27 +105,7 @@
 <div id="splitter"></div>
 
 <div id="right">
-<div id="rightInner">
-	<form id="search">
-		<input type="hidden" name="cx" value="">
-		<input type="hidden" name="ie" value="UTF-8">
-		<input type="text" name="q" class="text" placeholder="Search">
-	</form>
-
-	<div id="navigation">
-		<ul>
-			<li>
-				<a href="index.html" title="Overview"><span>Overview</span></a>
-			</li>
-			<li class="active">
-<span>Class</span>			</li>
-		</ul>
-		<ul>
-		</ul>
-		<ul>
-		</ul>
-	</div>
-
+	<div id="rightInner">
 <div id="content" class="class">
 	<h1>Class CustomHtmlTag</h1>
 
@@ -108,7 +114,7 @@
 	<p>Creates a custom HTML tag that can be rendered within the application.</p>
 	</div>
 
-	<dl class="tree">
+	<dl class="tree well">
 		<dd style="padding-left:0px">
 			<a href="class-Instantiable.html"><span>Instantiable</span></a>
 			
@@ -125,10 +131,12 @@
 
 
 	<div>
-		<h4>Direct known subclasses</h4>
-			<a href="class-SymbolTag.html">SymbolTag</a>, 
-			<a href="class-VimeoVideo.html">VimeoVideo</a>, 
-			<a href="class-YoutubeVideo.html">YoutubeVideo</a>
+		<h3>Direct known subclasses</h3>
+		<p class="elementList">
+			<code><a href="class-SymbolTag.html">SymbolTag</a></code>, 
+			<code><a href="class-VimeoVideo.html">VimeoVideo</a></code>, 
+			<code><a href="class-YoutubeVideo.html">YoutubeVideo</a></code>
+		</p>
 	</div>
 
 
@@ -136,7 +144,7 @@
 
 
 
-	<div class="info">
+	<div class="alert alert-info">
 		
 		
 		
@@ -147,354 +155,348 @@
 
 
 
-	<table class="summary methods" id="methods">
-	<caption>Methods summary</caption>
-	<tr data-order="__construct" id="___construct">
+		<div class="panel panel-default">
+			<div class="panel-heading"><h2>Methods summary</h2></div>
+			<table class="summary table table-bordered table-striped methods" id="methods">
+		<tr data-order="__construct" id="___construct">
 
-		<td class="attributes"><code>
-			 public 
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
 
-			
-			
-			</code>
-		</td>
+			<td class="name"><div>
+			<a class="anchor" href="#___construct">#</a>
+			<code>__construct( <span>string <var>$tag</var></span> )</code>
 
-		<td class="name"><div>
-		<a class="anchor" href="#___construct">#</a>
-		<code>__construct( <span>string <var>$tag</var></span> )</code>
+			<div class="description short">
+				<p>Sets the HTML tag</p>
+			</div>
 
-		<div class="description short">
-			<p>Sets the HTML tag</p>
+			<div class="description detailed hidden">
+				<p>Sets the HTML tag</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$tag</var></dt>
+						<dd></dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getTag" id="_getTag">
+
+			<td class="attributes"><code>
+				 public 
+				string
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getTag">#</a>
+			<code>getTag( )</code>
+
+			<div class="description short">
+				<p>Returns the HTML tag.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Returns the HTML tag.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="attr" id="_attr">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_attr">#</a>
+			<code>attr( <span>string <var>$attr</var></span>, <span>string <var>$default</var> = <span class="php-keyword1">null</span></span> )</code>
+
+			<div class="description short">
+				<p>Adds an attribute to the custom HTML tag.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Adds an attribute to the custom HTML tag.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$attr</var></dt>
+						<dd></dd>
+						<dt><var>$default</var></dt>
+						<dd>(optional) Default value; if omitted, the attribute is mandatory and throws an error when empty (default: null)</dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getAttributes" id="_getAttributes">
+
+			<td class="attributes"><code>
+				 public 
+				array
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getAttributes">#</a>
+			<code>getAttributes( )</code>
+
+			<div class="description short">
+				<p>Returns the attributes.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Returns the attributes.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						array
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="setHandler" id="_setHandler">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_setHandler">#</a>
+			<code>setHandler( <span>callable <var>$handler</var></span> )</code>
+
+			<div class="description short">
+				<p>Sets the custom HTML tag handler function.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Sets the custom HTML tag handler function.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$handler</var></dt>
+						<dd></dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getHandler" id="_getHandler">
+
+			<td class="attributes"><code>
+				 public 
+				callable
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getHandler">#</a>
+			<code>getHandler( )</code>
+
+			<div class="description short">
+				<p>Returns the custom HTML tag handler function.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Returns the custom HTML tag handler function.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						callable
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="renderReplacement" id="_renderReplacement">
+
+			<td class="attributes"><code>
+				 public static
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_renderReplacement">#</a>
+			<code>renderReplacement( <span>mixed <var>$html</var></span>, <span><code><a href="class-CustomHtmlTag.html">CustomHtmlTag</a></code> <var>$customtag</var></span> )</code>
+
+			<div class="description short">
+				<p>Renders a custom HTML tag within a given HTML string, using the defined handler.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Renders a custom HTML tag within a given HTML string, using the defined handler.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$html</var></dt>
+						<dd></dd>
+						<dt><var>$customtag</var></dt>
+						<dd></dd>
+					</dl></div>
+
+
+
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-CustomHtmlTag.html#_setHandler">CustomHtmlTag::setHandler()</a></code><br>
+					</div>
+
+
+			</div>
+			</div></td>
+		</tr>
+			</table>
 		</div>
 
-		<div class="description detailed hidden">
-			<p>Sets the HTML tag</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$tag</var></dt>
-					<dd></dd>
-				</dl></div>
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getTag" id="_getTag">
-
-		<td class="attributes"><code>
-			 public 
-
-			string
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getTag">#</a>
-		<code>getTag( )</code>
-
-		<div class="description short">
-			<p>Returns the HTML tag.</p>
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods inherited from <a href="class-Instantiable.html#methods">Instantiable</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-Instantiable.html#_newInstance">newInstance()</a></code>
+			</p>
 		</div>
 
-		<div class="description detailed hidden">
-			<p>Returns the HTML tag.</p>
 
 
 
-				<h4>Returns</h4>
-				<div class="list">
-					string
-				</div>
 
 
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="attr" id="_attr">
 
-		<td class="attributes"><code>
-			 public 
 
-			
-			
-			</code>
-		</td>
+		<div class="panel panel-default">
+            <div class="panel-heading"><h2>Properties summary</h2></div>
+			<table class="summary table table-bordered table-striped properties" id="properties">
+		<tr data-order="tag" id="$tag">
+			<td class="attributes"><code>
+				protected  
+				string
+			</code></td>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_attr">#</a>
-		<code>attr( <span>string <var>$attr</var></span>, <span>string <var>$default</var> = <span class="php-keyword1">null</span></span> )</code>
-
-		<div class="description short">
-			<p>Adds an attribute to the custom HTML tag.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Adds an attribute to the custom HTML tag.</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$attr</var></dt>
-					<dd></dd>
-					<dt><var>$default</var></dt>
-					<dd>(optional) Default value; if omitted, the attribute is mandatory and throws an error when empty (default: null)</dd>
-				</dl></div>
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getAttributes" id="_getAttributes">
-
-		<td class="attributes"><code>
-			 public 
-
-			array
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getAttributes">#</a>
-		<code>getAttributes( )</code>
-
-		<div class="description short">
-			<p>Returns the attributes.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Returns the attributes.</p>
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					array
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="setHandler" id="_setHandler">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_setHandler">#</a>
-		<code>setHandler( <span>callable <var>$handler</var></span> )</code>
-
-		<div class="description short">
-			<p>Sets the custom HTML tag handler function.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Sets the custom HTML tag handler function.</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$handler</var></dt>
-					<dd></dd>
-				</dl></div>
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getHandler" id="_getHandler">
-
-		<td class="attributes"><code>
-			 public 
-
-			callable
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getHandler">#</a>
-		<code>getHandler( )</code>
-
-		<div class="description short">
-			<p>Returns the custom HTML tag handler function.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Returns the custom HTML tag handler function.</p>
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					callable
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="renderReplacement" id="_renderReplacement">
-
-		<td class="attributes"><code>
-			 public static
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_renderReplacement">#</a>
-		<code>renderReplacement( <span>mixed <var>$html</var></span>, <span><code><a href="class-CustomHtmlTag.html">CustomHtmlTag</a></code> <var>$customtag</var></span> )</code>
-
-		<div class="description short">
-			<p>Renders a custom HTML tag within a given HTML string, using the defined handler.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Renders a custom HTML tag within a given HTML string, using the defined handler.</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$html</var></dt>
-					<dd></dd>
-					<dt><var>$customtag</var></dt>
-					<dd></dd>
-				</dl></div>
-
-
-
-				<h4>See</h4>
-				<div class="list">
-						<code><a href="class-CustomHtmlTag.html#_setHandler">CustomHtmlTag::setHandler()</a></code><br>
-				</div>
-
-
-		</div>
-		</div></td>
-	</tr>
-	</table>
-
-	<table class="summary inherited">
-	<caption>Methods inherited from <a href="class-Instantiable.html#methods">Instantiable</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-Instantiable.html#_newInstance">newInstance()</a>
-		</code></td>
-	</tr>
-	</table>
-
-
-
-
-
-
-
-
-
-
-
-	<table class="summary properties" id="properties">
-	<caption>Properties summary</caption>
-	<tr data-order="tag" id="$tag">
-		<td class="attributes"><code>
-			protected  
-			string
-		</code></td>
-
-		<td class="name">
+			<td class="name">
 <var>$tag</var>
-			<div class="description short">
-				<p>internal</p>
-			</div>
+				<div class="description short">
+					<p>internal</p>
+				</div>
 
-			<div class="description detailed hidden">
-				<p>internal</p>
+				<div class="description detailed hidden">
+					<p>internal</p>
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$tag" class="anchor">#</a>
-				<code><span class="php-quote">''</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="atts" id="$atts">
-		<td class="attributes"><code>
-			protected  
-			array
-		</code></td>
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$tag" class="anchor">#</a>
+					<code><span class="php-quote">''</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="atts" id="$atts">
+			<td class="attributes"><code>
+				protected  
+				array
+			</code></td>
 
-		<td class="name">
+			<td class="name">
 <var>$atts</var>
-			<div class="description short">
-				<p>internal</p>
-			</div>
+				<div class="description short">
+					<p>internal</p>
+				</div>
 
-			<div class="description detailed hidden">
-				<p>internal</p>
+				<div class="description detailed hidden">
+					<p>internal</p>
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$atts" class="anchor">#</a>
-				<code><span class="php-keyword1">array</span>()</code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="handler" id="$handler">
-		<td class="attributes"><code>
-			protected  
-			
-		</code></td>
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$atts" class="anchor">#</a>
+					<code><span class="php-keyword1">array</span>()</code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="handler" id="$handler">
+			<td class="attributes"><code>
+				protected  
+				
+			</code></td>
 
-		<td class="name">
+			<td class="name">
 <var>$handler</var>
-			<div class="description short">
-				<p>internal</p>
-			</div>
+				<div class="description short">
+					<p>internal</p>
+				</div>
 
-			<div class="description detailed hidden">
-				<p>internal</p>
+				<div class="description detailed hidden">
+					<p>internal</p>
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$handler" class="anchor">#</a>
-				<code><span class="php-keyword1">null</span></code>
-			</div>
-		</td>
-	</tr>
-	</table>
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$handler" class="anchor">#</a>
+					<code><span class="php-keyword1">null</span></code>
+				</div>
+			</td>
+		</tr>
+			</table>
+		</div>
 
 
 
@@ -502,11 +504,11 @@
 
 
 </div>
+	</div>
 
 	<div id="footer">
-		 Firework CMS
+		 API documentation generated by <a href="http://apigen.org">ApiGen</a>
 	</div>
-</div>
 </div>
 <script src="resources/combined.js"></script>
 <script src="elementlist.js"></script>

@@ -5,19 +5,45 @@
 
 	<title>Class Language</title>
 
-	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
+	<link rel="stylesheet" href="resources/bootstrap.min.css?973e37a8502921d56bc02bb55321f45b072b6f71">
+	<link rel="stylesheet" href="resources/style.css?49f43d3208c5d7e33fa16d36107a345bf11cc00d">
 
 </head>
 
 <body>
-<div id="left">
-	<div id="menu">
-		<a href="index.html" title="Overview"><span>Overview</span></a>
+	<nav id="navigation" class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a href="index.html" class="navbar-brand">Overview</a>
+			</div>
+			<div class="collapse navbar-collapse">
 
+                <form id="search" class="navbar-form navbar-left" role="search">
+                    <input type="hidden" name="cx" value="">
+                    <input type="hidden" name="ie" value="UTF-8">
+                    <div class="form-group">
+                        <input type="text" name="q" class="search-query form-control" placeholder="Search">
+					</div>
+				</form>
+
+				<ul class="nav navbar-nav">
+					<li class="active">
+<span>Class</span>					</li>
+
+
+
+
+
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div id="left">
+	<div id="menu">
 
 		<div id="groups">
 		</div>
-
 
 
 		<div id="elements">
@@ -79,27 +105,7 @@
 <div id="splitter"></div>
 
 <div id="right">
-<div id="rightInner">
-	<form id="search">
-		<input type="hidden" name="cx" value="">
-		<input type="hidden" name="ie" value="UTF-8">
-		<input type="text" name="q" class="text" placeholder="Search">
-	</form>
-
-	<div id="navigation">
-		<ul>
-			<li>
-				<a href="index.html" title="Overview"><span>Overview</span></a>
-			</li>
-			<li class="active">
-<span>Class</span>			</li>
-		</ul>
-		<ul>
-		</ul>
-		<ul>
-		</ul>
-	</div>
-
+	<div id="rightInner">
 <div id="content" class="class">
 	<h1>Class Language</h1>
 
@@ -113,7 +119,7 @@
 
 
 
-	<div class="info">
+	<div class="alert alert-info">
 		
 		
 		
@@ -124,28 +130,389 @@
 
 
 
-	<table class="summary methods" id="methods">
-	<caption>Methods summary</caption>
-	<tr data-order="setAutoappend" id="_setAutoappend">
+		<div class="panel panel-default">
+			<div class="panel-heading"><h2>Methods summary</h2></div>
+			<table class="summary table table-bordered table-striped methods" id="methods">
+		<tr data-order="setAutoappend" id="_setAutoappend">
 
-		<td class="attributes"><code>
-			 public 
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
 
-			
-			
-			</code>
-		</td>
+			<td class="name"><div>
+			<a class="anchor" href="#_setAutoappend">#</a>
+			<code>setAutoappend( <span> <var>$autoappend</var> = <span class="php-keyword1">true</span></span> )</code>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_setAutoappend">#</a>
-		<code>setAutoappend( <span> <var>$autoappend</var> = <span class="php-keyword1">true</span></span> )</code>
+			<div class="description short">
+				
+			</div>
 
-		<div class="description short">
-			
+			<div class="description detailed hidden">
+				
+
+
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="setBase" id="_setBase">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_setBase">#</a>
+			<code>setBase( <span> <var>$lang</var></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="setLanguage" id="_setLanguage">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_setLanguage">#</a>
+			<code>setLanguage( <span> <var>$lang</var></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getLangString" id="_getLangString">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getLangString">#</a>
+			<code>getLangString( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="isSupported" id="_isSupported">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_isSupported">#</a>
+			<code>isSupported( <span> <var>$lang</var></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getSupportedLanguages" id="_getSupportedLanguages">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getSupportedLanguages">#</a>
+			<code>getSupportedLanguages( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="load" id="_load">
+
+			<td class="attributes"><code>
+				 protected 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_load">#</a>
+			<code>load( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="translateString" id="_translateString">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_translateString">#</a>
+			<code>translateString( <span> <var>$str</var></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="translateHtml" id="_translateHtml">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_translateHtml">#</a>
+			<code>translateHtml( <span> <var>$html</var></span>, <span> <var>$prefix</var> = <span class="php-quote">'{{'</span></span>, <span> <var>$suffix</var> = <span class="php-quote">'}}'</span></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="number" id="_number">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_number">#</a>
+			<code>number( <span> <var>$number</var></span>, <span> <var>$decimals</var> = <span class="php-num">0</span></span>, <span> <var>$separator</var> = <span class="php-keyword1">true</span></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="currency" id="_currency">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_currency">#</a>
+			<code>currency( <span> <var>$number</var></span>, <span> <var>$simple</var> = <span class="php-keyword1">false</span></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="__toString" id="___toString">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#___toString">#</a>
+			<code>__toString( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getNativeName" id="_getNativeName">
+
+			<td class="attributes"><code>
+				 public static
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getNativeName">#</a>
+			<code>getNativeName( <span> <var>$lang</var></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+			</table>
 		</div>
 
-		<div class="description detailed hidden">
-			
 
 
 
@@ -153,697 +520,326 @@
 
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="setBase" id="_setBase">
 
-		<td class="attributes"><code>
-			 public 
 
-			
-			
-			</code>
-		</td>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_setBase">#</a>
-		<code>setBase( <span> <var>$lang</var></span> )</code>
+		<div class="panel panel-default">
+            <div class="panel-heading"><h2>Properties summary</h2></div>
+			<table class="summary table table-bordered table-striped properties" id="properties">
+		<tr data-order="autoappend" id="$autoappend">
+			<td class="attributes"><code>
+				protected  
+				boolean
+			</code></td>
 
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="setLanguage" id="_setLanguage">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_setLanguage">#</a>
-		<code>setLanguage( <span> <var>$lang</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getLangString" id="_getLangString">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getLangString">#</a>
-		<code>getLangString( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="isSupported" id="_isSupported">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_isSupported">#</a>
-		<code>isSupported( <span> <var>$lang</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getSupportedLanguages" id="_getSupportedLanguages">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getSupportedLanguages">#</a>
-		<code>getSupportedLanguages( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="load" id="_load">
-
-		<td class="attributes"><code>
-			 protected 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_load">#</a>
-		<code>load( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="translateString" id="_translateString">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_translateString">#</a>
-		<code>translateString( <span> <var>$str</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="translateHtml" id="_translateHtml">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_translateHtml">#</a>
-		<code>translateHtml( <span> <var>$html</var></span>, <span> <var>$prefix</var> = <span class="php-quote">'{{'</span></span>, <span> <var>$suffix</var> = <span class="php-quote">'}}'</span></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="number" id="_number">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_number">#</a>
-		<code>number( <span> <var>$number</var></span>, <span> <var>$decimals</var> = <span class="php-num">0</span></span>, <span> <var>$separator</var> = <span class="php-keyword1">true</span></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="currency" id="_currency">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_currency">#</a>
-		<code>currency( <span> <var>$number</var></span>, <span> <var>$simple</var> = <span class="php-keyword1">false</span></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="__toString" id="___toString">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#___toString">#</a>
-		<code>__toString( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getNativeName" id="_getNativeName">
-
-		<td class="attributes"><code>
-			 public static
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getNativeName">#</a>
-		<code>getNativeName( <span> <var>$lang</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	</table>
-
-
-
-
-
-
-
-
-
-
-
-
-	<table class="summary properties" id="properties">
-	<caption>Properties summary</caption>
-	<tr data-order="autoappend" id="$autoappend">
-		<td class="attributes"><code>
-			protected  
-			boolean
-		</code></td>
-
-		<td class="name">
+			<td class="name">
 <var>$autoappend</var>
-			<div class="description short">
-				
-			</div>
+				<div class="description short">
+					
+				</div>
 
-			<div class="description detailed hidden">
-				
+				<div class="description detailed hidden">
+					
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$autoappend" class="anchor">#</a>
-				<code><span class="php-keyword1">false</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="autoappend_added" id="$autoappend_added">
-		<td class="attributes"><code>
-			protected  
-			array
-		</code></td>
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$autoappend" class="anchor">#</a>
+					<code><span class="php-keyword1">false</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="autoappend_added" id="$autoappend_added">
+			<td class="attributes"><code>
+				protected  
+				array
+			</code></td>
 
-		<td class="name">
+			<td class="name">
 <var>$autoappend_added</var>
-			<div class="description short">
-				
-			</div>
+				<div class="description short">
+					
+				</div>
 
-			<div class="description detailed hidden">
-				
+				<div class="description detailed hidden">
+					
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$autoappend_added" class="anchor">#</a>
-				<code><span class="php-keyword1">array</span>()</code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="base" id="$base">
-		<td class="attributes"><code>
-			protected  
-			string
-		</code></td>
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$autoappend_added" class="anchor">#</a>
+					<code><span class="php-keyword1">array</span>()</code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="base" id="$base">
+			<td class="attributes"><code>
+				protected  
+				string
+			</code></td>
 
-		<td class="name">
+			<td class="name">
 <var>$base</var>
-			<div class="description short">
-				
-			</div>
+				<div class="description short">
+					
+				</div>
 
-			<div class="description detailed hidden">
-				
+				<div class="description detailed hidden">
+					
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$base" class="anchor">#</a>
-				<code><span class="php-quote">''</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="lang" id="$lang">
-		<td class="attributes"><code>
-			protected  
-			string
-		</code></td>
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$base" class="anchor">#</a>
+					<code><span class="php-quote">''</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="lang" id="$lang">
+			<td class="attributes"><code>
+				protected  
+				string
+			</code></td>
 
-		<td class="name">
+			<td class="name">
 <var>$lang</var>
-			<div class="description short">
-				
-			</div>
+				<div class="description short">
+					
+				</div>
 
-			<div class="description detailed hidden">
-				
+				<div class="description detailed hidden">
+					
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$lang" class="anchor">#</a>
-				<code><span class="php-quote">''</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="strings" id="$strings">
-		<td class="attributes"><code>
-			protected  
-			array
-		</code></td>
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$lang" class="anchor">#</a>
+					<code><span class="php-quote">''</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="strings" id="$strings">
+			<td class="attributes"><code>
+				protected  
+				array
+			</code></td>
 
-		<td class="name">
+			<td class="name">
 <var>$strings</var>
-			<div class="description short">
-				
-			</div>
+				<div class="description short">
+					
+				</div>
 
-			<div class="description detailed hidden">
-				
+				<div class="description detailed hidden">
+					
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$strings" class="anchor">#</a>
-				<code><span class="php-keyword1">array</span>()</code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="loaded" id="$loaded">
-		<td class="attributes"><code>
-			protected  
-			boolean
-		</code></td>
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$strings" class="anchor">#</a>
+					<code><span class="php-keyword1">array</span>()</code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="loaded" id="$loaded">
+			<td class="attributes"><code>
+				protected  
+				boolean
+			</code></td>
 
-		<td class="name">
+			<td class="name">
 <var>$loaded</var>
-			<div class="description short">
-				
-			</div>
+				<div class="description short">
+					
+				</div>
 
-			<div class="description detailed hidden">
-				
+				<div class="description detailed hidden">
+					
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$loaded" class="anchor">#</a>
-				<code><span class="php-keyword1">false</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="supported" id="$supported">
-		<td class="attributes"><code>
-			protected  
-			array
-		</code></td>
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$loaded" class="anchor">#</a>
+					<code><span class="php-keyword1">false</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="supported" id="$supported">
+			<td class="attributes"><code>
+				protected  
+				array
+			</code></td>
 
-		<td class="name">
+			<td class="name">
 <var>$supported</var>
-			<div class="description short">
+				<div class="description short">
+					
+				</div>
+
+				<div class="description detailed hidden">
+					
+
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$supported" class="anchor">#</a>
+					<code><span class="php-keyword1">array</span>()</code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="filehandle" id="$filehandle">
+			<td class="attributes"><code>
+				protected  
 				
-			</div>
+			</code></td>
 
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$supported" class="anchor">#</a>
-				<code><span class="php-keyword1">array</span>()</code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="filehandle" id="$filehandle">
-		<td class="attributes"><code>
-			protected  
-			
-		</code></td>
-
-		<td class="name">
+			<td class="name">
 <var>$filehandle</var>
-			<div class="description short">
-				
-			</div>
+				<div class="description short">
+					
+				</div>
 
-			<div class="description detailed hidden">
-				
+				<div class="description detailed hidden">
+					
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$filehandle" class="anchor">#</a>
-				<code><span class="php-keyword1">null</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="number_dec_point" id="$number_dec_point">
-		<td class="attributes"><code>
-			protected  
-			string
-		</code></td>
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$filehandle" class="anchor">#</a>
+					<code><span class="php-keyword1">null</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="number_dec_point" id="$number_dec_point">
+			<td class="attributes"><code>
+				protected  
+				string
+			</code></td>
 
-		<td class="name">
+			<td class="name">
 <var>$number_dec_point</var>
-			<div class="description short">
-				
-			</div>
+				<div class="description short">
+					
+				</div>
 
-			<div class="description detailed hidden">
-				
+				<div class="description detailed hidden">
+					
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$number_dec_point" class="anchor">#</a>
-				<code><span class="php-quote">'.'</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="number_thsd_sep" id="$number_thsd_sep">
-		<td class="attributes"><code>
-			protected  
-			string
-		</code></td>
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$number_dec_point" class="anchor">#</a>
+					<code><span class="php-quote">'.'</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="number_thsd_sep" id="$number_thsd_sep">
+			<td class="attributes"><code>
+				protected  
+				string
+			</code></td>
 
-		<td class="name">
+			<td class="name">
 <var>$number_thsd_sep</var>
-			<div class="description short">
-				
-			</div>
+				<div class="description short">
+					
+				</div>
 
-			<div class="description detailed hidden">
-				
+				<div class="description detailed hidden">
+					
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$number_thsd_sep" class="anchor">#</a>
-				<code><span class="php-quote">''</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="currency_prefix" id="$currency_prefix">
-		<td class="attributes"><code>
-			protected  
-			string
-		</code></td>
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$number_thsd_sep" class="anchor">#</a>
+					<code><span class="php-quote">''</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="currency_prefix" id="$currency_prefix">
+			<td class="attributes"><code>
+				protected  
+				string
+			</code></td>
 
-		<td class="name">
+			<td class="name">
 <var>$currency_prefix</var>
-			<div class="description short">
-				
-			</div>
+				<div class="description short">
+					
+				</div>
 
-			<div class="description detailed hidden">
-				
+				<div class="description detailed hidden">
+					
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$currency_prefix" class="anchor">#</a>
-				<code><span class="php-quote">''</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="currency_suffix" id="$currency_suffix">
-		<td class="attributes"><code>
-			protected  
-			string
-		</code></td>
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$currency_prefix" class="anchor">#</a>
+					<code><span class="php-quote">''</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="currency_suffix" id="$currency_suffix">
+			<td class="attributes"><code>
+				protected  
+				string
+			</code></td>
 
-		<td class="name">
+			<td class="name">
 <var>$currency_suffix</var>
-			<div class="description short">
-				
-			</div>
+				<div class="description short">
+					
+				</div>
 
-			<div class="description detailed hidden">
-				
+				<div class="description detailed hidden">
+					
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$currency_suffix" class="anchor">#</a>
-				<code><span class="php-quote">''</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="currency_decimals" id="$currency_decimals">
-		<td class="attributes"><code>
-			protected  
-			integer
-		</code></td>
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$currency_suffix" class="anchor">#</a>
+					<code><span class="php-quote">''</span></code>
+				</div>
+			</td>
+		</tr>
+		<tr data-order="currency_decimals" id="$currency_decimals">
+			<td class="attributes"><code>
+				protected  
+				integer
+			</code></td>
 
-		<td class="name">
+			<td class="name">
 <var>$currency_decimals</var>
-			<div class="description short">
-				
-			</div>
+				<div class="description short">
+					
+				</div>
 
-			<div class="description detailed hidden">
-				
+				<div class="description detailed hidden">
+					
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$currency_decimals" class="anchor">#</a>
-				<code><span class="php-num">2</span></code>
-			</div>
-		</td>
-	</tr>
-	</table>
+				</div>
+			</td>
+			<td class="value">
+				<div>
+					<a href="#$currency_decimals" class="anchor">#</a>
+					<code><span class="php-num">2</span></code>
+				</div>
+			</td>
+		</tr>
+			</table>
+		</div>
 
 
 
@@ -851,11 +847,11 @@
 
 
 </div>
+	</div>
 
 	<div id="footer">
-		 Firework CMS
+		 API documentation generated by <a href="http://apigen.org">ApiGen</a>
 	</div>
-</div>
 </div>
 <script src="resources/combined.js"></script>
 <script src="elementlist.js"></script>

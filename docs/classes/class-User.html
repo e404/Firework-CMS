@@ -5,19 +5,45 @@
 
 	<title>Class User</title>
 
-	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
+	<link rel="stylesheet" href="resources/bootstrap.min.css?973e37a8502921d56bc02bb55321f45b072b6f71">
+	<link rel="stylesheet" href="resources/style.css?49f43d3208c5d7e33fa16d36107a345bf11cc00d">
 
 </head>
 
 <body>
-<div id="left">
-	<div id="menu">
-		<a href="index.html" title="Overview"><span>Overview</span></a>
+	<nav id="navigation" class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a href="index.html" class="navbar-brand">Overview</a>
+			</div>
+			<div class="collapse navbar-collapse">
 
+                <form id="search" class="navbar-form navbar-left" role="search">
+                    <input type="hidden" name="cx" value="">
+                    <input type="hidden" name="ie" value="UTF-8">
+                    <div class="form-group">
+                        <input type="text" name="q" class="search-query form-control" placeholder="Search">
+					</div>
+				</form>
+
+				<ul class="nav navbar-nav">
+					<li class="active">
+<span>Class</span>					</li>
+
+
+
+
+
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div id="left">
+	<div id="menu">
 
 		<div id="groups">
 		</div>
-
 
 
 		<div id="elements">
@@ -79,27 +105,7 @@
 <div id="splitter"></div>
 
 <div id="right">
-<div id="rightInner">
-	<form id="search">
-		<input type="hidden" name="cx" value="">
-		<input type="hidden" name="ie" value="UTF-8">
-		<input type="text" name="q" class="text" placeholder="Search">
-	</form>
-
-	<div id="navigation">
-		<ul>
-			<li>
-				<a href="index.html" title="Overview"><span>Overview</span></a>
-			</li>
-			<li class="active">
-<span>Class</span>			</li>
-		</ul>
-		<ul>
-		</ul>
-		<ul>
-		</ul>
-	</div>
-
+	<div id="rightInner">
 <div id="content" class="class">
 	<h1>Class User</h1>
 
@@ -110,7 +116,7 @@
 <p>Implements <code>$this-&gt;db</code> to any extending class</p>
 	</div>
 
-	<dl class="tree">
+	<dl class="tree well">
 		<dd style="padding-left:0px">
 			<a href="class-Instantiable.html"><span>Instantiable</span></a>
 			
@@ -153,7 +159,7 @@
 
 
 
-	<div class="info">
+	<div class="alert alert-info">
 		
 		
 		
@@ -164,564 +170,541 @@
 
 
 
-	<table class="summary methods" id="methods">
-	<caption>Methods summary</caption>
-	<tr data-order="getTable" id="_getTable">
+		<div class="panel panel-default">
+			<div class="panel-heading"><h2>Methods summary</h2></div>
+			<table class="summary table table-bordered table-striped methods" id="methods">
+		<tr data-order="getTable" id="_getTable">
 
-		<td class="attributes"><code>
-			 protected 
+			<td class="attributes"><code>
+				 protected 
+				
+				
+				</code>
+			</td>
 
-			
-			
-			</code>
-		</td>
+			<td class="name"><div>
+			<a class="anchor" href="#_getTable">#</a>
+			<code>getTable( )</code>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_getTable">#</a>
-		<code>getTable( )</code>
+			<div class="description short">
+				
+			</div>
 
-		<div class="description short">
-			
+			<div class="description detailed hidden">
+				
+
+
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getPrimaryKey" id="_getPrimaryKey">
+
+			<td class="attributes"><code>
+				 protected 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getPrimaryKey">#</a>
+			<code>getPrimaryKey( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="generateId" id="_generateId">
+
+			<td class="attributes"><code>
+				 protected 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_generateId">#</a>
+			<code>generateId( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+
+
+
+					<h4>Overrides</h4>
+					<div class="list"><code><a href="class-AbstractDbRecord.html#_generateId">AbstractDbRecord::generateId</a></code></div>
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="isActive" id="_isActive">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_isActive">#</a>
+			<code>isActive( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="activate" id="_activate">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_activate">#</a>
+			<code>activate( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="deactivate" id="_deactivate">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_deactivate">#</a>
+			<code>deactivate( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="authenticate" id="_authenticate">
+
+			<td class="attributes"><code>
+				 public static
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_authenticate">#</a>
+			<code>authenticate( <span> <var>$email</var></span>, <span> <var>$password</var></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="checkUid" id="_checkUid">
+
+			<td class="attributes"><code>
+				 public static
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_checkUid">#</a>
+			<code>checkUid( <span> <var>$uid</var></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="isExpired" id="_isExpired">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_isExpired">#</a>
+			<code>isExpired( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="extendExpiry" id="_extendExpiry">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_extendExpiry">#</a>
+			<code>extendExpiry( <span> <var>$extension</var> = <span class="php-quote">'+1 year'</span></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getSessionUid" id="_getSessionUid">
+
+			<td class="attributes"><code>
+				 public static
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getSessionUid">#</a>
+			<code>getSessionUid( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getUserByEMail" id="_getUserByEMail">
+
+			<td class="attributes"><code>
+				 public static
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getUserByEMail">#</a>
+			<code>getUserByEMail( <span> <var>$email</var></span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getUserByDomain" id="_getUserByDomain">
+
+			<td class="attributes"><code>
+				 public static
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getUserByDomain">#</a>
+			<code>getUserByDomain( <span> <var>$domain</var></span>, <span> <var>$where</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getUserUploadDir" id="_getUserUploadDir">
+
+			<td class="attributes"><code>
+				 public static
+				string
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getUserUploadDir">#</a>
+			<code>getUserUploadDir( )</code>
+
+			<div class="description short">
+				<p>Returns the path to user uploaded files meant for permanent storage.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Returns the path to user uploaded files meant for permanent storage.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="createUploadFile" id="_createUploadFile">
+
+			<td class="attributes"><code>
+				 public static
+				string
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_createUploadFile">#</a>
+			<code>createUploadFile( <span>string <var>$suffix</var></span> )</code>
+
+			<div class="description short">
+				<p>Creates a file in the user upload directory and returns its path.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Creates a file in the user upload directory and returns its path.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$suffix</var></dt>
+						<dd>The suffix of the file.</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						string<br>File path
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+			</table>
 		</div>
 
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods inherited from <a href="class-AbstractDbRecord.html#methods">AbstractDbRecord</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-AbstractDbRecord.html#_delete">delete()</a></code>, 
+				<code><a href="class-AbstractDbRecord.html#_exists">exists()</a></code>, 
+				<code><a href="class-AbstractDbRecord.html#_getChangedFields">getChangedFields()</a></code>, 
+				<code><a href="class-AbstractDbRecord.html#_getDuplicateError">getDuplicateError()</a></code>, 
+				<code><a href="class-AbstractDbRecord.html#_getField">getField()</a></code>, 
+				<code><a href="class-AbstractDbRecord.html#_getFieldHtml">getFieldHtml()</a></code>, 
+				<code><a href="class-AbstractDbRecord.html#_getFields">getFields()</a></code>, 
+				<code><a href="class-AbstractDbRecord.html#_getId">getId()</a></code>, 
+				<code><a href="class-AbstractDbRecord.html#_importDbFields">importDbFields()</a></code>, 
+				<code><a href="class-AbstractDbRecord.html#_importForm">importForm()</a></code>, 
+				<code><a href="class-AbstractDbRecord.html#_loadFromDb">loadFromDb()</a></code>, 
+				<code><a href="class-AbstractDbRecord.html#_save">save()</a></code>, 
+				<code><a href="class-AbstractDbRecord.html#_saveAsNew">saveAsNew()</a></code>, 
+				<code><a href="class-AbstractDbRecord.html#_saveToDb">saveToDb()</a></code>, 
+				<code><a href="class-AbstractDbRecord.html#_setField">setField()</a></code>, 
+				<code><a href="class-AbstractDbRecord.html#_setId">setId()</a></code>
+			</p>
 		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getPrimaryKey" id="_getPrimaryKey">
-
-		<td class="attributes"><code>
-			 protected 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getPrimaryKey">#</a>
-		<code>getPrimaryKey( )</code>
-
-		<div class="description short">
-			
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods inherited from <a href="class-AbstractDbEntity.html#methods">AbstractDbEntity</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-AbstractDbEntity.html#_isReadOnly">isReadOnly()</a></code>
+			</p>
 		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods inherited from <a href="class-Db.html#methods">Db</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-Db.html#_db">db()</a></code>
+			</p>
 		</div>
-		</div></td>
-	</tr>
-	<tr data-order="generateId" id="_generateId">
-
-		<td class="attributes"><code>
-			 protected 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_generateId">#</a>
-		<code>generateId( )</code>
-
-		<div class="description short">
-			
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods inherited from <a href="class-Instantiable.html#methods">Instantiable</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-Instantiable.html#_newInstance">newInstance()</a></code>
+			</p>
 		</div>
 
-		<div class="description detailed hidden">
-			
 
 
 
 
 
 
-				<h4>Overrides</h4>
-				<div class="list"><code><a href="class-AbstractDbRecord.html#_generateId">AbstractDbRecord::generateId()</a></code></div>
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="isActive" id="_isActive">
 
-		<td class="attributes"><code>
-			 public 
 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_isActive">#</a>
-		<code>isActive( )</code>
-
-		<div class="description short">
-			
+		<div class="panel panel-default">
+            <div class="panel-heading"><h2>Properties summary</h2></div>
 		</div>
 
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
+		<div class="panel panel-default">
+            <div class="panel-heading"><h3>Properties inherited from <a href="class-AbstractDbRecord.html#properties">AbstractDbRecord</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-AbstractDbRecord.html#$changed_fields"><var>$changed_fields</var></a></code>, 
+				<code><a href="class-AbstractDbRecord.html#$dbfields"><var>$dbfields</var></a></code>, 
+				<code><a href="class-AbstractDbRecord.html#$id"><var>$id</var></a></code>
+			</p>
 		</div>
-		</div></td>
-	</tr>
-	<tr data-order="activate" id="_activate">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_activate">#</a>
-		<code>activate( )</code>
-
-		<div class="description short">
-			
+		<div class="panel panel-default">
+            <div class="panel-heading"><h3>Properties inherited from <a href="class-AbstractDbEntity.html#properties">AbstractDbEntity</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-AbstractDbEntity.html#$changed"><var>$changed</var></a></code>, 
+				<code><a href="class-AbstractDbEntity.html#$loaded"><var>$loaded</var></a></code>
+			</p>
 		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="deactivate" id="_deactivate">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_deactivate">#</a>
-		<code>deactivate( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="authenticate" id="_authenticate">
-
-		<td class="attributes"><code>
-			 public static
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_authenticate">#</a>
-		<code>authenticate( <span> <var>$email</var></span>, <span> <var>$password</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="checkUid" id="_checkUid">
-
-		<td class="attributes"><code>
-			 public static
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_checkUid">#</a>
-		<code>checkUid( <span> <var>$uid</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="isExpired" id="_isExpired">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_isExpired">#</a>
-		<code>isExpired( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="extendExpiry" id="_extendExpiry">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_extendExpiry">#</a>
-		<code>extendExpiry( <span> <var>$extension</var> = <span class="php-quote">'+1 year'</span></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getSessionUid" id="_getSessionUid">
-
-		<td class="attributes"><code>
-			 public static
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getSessionUid">#</a>
-		<code>getSessionUid( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getUserByEMail" id="_getUserByEMail">
-
-		<td class="attributes"><code>
-			 public static
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getUserByEMail">#</a>
-		<code>getUserByEMail( <span> <var>$email</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getUserByDomain" id="_getUserByDomain">
-
-		<td class="attributes"><code>
-			 public static
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getUserByDomain">#</a>
-		<code>getUserByDomain( <span> <var>$domain</var></span>, <span> <var>$where</var> = <span class="php-keyword1">array</span>()</span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getUserUploadDir" id="_getUserUploadDir">
-
-		<td class="attributes"><code>
-			 public static
-
-			string
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getUserUploadDir">#</a>
-		<code>getUserUploadDir( )</code>
-
-		<div class="description short">
-			<p>Returns the path to user uploaded files meant for permanent storage.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Returns the path to user uploaded files meant for permanent storage.</p>
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					string
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="createUploadFile" id="_createUploadFile">
-
-		<td class="attributes"><code>
-			 public static
-
-			string
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_createUploadFile">#</a>
-		<code>createUploadFile( <span>string <var>$suffix</var></span> )</code>
-
-		<div class="description short">
-			<p>Creates a file in the user upload directory and returns its path.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Creates a file in the user upload directory and returns its path.</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$suffix</var></dt>
-					<dd>The suffix of the file.</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					string<br>File path
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	</table>
-
-	<table class="summary inherited">
-	<caption>Methods inherited from <a href="class-AbstractDbRecord.html#methods">AbstractDbRecord</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-AbstractDbRecord.html#_delete">delete()</a>, 
-			<a href="class-AbstractDbRecord.html#_exists">exists()</a>, 
-			<a href="class-AbstractDbRecord.html#_getChangedFields">getChangedFields()</a>, 
-			<a href="class-AbstractDbRecord.html#_getDuplicateError">getDuplicateError()</a>, 
-			<a href="class-AbstractDbRecord.html#_getField">getField()</a>, 
-			<a href="class-AbstractDbRecord.html#_getFieldHtml">getFieldHtml()</a>, 
-			<a href="class-AbstractDbRecord.html#_getFields">getFields()</a>, 
-			<a href="class-AbstractDbRecord.html#_getId">getId()</a>, 
-			<a href="class-AbstractDbRecord.html#_importDbFields">importDbFields()</a>, 
-			<a href="class-AbstractDbRecord.html#_importForm">importForm()</a>, 
-			<a href="class-AbstractDbRecord.html#_loadFromDb">loadFromDb()</a>, 
-			<a href="class-AbstractDbRecord.html#_save">save()</a>, 
-			<a href="class-AbstractDbRecord.html#_saveAsNew">saveAsNew()</a>, 
-			<a href="class-AbstractDbRecord.html#_saveToDb">saveToDb()</a>, 
-			<a href="class-AbstractDbRecord.html#_setField">setField()</a>, 
-			<a href="class-AbstractDbRecord.html#_setId">setId()</a>
-		</code></td>
-	</tr>
-	</table>
-	<table class="summary inherited">
-	<caption>Methods inherited from <a href="class-AbstractDbEntity.html#methods">AbstractDbEntity</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-AbstractDbEntity.html#_isReadOnly">isReadOnly()</a>
-		</code></td>
-	</tr>
-	</table>
-	<table class="summary inherited">
-	<caption>Methods inherited from <a href="class-Db.html#methods">Db</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-Db.html#_db">db()</a>
-		</code></td>
-	</tr>
-	</table>
-	<table class="summary inherited">
-	<caption>Methods inherited from <a href="class-Instantiable.html#methods">Instantiable</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-Instantiable.html#_newInstance">newInstance()</a>
-		</code></td>
-	</tr>
-	</table>
-
-
-
-
-
-
-
-
-
-
-
-
-	<table class="summary inherited">
-	<caption>Properties inherited from <a href="class-AbstractDbRecord.html#properties">AbstractDbRecord</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-AbstractDbRecord.html#$changed_fields"><var>$changed_fields</var></a>, 
-			<a href="class-AbstractDbRecord.html#$dbfields"><var>$dbfields</var></a>, 
-			<a href="class-AbstractDbRecord.html#$id"><var>$id</var></a>
-		</code></td>
-	</tr>
-	</table>
-	<table class="summary inherited">
-	<caption>Properties inherited from <a href="class-AbstractDbEntity.html#properties">AbstractDbEntity</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-AbstractDbEntity.html#$changed"><var>$changed</var></a>, 
-			<a href="class-AbstractDbEntity.html#$loaded"><var>$loaded</var></a>
-		</code></td>
-	</tr>
-	</table>
 
 
 
 
 
 </div>
+	</div>
 
 	<div id="footer">
-		 Firework CMS
+		 API documentation generated by <a href="http://apigen.org">ApiGen</a>
 	</div>
-</div>
 </div>
 <script src="resources/combined.js"></script>
 <script src="elementlist.js"></script>
