@@ -1,21 +1,39 @@
 <?php
 
+/**
+ * EMail sending and handling class.
+ */
 class EMail {
 
+	/** @internal */
 	protected $from = '';
+	/** @internal */
 	protected $to = array();
+	/** @internal */
 	protected $cc = array();
+	/** @internal */
 	protected $bcc = array();
+	/** @internal */
 	protected $subject = '';
+	/** @internal */
 	protected $text = '';
+	/** @internal */
 	protected $html = '';
+	/** @internal */
 	protected $attachments = array();
+	/** @internal */
 	protected $charset = 'UTF-8';
+	/** @internal */
 	protected $base64 = false;
+	/** @internal */
 	protected $htmlheader = '';
+	/** @internal */
 	protected $htmlfooter = '';
+	/** @internal */
 	protected $htmltemplate = '';
+	/** @internal */
 	protected $texttemplate = '';
+	/** @internal */
 	protected $templatereplacements = array();
 
 	public static function getLink($config_key, $text=null) {

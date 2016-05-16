@@ -1,37 +1,91 @@
 <?php
 
+/**
+ * Creates a custom HTML tag that can be rendered within the application.
+ */
 class CustomHtmlTag extends Instantiable {
 
+	/** internal */
 	protected $tag = '';
+	/** internal */
 	protected $atts = array();
+	/** internal */
 	protected $handler = null;
 
+	/**
+	 * Sets the HTML tag
+	 *
+	 * @access public
+	 * @param string $tag
+	 * @return void
+	 */
 	public function __construct($tag) {
 		$this->tag = $tag;
 	}
 
+	/**
+	 * Returns the HTML tag.
+	 * 
+	 * @access public
+	 * @return string
+	 */
 	public function getTag() {
 		return $this->tag;
 	}
 
-	// Adds attribute; default===null means attribute is required
+	/**
+	 * Adds an attribute to the custom HTML tag.
+	 * 
+	 * @access public
+	 * @param string $attr
+	 * @param string $default (optional) Default value; if omitted, the attribute is mandatory and throws an error when empty (default: null)
+	 * @return void
+	 */
 	public function attr($attr, $default=null) {
 		$this->atts[$attr] = $default;
 	}
 
+	/**
+	 * Returns the attributes.
+	 * 
+	 * @access public
+	 * @return array
+	 */
 	public function getAttributes() {
 		return $this->atts;
 	}
 
-	public function setHandler($handler) {
-		if(!is_callable($handler)) Error::fatal('Trying to set a non-callable handler.');
+	/**
+	 * Sets the custom HTML tag handler function.
+	 * 
+	 * @access public
+	 * @param callable $handler
+	 * @return void
+	 */
+	public function setHandler(callable $handler) {
 		$this->handler = $handler;
 	}
 
+	/**
+	 * Returns the custom HTML tag handler function.
+	 * 
+	 * @access public
+	 * @return callable
+	 */
 	public function getHandler() {
 		return $this->handler;
 	}
 
+	/**
+	 * Renders a custom HTML tag within a given HTML string, using the defined handler.
+	 * 
+	 * @access public
+	 * @static
+	 * @param mixed $html
+	 * @param CustomHtmlTag $customtag
+	 * @return void
+	 * @see self::setHandler()
+	 */
 	public static function renderReplacement($html, CustomHtmlTag $customtag) {
 		if(!$customtag) {
 			Error::warning('No custom HTML tag object set.');

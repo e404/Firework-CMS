@@ -3,9 +3,6 @@
 /**
  * ** Main Application. **
  *
- * This main class is not instantiable.
- * However, you can call various static methods.
- *
  * ***TODO:*** (system wide) optimize path handling:
  *
  * - Never end a path with trailing /
