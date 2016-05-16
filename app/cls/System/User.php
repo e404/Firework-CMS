@@ -83,4 +83,38 @@ class User extends AbstractDbRecord {
 		return self::newInstance($uid);
 	}
 
+	/**
+	 * Returns the path to user uploaded files meant for permanent storage.
+	 * 
+	 * @access public
+	 * @static
+	 * @return string
+	 */
+	public static function getUserUploadDir() {
+		return rtrim(Config::get('dirs', 'user_upload', true),'/').'/';
+	}
+
+	/**
+	 * Creates a file in the user upload directory and returns its path.
+	 * 
+	 * @access public
+	 * @static
+	 * @param string $suffix The suffix of the file.
+	 * @return string File path
+	 */
+	public static function createUploadFile(string $suffix) {
+		$path = self::getUploadDir();
+		do {
+			$subdir = mt_rand(10,99);
+			$file = $path.$subdir.'/'.$subdir.mt_rand(10,99).mt_rand(1000,9999).mt_rand(1000,9999).mt_rand(1000,9999).$suffix;
+		} while(file_exists($file));
+		if(!is_dir($path.$subdir)) {
+			mkdir($path.$subdir);
+			chmod($path.$subdir, 0777);
+		}
+		touch($file);
+		chmod($file, 0777);
+		return $file;
+	}
+
 }

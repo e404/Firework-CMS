@@ -1107,8 +1107,8 @@ class App {
 	 * @deprecated Use User::getUploadDir() instead
 	 */
 	public static function getUserUploadDir() {
-		$dir = Config::get('dirs', 'user_upload', true);
-		return rtrim($dir,'/').'/';
+		Error::deprecated('User::getUploadDir()');
+		return User::getUploadDir();
 	}
 
 	/**
@@ -1135,18 +1135,8 @@ class App {
 	 * @deprecated Use User::createUploadFile() instead
 	 */
 	public static function createUserUploadFile(string $suffix) {
-		$path = self::getUserUploadDir();
-		do {
-			$subdir = mt_rand(10,99);
-			$file = $path.$subdir.'/'.$subdir.mt_rand(10,99).mt_rand(1000,9999).mt_rand(1000,9999).mt_rand(1000,9999).$suffix;
-		} while(file_exists($file));
-		if(!is_dir($path.$subdir)) {
-			mkdir($path.$subdir);
-			chmod($path.$subdir, 0777);
-		}
-		touch($file);
-		chmod($file, 0777);
-		return $file;
+		Error::deprecated('User::createUploadFile()');
+		return User::createUploadFile();
 	}
 
 	/**
@@ -1155,14 +1145,24 @@ class App {
 	 * @access public
 	 * @static
 	 * @return void
-	 * @deprecated Use LinkTracker::processAction() instead
+	 * @deprecated Use LinkTracker::action(App::getPage(1)) instead
 	 */
 	public static function processLinkTrackerAction() {
-		$id = self::getPage(1);
-		$tracker = LinkTracker::action(self::getPage(1));
+		Error::deprecated('LinkTracker::processAction()');
+		return LinkTracker::action(self::getPage(1));
 	}
 
-	public static function executeHooks($id, $param=null) {
+	/**
+	 * Executes hooks for the given `$id`.
+	 * 
+	 * @access public
+	 * @static
+	 * @param string $id
+	 * @param mixed $param (default: null)
+	 * @return string Hooks return results
+	 * @see self::addHook()
+	 */
+	public static function executeHooks(string $id, $param=null) {
 		if(!isset(self::$hooks[$id])) return;
 		$result = '';
 		foreach(self::$hooks[$id] as $function) {
@@ -1171,12 +1171,35 @@ class App {
 		return $result;
 	}
 
-	public static function addHook($id, $function) {
+	/**
+	 * Adds a hook function.
+	 * 
+	 * @access public
+	 * @static
+	 * @param string $id The hook id
+	 * @param function $function An executable function or class method reference
+	 * @return void
+	 * @see self::executeHooks()
+	 */
+	public static function addHook(string $id, $function) {
 		if(!isset(self::$hooks[$id])) self::$hooks[$id] = array();
 		self::$hooks[$id][] = $function;
 	}
 
-	public static function sendCustomerMail($email, $firstname, $lastname, $subject, $body, array $attachments=array()) {
+	/**
+	 * Sends a templated email.
+	 * 
+	 * @access public
+	 * @static
+	 * @param string $email The email address
+	 * @param string $firstname Recipient's first name
+	 * @param string $lastname Recipient's last name
+	 * @param string $subject Mailing subject
+	 * @param string $body The email message (HTML format)
+	 * @param array $attachments (optional) A list of `EMailAttachment` objects (default: array())
+	 * @return void
+	 */
+	public static function sendCustomerMail(string $email, string $firstname, string $lastname, string $subject, string $body, array $attachments=array()) {
 		$subject = self::$lang->translateHtml($subject);
 		$body = self::$lang->translateHtml($body);
 		$mail = new EMail;
@@ -1201,24 +1224,75 @@ class App {
 		return $result;
 	}
 
+	/**
+	 * Checks if the current session is in sandbox mode.
+	 * 
+	 * @access public
+	 * @static
+	 * @return boolean
+	 */
 	public static function isSandboxed() {
 		return self::$sandboxed;
 	}
 
+	/**
+	 * Temporarly sets the sandbox mode for the current session.
+	 * 
+	 * @access public
+	 * @static
+	 * @param bool $sandboxed (default: true)
+	 * @return void
+	 */
 	public static function setSandboxed($sandboxed=true) {
 		self::$sandboxed = (bool) $sandboxed;
 	}
 
-	public static function cron($period) {
+	/**
+	 * This function should be called by a cron scheduler script.
+	 * 
+	 * @access public
+	 * @static
+	 * @param string $period The period identifier (something like 'daily'; can be defined freely)
+	 * @return void
+	 * @see self::addHook()
+	 *
+	 * @example
+	 * <code>
+	 * // Define an action in your skin's functions.php
+	 * App::addHook('cron', function($period){
+	 * 	// Do something
+	 * });
+	 * // Let cron execute the actions
+	 * App::cron('daily');
+	 * </code>
+	 */
+	public static function cron(string $period) {
 		if(!$period) return;
 		self::executeHooks('cron', $period);
 	}
 
-	public static function adminNotification($msg, $subject=null) {
+	/**
+	 * Send an email notification to the website administrator.
+	 * 
+	 * @access public
+	 * @static
+	 * @param string $msg The email message
+	 * @param string $subject (optional) The email subject (default: 'Admin Notification')
+	 * @return void
+	 */
+	public static function adminNotification(string $msg, string $subject=null) {
 		if(!$subject) $subject = 'Admin Notification';
 		mail(Config::get('email', 'admin_notify_addr'), $subject, $msg, "From: ".Config::get('email', 'admin_notify_addr')."\nContent-Type: text/plain; charset=utf-8");
 	}
 
+	/**
+	 * Returns the actual HTTP hostname, filtered by hook `'get-host'`.
+	 * 
+	 * @access public
+	 * @static
+	 * @return void
+	 * @see self::addHook()
+	 */
 	public static function getHost() {
 		if(self::$host) return self::$host;
 		$host = Config::get('env', 'host');

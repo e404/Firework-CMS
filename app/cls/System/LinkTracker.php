@@ -44,7 +44,7 @@ class LinkTracker extends Db {
 		return false;
 	}
 
-	public static function action($id) {
+	public static function action(string $id) {
 		$link = self::$db->getRow(self::$db->prepare("SELECT `url`, `context`, `value` FROM `links` WHERE `id`=@VAL LIMIT 1", $id));
 		if(!$link['url']) App::redirect(404);
 		App::getSession()->set('link_id', $id);
