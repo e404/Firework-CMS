@@ -1438,7 +1438,7 @@ This function can be used to check if a user is currently logged in.</p>
 
 				<h4>Deprecated</h4>
 				<div class="list">
-						This function will be removed and replaced by User::getSessionUid()<br>
+						Use User::getSessionUid() instead<br>
 				</div>
 
 
@@ -1465,16 +1465,21 @@ This function can be used to check if a user is currently logged in.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getUrl">#</a>
-		<code>getUrl( <span> <var>$urlencode</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code>getUrl( <span>boolean <var>$urlencode</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
-			
+			<p>getUrl function.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>getUrl function.</p>
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$urlencode</var></dt>
+					<dd>(default: false)</dd>
+				</dl></div>
 
 
 
@@ -1498,11 +1503,11 @@ This function can be used to check if a user is currently logged in.</p>
 		<code>clear( )</code>
 
 		<div class="description short">
-			
+			<p>Erases the entire output buffer.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Erases the entire output buffer.</p>
 
 
 
@@ -1528,11 +1533,11 @@ This function can be used to check if a user is currently logged in.</p>
 		<code>halt( )</code>
 
 		<div class="description short">
-			
+			<p>Causes the application to stop.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Causes the application to stop.</p>
 
 
 
@@ -1555,25 +1560,39 @@ This function can be used to check if a user is currently logged in.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_redirect">#</a>
-		<code>redirect( <span> <var>$url</var> = <span class="php-quote">'/'</span></span>, <span> <var>$fullurl</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code>redirect( <span>string <var>$url</var> = <span class="php-keyword1">null</span></span>, <span>boolean <var>$fullurl</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
-			
+			<p>Redirects the user to a specified URL.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Redirects the user to a specified URL.</p>
+
+<p>This function clears every output and halts the application after execution.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$url</var></dt>
+					<dd>(optional) The URL to redirect to. (default: '/')</dd>
+					<dt><var>$fullurl</var></dt>
+					<dd>If set to false, an internal page is assumed (default: false)</dd>
+				</dl></div>
 
 
 
-
-
+				<h4>See</h4>
+				<div class="list">
+						<code><a href="class-App.html#_clear">App::clear()</a></code><br>
+						<code><a href="class-App.html#_halt">App::halt()</a></code><br>
+				</div>
 
 
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="refresh" id="_refresh">
+	<tr data-order="refresh" id="_refresh" class="deprecated">
 
 		<td class="attributes"><code>
 			 public static
@@ -1588,12 +1607,15 @@ This function can be used to check if a user is currently logged in.</p>
 		<code>refresh( )</code>
 
 		<div class="description short">
-			
+			<p>Causes the current location to be reloaded.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Causes the current location to be reloaded.</p>
 
+				<h4>Deprecated</h4>
+				<div class="list">
+				</div>
 
 
 
@@ -1615,19 +1637,38 @@ This function can be used to check if a user is currently logged in.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_linkFile">#</a>
-		<code>linkFile( <span> <var>$path</var></span>, <span> <var>$return</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code>linkFile( <span>string <var>$path</var></span>, <span>boolean <var>$return</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
-			
+			<p>Writes / returns the absolute URL of the given <code>$path</code>.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Writes / returns the absolute URL of the given <code>$path</code>.</p>
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$path</var></dt>
+					<dd>The relative file path</dd>
+					<dt><var>$return</var></dt>
+					<dd>If true, returns the absolute URL instead of writing it to the output (default: false)</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<br>or string
+				</div>
 
 
-
+				<h4>See</h4>
+				<div class="list">
+						<code><a href="class-App.html#_linkVersionedFile">App::linkVersionedFile()</a></code><br>
+				</div>
+				<h4>Example</h4>
+				<div class="list">
+						App::linkFile(<span class="php-quote">'lib/script.js'</span>); <span class="php-comment">// writes 'http://www.example.com/lib/script.js' to the output</span><br>
+				</div>
 
 
 		</div>
@@ -1645,19 +1686,40 @@ This function can be used to check if a user is currently logged in.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_linkVersionedFile">#</a>
-		<code>linkVersionedFile( <span> <var>$path</var></span>, <span> <var>$return</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code>linkVersionedFile( <span>string <var>$path</var></span>, <span>boolean <var>$return</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
-			
+			<p>Writes / returns a versioned absolute URL of the given file <code>$path</code>.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Writes / returns a versioned absolute URL of the given file <code>$path</code>.</p>
+
+<p>This function appends the file modified time to make sure no old cached version will be delivered to the visitor.</p>
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$path</var></dt>
+					<dd>The relative file path</dd>
+					<dt><var>$return</var></dt>
+					<dd>If true, returns the absolute URL instead of writing it to the output (default: false)</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<br>or string
+				</div>
 
 
-
+				<h4>See</h4>
+				<div class="list">
+						<code><a href="class-App.html#_linkFile">App::linkFile()</a></code><br>
+				</div>
+				<h4>Example</h4>
+				<div class="list">
+						App::linkVersionedFile(<span class="php-quote">'lib/script.js'</span>); <span class="php-comment">// writes 'http://www.example.com/lib/script.js?t=946681200' to the output</span><br>
+				</div>
 
 
 		</div>
@@ -1668,7 +1730,7 @@ This function can be used to check if a user is currently logged in.</p>
 		<td class="attributes"><code>
 			 public static
 
-			
+			string
 			
 			</code>
 		</td>
@@ -1678,14 +1740,18 @@ This function can be used to check if a user is currently logged in.</p>
 		<code>getSkinPath( )</code>
 
 		<div class="description short">
-			
+			<p>Returns the relative path to the current skin.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Returns the relative path to the current skin.</p>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
 
 
 
@@ -1698,7 +1764,7 @@ This function can be used to check if a user is currently logged in.</p>
 		<td class="attributes"><code>
 			 public static
 
-			
+			string
 			
 			</code>
 		</td>
@@ -1708,14 +1774,18 @@ This function can be used to check if a user is currently logged in.</p>
 		<code>getTempDir( )</code>
 
 		<div class="description short">
-			
+			<p>Returns the absolute path to the temp directory.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Returns the absolute path to the temp directory.</p>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
 
 
 
@@ -1723,12 +1793,12 @@ This function can be used to check if a user is currently logged in.</p>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="getUserUploadDir" id="_getUserUploadDir">
+	<tr data-order="getUserUploadDir" id="_getUserUploadDir" class="deprecated">
 
 		<td class="attributes"><code>
 			 public static
 
-			
+			string
 			
 			</code>
 		</td>
@@ -1738,14 +1808,22 @@ This function can be used to check if a user is currently logged in.</p>
 		<code>getUserUploadDir( )</code>
 
 		<div class="description short">
-			
+			<p>Returns the path to user uploaded files meant for permanent storage.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Returns the path to user uploaded files meant for permanent storage.</p>
+
+				<h4>Deprecated</h4>
+				<div class="list">
+						Use User::getUploadDir() instead<br>
+				</div>
 
 
-
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
 
 
 
@@ -1758,24 +1836,33 @@ This function can be used to check if a user is currently logged in.</p>
 		<td class="attributes"><code>
 			 public static
 
-			
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_createTempFile">#</a>
-		<code>createTempFile( <span> <var>$prefix</var></span> )</code>
+		<code>createTempFile( <span>string <var>$prefix</var></span> )</code>
 
 		<div class="description short">
-			
+			<p>Creates a temp file and returns its path.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Creates a temp file and returns its path.</p>
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$prefix</var></dt>
+					<dd>The prefix of the temp file.</dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					string<br>File path
+				</div>
 
 
 
@@ -1783,29 +1870,42 @@ This function can be used to check if a user is currently logged in.</p>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="createUserUploadFile" id="_createUserUploadFile">
+	<tr data-order="createUserUploadFile" id="_createUserUploadFile" class="deprecated">
 
 		<td class="attributes"><code>
 			 public static
 
-			
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_createUserUploadFile">#</a>
-		<code>createUserUploadFile( <span> <var>$suffix</var></span> )</code>
+		<code>createUserUploadFile( <span>string <var>$suffix</var></span> )</code>
 
 		<div class="description short">
-			
+			<p>Creates a file in the user upload directory and returns its path.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Creates a file in the user upload directory and returns its path.</p>
 
+				<h4>Deprecated</h4>
+				<div class="list">
+						Use User::createUploadFile() instead<br>
+				</div>
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$suffix</var></dt>
+					<dd>The suffix of the file.</dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					string<br>File path
+				</div>
 
 
 
@@ -1813,7 +1913,7 @@ This function can be used to check if a user is currently logged in.</p>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="processLinkTrackerAction" id="_processLinkTrackerAction">
+	<tr data-order="processLinkTrackerAction" id="_processLinkTrackerAction" class="deprecated">
 
 		<td class="attributes"><code>
 			 public static
@@ -1828,12 +1928,16 @@ This function can be used to check if a user is currently logged in.</p>
 		<code>processLinkTrackerAction( )</code>
 
 		<div class="description short">
-			
+			<p>processLinkTrackerAction function.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>processLinkTrackerAction function.</p>
 
+				<h4>Deprecated</h4>
+				<div class="list">
+						Use LinkTracker::action(App::getPage(1)) instead<br>
+				</div>
 
 
 
@@ -1848,26 +1952,41 @@ This function can be used to check if a user is currently logged in.</p>
 		<td class="attributes"><code>
 			 public static
 
-			
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_executeHooks">#</a>
-		<code>executeHooks( <span> <var>$id</var></span>, <span> <var>$param</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code>executeHooks( <span>string <var>$id</var></span>, <span>mixed <var>$param</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
-			
+			<p>Executes hooks for the given <code>$id</code>.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Executes hooks for the given <code>$id</code>.</p>
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd></dd>
+					<dt><var>$param</var></dt>
+					<dd>(default: null)</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					string<br>Hooks return results
+				</div>
 
 
-
+				<h4>See</h4>
+				<div class="list">
+						<code><a href="class-App.html#_addHook">App::addHook()</a></code><br>
+				</div>
 
 
 		</div>
@@ -1885,19 +2004,30 @@ This function can be used to check if a user is currently logged in.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addHook">#</a>
-		<code>addHook( <span> <var>$id</var></span>, <span> <var>$function</var></span> )</code>
+		<code>addHook( <span>string <var>$id</var></span>, <span>function <var>$function</var></span> )</code>
 
 		<div class="description short">
-			
+			<p>Adds a hook function.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Adds a hook function.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd>The hook id</dd>
+					<dt><var>$function</var></dt>
+					<dd>An executable function or class method reference</dd>
+				</dl></div>
 
 
 
-
-
+				<h4>See</h4>
+				<div class="list">
+						<code><a href="class-App.html#_executeHooks">App::executeHooks()</a></code><br>
+				</div>
 
 
 		</div>
@@ -1915,16 +2045,31 @@ This function can be used to check if a user is currently logged in.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_sendCustomerMail">#</a>
-		<code>sendCustomerMail( <span> <var>$email</var></span>, <span> <var>$firstname</var></span>, <span> <var>$lastname</var></span>, <span> <var>$subject</var></span>, <span> <var>$body</var></span>, <span>array <var>$attachments</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code>sendCustomerMail( <span>string <var>$email</var></span>, <span>string <var>$firstname</var></span>, <span>string <var>$lastname</var></span>, <span>string <var>$subject</var></span>, <span>string <var>$body</var></span>, <span>array <var>$attachments</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
-			
+			<p>Sends a templated email.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Sends a templated email.</p>
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$email</var></dt>
+					<dd>The email address</dd>
+					<dt><var>$firstname</var></dt>
+					<dd>Recipient's first name</dd>
+					<dt><var>$lastname</var></dt>
+					<dd>Recipient's last name</dd>
+					<dt><var>$subject</var></dt>
+					<dd>Mailing subject</dd>
+					<dt><var>$body</var></dt>
+					<dd>The email message (HTML format)</dd>
+					<dt><var>$attachments</var></dt>
+					<dd>(optional) A list of <code>EMailAttachment</code> objects (default: array())</dd>
+				</dl></div>
 
 
 
@@ -1938,7 +2083,7 @@ This function can be used to check if a user is currently logged in.</p>
 		<td class="attributes"><code>
 			 public static
 
-			
+			boolean
 			
 			</code>
 		</td>
@@ -1948,14 +2093,18 @@ This function can be used to check if a user is currently logged in.</p>
 		<code>isSandboxed( )</code>
 
 		<div class="description short">
-			
+			<p>Checks if the current session is in sandbox mode.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Checks if the current session is in sandbox mode.</p>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					boolean
+				</div>
 
 
 
@@ -1975,16 +2124,21 @@ This function can be used to check if a user is currently logged in.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setSandboxed">#</a>
-		<code>setSandboxed( <span> <var>$sandboxed</var> = <span class="php-keyword1">true</span></span> )</code>
+		<code>setSandboxed( <span>boolean <var>$sandboxed</var> = <span class="php-keyword1">true</span></span> )</code>
 
 		<div class="description short">
-			
+			<p>Temporarly sets the sandbox mode for the current session.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Temporarly sets the sandbox mode for the current session.</p>
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$sandboxed</var></dt>
+					<dd>(default: true)</dd>
+				</dl></div>
 
 
 
@@ -2005,19 +2159,37 @@ This function can be used to check if a user is currently logged in.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_cron">#</a>
-		<code>cron( <span> <var>$period</var></span> )</code>
+		<code>cron( <span>string <var>$period</var></span> )</code>
 
 		<div class="description short">
-			
+			<p>This function should be called by a cron scheduler script.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>This function should be called by a cron scheduler script.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$period</var></dt>
+					<dd>The period identifier (something like 'daily'; can be defined freely)</dd>
+				</dl></div>
 
 
 
-
-
+				<h4>See</h4>
+				<div class="list">
+						<code><a href="class-App.html#_addHook">App::addHook()</a></code><br>
+				</div>
+				<h4>Example</h4>
+				<div class="list">
+						<pre><span class="php-comment">// Define an action in your skin's functions.php</span>
+App::addHook(<span class="php-quote">'cron'</span>, <span class="php-keyword1">function</span>(<span class="php-var">$period</span>){
+    <span class="php-comment">// Do something</span>
+});
+<span class="php-comment">// Let cron execute the actions</span>
+App::cron(<span class="php-quote">'daily'</span>);</pre><br>
+				</div>
 
 
 		</div>
@@ -2035,16 +2207,23 @@ This function can be used to check if a user is currently logged in.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_adminNotification">#</a>
-		<code>adminNotification( <span> <var>$msg</var></span>, <span> <var>$subject</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code>adminNotification( <span>string <var>$msg</var></span>, <span>string <var>$subject</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
-			
+			<p>Send an email notification to the website administrator.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Send an email notification to the website administrator.</p>
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$msg</var></dt>
+					<dd>The email message</dd>
+					<dt><var>$subject</var></dt>
+					<dd>(optional) The email subject (default: 'Admin Notification')</dd>
+				</dl></div>
 
 
 
@@ -2068,16 +2247,20 @@ This function can be used to check if a user is currently logged in.</p>
 		<code>getHost( )</code>
 
 		<div class="description short">
-			
+			<p>Returns the actual HTTP hostname, filtered by hook <code>'get-host'</code>.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Returns the actual HTTP hostname, filtered by hook <code>'get-host'</code>.</p>
 
 
 
 
 
+				<h4>See</h4>
+				<div class="list">
+						<code><a href="class-App.html#_addHook">App::addHook()</a></code><br>
+				</div>
 
 
 		</div>
