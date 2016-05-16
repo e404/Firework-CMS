@@ -2,12 +2,16 @@
 
 class Cache {
 
+	/** @internal */
 	private static $dir = null;
+	/** @internal */
 	private static $uri = null;
+	/** @internal */
 	private static $last_inline_id = null;
+	/** @internal */
 	private static $last_inline_error_count = 0;
 
-	public static function setDirectory($dir) {
+	public static function setDirectory(string $dir) {
 		$realdir = @realpath($dir);
 		if(!$realdir) return false;
 		self::$dir = rtrim(realpath($realdir),"/");
@@ -21,7 +25,7 @@ class Cache {
 		return self::$dir;
 	}
 
-	public static function setUri($uri) {
+	public static function setUri(string $uri) {
 		self::$uri = rtrim($uri);
 	}
 
@@ -29,24 +33,24 @@ class Cache {
 		return self::$uri;
 	}
 
-	public static function getFilename($cachefile) {
+	public static function getFilename(string $cachefile) {
 		if(self::$dir===null) return null;
 		return self::$dir.'/'.$cachefile;
 	}
 
-	public static function exists($cachefile) {
+	public static function exists(string $cachefile) {
 		$cachefile = self::getFilename($cachefile);
 		return file_exists($cachefile) ? $cachefile : false;
 	}
 
-	public static function getAge($cachefile) {
+	public static function getAge(string $cachefile) {
 		if($cachefile = self::exists($cachefile)) {
 			return time() - filemtime($cachefile);
 		}
 		return false;
 	}
 
-	public static function isOutdated($cachefile,$filename) {
+	public static function isOutdated(string $cachefile, string $filename) {
 		if($cachefile = self::exists($cachefile)) {
 			$original = @filemtime($filename);
 			$cached = @filemtime($cachefile);
@@ -55,23 +59,23 @@ class Cache {
 		return true;
 	}
 
-	public static function writeFile($cachefile,$data,$phpdata=false) {
+	public static function writeFile(string $cachefile, string $data, $is_phpdata=false) {
 		if(!($cachefile = self::getFilename($cachefile))) return false;
-		if($phpdata) $data = serialize($data);
+		if($is_phpdata) $data = serialize($data);
 		return @file_put_contents($cachefile,$data) ? true : false;
 	}
 
-	public static function readFile($cachefile,$phpdata=false) {
+	public static function readFile(string $cachefile, $is_phpdata=false) {
 		if(!($cachefile = self::getFilename($cachefile))) return null;
 		$data = @file_get_contents($cachefile);
-		return $phpdata ? unserialize($data) : $data;
+		return $is_phpdata ? unserialize($data) : $data;
 	}
 
-	public static function getAutoCachename($filename) {
+	public static function getAutoCachename(string $filename) {
 		return 'auto.'.md5($filename).'.private.phpdata';
 	}
 
-	public static function get($filename,$max_age_sec) {
+	public static function get(string $filename, integer $max_age_sec) {
 		$cachefile = self::getAutoCachename($filename);
 		if(self::exists($cachefile) && self::getAge($cachefile)<$max_age_sec) {
 			Error::debug('Read cache: '.$filename);

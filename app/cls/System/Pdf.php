@@ -2,6 +2,7 @@
 
 require_once('lib/tcpdf/tcpdf.php');
 
+/** @internal */
 class TCPDF_modified extends TCPDF {
 
 	public function Header() {

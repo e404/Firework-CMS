@@ -321,10 +321,10 @@ class App {
 	 * 
 	 * @access public
 	 * @static
-	 * @param mixed $uri
+	 * @param string $uri
 	 * @return void
 	 */
-	public static function resolver($uri) {
+	public static function resolver(string $uri) {
 		$uri = preg_replace('/\?.*$/','',$uri);
 		$base = rtrim(Config::get('env', 'baseuri'),'/');
 		return trim(substr($uri,strlen($base)),'/');
@@ -373,7 +373,7 @@ class App {
 	 * @param bool $product_name (default: false)
 	 * @return string
 	 */
-	public static function getVersion($product_name=false) {
+	public static function getVersion(bool $product_name=null) {
 		return $product_name ? self::PRODUCT.' '.self::VERSION : self::VERSION;
 	}
 
@@ -386,7 +386,7 @@ class App {
 	 * @param bool $return (default: false)
 	 * @return string HTML
 	 */
-	public static function render($uri=null,$return=false) {
+	public static function render(string $uri=null, bool $return=null) {
 		$pages_dir = rtrim(Config::get('dirs', 'pages', true),'/').'/';
 		self::$start_time = microtime(true);
 		self::$path = self::getSeofreePage();
@@ -614,10 +614,10 @@ class App {
 	 * 
 	 * @access public
 	 * @static
-	 * @param mixed $url
+	 * @param string $url
 	 * @return void
 	 */
-	public static function getCdnUrl($url) {
+	public static function getCdnUrl(string $url) {
 		$cdn_host = Config::get('env', 'cdn_host');
 		if(!$cdn_host) return $url;
 		return '//'.$cdn_host.'/'.strtr(rtrim(base64_encode($url),'='),'+/','-_');
@@ -630,11 +630,11 @@ class App {
 	 * 
 	 * @access public
 	 * @static
-	 * @param mixed $html
+	 * @param string $html
 	 * @return void
 	 * @see self::getCdnUrl()
 	 */
-	public static function renderCdnReplacements($html) {
+	public static function renderCdnReplacements(string $html) {
 		$cdn_host = Config::get('env', 'cdn_host');
 		if(!$cdn_host) return $html;
 		// links
@@ -657,14 +657,14 @@ class App {
 	}
 
 	/** @internal */
-	protected static function replaceTags($html, $tag_regex, $replace_callback) {
+	protected static function replaceTags(string $html, string $tag_regex, callable $replace_callback) {
 		return preg_replace_callback("@$tag_regex@", function($matches) use ($replace_callback) {
 			return call_user_func($replace_callback, $matches);
 		}, $html);
 	}
 
 	/** @internal */
-	protected static function replaceUrisInHtmlToCdnVersion($html, $tag, $attr, $regex_ends, $replace_callback) {
+	protected static function replaceUrisInHtmlToCdnVersion(string $html, string $tag, string $attr, string $regex_ends, callable $replace_callback) {
 		return preg_replace_callback("@<$tag (.*?)$attr=([\"'])([^\"']+)[\"']([^>]*)>@", function($matches) use ($tag, $attr, $regex_ends, $replace_callback) {
 			if($regex_ends && !preg_match('@'.$regex_ends.'($|\?)@i', $matches[3])) {
 				return $matches[0];
@@ -677,7 +677,7 @@ class App {
 	}
 
 	/** @internal */
-	protected static function renderDebugInformation($html) {
+	protected static function renderDebugInformation(string $html) {
 		$sec = round(microtime(true)-self::$start_time,3).'000';
 		$dot = strpos($sec,'.');
 		$sec = '<b>'.substr($sec,0,$dot).'.'.substr($sec,$dot+1,1).'</b>'.substr($sec,$dot+2,2);
@@ -685,8 +685,16 @@ class App {
 		return $html;
 	}
 
-	// Ajax request handling, renders out JSON or single string
-	public static function renderajax($uri=null,$return=false) {
+	/**
+	 * Renders ajax requests.
+	 * 
+	 * @access public
+	 * @static
+	 * @param string $uri (default: null)
+	 * @param bool $return (default: false)
+	 * @return void
+	 */
+	public static function renderajax(string $uri=null, bool $return=null) {
 		self::$path = self::resolver($uri===null ? $_SERVER['REQUEST_URI'] : $uri);
 		$class = substr(self::$path,5);
 		$class = preg_replace('/[^A-Za-z]+/','',$class);
@@ -711,7 +719,7 @@ class App {
 	 *
 	 * @example
 	 * <code>
-	 * App::seostr('Brünnlein Spaß') // This becomes 'Bruennlein-Spass'
+	 * App::seostr('Münster Land') // This becomes 'Muenster-Land'
 	 * </code>
 	 */
 	public static function seostr(string $str) {
@@ -746,7 +754,7 @@ class App {
 	 * @return string or void
 	 * @see self::getLink()
 	 */
-	public static function link(string $page, string $seostr=null, $return=false) {
+	public static function link(string $page, string $seostr=null, bool $return=null) {
 		$link = rtrim($page,'/');
 		if($seostr) $link.= '/_/'.self::seostr($seostr);
 		$link = self::$uriprefix.ltrim($link,'/');
@@ -808,7 +816,7 @@ class App {
 	 * @param bool $skip_suffix (optional) If set to true, no title suffix will be appended. (default: false)
 	 * @return void
 	 */
-	public static function setTitle(string $str, $skip_suffix=false) {
+	public static function setTitle(string $str, bool $skip_suffix=null) {
 		self::$title = trim($str);
 		self::$title_skip_suffix = $skip_suffix;
 	}
@@ -843,7 +851,7 @@ class App {
 	 *
 	 * @access public
 	 * @static
-	 * @param integer $part (optional) The part number (default: -1)
+	 * @param integer $part (optional) The part number (default: null)
 	 * @return void
 	 *
 	 * @example
@@ -855,9 +863,9 @@ class App {
 	 * App::getPage(99); // returns null
 	 * </code>
 	 */
-	public static function getPage($part=-1) {
+	public static function getPage(integer $part=null) {
 		$page = self::getSeofreePage();
-		if($part<0) return $page;
+		if($part===null) return $page;
 		$page = explode('/',$page);
 		return isset($page[$part]) ? $page[$part] : null;
 	}
@@ -965,7 +973,7 @@ class App {
 	 * @param bool $urlencode (default: false)
 	 * @return void
 	 */
-	public static function getUrl($urlencode=false) {
+	public static function getUrl(bool $urlencode=null) {
 		$url = $_SERVER["REQUEST_URI"];
 		if($pos = strpos($url,'?')) $url = substr($url,0,$pos-1);
 		return $urlencode ? urlencode($url) : $url;
@@ -1006,7 +1014,7 @@ class App {
 	 * @see self::clear()
 	 * @see self::halt()
 	 */
-	public static function redirect(string $url=null, $fullurl=false) {
+	public static function redirect(string $url=null, bool $fullurl=null) {
 		self::clear();
 		if($url===null) $url = '/';
 		if(!$fullurl) {
@@ -1046,7 +1054,7 @@ class App {
 	 * App::linkFile('lib/script.js'); // writes 'http://www.example.com/lib/script.js' to the output
 	 * </code>
 	 */
-	public static function linkFile(string $path, $return=false) {
+	public static function linkFile(string $path, bool $return=null) {
 		$link = Config::get('env', 'baseuri').trim($path,'/');
 		if($return) return $link;
 		echo $link;
@@ -1069,7 +1077,7 @@ class App {
 	 * App::linkVersionedFile('lib/script.js'); // writes 'http://www.example.com/lib/script.js?t=946681200' to the output
 	 * </code>
 	 */
-	public static function linkVersionedFile(string $path, $return=false) {
+	public static function linkVersionedFile(string $path, bool $return=null) {
 		$link = self::linkFile($path,true).'?t='.filemtime($path);
 		if($return) return $link;
 		echo $link;
@@ -1181,7 +1189,7 @@ class App {
 	 * @return void
 	 * @see self::executeHooks()
 	 */
-	public static function addHook(string $id, $function) {
+	public static function addHook(string $id, callable $function) {
 		if(!isset(self::$hooks[$id])) self::$hooks[$id] = array();
 		self::$hooks[$id][] = $function;
 	}
@@ -1243,7 +1251,7 @@ class App {
 	 * @param bool $sandboxed (default: true)
 	 * @return void
 	 */
-	public static function setSandboxed($sandboxed=true) {
+	public static function setSandboxed(bool $sandboxed=null) {
 		self::$sandboxed = (bool) $sandboxed;
 	}
 
