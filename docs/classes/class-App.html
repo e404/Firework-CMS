@@ -81,7 +81,6 @@
 				<li><a href="class-NonInstantiable.html">NonInstantiable</a></li>
 				<li><a href="class-Notify.html">Notify</a></li>
 				<li><a href="class-PasswordField.html">PasswordField</a></li>
-				<li><a href="class-PaymentField.html" class="deprecated">PaymentField</a></li>
 				<li><a href="class-Pdf.html">Pdf</a></li>
 				<li><a href="class-RadioFields.html">RadioFields</a></li>
 				<li><a href="class-Random.html">Random</a></li>
@@ -1385,46 +1384,6 @@ App::getUri([<span class="php-quote">'name'</span> =&gt; <span class="php-quote"
 			</div>
 			</div></td>
 		</tr>
-		<tr data-order="getUid" id="_getUid" class="deprecated">
-
-			<td class="attributes"><code>
-				 public static
-				string
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#_getUid">#</a>
-			<code>getUid( )</code>
-
-			<div class="description short">
-				<p>Returns the current <code>User</code> ID if a user is logged in.</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Returns the current <code>User</code> ID if a user is logged in.</p>
-
-<p>This method is failsafe, which means if no <code>User</code> ID can be found, <code>null</code> will be returned and no error will be triggered.
-This function can be used to check if a user is currently logged in.</p>
-
-					<h4>Deprecated</h4>
-					<div class="list">
-							Use User::getSessionUid() instead<br>
-					</div>
-
-
-					<h4>Returns</h4>
-					<div class="list">
-						string
-					</div>
-
-
-
-
-			</div>
-			</div></td>
-		</tr>
 		<tr data-order="getUrl" id="_getUrl">
 
 			<td class="attributes"><code>
@@ -1559,38 +1518,6 @@ This function can be used to check if a user is currently logged in.</p>
 							<code><a href="class-App.html#_clear">App::clear()</a></code><br>
 							<code><a href="class-App.html#_halt">App::halt()</a></code><br>
 					</div>
-
-
-			</div>
-			</div></td>
-		</tr>
-		<tr data-order="refresh" id="_refresh" class="deprecated">
-
-			<td class="attributes"><code>
-				 public static
-				
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#_refresh">#</a>
-			<code>refresh( )</code>
-
-			<div class="description short">
-				<p>Causes the current location to be reloaded.</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Causes the current location to be reloaded.</p>
-
-					<h4>Deprecated</h4>
-					<div class="list">
-					</div>
-
-
-
-
 
 
 			</div>
@@ -1752,43 +1679,6 @@ This function can be used to check if a user is currently logged in.</p>
 			</div>
 			</div></td>
 		</tr>
-		<tr data-order="getUserUploadDir" id="_getUserUploadDir" class="deprecated">
-
-			<td class="attributes"><code>
-				 public static
-				string
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#_getUserUploadDir">#</a>
-			<code>getUserUploadDir( )</code>
-
-			<div class="description short">
-				<p>Returns the path to user uploaded files meant for permanent storage.</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Returns the path to user uploaded files meant for permanent storage.</p>
-
-					<h4>Deprecated</h4>
-					<div class="list">
-							Use User::getUploadDir() instead<br>
-					</div>
-
-
-					<h4>Returns</h4>
-					<div class="list">
-						string
-					</div>
-
-
-
-
-			</div>
-			</div></td>
-		</tr>
 		<tr data-order="createTempFile" id="_createTempFile">
 
 			<td class="attributes"><code>
@@ -1820,81 +1710,6 @@ This function can be used to check if a user is currently logged in.</p>
 					<div class="list">
 						string
 					</div>
-
-
-
-
-			</div>
-			</div></td>
-		</tr>
-		<tr data-order="createUserUploadFile" id="_createUserUploadFile" class="deprecated">
-
-			<td class="attributes"><code>
-				 public static
-				string
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#_createUserUploadFile">#</a>
-			<code>createUserUploadFile( <span>string <var>$suffix</var></span> )</code>
-
-			<div class="description short">
-				<p>Creates a file in the user upload directory and returns its path.</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Creates a file in the user upload directory and returns its path.</p>
-
-					<h4>Deprecated</h4>
-					<div class="list">
-							Use User::createUploadFile() instead<br>
-					</div>
-
-					<h4>Parameters</h4>
-					<div class="list"><dl>
-						<dt><var>$suffix</var></dt>
-						<dd>The suffix of the file.</dd>
-					</dl></div>
-
-					<h4>Returns</h4>
-					<div class="list">
-						string
-					</div>
-
-
-
-
-			</div>
-			</div></td>
-		</tr>
-		<tr data-order="processLinkTrackerAction" id="_processLinkTrackerAction" class="deprecated">
-
-			<td class="attributes"><code>
-				 public static
-				
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#_processLinkTrackerAction">#</a>
-			<code>processLinkTrackerAction( )</code>
-
-			<div class="description short">
-				<p>processLinkTrackerAction function.</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>processLinkTrackerAction function.</p>
-
-					<h4>Deprecated</h4>
-					<div class="list">
-							Use LinkTracker::action(App::getPage(1)) instead<br>
-					</div>
-
-
 
 
 
