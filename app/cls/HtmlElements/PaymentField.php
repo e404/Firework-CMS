@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * `FormField` Hidden payment field.
+ *
+ * ***TODO:*** This field has to be implemented within the project and **must be removed here**.
+ *
+ * @deprecated This is project specific.
+ */
 class PaymentField extends HiddenField {
 
 	private static $loadingText = 'Loading...';

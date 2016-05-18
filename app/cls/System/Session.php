@@ -1,11 +1,17 @@
 <?php
 
+/**
+ * Session class.
+ * 
+ * @extends Db
+ */
 class Session extends Db {
 
 	protected $sid = null;
 	protected $store = array();
 	protected $changed = array();
 
+	/** @internal */
 	public function __construct() {
 		parent::__construct();
 		$valid = false;
@@ -30,18 +36,42 @@ class Session extends Db {
 		setcookie('session',$this->sid,time()+86400*Config::get('session','lifetime_days'),'/',Config::get('session','cookiedomain'));
 	}
 
+	/**
+	 * Returns the `Session` ID.
+	 * 
+	 * @access public
+	 * @return string
+	 */
 	public function getSid() {
 		return $this->sid;
 	}
 
+	/**
+	 * Destroys the entire `Session` including all variables.
+	 * 
+	 * @access public
+	 * @return void
+	 */
 	public function destroy() {
 		if(!$this->sid) return;
 		setcookie('session','',time()-86400,'/',Config::get('session','cookiedomain'));
 		self::$db->query(self::$db->prepare("DELETE FROM sessions WHERE sid=@VAL LIMIT 1", $this->sid));
+		$this->sid = null;
+		$this->store = array();
+		$this->changed = array();
 	}
 
-	// Warning: Session store saves to DB on destruction. This results in late consistency.
-	// Do not query table "sessionstore" manually!
+	/**
+	 * Saves a value to the `Session`.
+	 *
+	 * ***Warning:*** The `Session` store saves values to the DB on destruction. This results in late consistency.
+	 * **Do not try to query the `sessionstore` table manually!**
+	 * 
+	 * @access public
+	 * @param string $key The internal key to uniquely identify the value
+	 * @param mixed $value (optional) Could be a `string` or `array` (default: '1')
+	 * @return void
+	 */
 	public function set($key,$value='1') {
 		if(is_array($value)) {
 			$value = json_encode($value, JSON_FORCE_OBJECT);
@@ -54,7 +84,15 @@ class Session extends Db {
 		}
 	}
 
-	// Do not query table "sessionstore" manually!
+	/**
+	 * Returns the value for the `$key` in the `Session`.
+	 *
+	 * If Not set, `null` is returned.
+	 * 
+	 * @access public
+	 * @param string $key
+	 * @return mixed
+	 */
 	public function get($key) {
 		$value = isset($this->store[$key]) ? $this->store[$key] : null;
 		if(is_string($value) && strlen($value)>5 && preg_match('/^\{"[^"]+":/',$value)) {
@@ -65,7 +103,15 @@ class Session extends Db {
 		return $value;
 	}
 
-	// Do not query table "sessionstore" manually!
+	/**
+	 * Removes a value from the `Session`.
+	 *
+	 * If no value with this `$key` has been saved to the `Session` before, nothing will be done and no error will be triggered.
+	 * 
+	 * @access public
+	 * @param string $key
+	 * @return void
+	 */
 	public function remove($key) {
 		if(isset($this->store[$key])) {
 			$this->store[$key] = null;
@@ -73,10 +119,18 @@ class Session extends Db {
 		}
 	}
 
+	/**
+	 * Alias for `getSid()`.
+	 * 
+	 * @access public
+	 * @return string
+	 * @see self::getSid()
+	 */
 	public function __toString() {
-		return (string) $this->sid;
+		return (string) $this->getSid();
 	}
 
+	/** @internal */
 	public function __destruct() {
 		if($this->changed) {
 			foreach($this->changed as $key=>$changed) {

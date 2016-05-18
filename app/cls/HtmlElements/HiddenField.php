@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * `FormField` Hidden field.
+ */
 class HiddenField extends AbstractFormField {
 
 	protected function init() {

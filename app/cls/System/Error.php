@@ -1,37 +1,88 @@
 <?php
 
-class Error {
+/**
+ * Error class.
+ */
+class Error extends NonInstantiable {
 
 	private static $debug_msg_counter = 0;
 	private static $mode = null;
 	private static $emptyFieldPlaceholder = '(not set)';
 	private static $errors_count = 0;
 
+	/**
+	 * Throws an error warning.
+	 *
+	 * This will not halt the application.
+	 * Depending on your settings, the warning might be sent to the administrator's email address.
+	 * 
+	 * @access public
+	 * @static
+	 * @param string $msg The actual error message
+	 * @return void
+	 */
 	public static function warning($msg='') {
 		trigger_error($msg, E_USER_WARNING);
 	}
 
+	/**
+	 * Throws a fatal error.
+	 *
+	 * **This will halt the application**.
+	 * Depending on your settings, the error might be sent to the administrator's email address.
+	 * 
+	 * @access public
+	 * @static
+	 * @param string $msg The actual error message
+	 * @return void
+	 */
 	public static function fatal($msg='') {
 		trigger_error($msg, E_USER_ERROR);
 	}
 
+	/** @internal */
 	public static function deprecated(string $use_instead=null) {
 		trigger_error('This function is deprecated and will be removed in a future version.'.($use_instead ? ' Use '.$use_instead.' instead.' : ''), E_USER_WARNING);
 	}
 
+	/**
+	 * Logs a debug message.
+	 *
+	 * Depending on your settings, the message might be sent to the administrator's email address.
+	 * 
+	 * @access public
+	 * @static
+	 * @param string $msg The actual debug message
+	 * @return void
+	 */
 	public static function debug($msg='') {
 		trigger_error($msg, E_USER_NOTICE);
 	}
 
+	/**
+	 * Return a placeholder text for an empty field.
+	 * 
+	 * @access public
+	 * @static
+	 * @return string
+	 */
 	public static function emptyField() {
 		return self::$emptyFieldPlaceholder;
 	}
 
+	/**
+	 * Sets the placeholder text for an empty field.
+	 * 
+	 * @access public
+	 * @static
+	 * @param string $str
+	 * @return void
+	 */
 	public static function setEmptyFieldPlaceholder($str) {
 		self::$emptyFieldPlaceholder = $str;
 	}
 
-	public static function debugErrorGetRelativeFilePath($file) {
+	protected static function debugErrorGetRelativeFilePath($file) {
 		$app_dir = App::getAppDir();
 		if(substr($file, 0, strlen($app_dir))===$app_dir) {
 			return substr($file,strlen($app_dir));
@@ -39,6 +90,14 @@ class Error {
 		return $file;
 	}
 
+	/**
+	 * Sets the error handler mode.
+	 * 
+	 * @access public
+	 * @static
+	 * @param string $mode 'debug' or 'production'
+	 * @return void
+	 */
 	public static function setMode($mode) {
 		if(self::$mode===$mode) return;
 		switch($mode) {
@@ -57,10 +116,19 @@ class Error {
 		register_shutdown_function('Error::fatalErrorHandler');
 	}
 
+	/**
+	 * Returns the error handler mode.
+	 * 
+	 * @access public
+	 * @static
+	 * @return string 'debug' or 'production'
+	 * @see self::setMode()
+	 */
 	public static function getMode() {
 		return self::$mode;
 	}
 
+	/** @internal */
 	public static function debugErrorHandlerReturn($errno, $errstr, $errfile, $errline) {
 		$html = '';
 		$errno = $errno & error_reporting();
@@ -101,6 +169,7 @@ class Error {
 		return $html;
 	}
 
+	/** @internal */
 	public static function debugErrorHandler($errno, $errstr, $errfile, $errline) {
 		if($errno & (E_NOTICE | E_USER_NOTICE)) {
 			if($errno & E_NOTICE) {
@@ -129,6 +198,7 @@ class Error {
 		}
 	}
 
+	/** @internal */
 	public static function productionErrorHandler($errno, $errstr, $errfile, $errline) {
 		if($errno & (E_NOTICE | E_USER_NOTICE)) {
 			return;
@@ -161,6 +231,7 @@ class Error {
 		if($fatal) die();
 	}
 
+	/** @internal */
 	public static function fatalErrorHandler() {
 		$error = error_get_last();
 		if($error!==null) {
@@ -178,6 +249,13 @@ class Error {
 		}
 	}
 
+	/**
+	 * Get the number of encountered errors so far.
+	 * 
+	 * @access public
+	 * @static
+	 * @return int
+	 */
 	public static function getErrorsCount() {
 		return self::$errors_count;
 	}

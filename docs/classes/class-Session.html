@@ -5,19 +5,45 @@
 
 	<title>Class Session</title>
 
-	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
+	<link rel="stylesheet" href="resources/bootstrap.min.css?973e37a8502921d56bc02bb55321f45b072b6f71">
+	<link rel="stylesheet" href="resources/style.css?49f43d3208c5d7e33fa16d36107a345bf11cc00d">
 
 </head>
 
 <body>
-<div id="left">
-	<div id="menu">
-		<a href="index.html" title="Overview"><span>Overview</span></a>
+	<nav id="navigation" class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a href="index.html" class="navbar-brand">Overview</a>
+			</div>
+			<div class="collapse navbar-collapse">
 
+                <form id="search" class="navbar-form navbar-left" role="search">
+                    <input type="hidden" name="cx" value="">
+                    <input type="hidden" name="ie" value="UTF-8">
+                    <div class="form-group">
+                        <input type="text" name="q" class="search-query form-control" placeholder="Search">
+					</div>
+				</form>
+
+				<ul class="nav navbar-nav">
+					<li class="active">
+<span>Class</span>					</li>
+
+
+
+
+
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div id="left">
+	<div id="menu">
 
 		<div id="groups">
 		</div>
-
 
 
 		<div id="elements">
@@ -52,16 +78,16 @@
 				<li><a href="class-LinkTracker.html">LinkTracker</a></li>
 				<li><a href="class-ListField.html">ListField</a></li>
 				<li><a href="class-MysqlDb.html">MysqlDb</a></li>
+				<li><a href="class-NonInstantiable.html">NonInstantiable</a></li>
 				<li><a href="class-Notify.html">Notify</a></li>
 				<li><a href="class-PasswordField.html">PasswordField</a></li>
-				<li><a href="class-PaymentField.html">PaymentField</a></li>
+				<li><a href="class-PaymentField.html" class="deprecated">PaymentField</a></li>
 				<li><a href="class-Pdf.html">Pdf</a></li>
 				<li><a href="class-RadioFields.html">RadioFields</a></li>
 				<li><a href="class-Random.html">Random</a></li>
 				<li class="active"><a href="class-Session.html">Session</a></li>
 				<li><a href="class-SubmitButton.html">SubmitButton</a></li>
 				<li><a href="class-SymbolTag.html">SymbolTag</a></li>
-				<li><a href="class-TCPDF_modified.html">TCPDF_modified</a></li>
 				<li><a href="class-TextField.html">TextField</a></li>
 				<li><a href="class-User.html">User</a></li>
 				<li><a href="class-VimeoVideo.html">VimeoVideo</a></li>
@@ -79,33 +105,16 @@
 <div id="splitter"></div>
 
 <div id="right">
-<div id="rightInner">
-	<form id="search">
-		<input type="hidden" name="cx" value="">
-		<input type="hidden" name="ie" value="UTF-8">
-		<input type="text" name="q" class="text" placeholder="Search">
-	</form>
-
-	<div id="navigation">
-		<ul>
-			<li>
-				<a href="index.html" title="Overview"><span>Overview</span></a>
-			</li>
-			<li class="active">
-<span>Class</span>			</li>
-		</ul>
-		<ul>
-		</ul>
-		<ul>
-		</ul>
-	</div>
-
+	<div id="rightInner">
 <div id="content" class="class">
 	<h1>Class Session</h1>
 
 
+	<div class="description">
+	<p>Session class.</p>
+	</div>
 
-	<dl class="tree">
+	<dl class="tree well">
 		<dd style="padding-left:0px">
 			<a href="class-Instantiable.html"><span>Instantiable</span></a>
 			
@@ -134,385 +143,268 @@
 
 
 
-	<div class="info">
+	<div class="alert alert-info">
 		
 		
 		
 		
 
+				<b>Extends:</b>
+				Db<br>
 			<b>Located at</b> app/cls/System/Session.php		<br>
 	</div>
 
 
 
-	<table class="summary methods" id="methods">
-	<caption>Methods summary</caption>
-	<tr data-order="__construct" id="___construct">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#___construct">#</a>
-		<code>__construct( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-				<h4>Overrides</h4>
-				<div class="list"><code><a href="class-Db.html#___construct">Db::__construct()</a></code></div>
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getSid" id="_getSid">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getSid">#</a>
-		<code>getSid( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="destroy" id="_destroy">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_destroy">#</a>
-		<code>destroy( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="set" id="_set">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_set">#</a>
-		<code>set( <span> <var>$key</var></span>, <span> <var>$value</var> = <span class="php-quote">'1'</span></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="get" id="_get">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_get">#</a>
-		<code>get( <span> <var>$key</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="remove" id="_remove">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_remove">#</a>
-		<code>remove( <span> <var>$key</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="__toString" id="___toString">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#___toString">#</a>
-		<code>__toString( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="__destruct" id="___destruct">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#___destruct">#</a>
-		<code>__destruct( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	</table>
-
-	<table class="summary inherited">
-	<caption>Methods inherited from <a href="class-Db.html#methods">Db</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-Db.html#_db">db()</a>
-		</code></td>
-	</tr>
-	</table>
-	<table class="summary inherited">
-	<caption>Methods inherited from <a href="class-Instantiable.html#methods">Instantiable</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-Instantiable.html#_newInstance">newInstance()</a>
-		</code></td>
-	</tr>
-	</table>
-
-
-
-
-
-
-
-
-
-
-
-	<table class="summary properties" id="properties">
-	<caption>Properties summary</caption>
-	<tr data-order="sid" id="$sid">
-		<td class="attributes"><code>
-			protected  
-			
-		</code></td>
-
-		<td class="name">
-<var>$sid</var>
-			<div class="description short">
+		<div class="panel panel-default">
+			<div class="panel-heading"><h2>Methods summary</h2></div>
+			<table class="summary table table-bordered table-striped methods" id="methods">
+		<tr data-order="getSid" id="_getSid">
+
+			<td class="attributes"><code>
+				 public 
+				string
 				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getSid">#</a>
+			<code>getSid( )</code>
+
+			<div class="description short">
+				<p>Returns the <code>Session</code> ID.</p>
 			</div>
 
 			<div class="description detailed hidden">
+				<p>Returns the <code>Session</code> ID.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="destroy" id="_destroy">
+
+			<td class="attributes"><code>
+				 public 
 				
+				
+				</code>
+			</td>
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$sid" class="anchor">#</a>
-				<code><span class="php-keyword1">null</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="store" id="$store">
-		<td class="attributes"><code>
-			protected  
-			array
-		</code></td>
+			<td class="name"><div>
+			<a class="anchor" href="#_destroy">#</a>
+			<code>destroy( )</code>
 
-		<td class="name">
-<var>$store</var>
 			<div class="description short">
-				
+				<p>Destroys the entire <code>Session</code> including all variables.</p>
 			</div>
 
 			<div class="description detailed hidden">
+				<p>Destroys the entire <code>Session</code> including all variables.</p>
+
+
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="set" id="_set">
+
+			<td class="attributes"><code>
+				 public 
 				
+				
+				</code>
+			</td>
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$store" class="anchor">#</a>
-				<code><span class="php-keyword1">array</span>()</code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="changed" id="$changed">
-		<td class="attributes"><code>
-			protected  
-			array
-		</code></td>
+			<td class="name"><div>
+			<a class="anchor" href="#_set">#</a>
+			<code>set( <span>string <var>$key</var></span>, <span>mixed <var>$value</var> = <span class="php-quote">'1'</span></span> )</code>
 
-		<td class="name">
-<var>$changed</var>
 			<div class="description short">
-				
+				<p>Saves a value to the <code>Session</code>.</p>
 			</div>
 
 			<div class="description detailed hidden">
+				<p>Saves a value to the <code>Session</code>.</p>
+
+<p><strong><em>Warning:</em></strong> The <code>Session</code> store saves values to the DB on destruction. This results in late consistency.
+<strong>Do not try to query the <code>sessionstore</code> table manually!</strong></p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$key</var></dt>
+						<dd>The internal key to uniquely identify the value</dd>
+						<dt><var>$value</var></dt>
+						<dd>(optional) Could be a <code>string</code> or <code>array</code> (default: '1')</dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="get" id="_get">
+
+			<td class="attributes"><code>
+				 public 
+				mixed
 				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_get">#</a>
+			<code>get( <span>string <var>$key</var></span> )</code>
+
+			<div class="description short">
+				<p>Returns the value for the <code>$key</code> in the <code>Session</code>.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Returns the value for the <code>$key</code> in the <code>Session</code>.</p>
+
+<p>If Not set, <code>null</code> is returned.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$key</var></dt>
+						<dd></dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						mixed
+					</div>
+
+
+
 
 			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$changed" class="anchor">#</a>
-				<code><span class="php-keyword1">array</span>()</code>
-			</div>
-		</td>
-	</tr>
-	</table>
+			</div></td>
+		</tr>
+		<tr data-order="remove" id="_remove">
 
-	<table class="summary inherited">
-	<caption>Properties inherited from <a href="class-Db.html#properties">Db</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-Db.html#$db"><var>$db</var></a>
-		</code></td>
-	</tr>
-	</table>
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_remove">#</a>
+			<code>remove( <span>string <var>$key</var></span> )</code>
+
+			<div class="description short">
+				<p>Removes a value from the <code>Session</code>.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Removes a value from the <code>Session</code>.</p>
+
+<p>If no value with this <code>$key</code> has been saved to the <code>Session</code> before, nothing will be done and no error will be triggered.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$key</var></dt>
+						<dd></dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="__toString" id="___toString">
+
+			<td class="attributes"><code>
+				 public 
+				string
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#___toString">#</a>
+			<code>__toString( )</code>
+
+			<div class="description short">
+				<p>Alias for <code>getSid()</code>.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Alias for <code>getSid()</code>.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
+
+
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-Session.html#_getSid">Session::getSid()</a></code><br>
+					</div>
+
+
+			</div>
+			</div></td>
+		</tr>
+			</table>
+		</div>
+
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods inherited from <a href="class-Db.html#methods">Db</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-Db.html#___construct">__construct()</a></code>, 
+				<code><a href="class-Db.html#_db">db()</a></code>
+			</p>
+		</div>
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods inherited from <a href="class-Instantiable.html#methods">Instantiable</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-Instantiable.html#_newInstance">newInstance()</a></code>
+			</p>
+		</div>
+
+
+
+
+
 
 
 
 
 
 </div>
+	</div>
 
 	<div id="footer">
-		 Firework CMS
+		 <a href="http://www.fireworkcms.com/" target="_blank">Firework CMS</a> - Copyright 2016 - All Rights Reserved.
 	</div>
-</div>
 </div>
 <script src="resources/combined.js"></script>
 <script src="elementlist.js"></script>

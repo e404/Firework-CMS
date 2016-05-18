@@ -5,19 +5,45 @@
 
 	<title>Class Language</title>
 
-	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
+	<link rel="stylesheet" href="resources/bootstrap.min.css?973e37a8502921d56bc02bb55321f45b072b6f71">
+	<link rel="stylesheet" href="resources/style.css?49f43d3208c5d7e33fa16d36107a345bf11cc00d">
 
 </head>
 
 <body>
-<div id="left">
-	<div id="menu">
-		<a href="index.html" title="Overview"><span>Overview</span></a>
+	<nav id="navigation" class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a href="index.html" class="navbar-brand">Overview</a>
+			</div>
+			<div class="collapse navbar-collapse">
 
+                <form id="search" class="navbar-form navbar-left" role="search">
+                    <input type="hidden" name="cx" value="">
+                    <input type="hidden" name="ie" value="UTF-8">
+                    <div class="form-group">
+                        <input type="text" name="q" class="search-query form-control" placeholder="Search">
+					</div>
+				</form>
+
+				<ul class="nav navbar-nav">
+					<li class="active">
+<span>Class</span>					</li>
+
+
+
+
+
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div id="left">
+	<div id="menu">
 
 		<div id="groups">
 		</div>
-
 
 
 		<div id="elements">
@@ -52,16 +78,16 @@
 				<li><a href="class-LinkTracker.html">LinkTracker</a></li>
 				<li><a href="class-ListField.html">ListField</a></li>
 				<li><a href="class-MysqlDb.html">MysqlDb</a></li>
+				<li><a href="class-NonInstantiable.html">NonInstantiable</a></li>
 				<li><a href="class-Notify.html">Notify</a></li>
 				<li><a href="class-PasswordField.html">PasswordField</a></li>
-				<li><a href="class-PaymentField.html">PaymentField</a></li>
+				<li><a href="class-PaymentField.html" class="deprecated">PaymentField</a></li>
 				<li><a href="class-Pdf.html">Pdf</a></li>
 				<li><a href="class-RadioFields.html">RadioFields</a></li>
 				<li><a href="class-Random.html">Random</a></li>
 				<li><a href="class-Session.html">Session</a></li>
 				<li><a href="class-SubmitButton.html">SubmitButton</a></li>
 				<li><a href="class-SymbolTag.html">SymbolTag</a></li>
-				<li><a href="class-TCPDF_modified.html">TCPDF_modified</a></li>
 				<li><a href="class-TextField.html">TextField</a></li>
 				<li><a href="class-User.html">User</a></li>
 				<li><a href="class-VimeoVideo.html">VimeoVideo</a></li>
@@ -79,31 +105,29 @@
 <div id="splitter"></div>
 
 <div id="right">
-<div id="rightInner">
-	<form id="search">
-		<input type="hidden" name="cx" value="">
-		<input type="hidden" name="ie" value="UTF-8">
-		<input type="text" name="q" class="text" placeholder="Search">
-	</form>
-
-	<div id="navigation">
-		<ul>
-			<li>
-				<a href="index.html" title="Overview"><span>Overview</span></a>
-			</li>
-			<li class="active">
-<span>Class</span>			</li>
-		</ul>
-		<ul>
-		</ul>
-		<ul>
-		</ul>
-	</div>
-
+	<div id="rightInner">
 <div id="content" class="class">
 	<h1>Class Language</h1>
 
 
+	<div class="description">
+	<p>Language Translation.</p>
+	</div>
+
+	<dl class="tree well">
+		<dd style="padding-left:0px">
+			<a href="class-Instantiable.html"><span>Instantiable</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by">
+<b><span>Language</span></b>			
+			
+			
+		</dd>
+	</dl>
 
 
 
@@ -112,8 +136,7 @@
 
 
 
-
-	<div class="info">
+	<div class="alert alert-info">
 		
 		
 		
@@ -124,726 +147,482 @@
 
 
 
-	<table class="summary methods" id="methods">
-	<caption>Methods summary</caption>
-	<tr data-order="setAutoappend" id="_setAutoappend">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_setAutoappend">#</a>
-		<code>setAutoappend( <span> <var>$autoappend</var> = <span class="php-keyword1">true</span></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="setBase" id="_setBase">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_setBase">#</a>
-		<code>setBase( <span> <var>$lang</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="setLanguage" id="_setLanguage">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_setLanguage">#</a>
-		<code>setLanguage( <span> <var>$lang</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getLangString" id="_getLangString">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getLangString">#</a>
-		<code>getLangString( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="isSupported" id="_isSupported">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_isSupported">#</a>
-		<code>isSupported( <span> <var>$lang</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getSupportedLanguages" id="_getSupportedLanguages">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getSupportedLanguages">#</a>
-		<code>getSupportedLanguages( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="load" id="_load">
-
-		<td class="attributes"><code>
-			 protected 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_load">#</a>
-		<code>load( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="translateString" id="_translateString">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_translateString">#</a>
-		<code>translateString( <span> <var>$str</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="translateHtml" id="_translateHtml">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_translateHtml">#</a>
-		<code>translateHtml( <span> <var>$html</var></span>, <span> <var>$prefix</var> = <span class="php-quote">'{{'</span></span>, <span> <var>$suffix</var> = <span class="php-quote">'}}'</span></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="number" id="_number">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_number">#</a>
-		<code>number( <span> <var>$number</var></span>, <span> <var>$decimals</var> = <span class="php-num">0</span></span>, <span> <var>$separator</var> = <span class="php-keyword1">true</span></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="currency" id="_currency">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_currency">#</a>
-		<code>currency( <span> <var>$number</var></span>, <span> <var>$simple</var> = <span class="php-keyword1">false</span></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="__toString" id="___toString">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#___toString">#</a>
-		<code>__toString( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getNativeName" id="_getNativeName">
-
-		<td class="attributes"><code>
-			 public static
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getNativeName">#</a>
-		<code>getNativeName( <span> <var>$lang</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	</table>
-
-
-
-
-
-
-
-
-
-
-
-
-	<table class="summary properties" id="properties">
-	<caption>Properties summary</caption>
-	<tr data-order="autoappend" id="$autoappend">
-		<td class="attributes"><code>
-			protected  
-			boolean
-		</code></td>
-
-		<td class="name">
-<var>$autoappend</var>
-			<div class="description short">
+		<div class="panel panel-default">
+			<div class="panel-heading"><h2>Methods summary</h2></div>
+			<table class="summary table table-bordered table-striped methods" id="methods">
+		<tr data-order="setAutoappend" id="_setAutoappend">
+
+			<td class="attributes"><code>
+				 public 
 				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_setAutoappend">#</a>
+			<code>setAutoappend( <span>boolean <var>$autoappend</var> = <span class="php-keyword1">true</span></span> )</code>
+
+			<div class="description short">
+				<p>Sets the auto-append mode.</p>
 			</div>
 
 			<div class="description detailed hidden">
+				<p>Sets the auto-append mode.</p>
+
+<p>If enabled, the auto-append mode automatically appends language translation strings at the end of the current language file.
+This makes it easier to find and edit not yet translated strings.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$autoappend</var></dt>
+						<dd>(default: true)</dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="setBase" id="_setBase">
+
+			<td class="attributes"><code>
+				 public 
 				
+				
+				</code>
+			</td>
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$autoappend" class="anchor">#</a>
-				<code><span class="php-keyword1">false</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="autoappend_added" id="$autoappend_added">
-		<td class="attributes"><code>
-			protected  
-			array
-		</code></td>
+			<td class="name"><div>
+			<a class="anchor" href="#_setBase">#</a>
+			<code>setBase( <span>string <var>$lang</var></span> )</code>
 
-		<td class="name">
-<var>$autoappend_added</var>
 			<div class="description short">
-				
+				<p>Defines the base language.</p>
 			</div>
 
 			<div class="description detailed hidden">
+				<p>Defines the base language.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$lang</var></dt>
+						<dd>Language code</dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="setLanguage" id="_setLanguage">
+
+			<td class="attributes"><code>
+				 public 
+				boolean
 				
+				</code>
+			</td>
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$autoappend_added" class="anchor">#</a>
-				<code><span class="php-keyword1">array</span>()</code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="base" id="$base">
-		<td class="attributes"><code>
-			protected  
-			string
-		</code></td>
+			<td class="name"><div>
+			<a class="anchor" href="#_setLanguage">#</a>
+			<code>setLanguage( <span>string <var>$lang</var></span> )</code>
 
-		<td class="name">
-<var>$base</var>
 			<div class="description short">
-				
+				<p>Specifies the current language.</p>
 			</div>
 
 			<div class="description detailed hidden">
+				<p>Specifies the current language.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$lang</var></dt>
+						<dd>Language code</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						boolean<br>true on success, false if language is unsupported
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getLangString" id="_getLangString">
+
+			<td class="attributes"><code>
+				 public 
+				string
 				
+				</code>
+			</td>
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$base" class="anchor">#</a>
-				<code><span class="php-quote">''</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="lang" id="$lang">
-		<td class="attributes"><code>
-			protected  
-			string
-		</code></td>
+			<td class="name"><div>
+			<a class="anchor" href="#_getLangString">#</a>
+			<code>getLangString( )</code>
 
-		<td class="name">
-<var>$lang</var>
 			<div class="description short">
-				
+				<p>Returns the current language code.</p>
 			</div>
 
 			<div class="description detailed hidden">
+				<p>Returns the current language code.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						string<br>Language code
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="isSupported" id="_isSupported">
+
+			<td class="attributes"><code>
+				 public 
+				boolean
 				
+				</code>
+			</td>
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$lang" class="anchor">#</a>
-				<code><span class="php-quote">''</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="strings" id="$strings">
-		<td class="attributes"><code>
-			protected  
-			array
-		</code></td>
+			<td class="name"><div>
+			<a class="anchor" href="#_isSupported">#</a>
+			<code>isSupported( <span>string <var>$lang</var></span> )</code>
 
-		<td class="name">
-<var>$strings</var>
 			<div class="description short">
-				
+				<p>Checks if the language code is supported.</p>
 			</div>
 
 			<div class="description detailed hidden">
+				<p>Checks if the language code is supported.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$lang</var></dt>
+						<dd></dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						boolean<br>true if supported, false if not
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getSupportedLanguages" id="_getSupportedLanguages">
+
+			<td class="attributes"><code>
+				 public 
+				array
 				
+				</code>
+			</td>
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$strings" class="anchor">#</a>
-				<code><span class="php-keyword1">array</span>()</code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="loaded" id="$loaded">
-		<td class="attributes"><code>
-			protected  
-			boolean
-		</code></td>
+			<td class="name"><div>
+			<a class="anchor" href="#_getSupportedLanguages">#</a>
+			<code>getSupportedLanguages( )</code>
 
-		<td class="name">
-<var>$loaded</var>
 			<div class="description short">
-				
+				<p>Returns an array with all supported language codes.</p>
 			</div>
 
 			<div class="description detailed hidden">
+				<p>Returns an array with all supported language codes.</p>
+
+<p>This list includes the base language.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						array
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="translateString" id="_translateString">
+
+			<td class="attributes"><code>
+				 public 
+				string
 				
+				</code>
+			</td>
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$loaded" class="anchor">#</a>
-				<code><span class="php-keyword1">false</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="supported" id="$supported">
-		<td class="attributes"><code>
-			protected  
-			array
-		</code></td>
+			<td class="name"><div>
+			<a class="anchor" href="#_translateString">#</a>
+			<code>translateString( <span>string <var>$str</var></span> )</code>
 
-		<td class="name">
-<var>$supported</var>
 			<div class="description short">
-				
+				<p>Translates a string from the base language to the language set via <code>setLanguage</code>.</p>
 			</div>
 
 			<div class="description detailed hidden">
+				<p>Translates a string from the base language to the language set via <code>setLanguage</code>.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$str</var></dt>
+						<dd></dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						string<br>Translated string or the original string if no translation is available
+					</div>
+
+
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-Language.html#_setLanguage">Language::setLanguage()</a></code><br>
+					</div>
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="translateHtml" id="_translateHtml">
+
+			<td class="attributes"><code>
+				 public 
+				string
 				
+				</code>
+			</td>
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$supported" class="anchor">#</a>
-				<code><span class="php-keyword1">array</span>()</code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="filehandle" id="$filehandle">
-		<td class="attributes"><code>
-			protected  
-			
-		</code></td>
+			<td class="name"><div>
+			<a class="anchor" href="#_translateHtml">#</a>
+			<code>translateHtml( <span>string <var>$html</var></span>, <span>string <var>$prefix</var> = <span class="php-quote">'{{'</span></span>, <span>string <var>$suffix</var> = <span class="php-quote">'}}'</span></span> )</code>
 
-		<td class="name">
-<var>$filehandle</var>
 			<div class="description short">
-				
+				<p>Translates every marked string within HTML code.</p>
 			</div>
 
 			<div class="description detailed hidden">
+				<p>Translates every marked string within HTML code.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$html</var></dt>
+						<dd></dd>
+						<dt><var>$prefix</var></dt>
+						<dd>(default: '{{')</dd>
+						<dt><var>$suffix</var></dt>
+						<dd>(default: '}}')</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						string<br>The translated HTML string
+					</div>
+
+
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-Language.html#_setLanguage">Language::setLanguage()</a></code><br>
+					</div>
+					<h4>Example</h4>
+					<div class="list">
+							<pre><span class="php-comment">// ...</span>
+<span class="php-var">$lang</span>-&gt;setLanguage(<span class="php-quote">'es'</span>);
+<span class="php-var">$lang</span>-&gt;translateHtml(<span class="php-quote">'&lt;div&gt;{{Hello world.}}&lt;/div&gt;'</span>); <span class="php-comment">// returns '&lt;div&gt;Hola mundo.&lt;/div&gt;'</span></pre><br>
+					</div>
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="number" id="_number">
+
+			<td class="attributes"><code>
+				 public 
+				string
 				
+				</code>
+			</td>
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$filehandle" class="anchor">#</a>
-				<code><span class="php-keyword1">null</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="number_dec_point" id="$number_dec_point">
-		<td class="attributes"><code>
-			protected  
-			string
-		</code></td>
+			<td class="name"><div>
+			<a class="anchor" href="#_number">#</a>
+			<code>number( <span>mixed <var>$number</var></span>, <span>integer <var>$decimals</var> = <span class="php-num">0</span></span>, <span>boolean <var>$separator</var> = <span class="php-keyword1">true</span></span> )</code>
 
-		<td class="name">
-<var>$number_dec_point</var>
 			<div class="description short">
-				
+				<p>Translates a number to the right format.</p>
 			</div>
 
 			<div class="description detailed hidden">
+				<p>Translates a number to the right format.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$number</var></dt>
+						<dd></dd>
+						<dt><var>$decimals</var></dt>
+						<dd>(default: 0)</dd>
+						<dt><var>$separator</var></dt>
+						<dd>(default: true)</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="currency" id="_currency">
+
+			<td class="attributes"><code>
+				 public 
+				string
 				
+				</code>
+			</td>
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$number_dec_point" class="anchor">#</a>
-				<code><span class="php-quote">'.'</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="number_thsd_sep" id="$number_thsd_sep">
-		<td class="attributes"><code>
-			protected  
-			string
-		</code></td>
+			<td class="name"><div>
+			<a class="anchor" href="#_currency">#</a>
+			<code>currency( <span>mixed <var>$number</var></span>, <span>boolean <var>$simple</var> = <span class="php-keyword1">false</span></span> )</code>
 
-		<td class="name">
-<var>$number_thsd_sep</var>
 			<div class="description short">
-				
+				<p>Translates a number to the right currency format.</p>
 			</div>
 
 			<div class="description detailed hidden">
+				<p>Translates a number to the right currency format.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$number</var></dt>
+						<dd></dd>
+						<dt><var>$simple</var></dt>
+						<dd>If set to true, '.00' will be removed if applicable (default: false)</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="__toString" id="___toString">
+
+			<td class="attributes"><code>
+				 public 
 				
+				
+				</code>
+			</td>
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$number_thsd_sep" class="anchor">#</a>
-				<code><span class="php-quote">''</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="currency_prefix" id="$currency_prefix">
-		<td class="attributes"><code>
-			protected  
-			string
-		</code></td>
+			<td class="name"><div>
+			<a class="anchor" href="#___toString">#</a>
+			<code>__toString( )</code>
 
-		<td class="name">
-<var>$currency_prefix</var>
 			<div class="description short">
-				
+				<p>Gets the current language code.</p>
 			</div>
 
 			<div class="description detailed hidden">
+				<p>Gets the current language code.</p>
+
+
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getNativeName" id="_getNativeName">
+
+			<td class="attributes"><code>
+				 public static
+				string
 				
+				</code>
+			</td>
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$currency_prefix" class="anchor">#</a>
-				<code><span class="php-quote">''</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="currency_suffix" id="$currency_suffix">
-		<td class="attributes"><code>
-			protected  
-			string
-		</code></td>
+			<td class="name"><div>
+			<a class="anchor" href="#_getNativeName">#</a>
+			<code>getNativeName( <span>string <var>$lang</var></span> )</code>
 
-		<td class="name">
-<var>$currency_suffix</var>
 			<div class="description short">
-				
+				<p>Returns the native language name for the specified language.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Returns the native language name for the specified language.</p>
+
+<p>The language names are in UTF-8 charset.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$lang</var></dt>
+						<dd></dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
+
+
+
 
 			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$currency_suffix" class="anchor">#</a>
-				<code><span class="php-quote">''</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="currency_decimals" id="$currency_decimals">
-		<td class="attributes"><code>
-			protected  
-			integer
-		</code></td>
+			</div></td>
+		</tr>
+			</table>
+		</div>
 
-		<td class="name">
-<var>$currency_decimals</var>
-			<div class="description short">
-				
-			</div>
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods inherited from <a href="class-Instantiable.html#methods">Instantiable</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-Instantiable.html#_newInstance">newInstance()</a></code>
+			</p>
+		</div>
 
-			<div class="description detailed hidden">
-				
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$currency_decimals" class="anchor">#</a>
-				<code><span class="php-num">2</span></code>
-			</div>
-		</td>
-	</tr>
-	</table>
+
+
 
 
 
@@ -851,11 +630,11 @@
 
 
 </div>
+	</div>
 
 	<div id="footer">
-		 Firework CMS
+		 <a href="http://www.fireworkcms.com/" target="_blank">Firework CMS</a> - Copyright 2016 - All Rights Reserved.
 	</div>
-</div>
 </div>
 <script src="resources/combined.js"></script>
 <script src="elementlist.js"></script>

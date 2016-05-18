@@ -1,6 +1,11 @@
 <?php
 
-class EMail {
+/**
+ * EMail sending and handling class.
+ *
+ * @see EMailAttachment
+ */
+class EMail extends Instantiable {
 
 	protected $from = '';
 	protected $to = array();
@@ -18,6 +23,15 @@ class EMail {
 	protected $texttemplate = '';
 	protected $templatereplacements = array();
 
+	/**
+	 * Returns a obfuscated clickable email link.
+	 * 
+	 * @access public
+	 * @static
+	 * @param string $config_key Reads the email address from this config value
+	 * @param string $text (optional) Defines a different link text (default: null)
+	 * @return string
+	 */
 	public static function getLink($config_key, $text=null) {
 		$email = Config::get('email', $config_key, true);
 		if(!$email) return null;
@@ -31,34 +45,103 @@ class EMail {
 		return rtrim(chunk_split(base64_encode($str),76,"\n"));
 	}
 
+	/**
+	 * Defines the character set.
+	 * 
+	 * @access public
+	 * @param string $charet
+	 * @return void
+	 */
 	public function setCharset($charet) {
 		$this->charset = $charset;
 	}
 
+	/**
+	 * Tells the generator to use Base64 encoding.
+	 * 
+	 * @access public
+	 * @param bool $useBase64 (optional) If set to true, Base64 encoding will be used (default: true)
+	 * @return void
+	 */
 	public function useBase64($useBase64=true) {
 		$this->base64 = $useBase64;
 	}
 
+	/**
+	 * Specifies the email sender address and name.
+	 * 
+	 * @access public
+	 * @param string $from The sender's email address
+	 * @param string $name (optional) The sender's name (default: '')
+	 * @return void
+	 */
 	public function setFrom($from, $name='') {
 		$this->from = $name ? '"'.$name.'" <'.$from.'>' : $from;
 	}
 
+	/**
+	 * Returns the sender.
+	 * 
+	 * @access public
+	 * @return string
+	 */
 	public function getFrom() {
 		return $this->from;
 	}
 
+	/**
+	 * Adds a recipient.
+	 * 
+	 * @access public
+	 * @param string $to The recipient's email address
+	 * @param string $name (optional) The recipient's name (default: '')
+	 * @return void
+	 */
 	public function addTo($to, $name='') {
 		$this->to[] = $name ? '"'.$name.'" <'.$to.'>' : $to;
 	}
 
+	/**
+	 * Adds a recipient via CC.
+	 * 
+	 * @access public
+	 * @param string $cc The recipient's email address
+	 * @param string $name (optional) The recipient's name (default: '')
+	 * @return void
+	 */
 	public function addCc($cc, $name='') {
 		$this->cc[] = $name ? '"'.$name.'" <'.$cc.'>' : $cc;
 	}
 
+	/**
+	 * Adds a recipient via BCC.
+	 *
+	 * BCC addresses are hidden to recipients.
+	 * 
+	 * @access public
+	 * @param string $bcc The recipient's email address
+	 * @param string $name (optional) The recipient's name (default: '')
+	 * @return void
+	 */
 	public function addBcc($bcc) {
 		$this->bcc[] = $bcc;
 	}
 
+	/**
+	 * Returns a list of all recipients.
+	 *
+	 * @access public
+	 * @param bool $mix_types (optional) If set to true, there will be no separation between To, CC and BCC recipients (default: false)
+	 * @return void
+	 * @see self::addTo()
+	 * @see self::addCc()
+	 * @see self::addBcc()
+	 *
+	 * @example
+	 * <code>
+	 * $email->getRecipients(); // Returns ['to' => ['test@example.com'], 'cc' => [], 'bcc' => []]
+	 * </code>
+	 */
 	public function getRecipients($mix_types=false) {
 		$recipients = array(
 			'to' => $this->to,
@@ -69,26 +152,71 @@ class EMail {
 		return $recipients;
 	}
 
+	/**
+	 * Defines the email subject text.
+	 * 
+	 * @access public
+	 * @param string $subject
+	 * @return void
+	 */
 	public function setSubject($subject) {
 		$this->subject = $subject;
 	}
 
+	/**
+	 * Specifies the email text content (text-only body).
+	 * 
+	 * @access public
+	 * @param string $text
+	 * @return void
+	 * @see self::setHtml()
+	 */
 	public function setText($text) {
 		$this->text = $text;
 	}
 
+	/**
+	 * Specifies the email HTML content (body).
+	 *
+	 * If no text content is set via `setText` it will be auto-generated from the HTML content.
+	 * 
+	 * @access public
+	 * @param string $html
+	 * @return void
+	 * @see self::setText()
+	 */
 	public function setHtml($html) {
 		$this->html = $html;
 	}
 
+	/**
+	 * Attaches a file.
+	 * 
+	 * @access public
+	 * @param string $filename
+	 * @return void
+	 */
 	public function attachFile($filename) {
 		return $this->attachments[] = new EMailAttachment($filename);
 	}
 
+	/**
+	 * Adds an attachment via `EMailAttachment` object.
+	 * 
+	 * @access public
+	 * @param EMailAttachment $attachment
+	 * @return void
+	 */
 	public function addAttachment(EMailAttachment $attachment) {
 		return $this->attachments[] = $attachment;
 	}
 
+	/**
+	 * Generates and sends the email.
+	 * 
+	 * @access public
+	 * @return bool true on success, false on error
+	 */
 	public function send() {
 		$headers = array();
 		if(!$this->from) {
@@ -177,27 +305,115 @@ class EMail {
 		return $text;
 	}
 
+	/**
+	 * Defines the HTML template header filename.
+	 *
+	 * This header will be prepended to the HTML content set via `setHtml`.
+	 * 
+	 * @access public
+	 * @param string $htmlheaderfile
+	 * @return void
+	 * @see self::setHtml()
+	 */
 	public function setHtmlHeader($htmlheaderfile) {
 		$this->htmlheader = file_get_contents($htmlheaderfile);
 	}
 
+	/**
+	 * Defines the HTML template footer filename.
+	 *
+	 * This footer will be appended to the HTML content set via `setHtml`.
+	 * 
+	 * @access public
+	 * @param string $htmlfooterfile
+	 * @return void
+	 * @see self::setHtml()
+	 */
 	public function setHtmlFooter($htmlfooterfile) {
 		$this->htmlfooter = file_get_contents($htmlfooterfile);
 	}
 
+	/**
+	 * Defines the HTML template body file.
+	 *
+	 * The contents of this file will be read and set as HTML content.
+	 * Custom fields can later be replaced using `setReplacement`.
+	 * Those custom fields can be masked using curly brackets (e.g. `{firstname}`, `{lastname}`)
+	 * 
+	 * @access public
+	 * @param string $htmltemplatefile
+	 * @return void
+	 * @see self::setTextTemplate()
+	 * @see self::setHtml()
+	 * @see self::setReplacement()
+	 *
+	 * @example
+	 * <code>
+	 * // ...
+	 * $email->setHtmlTemplate('templates/email_html.tpl');
+	 * $email->setReplacement('firstname', 'John');
+	 * $email->setReplacement('lastname', 'Doe');
+	 * $email->applyTemplates();
+	 * // ...
+	 * $email->send();
+	 * </code>
+	 */
 	public function setHtmlTemplate($htmltemplatefile) {
 		$this->htmltemplate = file_get_contents($htmltemplatefile);
 	}
 
+	/**
+	 * Defines the text template body file.
+	 *
+	 * The contents of this file will be read and set as text content.
+	 * Custom fields can later be replaced using `setReplacement`.
+	 * Those custom fields can be masked using curly brackets (e.g. `{firstname}`, `{lastname}`)
+	 * 
+	 * @access public
+	 * @param string $texttemplatefile
+	 * @return void
+	 * @see self::setHtmlTemplate()
+	 * @see self::setText()
+	 * @see self::setReplacement()
+	 *
+	 * @example
+	 * <code>
+	 * // ...
+	 * $email->setTextTemplate('templates/email_text.tpl');
+	 * $email->setReplacement('firstname', 'John');
+	 * $email->setReplacement('lastname', 'Doe');
+	 * $email->applyTemplates();
+	 * // ...
+	 * $email->send();
+	 * </code>
+	 */
 	public function setTextTemplate($texttemplatefile) {
 		$this->texttemplate = file_get_contents($texttemplatefile);
 	}
 
+	/**
+	 * Sets a custom replacement field for templates.
+	 * 
+	 * @access public
+	 * @param string $field
+	 * @param string $value
+	 * @return void
+	 * @see self::setHtmlTemplate()
+	 * @see self::setTextTemplate()
+	 */
 	public function setReplacement($field, $value) {
 		$this->templatereplacements[strtoupper($field)] = $value;
 	}
 
-	public function applyTemplates($fields=null,$html_escape=true) {
+	/**
+	 * Applies the previously set template files and replacements.
+	 * 
+	 * @access public
+	 * @param array $fields (optional) Replacement field array like in `setReplacement` (default: null)
+	 * @param bool $html_escape (optional) If set to true, the replacement fields will be HTML escaped (default: true)
+	 * @return void
+	 */
+	public function applyTemplates(array $fields=null, $html_escape=true) {
 		$html = $this->htmlheader.$this->htmltemplate.$this->htmlfooter;
 		if($fields===null) $fields = array();
 		$fields = array_merge($fields, $this->templatereplacements);

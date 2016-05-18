@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * `FormField` Radio fields.
+ *
+ * This is a collection of radio input fields.
+ */
 class RadioFields extends AbstractFormFieldWithOptions {
 
 	protected function init() {

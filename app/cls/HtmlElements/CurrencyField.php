@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * `FormField` Text field with currency input.
+ */
 class CurrencyField extends TextField {
 
 	protected function init() {

@@ -5,19 +5,45 @@
 
 	<title>Class AbstractDatabaseConnector</title>
 
-	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
+	<link rel="stylesheet" href="resources/bootstrap.min.css?973e37a8502921d56bc02bb55321f45b072b6f71">
+	<link rel="stylesheet" href="resources/style.css?49f43d3208c5d7e33fa16d36107a345bf11cc00d">
 
 </head>
 
 <body>
-<div id="left">
-	<div id="menu">
-		<a href="index.html" title="Overview"><span>Overview</span></a>
+	<nav id="navigation" class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a href="index.html" class="navbar-brand">Overview</a>
+			</div>
+			<div class="collapse navbar-collapse">
 
+                <form id="search" class="navbar-form navbar-left" role="search">
+                    <input type="hidden" name="cx" value="">
+                    <input type="hidden" name="ie" value="UTF-8">
+                    <div class="form-group">
+                        <input type="text" name="q" class="search-query form-control" placeholder="Search">
+					</div>
+				</form>
+
+				<ul class="nav navbar-nav">
+					<li class="active">
+<span>Class</span>					</li>
+
+
+
+
+
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div id="left">
+	<div id="menu">
 
 		<div id="groups">
 		</div>
-
 
 
 		<div id="elements">
@@ -52,16 +78,16 @@
 				<li><a href="class-LinkTracker.html">LinkTracker</a></li>
 				<li><a href="class-ListField.html">ListField</a></li>
 				<li><a href="class-MysqlDb.html">MysqlDb</a></li>
+				<li><a href="class-NonInstantiable.html">NonInstantiable</a></li>
 				<li><a href="class-Notify.html">Notify</a></li>
 				<li><a href="class-PasswordField.html">PasswordField</a></li>
-				<li><a href="class-PaymentField.html">PaymentField</a></li>
+				<li><a href="class-PaymentField.html" class="deprecated">PaymentField</a></li>
 				<li><a href="class-Pdf.html">Pdf</a></li>
 				<li><a href="class-RadioFields.html">RadioFields</a></li>
 				<li><a href="class-Random.html">Random</a></li>
 				<li><a href="class-Session.html">Session</a></li>
 				<li><a href="class-SubmitButton.html">SubmitButton</a></li>
 				<li><a href="class-SymbolTag.html">SymbolTag</a></li>
-				<li><a href="class-TCPDF_modified.html">TCPDF_modified</a></li>
 				<li><a href="class-TextField.html">TextField</a></li>
 				<li><a href="class-User.html">User</a></li>
 				<li><a href="class-VimeoVideo.html">VimeoVideo</a></li>
@@ -79,37 +105,22 @@
 <div id="splitter"></div>
 
 <div id="right">
-<div id="rightInner">
-	<form id="search">
-		<input type="hidden" name="cx" value="">
-		<input type="hidden" name="ie" value="UTF-8">
-		<input type="text" name="q" class="text" placeholder="Search">
-	</form>
-
-	<div id="navigation">
-		<ul>
-			<li>
-				<a href="index.html" title="Overview"><span>Overview</span></a>
-			</li>
-			<li class="active">
-<span>Class</span>			</li>
-		</ul>
-		<ul>
-		</ul>
-		<ul>
-		</ul>
-	</div>
-
+	<div id="rightInner">
 <div id="content" class="class">
 	<h1>Class AbstractDatabaseConnector</h1>
 
 
+	<div class="description">
+	<p>Database Connector.</p>
+	</div>
 
 
 
 	<div>
-		<h4>Direct known subclasses</h4>
-			<a href="class-MysqlDb.html">MysqlDb</a>
+		<h3>Direct known subclasses</h3>
+		<p class="elementList">
+			<code><a href="class-MysqlDb.html">MysqlDb</a></code>
+		</p>
 	</div>
 
 
@@ -117,7 +128,7 @@
 
 
 
-	<div class="info">
+	<div class="alert alert-info">
 		<b>Abstract</b><br>
 		
 		
@@ -128,751 +139,84 @@
 
 
 
-	<table class="summary methods" id="methods">
-	<caption>Methods summary</caption>
-	<tr data-order="getInstance" id="_getInstance">
+		<div class="panel panel-default">
+			<div class="panel-heading"><h2>Methods summary</h2></div>
+			<table class="summary table table-bordered table-striped methods" id="methods">
+		<tr data-order="getInstance" id="_getInstance">
 
-		<td class="attributes"><code>
-			 public static
+			<td class="attributes"><code>
+				 public static
+				
+				
+				</code>
+			</td>
 
-			
-			
-			</code>
-		</td>
+			<td class="name"><div>
+			<a class="anchor" href="#_getInstance">#</a>
+			<code>getInstance( )</code>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_getInstance">#</a>
-		<code>getInstance( )</code>
+			<div class="description short">
+				<p>Returns the current database connector instance or creates a new one.</p>
+			</div>
 
-		<div class="description short">
-			
-		</div>
+			<div class="description detailed hidden">
+				<p>Returns the current database connector instance or creates a new one.</p>
 
-		<div class="description detailed hidden">
-			
 
 
 
 
 
 
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="isConnected" id="_isConnected">
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="__construct" id="___construct">
+			<td class="attributes"><code>
+				final public 
+				boolean
+				
+				</code>
+			</td>
 
-		<td class="attributes"><code>
-			 public 
+			<td class="name"><div>
+			<a class="anchor" href="#_isConnected">#</a>
+			<code>isConnected( )</code>
 
-			
-			
-			</code>
-		</td>
+			<div class="description short">
+				<p>Check if the database connector has already connected.</p>
+			</div>
 
-		<td class="name"><div>
-		<a class="anchor" href="#___construct">#</a>
-		<code>__construct( )</code>
+			<div class="description detailed hidden">
+				<p>Check if the database connector has already connected.</p>
 
-		<div class="description short">
-			
-		</div>
 
-		<div class="description detailed hidden">
-			
 
+					<h4>Returns</h4>
+					<div class="list">
+						boolean<br><code>true</code> if connected, <code>false</code> otherwise
+					</div>
 
 
 
 
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="connect" id="_connect">
 
+			<td class="attributes"><code>
+				abstract public 
+				
+				
+				</code>
+			</td>
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="isConnected" id="_isConnected">
+			<td class="name"><div>
+			<a class="anchor" href="#_connect">#</a>
+			<code>connect( <span> <var>$host</var></span>, <span> <var>$username</var></span>, <span> <var>$password</var></span>, <span> <var>$database</var> = <span class="php-keyword1">null</span></span>, <span> <var>$port</var> = -<span class="php-num">1</span></span> )</code>
 
-		<td class="attributes"><code>
-			final public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_isConnected">#</a>
-		<code>isConnected( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="error" id="_error">
-
-		<td class="attributes"><code>
-			abstract protected 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_error">#</a>
-		<code>error( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="connect" id="_connect">
-
-		<td class="attributes"><code>
-			abstract public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_connect">#</a>
-		<code>connect( <span> <var>$host</var></span>, <span> <var>$username</var></span>, <span> <var>$password</var></span>, <span> <var>$database</var> = <span class="php-keyword1">null</span></span>, <span> <var>$port</var> = -<span class="php-num">1</span></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="query" id="_query">
-
-		<td class="attributes"><code>
-			abstract public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_query">#</a>
-		<code>query( <span> <var>$query</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getId" id="_getId">
-
-		<td class="attributes"><code>
-			abstract public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getId">#</a>
-		<code>getId( <span> <var>$query</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="importSqlFile" id="_importSqlFile">
-
-		<td class="attributes"><code>
-			abstract public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_importSqlFile">#</a>
-		<code>importSqlFile( <span> <var>$filename</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="exportSqlFile" id="_exportSqlFile">
-
-		<td class="attributes"><code>
-			abstract public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_exportSqlFile">#</a>
-		<code>exportSqlFile( <span> <var>$filename</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="escape" id="_escape">
-
-		<td class="attributes"><code>
-			abstract public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_escape">#</a>
-		<code>escape( <span> <var>$str</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="startTransaction" id="_startTransaction">
-
-		<td class="attributes"><code>
-			abstract public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_startTransaction">#</a>
-		<code>startTransaction( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="begin" id="_begin">
-
-		<td class="attributes"><code>
-			final public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_begin">#</a>
-		<code>begin( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="rollback" id="_rollback">
-
-		<td class="attributes"><code>
-			abstract public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_rollback">#</a>
-		<code>rollback( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="commit" id="_commit">
-
-		<td class="attributes"><code>
-			abstract public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_commit">#</a>
-		<code>commit( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getRows" id="_getRows">
-
-		<td class="attributes"><code>
-			final public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getRows">#</a>
-		<code>getRows( <span> <var>$query</var></span>, <span> <var>$base_key</var> = <span class="php-keyword1">null</span></span>, <span> <var>$single_value</var> = <span class="php-keyword1">null</span></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getRow" id="_getRow">
-
-		<td class="attributes"><code>
-			final public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getRow">#</a>
-		<code>getRow( <span> <var>$query</var> = <span class="php-keyword1">null</span></span>, <span> <var>$rowOffset</var> = <span class="php-num">0</span></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getCell" id="_getCell">
-
-		<td class="attributes"><code>
-			final public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getCell">#</a>
-		<code>getCell( <span> <var>$query</var></span>, <span> <var>$colOffset</var> = <span class="php-num">0</span></span>, <span> <var>$rowOffset</var> = <span class="php-num">0</span></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="single" id="_single">
-
-		<td class="attributes"><code>
-			final public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_single">#</a>
-		<code>single( <span> <var>$query</var></span>, <span> <var>$colOffset</var> = <span class="php-num">0</span></span>, <span> <var>$rowOffset</var> = <span class="php-num">0</span></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getHeaders" id="_getHeaders">
-
-		<td class="attributes"><code>
-			final public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getHeaders">#</a>
-		<code>getHeaders( <span> <var>$query</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="countRows" id="_countRows">
-
-		<td class="attributes"><code>
-			final public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_countRows">#</a>
-		<code>countRows( <span> <var>$query</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="countCols" id="_countCols">
-
-		<td class="attributes"><code>
-			final public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_countCols">#</a>
-		<code>countCols( <span> <var>$query</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getTransactionStatus" id="_getTransactionStatus">
-
-		<td class="attributes"><code>
-			final public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getTransactionStatus">#</a>
-		<code>getTransactionStatus( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="prepare" id="_prepare">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_prepare">#</a>
-		<code>prepare( <span> <var>$query</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="__toString" id="___toString">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#___toString">#</a>
-		<code>__toString( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	</table>
-
-
-
-
-
-
-
-
-
-
-
-
-	<table class="summary properties" id="properties">
-	<caption>Properties summary</caption>
-	<tr data-order="instance" id="$instance">
-		<td class="attributes"><code>
-			protected static 
-			
-		</code></td>
-
-		<td class="name">
-<var>$instance</var>
 			<div class="description short">
 				
 			</div>
@@ -880,23 +224,28 @@
 			<div class="description detailed hidden">
 				
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$instance" class="anchor">#</a>
-				<code><span class="php-keyword1">null</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="connection" id="$connection">
-		<td class="attributes"><code>
-			protected  
-			boolean
-		</code></td>
 
-		<td class="name">
-<var>$connection</var>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="query" id="_query">
+
+			<td class="attributes"><code>
+				abstract public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_query">#</a>
+			<code>query( <span> <var>$query</var></span> )</code>
+
 			<div class="description short">
 				
 			</div>
@@ -904,23 +253,28 @@
 			<div class="description detailed hidden">
 				
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$connection" class="anchor">#</a>
-				<code><span class="php-keyword1">false</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="transaction" id="$transaction">
-		<td class="attributes"><code>
-			protected  
-			boolean
-		</code></td>
 
-		<td class="name">
-<var>$transaction</var>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getId" id="_getId">
+
+			<td class="attributes"><code>
+				abstract public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getId">#</a>
+			<code>getId( <span> <var>$query</var></span> )</code>
+
 			<div class="description short">
 				
 			</div>
@@ -928,23 +282,28 @@
 			<div class="description detailed hidden">
 				
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$transaction" class="anchor">#</a>
-				<code><span class="php-keyword1">false</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="host" id="$host">
-		<td class="attributes"><code>
-			protected  
-			
-		</code></td>
 
-		<td class="name">
-<var>$host</var>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="importSqlFile" id="_importSqlFile">
+
+			<td class="attributes"><code>
+				abstract public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_importSqlFile">#</a>
+			<code>importSqlFile( <span> <var>$filename</var></span> )</code>
+
 			<div class="description short">
 				
 			</div>
@@ -952,23 +311,28 @@
 			<div class="description detailed hidden">
 				
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$host" class="anchor">#</a>
-				<code></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="database" id="$database">
-		<td class="attributes"><code>
-			protected  
-			
-		</code></td>
 
-		<td class="name">
-<var>$database</var>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="exportSqlFile" id="_exportSqlFile">
+
+			<td class="attributes"><code>
+				abstract public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_exportSqlFile">#</a>
+			<code>exportSqlFile( <span> <var>$filename</var></span> )</code>
+
 			<div class="description short">
 				
 			</div>
@@ -976,23 +340,28 @@
 			<div class="description detailed hidden">
 				
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$database" class="anchor">#</a>
-				<code><span class="php-keyword1">null</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="username" id="$username">
-		<td class="attributes"><code>
-			protected  
-			
-		</code></td>
 
-		<td class="name">
-<var>$username</var>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="escape" id="_escape">
+
+			<td class="attributes"><code>
+				abstract public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_escape">#</a>
+			<code>escape( <span> <var>$str</var></span> )</code>
+
 			<div class="description short">
 				
 			</div>
@@ -1000,23 +369,28 @@
 			<div class="description detailed hidden">
 				
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$username" class="anchor">#</a>
-				<code></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="password" id="$password">
-		<td class="attributes"><code>
-			protected  
-			
-		</code></td>
 
-		<td class="name">
-<var>$password</var>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="startTransaction" id="_startTransaction">
+
+			<td class="attributes"><code>
+				abstract public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_startTransaction">#</a>
+			<code>startTransaction( )</code>
+
 			<div class="description short">
 				
 			</div>
@@ -1024,23 +398,65 @@
 			<div class="description detailed hidden">
 				
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$password" class="anchor">#</a>
-				<code></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="port" id="$port">
-		<td class="attributes"><code>
-			protected  
-			
-		</code></td>
 
-		<td class="name">
-<var>$port</var>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="begin" id="_begin">
+
+			<td class="attributes"><code>
+				final public 
+				boolean
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_begin">#</a>
+			<code>begin( )</code>
+
+			<div class="description short">
+				<p>Alias for <code>startTransaction()</code>.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Alias for <code>startTransaction()</code>.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						boolean
+					</div>
+
+
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-AbstractDatabaseConnector.html#_startTransaction">AbstractDatabaseConnector::startTransaction()</a></code><br>
+					</div>
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="rollback" id="_rollback">
+
+			<td class="attributes"><code>
+				abstract public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_rollback">#</a>
+			<code>rollback( )</code>
+
 			<div class="description short">
 				
 			</div>
@@ -1048,23 +464,28 @@
 			<div class="description detailed hidden">
 				
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$port" class="anchor">#</a>
-				<code></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="logquery" id="$logquery">
-		<td class="attributes"><code>
-			protected  
-			
-		</code></td>
 
-		<td class="name">
-<var>$logquery</var>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="commit" id="_commit">
+
+			<td class="attributes"><code>
+				abstract public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_commit">#</a>
+			<code>commit( )</code>
+
 			<div class="description short">
 				
 			</div>
@@ -1072,64 +493,406 @@
 			<div class="description detailed hidden">
 				
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$logquery" class="anchor">#</a>
-				<code></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="lastQuery" id="$lastQuery">
-		<td class="attributes"><code>
-			protected  
-			
-		</code></td>
 
-		<td class="name">
-<var>$lastQuery</var>
-			<div class="description short">
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getRows" id="_getRows">
+
+			<td class="attributes"><code>
+				final public 
+				array
 				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getRows">#</a>
+			<code>getRows( <span>mixed <var>$query</var></span>, <span>string <var>$base_key</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$single_value</var> = <span class="php-keyword1">null</span></span> )</code>
+
+			<div class="description short">
+				<p>Returns the resulting rows of a query.</p>
 			</div>
 
 			<div class="description detailed hidden">
+				<p>Returns the resulting rows of a query.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$query</var></dt>
+						<dd>The resulting query <code>array</code> or an SQL query <code>string</code></dd>
+						<dt><var>$base_key</var></dt>
+						<dd>(optional) If set, the rows will be based on the specified <code>$base_key</code> (default: null)</dd>
+						<dt><var>$single_value</var></dt>
+						<dd>(optional) If set, the rows will only contain one value instead of an array (default: null)</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						array
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getRow" id="_getRow">
+
+			<td class="attributes"><code>
+				final public 
+				array
 				
+				</code>
+			</td>
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$lastQuery" class="anchor">#</a>
-				<code></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="lastRowOffset" id="$lastRowOffset">
-		<td class="attributes"><code>
-			protected  
-			
-		</code></td>
+			<td class="name"><div>
+			<a class="anchor" href="#_getRow">#</a>
+			<code>getRow( <span>mixed <var>$query</var> = <span class="php-keyword1">null</span></span>, <span>integer <var>$rowOffset</var> = <span class="php-num">0</span></span> )</code>
 
-		<td class="name">
-<var>$lastRowOffset</var>
 			<div class="description short">
-				
+				<p>Returns one row of a query.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Returns one row of a query.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$query</var></dt>
+						<dd>(optional) If omitted, the last query result will be used; otherwise the resulting query <code>array</code> or an SQL query <code>string</code> (default: null)</dd>
+						<dt><var>$rowOffset</var></dt>
+						<dd>The row number which must be used, starting with <code>0</code> (default: 0)</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						array
+					</div>
+
+
+
 
 			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$lastRowOffset" class="anchor">#</a>
-				<code></code>
+			</div></td>
+		</tr>
+		<tr data-order="getCell" id="_getCell">
+
+			<td class="attributes"><code>
+				final public 
+				string
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getCell">#</a>
+			<code>getCell( <span>mixed <var>$query</var></span>, <span>integer <var>$colOffset</var> = <span class="php-num">0</span></span>, <span>integer <var>$rowOffset</var> = <span class="php-num">0</span></span> )</code>
+
+			<div class="description short">
+				<p>Returns one single value of a query.</p>
 			</div>
-		</td>
-	</tr>
-	</table>
+
+			<div class="description detailed hidden">
+				<p>Returns one single value of a query.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$query</var></dt>
+						<dd>The resulting query <code>array</code> or an SQL query <code>string</code></dd>
+						<dt><var>$colOffset</var></dt>
+						<dd>(optional) The column number, starting with <code>0</code> (default: 0)</dd>
+						<dt><var>$rowOffset</var></dt>
+						<dd>(optional) The row number, starting with <code>0</code> (default: 0)</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="single" id="_single">
+
+			<td class="attributes"><code>
+				final public 
+				string
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_single">#</a>
+			<code>single( <span>mixed <var>$query</var></span>, <span>integer <var>$colOffset</var> = <span class="php-num">0</span></span>, <span>integer <var>$rowOffset</var> = <span class="php-num">0</span></span> )</code>
+
+			<div class="description short">
+				<p>Alias for <code>getCell()</code>.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Alias for <code>getCell()</code>.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$query</var></dt>
+						<dd>The resulting query <code>array</code> or an SQL query <code>string</code></dd>
+						<dt><var>$colOffset</var></dt>
+						<dd>(optional) The column number, starting with <code>0</code> (default: 0)</dd>
+						<dt><var>$rowOffset</var></dt>
+						<dd>(optional) The row number, starting with <code>0</code> (default: 0)</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
+
+
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-AbstractDatabaseConnector.html#_getCell">AbstractDatabaseConnector::getCell()</a></code><br>
+					</div>
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getHeaders" id="_getHeaders">
+
+			<td class="attributes"><code>
+				final public 
+				array
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getHeaders">#</a>
+			<code>getHeaders( <span>mixed <var>$query</var></span> )</code>
+
+			<div class="description short">
+				<p>Returns the column names of the query result.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Returns the column names of the query result.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$query</var></dt>
+						<dd>The resulting query <code>array</code> or an SQL query <code>string</code></dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						array
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="countRows" id="_countRows">
+
+			<td class="attributes"><code>
+				final public 
+				integer
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_countRows">#</a>
+			<code>countRows( <span>mixed <var>$query</var></span> )</code>
+
+			<div class="description short">
+				<p>The number of rows the query result produced.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>The number of rows the query result produced.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$query</var></dt>
+						<dd>The resulting query <code>array</code> or an SQL query <code>string</code></dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						integer
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="countCols" id="_countCols">
+
+			<td class="attributes"><code>
+				final public 
+				integer
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_countCols">#</a>
+			<code>countCols( <span>mixed <var>$query</var></span> )</code>
+
+			<div class="description short">
+				<p>The number of columns the query result produced.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>The number of columns the query result produced.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$query</var></dt>
+						<dd>The resulting query <code>array</code> or an SQL query <code>string</code></dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						integer
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getTransactionStatus" id="_getTransactionStatus">
+
+			<td class="attributes"><code>
+				final public 
+				boolean
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getTransactionStatus">#</a>
+			<code>getTransactionStatus( )</code>
+
+			<div class="description short">
+				<p>Checks if a transaction has been started using <code>startTransaction()</code>.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Checks if a transaction has been started using <code>startTransaction()</code>.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						boolean<br><code>true</code> if in transaction context, <code>false</code> otherwise
+					</div>
+
+
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-AbstractDatabaseConnector.html#_startTransaction">AbstractDatabaseConnector::startTransaction()</a></code><br>
+					</div>
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="prepare" id="_prepare">
+
+			<td class="attributes"><code>
+				 public 
+				string
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_prepare">#</a>
+			<code>prepare( <span>string <var>$query</var></span>, <span>string <var>$field</var>,…</span> )</code>
+
+			<div class="description short">
+				<p>Prepares an SQL query.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Prepares an SQL query.</p>
+
+<p>This method makes queries safe against SQL injection attempts.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$query</var></dt>
+						<dd><p>The SQL query <code>string</code>.<br>
+ <code>@VAL</code> prepares a value string,<br>
+ <code>@VAR</code> prepares a column name, or some other sort of identifier.</p></dd>
+						<dt><var>$field</var>,…</dt>
+						<dd>The fields that should be replaced in the prepared query.</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
+
+
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-AbstractDatabaseConnector.html#_query">AbstractDatabaseConnector::query()</a></code><br>
+					</div>
+					<h4>Example</h4>
+					<div class="list">
+							<pre><span class="php-comment">// ...</span>
+<span class="php-var">$result</span> = <span class="php-var">$db</span>-&gt;query(
+    <span class="php-var">$db</span>-&gt;prepare(<span class="php-quote">'
+        SELECT *
+            FROM table
+            WHERE id=@VAL
+            AND @VAR=@VAL'</span>,
+        <span class="php-var">$id</span>,
+        <span class="php-var">$search_field</span>,
+        <span class="php-var">$search_value</span>
+    )
+);</pre><br>
+					</div>
+
+
+			</div>
+			</div></td>
+		</tr>
+			</table>
+		</div>
+
+
+
+
+
 
 
 
@@ -1137,11 +900,11 @@
 
 
 </div>
+	</div>
 
 	<div id="footer">
-		 Firework CMS
+		 <a href="http://www.fireworkcms.com/" target="_blank">Firework CMS</a> - Copyright 2016 - All Rights Reserved.
 	</div>
-</div>
 </div>
 <script src="resources/combined.js"></script>
 <script src="elementlist.js"></script>

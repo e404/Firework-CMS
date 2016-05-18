@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * `FormField` Text field.
+ */
 class TextField extends AbstractFormField {
 
 	protected $area = false;

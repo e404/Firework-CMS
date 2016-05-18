@@ -5,19 +5,45 @@
 
 	<title>Class Button</title>
 
-	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
+	<link rel="stylesheet" href="resources/bootstrap.min.css?973e37a8502921d56bc02bb55321f45b072b6f71">
+	<link rel="stylesheet" href="resources/style.css?49f43d3208c5d7e33fa16d36107a345bf11cc00d">
 
 </head>
 
 <body>
-<div id="left">
-	<div id="menu">
-		<a href="index.html" title="Overview"><span>Overview</span></a>
+	<nav id="navigation" class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a href="index.html" class="navbar-brand">Overview</a>
+			</div>
+			<div class="collapse navbar-collapse">
 
+                <form id="search" class="navbar-form navbar-left" role="search">
+                    <input type="hidden" name="cx" value="">
+                    <input type="hidden" name="ie" value="UTF-8">
+                    <div class="form-group">
+                        <input type="text" name="q" class="search-query form-control" placeholder="Search">
+					</div>
+				</form>
+
+				<ul class="nav navbar-nav">
+					<li class="active">
+<span>Class</span>					</li>
+
+
+
+
+
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div id="left">
+	<div id="menu">
 
 		<div id="groups">
 		</div>
-
 
 
 		<div id="elements">
@@ -52,16 +78,16 @@
 				<li><a href="class-LinkTracker.html">LinkTracker</a></li>
 				<li><a href="class-ListField.html">ListField</a></li>
 				<li><a href="class-MysqlDb.html">MysqlDb</a></li>
+				<li><a href="class-NonInstantiable.html">NonInstantiable</a></li>
 				<li><a href="class-Notify.html">Notify</a></li>
 				<li><a href="class-PasswordField.html">PasswordField</a></li>
-				<li><a href="class-PaymentField.html">PaymentField</a></li>
+				<li><a href="class-PaymentField.html" class="deprecated">PaymentField</a></li>
 				<li><a href="class-Pdf.html">Pdf</a></li>
 				<li><a href="class-RadioFields.html">RadioFields</a></li>
 				<li><a href="class-Random.html">Random</a></li>
 				<li><a href="class-Session.html">Session</a></li>
 				<li><a href="class-SubmitButton.html">SubmitButton</a></li>
 				<li><a href="class-SymbolTag.html">SymbolTag</a></li>
-				<li><a href="class-TCPDF_modified.html">TCPDF_modified</a></li>
 				<li><a href="class-TextField.html">TextField</a></li>
 				<li><a href="class-User.html">User</a></li>
 				<li><a href="class-VimeoVideo.html">VimeoVideo</a></li>
@@ -79,33 +105,16 @@
 <div id="splitter"></div>
 
 <div id="right">
-<div id="rightInner">
-	<form id="search">
-		<input type="hidden" name="cx" value="">
-		<input type="hidden" name="ie" value="UTF-8">
-		<input type="text" name="q" class="text" placeholder="Search">
-	</form>
-
-	<div id="navigation">
-		<ul>
-			<li>
-				<a href="index.html" title="Overview"><span>Overview</span></a>
-			</li>
-			<li class="active">
-<span>Class</span>			</li>
-		</ul>
-		<ul>
-		</ul>
-		<ul>
-		</ul>
-	</div>
-
+	<div id="rightInner">
 <div id="content" class="class">
 	<h1>Class Button</h1>
 
 
+	<div class="description">
+	<p><code>FormField</code> Button.</p>
+	</div>
 
-	<dl class="tree">
+	<dl class="tree well">
 		<dd style="padding-left:0px">
 			<a href="class-Instantiable.html"><span>Instantiable</span></a>
 			
@@ -136,8 +145,10 @@
 
 
 	<div>
-		<h4>Direct known subclasses</h4>
-			<a href="class-SubmitButton.html">SubmitButton</a>
+		<h3>Direct known subclasses</h3>
+		<p class="elementList">
+			<code><a href="class-SubmitButton.html">SubmitButton</a></code>
+		</p>
 	</div>
 
 
@@ -145,7 +156,7 @@
 
 
 
-	<div class="info">
+	<div class="alert alert-info">
 		
 		
 		
@@ -156,175 +167,22 @@
 
 
 
-	<table class="summary methods" id="methods">
-	<caption>Methods summary</caption>
-	<tr data-order="init" id="_init">
+		<div class="panel panel-default">
+			<div class="panel-heading"><h2>Methods summary</h2></div>
+			<table class="summary table table-bordered table-striped methods" id="methods">
+		<tr data-order="setAction" id="_setAction">
 
-		<td class="attributes"><code>
-			 protected 
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
 
-			
-			
-			</code>
-		</td>
+			<td class="name"><div>
+			<a class="anchor" href="#_setAction">#</a>
+			<code>setAction( <span> <var>$action</var></span> )</code>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_init">#</a>
-		<code>init( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="setAction" id="_setAction">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_setAction">#</a>
-		<code>setAction( <span> <var>$action</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getHtml" id="_getHtml">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getHtml">#</a>
-		<code>getHtml( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-				<h4>Overrides</h4>
-				<div class="list"><code><a href="class-AbstractFormField.html#_getHtml">AbstractFormField::getHtml()</a></code></div>
-
-		</div>
-		</div></td>
-	</tr>
-	</table>
-
-	<table class="summary inherited">
-	<caption>Methods inherited from <a href="class-AbstractFormField.html#methods">AbstractFormField</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-AbstractFormField.html#___construct">__construct()</a>, 
-			<a href="class-AbstractFormField.html#_addCssClass">addCssClass()</a>, 
-			<a href="class-AbstractFormField.html#_addValidation">addValidation()</a>, 
-			<a href="class-AbstractFormField.html#_applyAutocorrect">applyAutocorrect()</a>, 
-			<a href="class-AbstractFormField.html#_autofill">autofill()</a>, 
-			<a href="class-AbstractFormField.html#_getAutofillValue">getAutofillValue()</a>, 
-			<a href="class-AbstractFormField.html#_getGenericHtml">getGenericHtml()</a>, 
-			<a href="class-AbstractFormField.html#_getHintHtml">getHintHtml()</a>, 
-			<a href="class-AbstractFormField.html#_getInjectedUserValue">getInjectedUserValue()</a>, 
-			<a href="class-AbstractFormField.html#_getLabel">getLabel()</a>, 
-			<a href="class-AbstractFormField.html#_getLabelHtml">getLabelHtml()</a>, 
-			<a href="class-AbstractFormField.html#_getName">getName()</a>, 
-			<a href="class-AbstractFormField.html#_getParentForm">getParentForm()</a>, 
-			<a href="class-AbstractFormField.html#_getUserValue">getUserValue()</a>, 
-			<a href="class-AbstractFormField.html#_hasError">hasError()</a>, 
-			<a href="class-AbstractFormField.html#_injectUserValue">injectUserValue()</a>, 
-			<a href="class-AbstractFormField.html#_required">required()</a>, 
-			<a href="class-AbstractFormField.html#_setAutocorrect">setAutocorrect()</a>, 
-			<a href="class-AbstractFormField.html#_setCssClass">setCssClass()</a>, 
-			<a href="class-AbstractFormField.html#_setHint">setHint()</a>, 
-			<a href="class-AbstractFormField.html#_setLabel">setLabel()</a>, 
-			<a href="class-AbstractFormField.html#_setName">setName()</a>, 
-			<a href="class-AbstractFormField.html#_setParentForm">setParentForm()</a>, 
-			<a href="class-AbstractFormField.html#_setText">setText()</a>, 
-			<a href="class-AbstractFormField.html#_setType">setType()</a>, 
-			<a href="class-AbstractFormField.html#_setValue">setValue()</a>
-		</code></td>
-	</tr>
-	</table>
-	<table class="summary inherited">
-	<caption>Methods inherited from <a href="class-AbstractHtmlElement.html#methods">AbstractHtmlElement</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-AbstractHtmlElement.html#___toString">__toString()</a>, 
-			<a href="class-AbstractHtmlElement.html#_addJs">addJs()</a>, 
-			<a href="class-AbstractHtmlElement.html#_renderHtml">renderHtml()</a>, 
-			<a href="class-AbstractHtmlElement.html#_setJs">setJs()</a>
-		</code></td>
-	</tr>
-	</table>
-	<table class="summary inherited">
-	<caption>Methods inherited from <a href="class-Instantiable.html#methods">Instantiable</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-Instantiable.html#_newInstance">newInstance()</a>
-		</code></td>
-	</tr>
-	</table>
-
-
-
-
-
-
-
-
-
-
-
-	<table class="summary properties" id="properties">
-	<caption>Properties summary</caption>
-	<tr data-order="action" id="$action">
-		<td class="attributes"><code>
-			protected  
-			string
-		</code></td>
-
-		<td class="name">
-<var>$action</var>
 			<div class="description short">
 				
 			</div>
@@ -332,56 +190,112 @@
 			<div class="description detailed hidden">
 				
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$action" class="anchor">#</a>
-				<code><span class="php-quote">''</span></code>
-			</div>
-		</td>
-	</tr>
-	</table>
 
-	<table class="summary inherited">
-	<caption>Properties inherited from <a href="class-AbstractFormField.html#properties">AbstractFormField</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-AbstractFormField.html#$autocorrect"><var>$autocorrect</var></a>, 
-			<a href="class-AbstractFormField.html#$autofill"><var>$autofill</var></a>, 
-			<a href="class-AbstractFormField.html#$cssclass"><var>$cssclass</var></a>, 
-			<a href="class-AbstractFormField.html#$hint"><var>$hint</var></a>, 
-			<a href="class-AbstractFormField.html#$injectedUserValue"><var>$injectedUserValue</var></a>, 
-			<a href="class-AbstractFormField.html#$label"><var>$label</var></a>, 
-			<a href="class-AbstractFormField.html#$name"><var>$name</var></a>, 
-			<a href="class-AbstractFormField.html#$parentForm"><var>$parentForm</var></a>, 
-			<a href="class-AbstractFormField.html#$required"><var>$required</var></a>, 
-			<a href="class-AbstractFormField.html#$text"><var>$text</var></a>, 
-			<a href="class-AbstractFormField.html#$type"><var>$type</var></a>, 
-			<a href="class-AbstractFormField.html#$validation"><var>$validation</var></a>, 
-			<a href="class-AbstractFormField.html#$value"><var>$value</var></a>
-		</code></td>
-	</tr>
-	</table>
-	<table class="summary inherited">
-	<caption>Properties inherited from <a href="class-AbstractHtmlElement.html#properties">AbstractHtmlElement</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-AbstractHtmlElement.html#$js"><var>$js</var></a>
-		</code></td>
-	</tr>
-	</table>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getHtml" id="_getHtml">
+
+			<td class="attributes"><code>
+				 public 
+				string
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getHtml">#</a>
+			<code>getHtml( )</code>
+
+			<div class="description short">
+				<p>Returns the field's HTML representation.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Returns the field's HTML representation.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
+
+
+
+					<h4>Overrides</h4>
+					<div class="list"><code><a href="class-AbstractFormField.html#_getHtml">AbstractFormField::getHtml</a></code></div>
+
+			</div>
+			</div></td>
+		</tr>
+			</table>
+		</div>
+
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods inherited from <a href="class-AbstractFormField.html#methods">AbstractFormField</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-AbstractFormField.html#_addCssClass">addCssClass()</a></code>, 
+				<code><a href="class-AbstractFormField.html#_addValidation">addValidation()</a></code>, 
+				<code><a href="class-AbstractFormField.html#_autofill">autofill()</a></code>, 
+				<code><a href="class-AbstractFormField.html#_getGenericHtml">getGenericHtml()</a></code>, 
+				<code><a href="class-AbstractFormField.html#_getHintHtml">getHintHtml()</a></code>, 
+				<code><a href="class-AbstractFormField.html#_getInjectedUserValue">getInjectedUserValue()</a></code>, 
+				<code><a href="class-AbstractFormField.html#_getLabel">getLabel()</a></code>, 
+				<code><a href="class-AbstractFormField.html#_getLabelHtml">getLabelHtml()</a></code>, 
+				<code><a href="class-AbstractFormField.html#_getName">getName()</a></code>, 
+				<code><a href="class-AbstractFormField.html#_getParentForm">getParentForm()</a></code>, 
+				<code><a href="class-AbstractFormField.html#_getUserValue">getUserValue()</a></code>, 
+				<code><a href="class-AbstractFormField.html#_hasError">hasError()</a></code>, 
+				<code><a href="class-AbstractFormField.html#_injectUserValue">injectUserValue()</a></code>, 
+				<code><a href="class-AbstractFormField.html#_required">required()</a></code>, 
+				<code><a href="class-AbstractFormField.html#_setAutocorrect">setAutocorrect()</a></code>, 
+				<code><a href="class-AbstractFormField.html#_setCssClass">setCssClass()</a></code>, 
+				<code><a href="class-AbstractFormField.html#_setHint">setHint()</a></code>, 
+				<code><a href="class-AbstractFormField.html#_setLabel">setLabel()</a></code>, 
+				<code><a href="class-AbstractFormField.html#_setName">setName()</a></code>, 
+				<code><a href="class-AbstractFormField.html#_setParentForm">setParentForm()</a></code>, 
+				<code><a href="class-AbstractFormField.html#_setText">setText()</a></code>, 
+				<code><a href="class-AbstractFormField.html#_setType">setType()</a></code>, 
+				<code><a href="class-AbstractFormField.html#_setValue">setValue()</a></code>
+			</p>
+		</div>
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods inherited from <a href="class-AbstractHtmlElement.html#methods">AbstractHtmlElement</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-AbstractHtmlElement.html#___toString">__toString()</a></code>, 
+				<code><a href="class-AbstractHtmlElement.html#_addJs">addJs()</a></code>, 
+				<code><a href="class-AbstractHtmlElement.html#_renderHtml">renderHtml()</a></code>, 
+				<code><a href="class-AbstractHtmlElement.html#_setJs">setJs()</a></code>
+			</p>
+		</div>
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods inherited from <a href="class-Instantiable.html#methods">Instantiable</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-Instantiable.html#_newInstance">newInstance()</a></code>
+			</p>
+		</div>
+
+
+
+
+
 
 
 
 
 
 </div>
+	</div>
 
 	<div id="footer">
-		 Firework CMS
+		 <a href="http://www.fireworkcms.com/" target="_blank">Firework CMS</a> - Copyright 2016 - All Rights Reserved.
 	</div>
-</div>
 </div>
 <script src="resources/combined.js"></script>
 <script src="elementlist.js"></script>

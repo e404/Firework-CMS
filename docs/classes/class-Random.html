@@ -5,19 +5,45 @@
 
 	<title>Class Random</title>
 
-	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
+	<link rel="stylesheet" href="resources/bootstrap.min.css?973e37a8502921d56bc02bb55321f45b072b6f71">
+	<link rel="stylesheet" href="resources/style.css?49f43d3208c5d7e33fa16d36107a345bf11cc00d">
 
 </head>
 
 <body>
-<div id="left">
-	<div id="menu">
-		<a href="index.html" title="Overview"><span>Overview</span></a>
+	<nav id="navigation" class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a href="index.html" class="navbar-brand">Overview</a>
+			</div>
+			<div class="collapse navbar-collapse">
 
+                <form id="search" class="navbar-form navbar-left" role="search">
+                    <input type="hidden" name="cx" value="">
+                    <input type="hidden" name="ie" value="UTF-8">
+                    <div class="form-group">
+                        <input type="text" name="q" class="search-query form-control" placeholder="Search">
+					</div>
+				</form>
+
+				<ul class="nav navbar-nav">
+					<li class="active">
+<span>Class</span>					</li>
+
+
+
+
+
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div id="left">
+	<div id="menu">
 
 		<div id="groups">
 		</div>
-
 
 
 		<div id="elements">
@@ -52,16 +78,16 @@
 				<li><a href="class-LinkTracker.html">LinkTracker</a></li>
 				<li><a href="class-ListField.html">ListField</a></li>
 				<li><a href="class-MysqlDb.html">MysqlDb</a></li>
+				<li><a href="class-NonInstantiable.html">NonInstantiable</a></li>
 				<li><a href="class-Notify.html">Notify</a></li>
 				<li><a href="class-PasswordField.html">PasswordField</a></li>
-				<li><a href="class-PaymentField.html">PaymentField</a></li>
+				<li><a href="class-PaymentField.html" class="deprecated">PaymentField</a></li>
 				<li><a href="class-Pdf.html">Pdf</a></li>
 				<li><a href="class-RadioFields.html">RadioFields</a></li>
 				<li class="active"><a href="class-Random.html">Random</a></li>
 				<li><a href="class-Session.html">Session</a></li>
 				<li><a href="class-SubmitButton.html">SubmitButton</a></li>
 				<li><a href="class-SymbolTag.html">SymbolTag</a></li>
-				<li><a href="class-TCPDF_modified.html">TCPDF_modified</a></li>
 				<li><a href="class-TextField.html">TextField</a></li>
 				<li><a href="class-User.html">User</a></li>
 				<li><a href="class-VimeoVideo.html">VimeoVideo</a></li>
@@ -79,31 +105,29 @@
 <div id="splitter"></div>
 
 <div id="right">
-<div id="rightInner">
-	<form id="search">
-		<input type="hidden" name="cx" value="">
-		<input type="hidden" name="ie" value="UTF-8">
-		<input type="text" name="q" class="text" placeholder="Search">
-	</form>
-
-	<div id="navigation">
-		<ul>
-			<li>
-				<a href="index.html" title="Overview"><span>Overview</span></a>
-			</li>
-			<li class="active">
-<span>Class</span>			</li>
-		</ul>
-		<ul>
-		</ul>
-		<ul>
-		</ul>
-	</div>
-
+	<div id="rightInner">
 <div id="content" class="class">
 	<h1>Class Random</h1>
 
 
+	<div class="description">
+	<p>Random generator.</p>
+	</div>
+
+	<dl class="tree well">
+		<dd style="padding-left:0px">
+			<a href="class-NonInstantiable.html"><span>NonInstantiable</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by">
+<b><span>Random</span></b>			
+			
+			
+		</dd>
+	</dl>
 
 
 
@@ -112,8 +136,7 @@
 
 
 
-
-	<div class="info">
+	<div class="alert alert-info">
 		
 		
 		
@@ -124,76 +147,140 @@
 
 
 
-	<table class="summary methods" id="methods">
-	<caption>Methods summary</caption>
-	<tr data-order="generate" id="_generate">
+		<div class="panel panel-default">
+			<div class="panel-heading"><h2>Methods summary</h2></div>
+			<table class="summary table table-bordered table-striped methods" id="methods">
+		<tr data-order="generate" id="_generate" class="deprecated">
 
-		<td class="attributes"><code>
-			 public static
+			<td class="attributes"><code>
+				 public static
+				string
+				
+				</code>
+			</td>
 
-			
-			
-			</code>
-		</td>
+			<td class="name"><div>
+			<a class="anchor" href="#_generate">#</a>
+			<code>generate( <span>integer <var>$length</var> = <span class="php-num">6</span></span> )</code>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_generate">#</a>
-		<code>generate( <span> <var>$length</var> = <span class="php-num">6</span></span> )</code>
+			<div class="description short">
+				<p>Generates a random string.</p>
+			</div>
 
-		<div class="description short">
-			
+			<div class="description detailed hidden">
+				<p>Generates a random string.</p>
+
+<p>The string contains upper-case letters, lower-case letters and numbers.</p>
+
+					<h4>Deprecated</h4>
+					<div class="list">
+							Use <code>Random::generateString()</code> instead<br>
+					</div>
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$length</var></dt>
+						<dd>(optional) The length of the generated random string (default: 6)</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
+
+
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-Random.html#_generateString">Random::generateString()</a></code><br>
+					</div>
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="generateString" id="_generateString">
+
+			<td class="attributes"><code>
+				 public static
+				string
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_generateString">#</a>
+			<code>generateString( <span>integer <var>$length</var></span> )</code>
+
+			<div class="description short">
+				<p>Generates a random string.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Generates a random string.</p>
+
+<p>The string contains upper-case letters, lower-case letters and numbers.
+<code>[A-Za-z0-9]{$length}</code></p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$length</var></dt>
+						<dd>The length of the generated random string</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="generateEasyCode" id="_generateEasyCode">
+
+			<td class="attributes"><code>
+				 public static
+				string
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_generateEasyCode">#</a>
+			<code>generateEasyCode( <span>mixed <var>$length</var></span> )</code>
+
+			<div class="description short">
+				<p>Generates a random string that contains no characters humans often confuse.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Generates a random string that contains no characters humans often confuse.</p>
+
+<p>This random generator is intended to be used when humans must type in the code somewhere manually.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$length</var></dt>
+						<dd>The length of the generated random string</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+			</table>
 		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="generateEasyCode" id="_generateEasyCode">
-
-		<td class="attributes"><code>
-			 public static
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_generateEasyCode">#</a>
-		<code>generateEasyCode( <span> <var>$length</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	</table>
-
-
-
-
-
-
-
 
 
 
@@ -206,11 +293,11 @@
 
 
 </div>
+	</div>
 
 	<div id="footer">
-		 Firework CMS
+		 <a href="http://www.fireworkcms.com/" target="_blank">Firework CMS</a> - Copyright 2016 - All Rights Reserved.
 	</div>
-</div>
 </div>
 <script src="resources/combined.js"></script>
 <script src="elementlist.js"></script>

@@ -5,18 +5,45 @@
 
 	<title>Overview</title>
 
-	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
+	<link rel="stylesheet" href="resources/bootstrap.min.css?973e37a8502921d56bc02bb55321f45b072b6f71">
+	<link rel="stylesheet" href="resources/style.css?49f43d3208c5d7e33fa16d36107a345bf11cc00d">
 
 </head>
 
 <body>
-<div id="left">
+	<nav id="navigation" class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a href="index.html" class="navbar-brand">Overview</a>
+			</div>
+			<div class="collapse navbar-collapse">
+
+                <form id="search" class="navbar-form navbar-left" role="search">
+                    <input type="hidden" name="cx" value="">
+                    <input type="hidden" name="ie" value="UTF-8">
+                    <div class="form-group">
+                        <input type="text" name="q" class="search-query form-control" placeholder="Search" autofocus>
+					</div>
+				</form>
+
+				<ul class="nav navbar-nav">
+					<li>
+<span>Class</span>					</li>
+
+
+
+
+
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div id="left">
 	<div id="menu">
-<span>Overview</span>
 
 		<div id="groups">
 		</div>
-
 
 
 		<div id="elements">
@@ -51,16 +78,16 @@
 				<li><a href="class-LinkTracker.html">LinkTracker</a></li>
 				<li><a href="class-ListField.html">ListField</a></li>
 				<li><a href="class-MysqlDb.html">MysqlDb</a></li>
+				<li><a href="class-NonInstantiable.html">NonInstantiable</a></li>
 				<li><a href="class-Notify.html">Notify</a></li>
 				<li><a href="class-PasswordField.html">PasswordField</a></li>
-				<li><a href="class-PaymentField.html">PaymentField</a></li>
+				<li><a href="class-PaymentField.html" class="deprecated">PaymentField</a></li>
 				<li><a href="class-Pdf.html">Pdf</a></li>
 				<li><a href="class-RadioFields.html">RadioFields</a></li>
 				<li><a href="class-Random.html">Random</a></li>
 				<li><a href="class-Session.html">Session</a></li>
 				<li><a href="class-SubmitButton.html">SubmitButton</a></li>
 				<li><a href="class-SymbolTag.html">SymbolTag</a></li>
-				<li><a href="class-TCPDF_modified.html">TCPDF_modified</a></li>
 				<li><a href="class-TextField.html">TextField</a></li>
 				<li><a href="class-User.html">User</a></li>
 				<li><a href="class-VimeoVideo.html">VimeoVideo</a></li>
@@ -78,26 +105,7 @@
 <div id="splitter"></div>
 
 <div id="right">
-<div id="rightInner">
-	<form id="search">
-		<input type="hidden" name="cx" value="">
-		<input type="hidden" name="ie" value="UTF-8">
-		<input type="text" name="q" class="text" placeholder="Search" autofocus>
-	</form>
-
-	<div id="navigation">
-		<ul>
-			<li class="active">
-<span>Overview</span>			</li>
-			<li>
-<span>Class</span>			</li>
-		</ul>
-		<ul>
-		</ul>
-		<ul>
-		</ul>
-	</div>
-
+	<div id="rightInner">
 <div id="content">
 	<h1>Overview</h1>
 
@@ -105,194 +113,196 @@
 
 
 
-<table class="summary" id="classes">
-<caption>Classes summary</caption>
+<div class="panel panel-default">
+    <div class="panel-heading"><h2>Classes summary</h2></div>
+	<table class="summary table table-bordered table-striped" id="classes">
 <tr>
 	<td class="name"><a href="class-AbstractDatabaseConnector.html">AbstractDatabaseConnector</a></td>
-	<td></td>
+	<td>Database Connector.</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-AbstractDbCollection.html">AbstractDbCollection</a></td>
-	<td></td>
+	<td>Database Collection.</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-AbstractDbEntity.html">AbstractDbEntity</a></td>
-	<td></td>
+	<td>Database Entity.</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-AbstractDbRecord.html">AbstractDbRecord</a></td>
-	<td></td>
+	<td>Database Record.</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-AbstractFormField.html">AbstractFormField</a></td>
-	<td></td>
+	<td>Form Field.</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-AbstractFormFieldWithOptions.html">AbstractFormFieldWithOptions</a></td>
-	<td></td>
+	<td>Form Field with options.</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-AbstractHtmlElement.html">AbstractHtmlElement</a></td>
-	<td></td>
+	<td>HTML element.</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-App.html">App</a></td>
-	<td>** Main Application. **</td>
+	<td><u>Firework CMS</u> (Main Application).</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-Button.html">Button</a></td>
-	<td></td>
+	<td><code>FormField</code> Button.</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-Cache.html">Cache</a></td>
-	<td></td>
+	<td>Automated caching of files and other data.</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-CachedQuery.html">CachedQuery</a></td>
-	<td></td>
+	<td>Queries the database and caches the result for later use.</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-CheckboxField.html">CheckboxField</a></td>
-	<td></td>
+	<td><code>FormField</code> Checkbox.</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-Config.html">Config</a></td>
-	<td></td>
+	<td>Configuration class.</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-CurrencyField.html">CurrencyField</a></td>
-	<td></td>
+	<td><code>FormField</code> Text field with currency input.</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-CustomHtmlTag.html">CustomHtmlTag</a></td>
-	<td></td>
+	<td>Creates a custom HTML tag that can be rendered within the application.</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-Db.html">Db</a></td>
-	<td></td>
+	<td>Database Object.</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-DropdownField.html">DropdownField</a></td>
-	<td></td>
+	<td><code>FormField</code> Dropdown field.</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-EMail.html">EMail</a></td>
-	<td></td>
+	<td>EMail sending and handling class.</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-EMailAttachment.html">EMailAttachment</a></td>
-	<td></td>
+	<td>EMailAttachment creation for use with <code>EMail</code>.</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-EMailField.html">EMailField</a></td>
-	<td></td>
+	<td><code>FormField</code> Text field with email input.</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-Error.html">Error</a></td>
-	<td></td>
+	<td>Error class.</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-FileField.html">FileField</a></td>
-	<td></td>
+	<td><code>FormField</code> File input.</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-Form.html">Form</a></td>
-	<td></td>
+	<td><code>Form</code>.</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-HiddenField.html">HiddenField</a></td>
-	<td></td>
+	<td><code>FormField</code> Hidden field.</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-Instantiable.html">Instantiable</a></td>
-	<td></td>
+	<td>Extending classes must be instanced.</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-Language.html">Language</a></td>
-	<td></td>
+	<td>Language Translation.</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-LinkTracker.html">LinkTracker</a></td>
-	<td></td>
+	<td>Handles short links, tracks its usage and expands application functionality.</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-ListField.html">ListField</a></td>
-	<td></td>
+	<td><code>FormField</code> List field.</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-MysqlDb.html">MysqlDb</a></td>
-	<td></td>
+	<td>MySQL Database Connector.</td>
+</tr>
+<tr>
+	<td class="name"><a href="class-NonInstantiable.html">NonInstantiable</a></td>
+	<td>Extending classes cannot be instanced.</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-Notify.html">Notify</a></td>
-	<td></td>
+	<td>Front-end notification system.</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-PasswordField.html">PasswordField</a></td>
-	<td></td>
+	<td><code>FormField</code> Password field.</td>
 </tr>
 <tr>
-	<td class="name"><a href="class-PaymentField.html">PaymentField</a></td>
-	<td></td>
+	<td class="name"><a href="class-PaymentField.html" class="deprecated">PaymentField</a></td>
+	<td><code>FormField</code> Hidden payment field.</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-Pdf.html">Pdf</a></td>
-	<td></td>
+	<td>PDF Generator.</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-RadioFields.html">RadioFields</a></td>
-	<td></td>
+	<td><code>FormField</code> Radio fields.</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-Random.html">Random</a></td>
-	<td></td>
+	<td>Random generator.</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-Session.html">Session</a></td>
-	<td></td>
+	<td>Session class.</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-SubmitButton.html">SubmitButton</a></td>
-	<td></td>
+	<td><code>FormField</code> Submit button.</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-SymbolTag.html">SymbolTag</a></td>
-	<td></td>
-</tr>
-<tr>
-	<td class="name"><a href="class-TCPDF_modified.html">TCPDF_modified</a></td>
-	<td></td>
+	<td>Custom HTML tag <code>&lt;symbol&gt;</code>.</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-TextField.html">TextField</a></td>
-	<td></td>
+	<td><code>FormField</code> Text field.</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-User.html">User</a></td>
-	<td></td>
+	<td>The website's <code>User</code> entity.</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-VimeoVideo.html">VimeoVideo</a></td>
-	<td></td>
+	<td>Custom HTML tag <code>&lt;vimeo&gt;</code>.</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-YoutubeVideo.html">YoutubeVideo</a></td>
-	<td></td>
+	<td>Custom HTML tag <code>&lt;youtube&gt;</code>.</td>
 </tr>
-</table>
+	</table>
+</div>
 
 
 
 
 
 </div>
+	</div>
 
 	<div id="footer">
-		 Firework CMS
+		 <a href="http://www.fireworkcms.com/" target="_blank">Firework CMS</a> - Copyright 2016 - All Rights Reserved.
 	</div>
 </div>
-</div>
-<script src="resources/combined.js?cd021bc814832c24a7cec5319ea03335bfba1caf"></script>
-<script src="elementlist.js?c226ba4c46ee02745685348c1c6c206584956a23"></script>
+<script src="resources/combined.js?533e23ef2f02bd4b20548834a028566b6eb403e0"></script>
+<script src="elementlist.js?35a206ed39ef14519004a144329b69e56365ae2d"></script>
 </body>
 </html>

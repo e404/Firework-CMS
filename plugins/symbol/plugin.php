@@ -1,7 +1,13 @@
 <?php
 
+/**
+ * Custom HTML tag `<symbol>`.
+ *
+ * @example `<symbol icon="heart">`
+ */
 class SymbolTag extends CustomHtmlTag {
 
+	/** @internal */
 	public function __construct() {
 
 		parent::__construct('symbol');

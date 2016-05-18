@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * `FormField` Dropdown field.
+ */
 class DropdownField extends AbstractFormFieldWithOptions {
 
 	protected function init() {

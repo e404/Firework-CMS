@@ -1,9 +1,20 @@
 <?php
 
-class Config {
+/**
+ * Configuration class.
+ */
+class Config extends NonInstantiable {
 
 	private static $conf = array();
 
+	/**
+	 * Loads a configuration ini file.
+	 * 
+	 * @access public
+	 * @static
+	 * @param string $inifile
+	 * @return void
+	 */
 	public static function load($inifile) {
 		if(file_exists($inifile) && is_readable($inifile)) {
 			if(PHP_SAPI!=='cli') {
@@ -24,6 +35,16 @@ class Config {
 		}
 	}
 
+	/**
+	 * Returns a configuration value.
+	 * 
+	 * @access public
+	 * @static
+	 * @param string $section
+	 * @param string $key (default: null)
+	 * @param bool $strict (default: false)
+	 * @return mixed
+	 */
 	public static function get($section,$key=null,$strict=false) {
 		if($key===null) $key = $section;
 		if(isset(self::$conf[$section]) && isset(self::$conf[$section][$key])) {
@@ -34,6 +55,20 @@ class Config {
 		}
 	}
 
+	/**
+	 * Fakes a config value.
+	 *
+	 * This method temporarily sets a config value.
+	 * Nothing will be saved though.
+	 * This is useful for debugging or special cases.
+	 * 
+	 * @access public
+	 * @static
+	 * @param string $section
+	 * @param string $key
+	 * @param mixed $value
+	 * @return void
+	 */
 	public static function fake($section, $key, $value) {
 		if(!self::$conf) return false;
 		if(!isset(self::$conf[$section])) self::$conf[$section] = array();

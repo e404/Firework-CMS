@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * MySQL Database Connector.
+ */
 class MysqlDb extends AbstractDatabaseConnector {
 
 	protected $last_error = null;
@@ -16,10 +19,29 @@ class MysqlDb extends AbstractDatabaseConnector {
 		return false;
 	}
 
+	/**
+	 * Decides if long running queries should trigger a warning.
+	 * 
+	 * @access public
+	 * @param bool $ignore If set to false, long queries will trigger a warning (default: true)
+	 * @return void
+	 */
 	public function ignoreLongQueries($ignore=true) {
 		$this->ignore_long_queries = (bool) $ignore;
 	}
 
+	/**
+	 * Connects to the MySQL database.
+	 * 
+	 * @access public
+	 * @final
+	 * @param string $host
+	 * @param string $username
+	 * @param string $password
+	 * @param string $database (optional) If omitted, no default database will be used (default: null)
+	 * @param float $port (optional) `-1` means default port (default: -1)
+	 * @return void
+	 */
 	final public function connect($host,$username,$password,$database=null,$port=-1) {
 		$this->connection = null;
 		$this->host = $host;
@@ -55,6 +77,15 @@ class MysqlDb extends AbstractDatabaseConnector {
 		}
 	}
 
+	/**
+	 * Runs a MySQL query.
+	 *
+	 * Returns an array on `SELECT` queries, and `true` or `false` on manipulation queries.
+	 * 
+	 * @access public
+	 * @param string $query The SQL query string
+	 * @return mixed
+	 */
 	public function query($query) {
 		if(func_num_args()>1) {
 			$result = array();
@@ -84,42 +115,107 @@ class MysqlDb extends AbstractDatabaseConnector {
 		return $result;
 	}
 
+	/**
+	 * Runs a query and returns the generated auto-increment ID if applicable.
+	 *
+	 * If no ID could be found, `null` will be returned.
+	 * 
+	 * @access public
+	 * @final
+	 * @param string $query The SQL query string
+	 * @return mixed
+	 */
 	final public function getId($query) {
 		if(!preg_match("/^\s*(INSERT|REPLACE)\s/si",$query)) return null;
 		$success = $this->query($query);
 		return $success===true ? mysqli_insert_id($this->connection) : null;
 	}
 
+	/**
+	 * Runs (imports) an SQL file to the database.
+	 * 
+	 * @access public
+	 * @param string $filename
+	 * @return bool `true` on success, `false` on error
+	 */
 	public function importSqlFile($filename) {
+		if(!$this->database) {
+			Error::warning('No database selected.');
+			return null;
+		}
 		exec("mysql --host=".$this->host." --user=".$this->username." --password=".$this->password." ".$this->database." < ".$filename,$output,$return_var);
 		return ($return_var===0);
 	}
 
+	/**
+	 * Dumps the selected database to an SQL file.
+	 * 
+	 * @access public
+	 * @param string $filename
+	 * @return bool `true` on success, `false` on error
+	 */
 	public function exportSqlFile($filename) {
+		if(!$this->database) {
+			Error::warning('No database selected.');
+			return null;
+		}
 		exec("mysqldump --host=".$this->host." --user=".$this->username." --password=".$this->password." ".$this->database." > ".$filename,$output,$return_var);
 		return ($return_var===0);
 	}
 
+	/**
+	 * Escapes a string for safe usage within SQL queries.
+	 * 
+	 * @access public
+	 * @param string $str
+	 * @return string
+	 */
 	public function escape($str) {
 		$this->openConnection();
 		return mysqli_real_escape_string($this->connection,$str);
 	}
 
+	/**
+	 * Starts a transaction.
+	 *
+	 * This method will not work with MyISAM databases.
+	 * 
+	 * @access public
+	 * @return bool `true` on success, `false` on error
+	 */
 	public function startTransaction() {
 		$this->transaction = true;
 		return $this->query("START TRANSACTION");
 	}
 
+	/**
+	 * Undos all queries since the lase `startTransaction` call.
+	 * 
+	 * @access public
+	 * @return bool `true` on success, `false` on error
+	 */
 	public function rollback() {
 		$this->transaction = false;
 		return $this->query("ROLLBACK");
 	}
 
+	/**
+	 * Makes all queries since the last `startTransaction` call permanent.
+	 * 
+	 * @access public
+	 * @return bool `true` on success, `false` on error
+	 */
 	public function commit() {
 		$this->transaction = false;
 		return $this->query("COMMIT");
 	}
 
+	/**
+	 * Returns a pre-formatted information of all available tables and columns.
+	 * 
+	 * @access public
+	 * @return string
+	 */
 	public function info() {
 		$info = "";
 		foreach($this->query("SHOW TABLES") as $table) {
@@ -138,14 +234,33 @@ class MysqlDb extends AbstractDatabaseConnector {
 		return $info;
 	}
 
+	/**
+	 * Write-locks a table.
+	 * 
+	 * @access public
+	 * @param string $table
+	 * @return bool `true` on success, `false` on error
+	 */
 	public function lockTable($table) {
 		return $this->query("LOCK TABLES `".$this->escape($table)."` WRITE");
 	}
 
+	/**
+	 * Unlocks all previously locked tables.
+	 * 
+	 * @access public
+	 * @return bool `true` on success, `false` on error
+	 */
 	public function unlockTables() {
 		return (bool) @mysqli_query($this->connection,"UNLOCK TABLES");
 	}
 
+	/**
+	 * Returns the error message of the last SQL query.
+	 * 
+	 * @access public
+	 * @return string The error message; `null` if no error was encountered.
+	 */
 	public function getLastError() {
 		return $this->last_error;
 	}

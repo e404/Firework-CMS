@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * `FormField` Text field with email input.
+ */
 class EMailField extends AbstractFormField {
 
 	protected $minlength = 0;

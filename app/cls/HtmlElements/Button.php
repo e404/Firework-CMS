@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * `FormField` Button.
+ */
 class Button extends AbstractFormField {
 
 	protected $action = '';

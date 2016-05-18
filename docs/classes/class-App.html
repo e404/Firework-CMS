@@ -5,19 +5,45 @@
 
 	<title>Class App</title>
 
-	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
+	<link rel="stylesheet" href="resources/bootstrap.min.css?973e37a8502921d56bc02bb55321f45b072b6f71">
+	<link rel="stylesheet" href="resources/style.css?49f43d3208c5d7e33fa16d36107a345bf11cc00d">
 
 </head>
 
 <body>
-<div id="left">
-	<div id="menu">
-		<a href="index.html" title="Overview"><span>Overview</span></a>
+	<nav id="navigation" class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a href="index.html" class="navbar-brand">Overview</a>
+			</div>
+			<div class="collapse navbar-collapse">
 
+                <form id="search" class="navbar-form navbar-left" role="search">
+                    <input type="hidden" name="cx" value="">
+                    <input type="hidden" name="ie" value="UTF-8">
+                    <div class="form-group">
+                        <input type="text" name="q" class="search-query form-control" placeholder="Search">
+					</div>
+				</form>
+
+				<ul class="nav navbar-nav">
+					<li class="active">
+<span>Class</span>					</li>
+
+
+
+
+
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div id="left">
+	<div id="menu">
 
 		<div id="groups">
 		</div>
-
 
 
 		<div id="elements">
@@ -52,16 +78,16 @@
 				<li><a href="class-LinkTracker.html">LinkTracker</a></li>
 				<li><a href="class-ListField.html">ListField</a></li>
 				<li><a href="class-MysqlDb.html">MysqlDb</a></li>
+				<li><a href="class-NonInstantiable.html">NonInstantiable</a></li>
 				<li><a href="class-Notify.html">Notify</a></li>
 				<li><a href="class-PasswordField.html">PasswordField</a></li>
-				<li><a href="class-PaymentField.html">PaymentField</a></li>
+				<li><a href="class-PaymentField.html" class="deprecated">PaymentField</a></li>
 				<li><a href="class-Pdf.html">Pdf</a></li>
 				<li><a href="class-RadioFields.html">RadioFields</a></li>
 				<li><a href="class-Random.html">Random</a></li>
 				<li><a href="class-Session.html">Session</a></li>
 				<li><a href="class-SubmitButton.html">SubmitButton</a></li>
 				<li><a href="class-SymbolTag.html">SymbolTag</a></li>
-				<li><a href="class-TCPDF_modified.html">TCPDF_modified</a></li>
 				<li><a href="class-TextField.html">TextField</a></li>
 				<li><a href="class-User.html">User</a></li>
 				<li><a href="class-VimeoVideo.html">VimeoVideo</a></li>
@@ -79,38 +105,36 @@
 <div id="splitter"></div>
 
 <div id="right">
-<div id="rightInner">
-	<form id="search">
-		<input type="hidden" name="cx" value="">
-		<input type="hidden" name="ie" value="UTF-8">
-		<input type="text" name="q" class="text" placeholder="Search">
-	</form>
-
-	<div id="navigation">
-		<ul>
-			<li>
-				<a href="index.html" title="Overview"><span>Overview</span></a>
-			</li>
-			<li class="active">
-<span>Class</span>			</li>
-		</ul>
-		<ul>
-		</ul>
-		<ul>
-		</ul>
-	</div>
-
+	<div id="rightInner">
 <div id="content" class="class">
 	<h1>Class App</h1>
 
 
 	<div class="description">
-	<p>** Main Application. **</p>
+	<p><u>Firework CMS</u> (Main Application).</p>
 
-<p>This main class is not instantiable.
-However, you can call various static methods.</p>
+<p><strong><em>TODO:</em></strong> (system wide) optimize path handling:</p>
+
+<ul>
+<li>Never end a path with trailing /</li>
+<li>Never use hard-coded / as dir separator (use DIRECTORY_SEPARATOR global constant)</li>
+</ul>
 	</div>
 
+	<dl class="tree well">
+		<dd style="padding-left:0px">
+			<a href="class-NonInstantiable.html"><span>NonInstantiable</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by">
+<b><span>App</span></b>			
+			
+			
+		</dd>
+	</dl>
 
 
 
@@ -119,7 +143,7 @@ However, you can call various static methods.</p>
 
 
 
-	<div class="info">
+	<div class="alert alert-info">
 		
 		
 		
@@ -134,108 +158,106 @@ However, you can call various static methods.</p>
 
 
 
-	<table class="summary methods" id="methods">
-	<caption>Methods summary</caption>
-	<tr data-order="setAppDir" id="_setAppDir">
+		<div class="panel panel-default">
+			<div class="panel-heading"><h2>Methods summary</h2></div>
+			<table class="summary table table-bordered table-striped methods" id="methods">
+		<tr data-order="setAppDir" id="_setAppDir">
 
-		<td class="attributes"><code>
-			 public static
+			<td class="attributes"><code>
+				 public static
+				
+				
+				</code>
+			</td>
 
-			
-			
-			</code>
-		</td>
+			<td class="name"><div>
+			<a class="anchor" href="#_setAppDir">#</a>
+			<code>setAppDir( <span>string <var>$dir</var></span> )</code>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_setAppDir">#</a>
-		<code>setAppDir( <span>string <var>$dir</var></span> )</code>
+			<div class="description short">
+				<p>Sets the application base directory.</p>
+			</div>
 
-		<div class="description short">
-			<p>Sets the application base directory.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Sets the application base directory.</p>
+			<div class="description detailed hidden">
+				<p>Sets the application base directory.</p>
 
 <p>This could be the vhost's root dir.
 However, this path is automatically determined by the application.</p>
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$dir</var></dt>
-					<dd>App directory path</dd>
-				</dl></div>
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$dir</var></dt>
+						<dd>App directory path</dd>
+					</dl></div>
 
 
 
-				<h4>See</h4>
-				<div class="list">
-						<code><a href="class-App.html#_getAppDir">App::getAppDir()</a></code><br>
-				</div>
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-App.html#_getAppDir">App::getAppDir()</a></code><br>
+					</div>
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getAppDir" id="_getAppDir">
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getAppDir" id="_getAppDir">
 
-		<td class="attributes"><code>
-			 public static
+			<td class="attributes"><code>
+				 public static
+				string
+				
+				</code>
+			</td>
 
-			string
-			
-			</code>
-		</td>
+			<td class="name"><div>
+			<a class="anchor" href="#_getAppDir">#</a>
+			<code>getAppDir( )</code>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_getAppDir">#</a>
-		<code>getAppDir( )</code>
+			<div class="description short">
+				<p>Returns the application base directory.</p>
+			</div>
 
-		<div class="description short">
-			<p>Returns the application base directory.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Returns the application base directory.</p>
-
+			<div class="description detailed hidden">
+				<p>Returns the application base directory.</p>
 
 
-				<h4>Returns</h4>
-				<div class="list">
-					string<br>App directory path
-				</div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
 
 
-				<h4>See</h4>
-				<div class="list">
-						<code><a href="class-App.html#_setAppDir">App::setAppDir()</a></code><br>
-				</div>
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-App.html#_setAppDir">App::setAppDir()</a></code><br>
+					</div>
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="setSiteDir" id="_setSiteDir">
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="setSiteDir" id="_setSiteDir">
 
-		<td class="attributes"><code>
-			 public static
+			<td class="attributes"><code>
+				 public static
+				
+				
+				</code>
+			</td>
 
-			
-			
-			</code>
-		</td>
+			<td class="name"><div>
+			<a class="anchor" href="#_setSiteDir">#</a>
+			<code>setSiteDir( <span>string <var>$dir</var></span> )</code>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_setSiteDir">#</a>
-		<code>setSiteDir( <span>string <var>$dir</var></span> )</code>
+			<div class="description short">
+				<p>Sets the site directory.</p>
+			</div>
 
-		<div class="description short">
-			<p>Sets the site directory.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Sets the site directory.</p>
+			<div class="description detailed hidden">
+				<p>Sets the site directory.</p>
 
 <p>This is usually just "site", however, you are free to adjust it.
 In your <code>config.ini</code> write</p>
@@ -244,81 +266,79 @@ In your <code>config.ini</code> write</p>
 site = <span class="php-quote">&quot;site&quot;</span></pre>
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$dir</var></dt>
-					<dd>Site directory path</dd>
-				</dl></div>
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$dir</var></dt>
+						<dd>Site directory path</dd>
+					</dl></div>
 
 
 
-				<h4>See</h4>
-				<div class="list">
-						<code><a href="class-App.html#_getSiteDir">App::getSiteDir()</a></code><br>
-				</div>
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-App.html#_getSiteDir">App::getSiteDir()</a></code><br>
+					</div>
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getSiteDir" id="_getSiteDir">
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getSiteDir" id="_getSiteDir">
 
-		<td class="attributes"><code>
-			 public static
+			<td class="attributes"><code>
+				 public static
+				string
+				
+				</code>
+			</td>
 
-			string
-			
-			</code>
-		</td>
+			<td class="name"><div>
+			<a class="anchor" href="#_getSiteDir">#</a>
+			<code>getSiteDir( )</code>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_getSiteDir">#</a>
-		<code>getSiteDir( )</code>
+			<div class="description short">
+				<p>Returns the site directory.</p>
+			</div>
 
-		<div class="description short">
-			<p>Returns the site directory.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Returns the site directory.</p>
-
+			<div class="description detailed hidden">
+				<p>Returns the site directory.</p>
 
 
-				<h4>Returns</h4>
-				<div class="list">
-					string<br>Site directory path
-				</div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
 
 
-				<h4>See</h4>
-				<div class="list">
-						<code><a href="class-App.html#_setSiteDir">App::setSiteDir()</a></code><br>
-				</div>
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-App.html#_setSiteDir">App::setSiteDir()</a></code><br>
+					</div>
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="cleanup" id="_cleanup">
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="cleanup" id="_cleanup">
 
-		<td class="attributes"><code>
-			 public static
+			<td class="attributes"><code>
+				 public static
+				
+				
+				</code>
+			</td>
 
-			
-			
-			</code>
-		</td>
+			<td class="name"><div>
+			<a class="anchor" href="#_cleanup">#</a>
+			<code>cleanup( )</code>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_cleanup">#</a>
-		<code>cleanup( )</code>
+			<div class="description short">
+				<p>Method for cleaning up the application.</p>
+			</div>
 
-		<div class="description short">
-			<p>Method for cleaning up the application.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Method for cleaning up the application.</p>
+			<div class="description detailed hidden">
+				<p>Method for cleaning up the application.</p>
 
 <p>This function <strong>should be called once a day</strong> via cron scheduler or something similar.
 It cleans up the database, expired cache files, obsolete sessions and so forth.</p>
@@ -329,29 +349,28 @@ It cleans up the database, expired cache files, obsolete sessions and so forth.<
 
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="preload" id="_preload">
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="preload" id="_preload">
 
-		<td class="attributes"><code>
-			 public static
+			<td class="attributes"><code>
+				 public static
+				
+				
+				</code>
+			</td>
 
-			
-			
-			</code>
-		</td>
+			<td class="name"><div>
+			<a class="anchor" href="#_preload">#</a>
+			<code>preload( <span>string <var>$preload</var></span> )</code>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_preload">#</a>
-		<code>preload( <span>string <var>$preload</var></span> )</code>
+			<div class="description short">
+				<p>Adds a resource to the preload chain.</p>
+			</div>
 
-		<div class="description short">
-			<p>Adds a resource to the preload chain.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Adds a resource to the preload chain.</p>
+			<div class="description detailed hidden">
+				<p>Adds a resource to the preload chain.</p>
 
 <p>The $preload resource (e.g. image) will be <strong>loaded with every HTTP request</strong> the client's browser makes.
 This makes sure that the resource is available instantaniously.</p>
@@ -361,39 +380,38 @@ This makes sure that the resource is available instantaniously.</p>
 </ul>
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$preload</var></dt>
-					<dd></dd>
-				</dl></div>
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$preload</var></dt>
+						<dd></dd>
+					</dl></div>
 
 
 
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="initAutoloader" id="_initAutoloader">
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="initAutoloader" id="_initAutoloader">
 
-		<td class="attributes"><code>
-			 public static
+			<td class="attributes"><code>
+				 public static
+				
+				
+				</code>
+			</td>
 
-			
-			
-			</code>
-		</td>
+			<td class="name"><div>
+			<a class="anchor" href="#_initAutoloader">#</a>
+			<code>initAutoloader( )</code>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_initAutoloader">#</a>
-		<code>initAutoloader( )</code>
+			<div class="description short">
+				<p>Initializes the application's class autoloader.</p>
+			</div>
 
-		<div class="description short">
-			<p>Initializes the application's class autoloader.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Initializes the application's class autoloader.</p>
+			<div class="description detailed hidden">
+				<p>Initializes the application's class autoloader.</p>
 
 <p>System classes will be crawled and cached for later use for improved efficiency.</p>
 
@@ -403,29 +421,28 @@ This makes sure that the resource is available instantaniously.</p>
 
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="autoload" id="_autoload">
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="autoload" id="_autoload">
 
-		<td class="attributes"><code>
-			 public static
+			<td class="attributes"><code>
+				 public static
+				
+				
+				</code>
+			</td>
 
-			
-			
-			</code>
-		</td>
+			<td class="name"><div>
+			<a class="anchor" href="#_autoload">#</a>
+			<code>autoload( <span>string <var>$cls</var></span> )</code>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_autoload">#</a>
-		<code>autoload( <span>string <var>$cls</var></span> )</code>
+			<div class="description short">
+				<p>The actual autoload handler.</p>
+			</div>
 
-		<div class="description short">
-			<p>The actual autoload handler.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>The actual autoload handler.</p>
+			<div class="description detailed hidden">
+				<p>The actual autoload handler.</p>
 
 <p>Tries to <strong>find a class that is not yet known</strong>.
 You can add a lookup path using</p>
@@ -436,39 +453,38 @@ classes_autoload = <span class="php-quote">&quot;site/cls&quot;</span></pre>
 <p>in your <code>config.ini</code>.</p>
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$cls</var></dt>
-					<dd></dd>
-				</dl></div>
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$cls</var></dt>
+						<dd></dd>
+					</dl></div>
 
 
 
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="init" id="_init">
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="init" id="_init">
 
-		<td class="attributes"><code>
-			 public static
+			<td class="attributes"><code>
+				 public static
+				
+				
+				</code>
+			</td>
 
-			
-			
-			</code>
-		</td>
+			<td class="name"><div>
+			<a class="anchor" href="#_init">#</a>
+			<code>init( )</code>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_init">#</a>
-		<code>init( )</code>
+			<div class="description short">
+				<p>Main application initialization.</p>
+			</div>
 
-		<div class="description short">
-			<p>Main application initialization.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Main application initialization.</p>
+			<div class="description detailed hidden">
+				<p>Main application initialization.</p>
 
 <p>Should be <strong>called once with every HTTP request</strong>.
 This method loads and prepares all required processes and variables.
@@ -480,61 +496,28 @@ Also, the request will be directed to the right handler.</p>
 
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="handleCdnRequest" id="_handleCdnRequest">
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="resolver" id="_resolver">
 
-		<td class="attributes"><code>
-			 protected static
+			<td class="attributes"><code>
+				 public static
+				string
+				
+				</code>
+			</td>
 
-			
-			
-			</code>
-		</td>
+			<td class="name"><div>
+			<a class="anchor" href="#_resolver">#</a>
+			<code>resolver( <span>string <var>$uri</var></span> )</code>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_handleCdnRequest">#</a>
-		<code>handleCdnRequest( )</code>
+			<div class="description short">
+				<p>Resolves a URI relative to base URI.</p>
+			</div>
 
-		<div class="description short">
-			<p>Responds to CDN requests.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Responds to CDN requests.</p>
-
-<p><strong><em>TODO:</em></strong> Handle CDN requests directly with App::handleCdnRequest()</p>
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="resolver" id="_resolver">
-
-		<td class="attributes"><code>
-			 public static
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_resolver">#</a>
-		<code>resolver( <span>mixed <var>$uri</var></span> )</code>
-
-		<div class="description short">
-			<p>Resolves a URI relative to base URI.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Resolves a URI relative to base URI.</p>
+			<div class="description detailed hidden">
+				<p>Resolves a URI relative to base URI.</p>
 
 <p>Base URI can be modified in <code>config.ini</code> writing</p>
 
@@ -542,58 +525,61 @@ Also, the request will be directed to the right handler.</p>
 baseuri = <span class="php-quote">&quot;/&quot;</span></pre>
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$uri</var></dt>
-					<dd></dd>
-				</dl></div>
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$uri</var></dt>
+						<dd></dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
 
 
 
 
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="addCustomHtmlTag" id="_addCustomHtmlTag">
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="addCustomHtmlTag" id="_addCustomHtmlTag">
+			<td class="attributes"><code>
+				 public static
+				
+				
+				</code>
+			</td>
 
-		<td class="attributes"><code>
-			 public static
+			<td class="name"><div>
+			<a class="anchor" href="#_addCustomHtmlTag">#</a>
+			<code>addCustomHtmlTag( <span><code><a href="class-CustomHtmlTag.html">CustomHtmlTag</a></code> <var>$tag</var></span> )</code>
 
-			
-			
-			</code>
-		</td>
+			<div class="description short">
+				<p>Adds a custom HTML tag handler.</p>
+			</div>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_addCustomHtmlTag">#</a>
-		<code>addCustomHtmlTag( <span><code><a href="class-CustomHtmlTag.html">CustomHtmlTag</a></code> <var>$tag</var></span> )</code>
-
-		<div class="description short">
-			<p>Adds a custom HTML tag handler.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Adds a custom HTML tag handler.</p>
+			<div class="description detailed hidden">
+				<p>Adds a custom HTML tag handler.</p>
 
 <p>Handler must be created using and given as argument.</p>
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$tag</var></dt>
-					<dd></dd>
-				</dl></div>
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$tag</var></dt>
+						<dd></dd>
+					</dl></div>
 
 
 
-				<h4>See</h4>
-				<div class="list">
-						<code><a href="class-CustomHtmlTag.html">CustomHtmlTag</a></code><br>
-				</div>
-				<h4>Example</h4>
-				<div class="list">
-						<pre><span class="php-comment">// Custom tag: &lt;custom attr=&quot;xyz&quot;&gt;</span>
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-CustomHtmlTag.html">CustomHtmlTag</a></code><br>
+					</div>
+					<h4>Example</h4>
+					<div class="list">
+							<pre><span class="php-comment">// Custom tag: &lt;custom attr=&quot;xyz&quot;&gt;</span>
 <span class="php-keyword1">class</span> CustomTag <span class="php-keyword1">extends</span> CustomHtmlTag {
     <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> __construct() {
         parent::__construct(<span class="php-quote">'custom'</span>);
@@ -607,163 +593,155 @@ baseuri = <span class="php-quote">&quot;/&quot;</span></pre>
 }
 <span class="php-comment">// Tell application to parse custom HTML tag</span>
 App::addCustomHtmlTag(SymbolTag::newInstance());</pre><br>
-				</div>
+					</div>
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getVersion" id="_getVersion">
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getVersion" id="_getVersion">
 
-		<td class="attributes"><code>
-			 public static
+			<td class="attributes"><code>
+				 public static
+				string
+				
+				</code>
+			</td>
 
-			string
-			
-			</code>
-		</td>
+			<td class="name"><div>
+			<a class="anchor" href="#_getVersion">#</a>
+			<code>getVersion( <span>boolean <var>$product_name</var> = <span class="php-keyword1">null</span></span> )</code>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_getVersion">#</a>
-		<code>getVersion( <span>boolean <var>$product_name</var> = <span class="php-keyword1">false</span></span> )</code>
+			<div class="description short">
+				<p>Returns the current version of the application framework.</p>
+			</div>
 
-		<div class="description short">
-			<p>Returns the current version of the application framework.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Returns the current version of the application framework.</p>
+			<div class="description detailed hidden">
+				<p>Returns the current version of the application framework.</p>
 
 <p>If <code>$product_name</code> is given, the version number will be prefixed with the name of the application framework.</p>
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$product_name</var></dt>
-					<dd>(default: false)</dd>
-				</dl></div>
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$product_name</var></dt>
+						<dd>(default: false)</dd>
+					</dl></div>
 
-				<h4>Returns</h4>
-				<div class="list">
-					string
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="render" id="_render">
-
-		<td class="attributes"><code>
-			 public static
-
-			string
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_render">#</a>
-		<code>render( <span>mixed <var>$uri</var> = <span class="php-keyword1">null</span></span>, <span>boolean <var>$return</var> = <span class="php-keyword1">false</span></span> )</code>
-
-		<div class="description short">
-			<p>Main render method, loads propper site templates and renders the requested page.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Main render method, loads propper site templates and renders the requested page.</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$uri</var></dt>
-					<dd>(default: null)</dd>
-					<dt><var>$return</var></dt>
-					<dd>(default: false)</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					string<br>HTML
-				</div>
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
 
 
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="renderReplacements" id="_renderReplacements">
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="render" id="_render">
 
-		<td class="attributes"><code>
-			 public static
+			<td class="attributes"><code>
+				 public static
+				
+				
+				</code>
+			</td>
 
-			string
-			
-			</code>
-		</td>
+			<td class="name"><div>
+			<a class="anchor" href="#_render">#</a>
+			<code>render( <span>mixed <var>$uri</var> = <span class="php-keyword1">null</span></span>, <span>boolean <var>$return</var> = <span class="php-keyword1">null</span></span> )</code>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_renderReplacements">#</a>
-		<code>renderReplacements( <span>string <var>$html</var></span> )</code>
+			<div class="description short">
+				<p>Main render method, loads propper site templates and renders the requested page.</p>
+			</div>
 
-		<div class="description short">
-			<p>Renders HTML replacements.</p>
-		</div>
+			<div class="description detailed hidden">
+				<p>Main render method, loads propper site templates and renders the requested page.</p>
 
-		<div class="description detailed hidden">
-			<p>Renders HTML replacements.</p>
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$uri</var></dt>
+						<dd>(default: null)</dd>
+						<dt><var>$return</var></dt>
+						<dd>(default: false)</dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="renderReplacements" id="_renderReplacements">
+
+			<td class="attributes"><code>
+				 public static
+				string
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_renderReplacements">#</a>
+			<code>renderReplacements( <span>string <var>$html</var></span> )</code>
+
+			<div class="description short">
+				<p>Renders HTML replacements.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Renders HTML replacements.</p>
 
 <p>Replaces things like <code>[[[TITLE]]]</code> and builds up the row and box system.
 Hooks (<code>[[[HOOK:xyz]]]</code>) are rendered / executed too, as well as custom tags.
 If CDN is set, resource links are also replaced.</p>
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$html</var></dt>
-					<dd></dd>
-				</dl></div>
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$html</var></dt>
+						<dd></dd>
+					</dl></div>
 
-				<h4>Returns</h4>
-				<div class="list">
-					string<br>HTML
-				</div>
-
-
-				<h4>See</h4>
-				<div class="list">
-						<code><a href="class-App.html#_addHook">App::addHook()</a></code><br>
-						<code><a href="class-App.html#_addCustomHtmlTag">App::addCustomHtmlTag()</a></code><br>
-						<code><a href="class-App.html#_getCdnUrl">App::getCdnUrl()</a></code><br>
-				</div>
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getCdnUrl" id="_getCdnUrl">
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-App.html#_addHook">App::addHook()</a></code><br>
+							<code><a href="class-App.html#_addCustomHtmlTag">App::addCustomHtmlTag()</a></code><br>
+							<code><a href="class-App.html#_getCdnUrl">App::getCdnUrl()</a></code><br>
+					</div>
 
-		<td class="attributes"><code>
-			 public static
 
-			
-			
-			</code>
-		</td>
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getCdnUrl" id="_getCdnUrl">
 
-		<td class="name"><div>
-		<a class="anchor" href="#_getCdnUrl">#</a>
-		<code>getCdnUrl( <span>mixed <var>$url</var></span> )</code>
+			<td class="attributes"><code>
+				 public static
+				string
+				
+				</code>
+			</td>
 
-		<div class="description short">
-			<p>Returns the CDN URL if available.</p>
-		</div>
+			<td class="name"><div>
+			<a class="anchor" href="#_getCdnUrl">#</a>
+			<code>getCdnUrl( <span>string <var>$url</var></span> )</code>
 
-		<div class="description detailed hidden">
-			<p>Returns the CDN URL if available.</p>
+			<div class="description short">
+				<p>Returns the CDN URL if available.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Returns the CDN URL if available.</p>
 
 <p>You can set the CDN handling domain by writing it into <code>config.ini</code>:</p>
 
@@ -771,773 +749,739 @@ If CDN is set, resource links are also replaced.</p>
 cdn_host = <span class="php-quote">&quot;cdn.example.com&quot;</span></pre>
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$url</var></dt>
-					<dd></dd>
-				</dl></div>
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$url</var></dt>
+						<dd></dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
 
 
 
 
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="renderCdnReplacements" id="_renderCdnReplacements">
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="renderCdnReplacements" id="_renderCdnReplacements">
+			<td class="attributes"><code>
+				 public static
+				string
+				
+				</code>
+			</td>
 
-		<td class="attributes"><code>
-			 public static
+			<td class="name"><div>
+			<a class="anchor" href="#_renderCdnReplacements">#</a>
+			<code>renderCdnReplacements( <span>string <var>$html</var></span> )</code>
 
-			
-			
-			</code>
-		</td>
+			<div class="description short">
+				<p>Returns HTML with resource links replaced by CDN versions.</p>
+			</div>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_renderCdnReplacements">#</a>
-		<code>renderCdnReplacements( <span>mixed <var>$html</var></span> )</code>
-
-		<div class="description short">
-			<p>Returns HTML with resource links replaced by CDN versions.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Returns HTML with resource links replaced by CDN versions.</p>
+			<div class="description detailed hidden">
+				<p>Returns HTML with resource links replaced by CDN versions.</p>
 
 <p>If no CDN host is set, the HTML will be returned without modification.</p>
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$html</var></dt>
-					<dd></dd>
-				</dl></div>
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$html</var></dt>
+						<dd></dd>
+					</dl></div>
 
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
 
 
-				<h4>See</h4>
-				<div class="list">
-						<code><a href="class-App.html#_getCdnUrl">App::getCdnUrl()</a></code><br>
-				</div>
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-App.html#_getCdnUrl">App::getCdnUrl()</a></code><br>
+					</div>
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="renderajax" id="_renderajax">
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="renderajax" id="_renderajax">
 
-		<td class="attributes"><code>
-			 public static
+			<td class="attributes"><code>
+				 public static
+				
+				
+				</code>
+			</td>
 
-			
-			
-			</code>
-		</td>
+			<td class="name"><div>
+			<a class="anchor" href="#_renderajax">#</a>
+			<code>renderajax( <span>string <var>$uri</var> = <span class="php-keyword1">null</span></span>, <span>boolean <var>$return</var> = <span class="php-keyword1">null</span></span> )</code>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_renderajax">#</a>
-		<code>renderajax( <span> <var>$uri</var> = <span class="php-keyword1">null</span></span>, <span> <var>$return</var> = <span class="php-keyword1">false</span></span> )</code>
+			<div class="description short">
+				<p>Renders ajax requests.</p>
+			</div>
 
-		<div class="description short">
-			
-		</div>
+			<div class="description detailed hidden">
+				<p>Renders ajax requests.</p>
 
-		<div class="description detailed hidden">
-			
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$uri</var></dt>
+						<dd>(default: null)</dd>
+						<dt><var>$return</var></dt>
+						<dd>(default: false)</dd>
+					</dl></div>
 
 
 
 
 
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="seostr" id="_seostr">
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="seostr" id="_seostr">
+			<td class="attributes"><code>
+				 public static
+				string
+				
+				</code>
+			</td>
 
-		<td class="attributes"><code>
-			 public static
+			<td class="name"><div>
+			<a class="anchor" href="#_seostr">#</a>
+			<code>seostr( <span>string <var>$str</var></span> )</code>
 
-			string
-			
-			</code>
-		</td>
+			<div class="description short">
+				<p>Converts arbitrary text to URL safe version.</p>
+			</div>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_seostr">#</a>
-		<code>seostr( <span>string <var>$str</var></span> )</code>
+			<div class="description detailed hidden">
+				<p>Converts arbitrary text to URL safe version.</p>
 
-		<div class="description short">
-			<p>Converts arbitrary text to URL safe version.</p>
-		</div>
 
-		<div class="description detailed hidden">
-			<p>Converts arbitrary text to URL safe version.</p>
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$str</var></dt>
+						<dd></dd>
+					</dl></div>
 
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$str</var></dt>
-					<dd></dd>
-				</dl></div>
 
-				<h4>Returns</h4>
-				<div class="list">
-					string
-				</div>
+					<h4>Example</h4>
+					<div class="list">
+							App::seostr(<span class="php-quote">'Münster Land'</span>) <span class="php-comment">// This becomes 'Muenster-Land'</span><br>
+					</div>
 
 
-				<h4>Example</h4>
-				<div class="list">
-						App::seostr(<span class="php-quote">'Brünnlein Spaß'</span>) <span class="php-comment">// This becomes 'Bruennlein-Spass'</span><br>
-				</div>
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getSeofreePage" id="_getSeofreePage">
 
+			<td class="attributes"><code>
+				 public static
+				string
+				
+				</code>
+			</td>
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getSeofreePage" id="_getSeofreePage">
+			<td class="name"><div>
+			<a class="anchor" href="#_getSeofreePage">#</a>
+			<code>getSeofreePage( )</code>
 
-		<td class="attributes"><code>
-			 public static
+			<div class="description short">
+				<p>Returns the current URL without SEO string.</p>
+			</div>
 
-			string
-			
-			</code>
-		</td>
+			<div class="description detailed hidden">
+				<p>Returns the current URL without SEO string.</p>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_getSeofreePage">#</a>
-		<code>getSeofreePage( )</code>
 
-		<div class="description short">
-			<p>Returns the current URL without SEO string.</p>
-		</div>
 
-		<div class="description detailed hidden">
-			<p>Returns the current URL without SEO string.</p>
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
 
 
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-App.html#_link">App::link()</a></code><br>
+							<code><a href="class-App.html#_getLink">App::getLink()</a></code><br>
+					</div>
 
-				<h4>Returns</h4>
-				<div class="list">
-					string
-				</div>
 
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="link" id="_link">
 
-				<h4>See</h4>
-				<div class="list">
-						<code><a href="class-App.html#_link">App::link()</a></code><br>
-						<code><a href="class-App.html#_getLink">App::getLink()</a></code><br>
-				</div>
+			<td class="attributes"><code>
+				 public static
+				
+				
+				</code>
+			</td>
 
+			<td class="name"><div>
+			<a class="anchor" href="#_link">#</a>
+			<code>link( <span>string <var>$page</var></span>, <span>string <var>$seostr</var> = <span class="php-keyword1">null</span></span>, <span>boolean <var>$return</var> = <span class="php-keyword1">null</span></span> )</code>
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="link" id="_link">
+			<div class="description short">
+				<p>Prints (or returns) the URL to a specific page.</p>
+			</div>
 
-		<td class="attributes"><code>
-			 public static
+			<div class="description detailed hidden">
+				<p>Prints (or returns) the URL to a specific page.</p>
 
-			string
-			
-			</code>
-		</td>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_link">#</a>
-		<code>link( <span>string <var>$page</var></span>, <span>string <var>$seostr</var> = <span class="php-keyword1">null</span></span>, <span>boolean <var>$return</var> = <span class="php-keyword1">false</span></span> )</code>
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$page</var></dt>
+						<dd>The page identifier</dd>
+						<dt><var>$seostr</var></dt>
+						<dd>(optional) A string attached at the end of the URL (default: null)</dd>
+						<dt><var>$return</var></dt>
+						<dd>(optional) If set to true, the URL is returned instead of written to the output (default: false)</dd>
+					</dl></div>
 
-		<div class="description short">
-			<p>Prints (or returns) the URL to a specific page.</p>
-		</div>
 
-		<div class="description detailed hidden">
-			<p>Prints (or returns) the URL to a specific page.</p>
 
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-App.html#_getLink">App::getLink()</a></code><br>
+					</div>
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$page</var></dt>
-					<dd>The page identifier</dd>
-					<dt><var>$seostr</var></dt>
-					<dd>(optional) A string attached at the end of the URL (default: null)</dd>
-					<dt><var>$return</var></dt>
-					<dd>(optional) If set to true, the URL is returned instead of written to the output (default: false)</dd>
-				</dl></div>
 
-				<h4>Returns</h4>
-				<div class="list">
-					string<br>or void
-				</div>
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getLink" id="_getLink">
 
+			<td class="attributes"><code>
+				 public static
+				string
+				
+				</code>
+			</td>
 
-				<h4>See</h4>
-				<div class="list">
-						<code><a href="class-App.html#_getLink">App::getLink()</a></code><br>
-				</div>
+			<td class="name"><div>
+			<a class="anchor" href="#_getLink">#</a>
+			<code>getLink( <span>string <var>$page</var> = <span class="php-keyword1">null</span></span>, <span>string <var>$seostr</var> = <span class="php-keyword1">null</span></span> )</code>
 
+			<div class="description short">
+				<p>Returns an URL for a page or the current page.</p>
+			</div>
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getLink" id="_getLink">
+			<div class="description detailed hidden">
+				<p>Returns an URL for a page or the current page.</p>
 
-		<td class="attributes"><code>
-			 public static
 
-			string
-			
-			</code>
-		</td>
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$page</var></dt>
+						<dd>(optional) A page identifier. If omitted, the current page will be used. (default: null)</dd>
+						<dt><var>$seostr</var></dt>
+						<dd>(optional) A string attached at the end of the URL (default: null)</dd>
+					</dl></div>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_getLink">#</a>
-		<code>getLink( <span>string <var>$page</var> = <span class="php-keyword1">null</span></span>, <span>string <var>$seostr</var> = <span class="php-keyword1">null</span></span> )</code>
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
 
-		<div class="description short">
-			<p>Returns an URL for a page or the current page.</p>
-		</div>
 
-		<div class="description detailed hidden">
-			<p>Returns an URL for a page or the current page.</p>
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-App.html#_link">App::link()</a></code><br>
+					</div>
+					<h4>Example</h4>
+					<div class="list">
+							<span class="php-keyword1">echo</span> <span class="php-quote">'&lt;a href=&quot;'</span>.App::getLink(<span class="php-quote">'mypage'</span>).<span class="php-quote">'&quot;&gt;My Link&lt;/a&gt;'</span>;<br>
+					</div>
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$page</var></dt>
-					<dd>(optional) A page identifier. If omitted, the current page will be used. (default: null)</dd>
-					<dt><var>$seostr</var></dt>
-					<dd>(optional) A string attached at the end of the URL (default: null)</dd>
-				</dl></div>
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="switchLangLink" id="_switchLangLink">
 
-				<h4>Returns</h4>
-				<div class="list">
-					string<br>URL
-				</div>
+			<td class="attributes"><code>
+				 public static
+				
+				
+				</code>
+			</td>
 
+			<td class="name"><div>
+			<a class="anchor" href="#_switchLangLink">#</a>
+			<code>switchLangLink( <span>string <var>$newlang</var></span> )</code>
 
-				<h4>See</h4>
-				<div class="list">
-						<code><a href="class-App.html#_link">App::link()</a></code><br>
-				</div>
-				<h4>Example</h4>
-				<div class="list">
-						<span class="php-keyword1">echo</span> <span class="php-quote">'&lt;a href=&quot;'</span>.App::getLink(<span class="php-quote">'mypage'</span>).<span class="php-quote">'&quot;&gt;My Link&lt;/a&gt;'</span>;<br>
-				</div>
+			<div class="description short">
+				<p>Writes an URL for switching the language to <code>$newlang</code> to the output.</p>
+			</div>
 
+			<div class="description detailed hidden">
+				<p>Writes an URL for switching the language to <code>$newlang</code> to the output.</p>
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="switchLangLink" id="_switchLangLink">
 
-		<td class="attributes"><code>
-			 public static
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$newlang</var></dt>
+						<dd>The new language identifier</dd>
+					</dl></div>
 
-			string
-			
-			</code>
-		</td>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_switchLangLink">#</a>
-		<code>switchLangLink( <span>string <var>$newlang</var></span> )</code>
 
-		<div class="description short">
-			<p>Prints an URL for switching the language to <code>$newlang</code>.</p>
-		</div>
+					<h4>Example</h4>
+					<div class="list">
+							App::switchLangLink(<span class="php-quote">'en'</span>)<br>
+					</div>
 
-		<div class="description detailed hidden">
-			<p>Prints an URL for switching the language to <code>$newlang</code>.</p>
 
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="setTitle" id="_setTitle">
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$newlang</var></dt>
-					<dd>The new language identifier</dd>
-				</dl></div>
+			<td class="attributes"><code>
+				 public static
+				
+				
+				</code>
+			</td>
 
-				<h4>Returns</h4>
-				<div class="list">
-					string<br>URL
-				</div>
+			<td class="name"><div>
+			<a class="anchor" href="#_setTitle">#</a>
+			<code>setTitle( <span>string <var>$str</var></span>, <span>boolean <var>$skip_suffix</var> = <span class="php-keyword1">null</span></span> )</code>
 
+			<div class="description short">
+				<p>Defines the title of the HTML page.</p>
+			</div>
 
-				<h4>Example</h4>
-				<div class="list">
-						App::switchLangLink(<span class="php-quote">'en'</span>)<br>
-				</div>
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="setTitle" id="_setTitle">
-
-		<td class="attributes"><code>
-			 public static
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_setTitle">#</a>
-		<code>setTitle( <span>string <var>$str</var></span>, <span>boolean <var>$skip_suffix</var> = <span class="php-keyword1">false</span></span> )</code>
-
-		<div class="description short">
-			<p>Defines the title of the HTML page.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Defines the title of the HTML page.</p>
+			<div class="description detailed hidden">
+				<p>Defines the title of the HTML page.</p>
 
 <p>If applicable, the title suffix will be appended.</p>
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$str</var></dt>
-					<dd>The title</dd>
-					<dt><var>$skip_suffix</var></dt>
-					<dd>(optional) If set to true, no title suffix will be appended. (default: false)</dd>
-				</dl></div>
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$str</var></dt>
+						<dd>The title</dd>
+						<dt><var>$skip_suffix</var></dt>
+						<dd>(optional) If set to true, no title suffix will be appended. (default: false)</dd>
+					</dl></div>
 
 
 
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getTitle" id="_getTitle">
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getTitle" id="_getTitle">
 
-		<td class="attributes"><code>
-			 public static
+			<td class="attributes"><code>
+				 public static
+				string
+				
+				</code>
+			</td>
 
-			string
-			
-			</code>
-		</td>
+			<td class="name"><div>
+			<a class="anchor" href="#_getTitle">#</a>
+			<code>getTitle( )</code>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_getTitle">#</a>
-		<code>getTitle( )</code>
+			<div class="description short">
+				<p>Returns the page title previously set.</p>
+			</div>
 
-		<div class="description short">
-			<p>Returns the page title previously set.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Returns the page title previously set.</p>
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					string<br>The title
-				</div>
+			<div class="description detailed hidden">
+				<p>Returns the page title previously set.</p>
 
 
 
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="widget" id="_widget">
-
-		<td class="attributes"><code>
-			 public static
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_widget">#</a>
-		<code>widget( <span>string <var>$name</var></span> )</code>
-
-		<div class="description short">
-			<p>Renders a widget.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Renders a widget.</p>
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$name</var></dt>
-					<dd>The widget identifier</dd>
-				</dl></div>
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="widget" id="_widget">
+
+			<td class="attributes"><code>
+				 public static
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_widget">#</a>
+			<code>widget( <span>string <var>$name</var></span> )</code>
+
+			<div class="description short">
+				<p>Renders a widget.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Renders a widget.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$name</var></dt>
+						<dd>The widget identifier</dd>
+					</dl></div>
 
 
 
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getPage" id="_getPage">
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getPage" id="_getPage">
 
-		<td class="attributes"><code>
-			 public static
+			<td class="attributes"><code>
+				 public static
+				mixed
+				
+				</code>
+			</td>
 
-			
-			
-			</code>
-		</td>
+			<td class="name"><div>
+			<a class="anchor" href="#_getPage">#</a>
+			<code>getPage( <span>integer <var>$part</var> = <span class="php-keyword1">null</span></span> )</code>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_getPage">#</a>
-		<code>getPage( <span>integer <var>$part</var> = -<span class="php-num">1</span></span> )</code>
+			<div class="description short">
+				<p>Returns the current page's URI parts or one specific part.</p>
+			</div>
 
-		<div class="description short">
-			<p>Returns the current page's URI parts or one specific part.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Returns the current page's URI parts or one specific part.</p>
+			<div class="description detailed hidden">
+				<p>Returns the current page's URI parts or one specific part.</p>
 
 <p>This method is error safe, which means if the given part number does not exist, <code>null</code> will be returned and no error will be triggered.</p>
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$part</var></dt>
-					<dd>(optional) The part number (default: -1)</dd>
-				</dl></div>
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$part</var></dt>
+						<dd>(optional) The part number (default: null)</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						mixed
+					</div>
 
 
-
-				<h4>Example</h4>
-				<div class="list">
-						<pre><span class="php-comment">//Current URL: http://www.example.com/about/more/info</span>
+					<h4>Example</h4>
+					<div class="list">
+							<pre><span class="php-comment">//Current URL: http://www.example.com/about/more/info</span>
 App::getPage(); <span class="php-comment">// returns (array) ['about', 'more', 'info']</span>
 App::getPage(<span class="php-num">0</span>); <span class="php-comment">// returns (string) 'about'</span>
 App::getPage(<span class="php-num">2</span>); <span class="php-comment">// returns (string) 'info'</span>
 App::getPage(<span class="php-num">99</span>); <span class="php-comment">// returns null</span></pre><br>
-				</div>
+					</div>
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getUri" id="_getUri">
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getUri" id="_getUri">
 
-		<td class="attributes"><code>
-			 public static
+			<td class="attributes"><code>
+				 public static
+				string
+				
+				</code>
+			</td>
 
-			string
-			
-			</code>
-		</td>
+			<td class="name"><div>
+			<a class="anchor" href="#_getUri">#</a>
+			<code>getUri( <span>array <var>$get</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_getUri">#</a>
-		<code>getUri( <span>array <var>$get</var> = <span class="php-keyword1">array</span>()</span> )</code>
+			<div class="description short">
+				<p>Builds up the URI of the current page.</p>
+			</div>
 
-		<div class="description short">
-			<p>Builds up the URI of the current page.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Builds up the URI of the current page.</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$get</var></dt>
-					<dd>(optional) If set, these GET parameters are attached (default: array())</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					string<br>The URI
-				</div>
+			<div class="description detailed hidden">
+				<p>Builds up the URI of the current page.</p>
 
 
-				<h4>Example</h4>
-				<div class="list">
-						<pre><span class="php-comment">// Current URL: http://www.example.com/about/more/info</span>
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$get</var></dt>
+						<dd>(optional) If set, these GET parameters are attached (default: array())</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
+
+
+					<h4>Example</h4>
+					<div class="list">
+							<pre><span class="php-comment">// Current URL: http://www.example.com/about/more/info</span>
 App::getUri(); <span class="php-comment">// returns 'about/more/info'</span>
 App::getUri([<span class="php-quote">'name'</span> =&gt; <span class="php-quote">'John'</span>]); <span class="php-comment">// returns 'about/more/info?name=John'</span></pre><br>
-				</div>
+					</div>
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getLang" id="_getLang">
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getLang" id="_getLang">
 
-		<td class="attributes"><code>
-			 public static
+			<td class="attributes"><code>
+				 public static
+				<code><a href="class-Language.html">Language</a></code>
+				
+				</code>
+			</td>
 
-			<code><a href="class-Language.html">Language</a></code>
-			
-			</code>
-		</td>
+			<td class="name"><div>
+			<a class="anchor" href="#_getLang">#</a>
+			<code>getLang( )</code>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_getLang">#</a>
-		<code>getLang( )</code>
+			<div class="description short">
+				<p>Returns the current <code>Language</code> object.</p>
+			</div>
 
-		<div class="description short">
-			<p>Returns the current <code>Language</code> object.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Returns the current <code>Language</code> object.</p>
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code><a href="class-Language.html">Language</a></code>
-				</div>
+			<div class="description detailed hidden">
+				<p>Returns the current <code>Language</code> object.</p>
 
 
 
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getLanguages" id="_getLanguages">
-
-		<td class="attributes"><code>
-			 public static
-
-			array
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getLanguages">#</a>
-		<code>getLanguages( )</code>
-
-		<div class="description short">
-			<p>Returns an array containing all available language codes.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Returns an array containing all available language codes.</p>
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					array
-				</div>
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-Language.html">Language</a></code>
+					</div>
 
 
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getSession" id="_getSession">
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getLanguages" id="_getLanguages">
 
-		<td class="attributes"><code>
-			 public static
+			<td class="attributes"><code>
+				 public static
+				array
+				
+				</code>
+			</td>
 
-			<code><a href="class-Session.html">Session</a></code>
-			
-			</code>
-		</td>
+			<td class="name"><div>
+			<a class="anchor" href="#_getLanguages">#</a>
+			<code>getLanguages( )</code>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_getSession">#</a>
-		<code>getSession( )</code>
+			<div class="description short">
+				<p>Returns an array containing all available language codes.</p>
+			</div>
 
-		<div class="description short">
-			<p>Returns the current <code>Session</code> object.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Returns the current <code>Session</code> object.</p>
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code><a href="class-Session.html">Session</a></code>
-				</div>
+			<div class="description detailed hidden">
+				<p>Returns an array containing all available language codes.</p>
 
 
 
+					<h4>Returns</h4>
+					<div class="list">
+						array
+					</div>
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getSid" id="_getSid">
 
-		<td class="attributes"><code>
-			 public static
 
-			string
-			
-			</code>
-		</td>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_getSid">#</a>
-		<code>getSid( )</code>
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getSession" id="_getSession">
 
-		<div class="description short">
-			<p>Returns the current <code>Session</code> ID.</p>
-		</div>
+			<td class="attributes"><code>
+				 public static
+				<code><a href="class-Session.html">Session</a></code>
+				
+				</code>
+			</td>
 
-		<div class="description detailed hidden">
-			<p>Returns the current <code>Session</code> ID.</p>
+			<td class="name"><div>
+			<a class="anchor" href="#_getSession">#</a>
+			<code>getSession( )</code>
+
+			<div class="description short">
+				<p>Returns the current <code>Session</code> object.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Returns the current <code>Session</code> object.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-Session.html">Session</a></code>
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getSid" id="_getSid">
+
+			<td class="attributes"><code>
+				 public static
+				string
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getSid">#</a>
+			<code>getSid( )</code>
+
+			<div class="description short">
+				<p>Returns the current <code>Session</code> ID.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Returns the current <code>Session</code> ID.</p>
 
 <p>This method is failsafe, which means if no <code>Session</code> ID can be found, <code>null</code> will be returned and no error will be triggered.</p>
 
 
 
-				<h4>Returns</h4>
-				<div class="list">
-					string<br>Session ID
-				</div>
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
 
 
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getUid" id="_getUid" class="deprecated">
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getUid" id="_getUid" class="deprecated">
 
-		<td class="attributes"><code>
-			 public static
+			<td class="attributes"><code>
+				 public static
+				string
+				
+				</code>
+			</td>
 
-			string
-			
-			</code>
-		</td>
+			<td class="name"><div>
+			<a class="anchor" href="#_getUid">#</a>
+			<code>getUid( )</code>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_getUid">#</a>
-		<code>getUid( )</code>
+			<div class="description short">
+				<p>Returns the current <code>User</code> ID if a user is logged in.</p>
+			</div>
 
-		<div class="description short">
-			<p>Returns the current <code>User</code> ID if a user is logged in.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Returns the current <code>User</code> ID if a user is logged in.</p>
+			<div class="description detailed hidden">
+				<p>Returns the current <code>User</code> ID if a user is logged in.</p>
 
 <p>This method is failsafe, which means if no <code>User</code> ID can be found, <code>null</code> will be returned and no error will be triggered.
 This function can be used to check if a user is currently logged in.</p>
 
-				<h4>Deprecated</h4>
-				<div class="list">
-						Use User::getSessionUid() instead<br>
-				</div>
+					<h4>Deprecated</h4>
+					<div class="list">
+							Use User::getSessionUid() instead<br>
+					</div>
 
 
-				<h4>Returns</h4>
-				<div class="list">
-					string<br>User ID
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getUrl" id="_getUrl">
-
-		<td class="attributes"><code>
-			 public static
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getUrl">#</a>
-		<code>getUrl( <span>boolean <var>$urlencode</var> = <span class="php-keyword1">false</span></span> )</code>
-
-		<div class="description short">
-			<p>getUrl function.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>getUrl function.</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$urlencode</var></dt>
-					<dd>(default: false)</dd>
-				</dl></div>
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
 
 
 
 
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getUrl" id="_getUrl">
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="clear" id="_clear">
+			<td class="attributes"><code>
+				 public static
+				string
+				
+				</code>
+			</td>
 
-		<td class="attributes"><code>
-			 public static
+			<td class="name"><div>
+			<a class="anchor" href="#_getUrl">#</a>
+			<code>getUrl( <span>boolean <var>$urlencode</var> = <span class="php-keyword1">null</span></span> )</code>
 
-			
-			
-			</code>
-		</td>
+			<div class="description short">
+				<p>getUrl function.</p>
+			</div>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_clear">#</a>
-		<code>clear( )</code>
-
-		<div class="description short">
-			<p>Erases the entire output buffer.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Erases the entire output buffer.</p>
+			<div class="description detailed hidden">
+				<p>getUrl function.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$urlencode</var></dt>
+						<dd>(default: false)</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
 
 
 
 
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="clear" id="_clear">
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="halt" id="_halt">
+			<td class="attributes"><code>
+				 public static
+				
+				
+				</code>
+			</td>
 
-		<td class="attributes"><code>
-			 public static
+			<td class="name"><div>
+			<a class="anchor" href="#_clear">#</a>
+			<code>clear( )</code>
 
-			
-			
-			</code>
-		</td>
+			<div class="description short">
+				<p>Erases the entire output buffer.</p>
+			</div>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_halt">#</a>
-		<code>halt( )</code>
-
-		<div class="description short">
-			<p>Causes the application to stop.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Causes the application to stop.</p>
+			<div class="description detailed hidden">
+				<p>Erases the entire output buffer.</p>
 
 
 
@@ -1545,735 +1489,740 @@ This function can be used to check if a user is currently logged in.</p>
 
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="redirect" id="_redirect">
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="halt" id="_halt">
 
-		<td class="attributes"><code>
-			 public static
+			<td class="attributes"><code>
+				 public static
+				
+				
+				</code>
+			</td>
 
-			
-			
-			</code>
-		</td>
+			<td class="name"><div>
+			<a class="anchor" href="#_halt">#</a>
+			<code>halt( )</code>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_redirect">#</a>
-		<code>redirect( <span>string <var>$url</var> = <span class="php-keyword1">null</span></span>, <span>boolean <var>$fullurl</var> = <span class="php-keyword1">false</span></span> )</code>
+			<div class="description short">
+				<p>Causes the application to stop.</p>
+			</div>
 
-		<div class="description short">
-			<p>Redirects the user to a specified URL.</p>
-		</div>
+			<div class="description detailed hidden">
+				<p>Causes the application to stop.</p>
 
-		<div class="description detailed hidden">
-			<p>Redirects the user to a specified URL.</p>
+
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="redirect" id="_redirect">
+
+			<td class="attributes"><code>
+				 public static
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_redirect">#</a>
+			<code>redirect( <span>string <var>$url</var> = <span class="php-keyword1">null</span></span>, <span>boolean <var>$fullurl</var> = <span class="php-keyword1">false</span></span> )</code>
+
+			<div class="description short">
+				<p>Redirects the user to a specified URL.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Redirects the user to a specified URL.</p>
 
 <p>This function clears every output and halts the application after execution.</p>
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$url</var></dt>
-					<dd>(optional) The URL to redirect to. (default: '/')</dd>
-					<dt><var>$fullurl</var></dt>
-					<dd>If set to false, an internal page is assumed (default: false)</dd>
-				</dl></div>
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$url</var></dt>
+						<dd>(optional) The URL to redirect to. (default: '/')</dd>
+						<dt><var>$fullurl</var></dt>
+						<dd>If set to false, an internal page is assumed (default: false)</dd>
+					</dl></div>
 
 
 
-				<h4>See</h4>
-				<div class="list">
-						<code><a href="class-App.html#_clear">App::clear()</a></code><br>
-						<code><a href="class-App.html#_halt">App::halt()</a></code><br>
-				</div>
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-App.html#_clear">App::clear()</a></code><br>
+							<code><a href="class-App.html#_halt">App::halt()</a></code><br>
+					</div>
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="refresh" id="_refresh" class="deprecated">
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="refresh" id="_refresh" class="deprecated">
 
-		<td class="attributes"><code>
-			 public static
+			<td class="attributes"><code>
+				 public static
+				
+				
+				</code>
+			</td>
 
-			
-			
-			</code>
-		</td>
+			<td class="name"><div>
+			<a class="anchor" href="#_refresh">#</a>
+			<code>refresh( )</code>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_refresh">#</a>
-		<code>refresh( )</code>
+			<div class="description short">
+				<p>Causes the current location to be reloaded.</p>
+			</div>
 
-		<div class="description short">
-			<p>Causes the current location to be reloaded.</p>
-		</div>
+			<div class="description detailed hidden">
+				<p>Causes the current location to be reloaded.</p>
 
-		<div class="description detailed hidden">
-			<p>Causes the current location to be reloaded.</p>
-
-				<h4>Deprecated</h4>
-				<div class="list">
-				</div>
-
-
+					<h4>Deprecated</h4>
+					<div class="list">
+					</div>
 
 
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="linkFile" id="_linkFile">
-
-		<td class="attributes"><code>
-			 public static
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_linkFile">#</a>
-		<code>linkFile( <span>string <var>$path</var></span>, <span>boolean <var>$return</var> = <span class="php-keyword1">false</span></span> )</code>
-
-		<div class="description short">
-			<p>Writes / returns the absolute URL of the given <code>$path</code>.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Writes / returns the absolute URL of the given <code>$path</code>.</p>
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$path</var></dt>
-					<dd>The relative file path</dd>
-					<dt><var>$return</var></dt>
-					<dd>If true, returns the absolute URL instead of writing it to the output (default: false)</dd>
-				</dl></div>
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="linkFile" id="_linkFile">
 
-				<h4>Returns</h4>
-				<div class="list">
-					<br>or string
-				</div>
+			<td class="attributes"><code>
+				 public static
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_linkFile">#</a>
+			<code>linkFile( <span>string <var>$path</var></span>, <span>boolean <var>$return</var> = <span class="php-keyword1">false</span></span> )</code>
+
+			<div class="description short">
+				<p>Writes / returns the absolute URL of the given <code>$path</code>.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Writes / returns the absolute URL of the given <code>$path</code>.</p>
 
 
-				<h4>See</h4>
-				<div class="list">
-						<code><a href="class-App.html#_linkVersionedFile">App::linkVersionedFile()</a></code><br>
-				</div>
-				<h4>Example</h4>
-				<div class="list">
-						App::linkFile(<span class="php-quote">'lib/script.js'</span>); <span class="php-comment">// writes 'http://www.example.com/lib/script.js' to the output</span><br>
-				</div>
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$path</var></dt>
+						<dd>The relative file path</dd>
+						<dt><var>$return</var></dt>
+						<dd>If true, returns the absolute URL instead of writing it to the output (default: false)</dd>
+					</dl></div>
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="linkVersionedFile" id="_linkVersionedFile">
 
-		<td class="attributes"><code>
-			 public static
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-App.html#_linkVersionedFile">App::linkVersionedFile()</a></code><br>
+					</div>
+					<h4>Example</h4>
+					<div class="list">
+							App::linkFile(<span class="php-quote">'lib/script.js'</span>); <span class="php-comment">// writes 'http://www.example.com/lib/script.js' to the output</span><br>
+					</div>
 
-			
-			
-			</code>
-		</td>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_linkVersionedFile">#</a>
-		<code>linkVersionedFile( <span>string <var>$path</var></span>, <span>boolean <var>$return</var> = <span class="php-keyword1">false</span></span> )</code>
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="linkVersionedFile" id="_linkVersionedFile">
 
-		<div class="description short">
-			<p>Writes / returns a versioned absolute URL of the given file <code>$path</code>.</p>
-		</div>
+			<td class="attributes"><code>
+				 public static
+				
+				
+				</code>
+			</td>
 
-		<div class="description detailed hidden">
-			<p>Writes / returns a versioned absolute URL of the given file <code>$path</code>.</p>
+			<td class="name"><div>
+			<a class="anchor" href="#_linkVersionedFile">#</a>
+			<code>linkVersionedFile( <span>string <var>$path</var></span>, <span>boolean <var>$return</var> = <span class="php-keyword1">false</span></span> )</code>
+
+			<div class="description short">
+				<p>Writes / returns a versioned absolute URL of the given file <code>$path</code>.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Writes / returns a versioned absolute URL of the given file <code>$path</code>.</p>
 
 <p>This function appends the file modified time to make sure no old cached version will be delivered to the visitor.</p>
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$path</var></dt>
-					<dd>The relative file path</dd>
-					<dt><var>$return</var></dt>
-					<dd>If true, returns the absolute URL instead of writing it to the output (default: false)</dd>
-				</dl></div>
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$path</var></dt>
+						<dd>The relative file path</dd>
+						<dt><var>$return</var></dt>
+						<dd>If true, returns the absolute URL instead of writing it to the output (default: false)</dd>
+					</dl></div>
 
-				<h4>Returns</h4>
-				<div class="list">
-					<br>or string
-				</div>
 
 
-				<h4>See</h4>
-				<div class="list">
-						<code><a href="class-App.html#_linkFile">App::linkFile()</a></code><br>
-				</div>
-				<h4>Example</h4>
-				<div class="list">
-						App::linkVersionedFile(<span class="php-quote">'lib/script.js'</span>); <span class="php-comment">// writes 'http://www.example.com/lib/script.js?t=946681200' to the output</span><br>
-				</div>
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-App.html#_linkFile">App::linkFile()</a></code><br>
+					</div>
+					<h4>Example</h4>
+					<div class="list">
+							App::linkVersionedFile(<span class="php-quote">'lib/script.js'</span>); <span class="php-comment">// writes 'http://www.example.com/lib/script.js?t=946681200' to the output</span><br>
+					</div>
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getSkinPath" id="_getSkinPath">
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getSkinPath" id="_getSkinPath">
 
-		<td class="attributes"><code>
-			 public static
+			<td class="attributes"><code>
+				 public static
+				string
+				
+				</code>
+			</td>
 
-			string
-			
-			</code>
-		</td>
+			<td class="name"><div>
+			<a class="anchor" href="#_getSkinPath">#</a>
+			<code>getSkinPath( )</code>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_getSkinPath">#</a>
-		<code>getSkinPath( )</code>
+			<div class="description short">
+				<p>Returns the relative path to the current skin.</p>
+			</div>
 
-		<div class="description short">
-			<p>Returns the relative path to the current skin.</p>
-		</div>
+			<div class="description detailed hidden">
+				<p>Returns the relative path to the current skin.</p>
 
-		<div class="description detailed hidden">
-			<p>Returns the relative path to the current skin.</p>
 
 
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
 
-				<h4>Returns</h4>
-				<div class="list">
-					string
-				</div>
 
 
 
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getTempDir" id="_getTempDir">
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getTempDir" id="_getTempDir">
+			<td class="attributes"><code>
+				 public static
+				string
+				
+				</code>
+			</td>
 
-		<td class="attributes"><code>
-			 public static
+			<td class="name"><div>
+			<a class="anchor" href="#_getTempDir">#</a>
+			<code>getTempDir( )</code>
 
-			string
-			
-			</code>
-		</td>
+			<div class="description short">
+				<p>Returns the absolute path to the temp directory.</p>
+			</div>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_getTempDir">#</a>
-		<code>getTempDir( )</code>
+			<div class="description detailed hidden">
+				<p>Returns the absolute path to the temp directory.</p>
 
-		<div class="description short">
-			<p>Returns the absolute path to the temp directory.</p>
-		</div>
 
-		<div class="description detailed hidden">
-			<p>Returns the absolute path to the temp directory.</p>
 
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
 
 
-				<h4>Returns</h4>
-				<div class="list">
-					string
-				</div>
 
 
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getUserUploadDir" id="_getUserUploadDir" class="deprecated">
 
+			<td class="attributes"><code>
+				 public static
+				string
+				
+				</code>
+			</td>
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getUserUploadDir" id="_getUserUploadDir" class="deprecated">
+			<td class="name"><div>
+			<a class="anchor" href="#_getUserUploadDir">#</a>
+			<code>getUserUploadDir( )</code>
 
-		<td class="attributes"><code>
-			 public static
+			<div class="description short">
+				<p>Returns the path to user uploaded files meant for permanent storage.</p>
+			</div>
 
-			string
-			
-			</code>
-		</td>
+			<div class="description detailed hidden">
+				<p>Returns the path to user uploaded files meant for permanent storage.</p>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_getUserUploadDir">#</a>
-		<code>getUserUploadDir( )</code>
+					<h4>Deprecated</h4>
+					<div class="list">
+							Use User::getUploadDir() instead<br>
+					</div>
 
-		<div class="description short">
-			<p>Returns the path to user uploaded files meant for permanent storage.</p>
-		</div>
 
-		<div class="description detailed hidden">
-			<p>Returns the path to user uploaded files meant for permanent storage.</p>
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
 
-				<h4>Deprecated</h4>
-				<div class="list">
-						Use User::getUploadDir() instead<br>
-				</div>
 
 
-				<h4>Returns</h4>
-				<div class="list">
-					string
-				</div>
 
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="createTempFile" id="_createTempFile">
 
+			<td class="attributes"><code>
+				 public static
+				string
+				
+				</code>
+			</td>
 
+			<td class="name"><div>
+			<a class="anchor" href="#_createTempFile">#</a>
+			<code>createTempFile( <span>string <var>$prefix</var></span> )</code>
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="createTempFile" id="_createTempFile">
+			<div class="description short">
+				<p>Creates a temp file and returns its path.</p>
+			</div>
 
-		<td class="attributes"><code>
-			 public static
+			<div class="description detailed hidden">
+				<p>Creates a temp file and returns its path.</p>
 
-			string
-			
-			</code>
-		</td>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_createTempFile">#</a>
-		<code>createTempFile( <span>string <var>$prefix</var></span> )</code>
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$prefix</var></dt>
+						<dd>The prefix of the temp file.</dd>
+					</dl></div>
 
-		<div class="description short">
-			<p>Creates a temp file and returns its path.</p>
-		</div>
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
 
-		<div class="description detailed hidden">
-			<p>Creates a temp file and returns its path.</p>
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$prefix</var></dt>
-					<dd>The prefix of the temp file.</dd>
-				</dl></div>
 
-				<h4>Returns</h4>
-				<div class="list">
-					string<br>File path
-				</div>
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="createUserUploadFile" id="_createUserUploadFile" class="deprecated">
 
+			<td class="attributes"><code>
+				 public static
+				string
+				
+				</code>
+			</td>
 
+			<td class="name"><div>
+			<a class="anchor" href="#_createUserUploadFile">#</a>
+			<code>createUserUploadFile( <span>string <var>$suffix</var></span> )</code>
 
+			<div class="description short">
+				<p>Creates a file in the user upload directory and returns its path.</p>
+			</div>
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="createUserUploadFile" id="_createUserUploadFile" class="deprecated">
+			<div class="description detailed hidden">
+				<p>Creates a file in the user upload directory and returns its path.</p>
 
-		<td class="attributes"><code>
-			 public static
+					<h4>Deprecated</h4>
+					<div class="list">
+							Use User::createUploadFile() instead<br>
+					</div>
 
-			string
-			
-			</code>
-		</td>
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$suffix</var></dt>
+						<dd>The suffix of the file.</dd>
+					</dl></div>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_createUserUploadFile">#</a>
-		<code>createUserUploadFile( <span>string <var>$suffix</var></span> )</code>
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
 
-		<div class="description short">
-			<p>Creates a file in the user upload directory and returns its path.</p>
-		</div>
 
-		<div class="description detailed hidden">
-			<p>Creates a file in the user upload directory and returns its path.</p>
 
-				<h4>Deprecated</h4>
-				<div class="list">
-						Use User::createUploadFile() instead<br>
-				</div>
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$suffix</var></dt>
-					<dd>The suffix of the file.</dd>
-				</dl></div>
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="processLinkTrackerAction" id="_processLinkTrackerAction" class="deprecated">
 
-				<h4>Returns</h4>
-				<div class="list">
-					string<br>File path
-				</div>
+			<td class="attributes"><code>
+				 public static
+				
+				
+				</code>
+			</td>
 
+			<td class="name"><div>
+			<a class="anchor" href="#_processLinkTrackerAction">#</a>
+			<code>processLinkTrackerAction( )</code>
 
+			<div class="description short">
+				<p>processLinkTrackerAction function.</p>
+			</div>
 
+			<div class="description detailed hidden">
+				<p>processLinkTrackerAction function.</p>
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="processLinkTrackerAction" id="_processLinkTrackerAction" class="deprecated">
+					<h4>Deprecated</h4>
+					<div class="list">
+							Use LinkTracker::action(App::getPage(1)) instead<br>
+					</div>
 
-		<td class="attributes"><code>
-			 public static
 
-			
-			
-			</code>
-		</td>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_processLinkTrackerAction">#</a>
-		<code>processLinkTrackerAction( )</code>
 
-		<div class="description short">
-			<p>processLinkTrackerAction function.</p>
-		</div>
 
-		<div class="description detailed hidden">
-			<p>processLinkTrackerAction function.</p>
 
-				<h4>Deprecated</h4>
-				<div class="list">
-						Use LinkTracker::action(App::getPage(1)) instead<br>
-				</div>
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="executeHooks" id="_executeHooks">
 
+			<td class="attributes"><code>
+				 public static
+				string
+				
+				</code>
+			</td>
 
+			<td class="name"><div>
+			<a class="anchor" href="#_executeHooks">#</a>
+			<code>executeHooks( <span>string <var>$id</var></span>, <span>mixed <var>$param</var> = <span class="php-keyword1">null</span></span> )</code>
 
+			<div class="description short">
+				<p>Executes hooks for the given <code>$id</code>.</p>
+			</div>
 
+			<div class="description detailed hidden">
+				<p>Executes hooks for the given <code>$id</code>.</p>
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="executeHooks" id="_executeHooks">
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$id</var></dt>
+						<dd></dd>
+						<dt><var>$param</var></dt>
+						<dd>(default: null)</dd>
+					</dl></div>
 
-		<td class="attributes"><code>
-			 public static
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
 
-			string
-			
-			</code>
-		</td>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_executeHooks">#</a>
-		<code>executeHooks( <span>string <var>$id</var></span>, <span>mixed <var>$param</var> = <span class="php-keyword1">null</span></span> )</code>
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-App.html#_addHook">App::addHook()</a></code><br>
+					</div>
 
-		<div class="description short">
-			<p>Executes hooks for the given <code>$id</code>.</p>
-		</div>
 
-		<div class="description detailed hidden">
-			<p>Executes hooks for the given <code>$id</code>.</p>
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="addHook" id="_addHook">
 
+			<td class="attributes"><code>
+				 public static
+				
+				
+				</code>
+			</td>
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$id</var></dt>
-					<dd></dd>
-					<dt><var>$param</var></dt>
-					<dd>(default: null)</dd>
-				</dl></div>
+			<td class="name"><div>
+			<a class="anchor" href="#_addHook">#</a>
+			<code>addHook( <span>string <var>$id</var></span>, <span>callable <var>$function</var></span> )</code>
 
-				<h4>Returns</h4>
-				<div class="list">
-					string<br>Hooks return results
-				</div>
+			<div class="description short">
+				<p>Adds a hook function.</p>
+			</div>
 
+			<div class="description detailed hidden">
+				<p>Adds a hook function.</p>
 
-				<h4>See</h4>
-				<div class="list">
-						<code><a href="class-App.html#_addHook">App::addHook()</a></code><br>
-				</div>
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$id</var></dt>
+						<dd>The hook id</dd>
+						<dt><var>$function</var></dt>
+						<dd>An executable function or class method reference</dd>
+					</dl></div>
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="addHook" id="_addHook">
 
-		<td class="attributes"><code>
-			 public static
 
-			
-			
-			</code>
-		</td>
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-App.html#_executeHooks">App::executeHooks()</a></code><br>
+					</div>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_addHook">#</a>
-		<code>addHook( <span>string <var>$id</var></span>, <span>function <var>$function</var></span> )</code>
 
-		<div class="description short">
-			<p>Adds a hook function.</p>
-		</div>
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="sendCustomerMail" id="_sendCustomerMail">
 
-		<div class="description detailed hidden">
-			<p>Adds a hook function.</p>
+			<td class="attributes"><code>
+				 public static
+				boolean
+				
+				</code>
+			</td>
 
+			<td class="name"><div>
+			<a class="anchor" href="#_sendCustomerMail">#</a>
+			<code>sendCustomerMail( <span>string <var>$email</var></span>, <span>string <var>$firstname</var></span>, <span>string <var>$lastname</var></span>, <span>string <var>$subject</var></span>, <span>string <var>$body</var></span>, <span>array <var>$attachments</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$id</var></dt>
-					<dd>The hook id</dd>
-					<dt><var>$function</var></dt>
-					<dd>An executable function or class method reference</dd>
-				</dl></div>
+			<div class="description short">
+				<p>Sends a templated email.</p>
+			</div>
 
+			<div class="description detailed hidden">
+				<p>Sends a templated email.</p>
 
 
-				<h4>See</h4>
-				<div class="list">
-						<code><a href="class-App.html#_executeHooks">App::executeHooks()</a></code><br>
-				</div>
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$email</var></dt>
+						<dd>The email address</dd>
+						<dt><var>$firstname</var></dt>
+						<dd>Recipient's first name</dd>
+						<dt><var>$lastname</var></dt>
+						<dd>Recipient's last name</dd>
+						<dt><var>$subject</var></dt>
+						<dd>Mailing subject</dd>
+						<dt><var>$body</var></dt>
+						<dd>The email message (HTML format)</dd>
+						<dt><var>$attachments</var></dt>
+						<dd>(optional) A list of <code>EMailAttachment</code> objects (default: array())</dd>
+					</dl></div>
 
+					<h4>Returns</h4>
+					<div class="list">
+						boolean<br>false on error, otherwise true
+					</div>
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="sendCustomerMail" id="_sendCustomerMail">
 
-		<td class="attributes"><code>
-			 public static
 
-			
-			
-			</code>
-		</td>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_sendCustomerMail">#</a>
-		<code>sendCustomerMail( <span>string <var>$email</var></span>, <span>string <var>$firstname</var></span>, <span>string <var>$lastname</var></span>, <span>string <var>$subject</var></span>, <span>string <var>$body</var></span>, <span>array <var>$attachments</var> = <span class="php-keyword1">array</span>()</span> )</code>
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="isSandboxed" id="_isSandboxed">
 
-		<div class="description short">
-			<p>Sends a templated email.</p>
-		</div>
+			<td class="attributes"><code>
+				 public static
+				boolean
+				
+				</code>
+			</td>
 
-		<div class="description detailed hidden">
-			<p>Sends a templated email.</p>
+			<td class="name"><div>
+			<a class="anchor" href="#_isSandboxed">#</a>
+			<code>isSandboxed( )</code>
 
+			<div class="description short">
+				<p>Checks if the current session is in sandbox mode.</p>
+			</div>
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$email</var></dt>
-					<dd>The email address</dd>
-					<dt><var>$firstname</var></dt>
-					<dd>Recipient's first name</dd>
-					<dt><var>$lastname</var></dt>
-					<dd>Recipient's last name</dd>
-					<dt><var>$subject</var></dt>
-					<dd>Mailing subject</dd>
-					<dt><var>$body</var></dt>
-					<dd>The email message (HTML format)</dd>
-					<dt><var>$attachments</var></dt>
-					<dd>(optional) A list of <code>EMailAttachment</code> objects (default: array())</dd>
-				</dl></div>
+			<div class="description detailed hidden">
+				<p>Checks if the current session is in sandbox mode.</p>
 
 
 
+					<h4>Returns</h4>
+					<div class="list">
+						boolean
+					</div>
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="isSandboxed" id="_isSandboxed">
 
-		<td class="attributes"><code>
-			 public static
 
-			boolean
-			
-			</code>
-		</td>
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="setSandboxed" id="_setSandboxed">
 
-		<td class="name"><div>
-		<a class="anchor" href="#_isSandboxed">#</a>
-		<code>isSandboxed( )</code>
+			<td class="attributes"><code>
+				 public static
+				
+				
+				</code>
+			</td>
 
-		<div class="description short">
-			<p>Checks if the current session is in sandbox mode.</p>
-		</div>
+			<td class="name"><div>
+			<a class="anchor" href="#_setSandboxed">#</a>
+			<code>setSandboxed( <span>boolean <var>$sandboxed</var> = <span class="php-keyword1">null</span></span> )</code>
 
-		<div class="description detailed hidden">
-			<p>Checks if the current session is in sandbox mode.</p>
+			<div class="description short">
+				<p>Temporarly sets the sandbox mode for the current session.</p>
+			</div>
 
+			<div class="description detailed hidden">
+				<p>Temporarly sets the sandbox mode for the current session.</p>
 
 
-				<h4>Returns</h4>
-				<div class="list">
-					boolean
-				</div>
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$sandboxed</var></dt>
+						<dd>(default: true)</dd>
+					</dl></div>
 
 
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="setSandboxed" id="_setSandboxed">
 
-		<td class="attributes"><code>
-			 public static
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="cron" id="_cron">
 
-			
-			
-			</code>
-		</td>
+			<td class="attributes"><code>
+				 public static
+				
+				
+				</code>
+			</td>
 
-		<td class="name"><div>
-		<a class="anchor" href="#_setSandboxed">#</a>
-		<code>setSandboxed( <span>boolean <var>$sandboxed</var> = <span class="php-keyword1">true</span></span> )</code>
+			<td class="name"><div>
+			<a class="anchor" href="#_cron">#</a>
+			<code>cron( <span>string <var>$period</var></span> )</code>
 
-		<div class="description short">
-			<p>Temporarly sets the sandbox mode for the current session.</p>
-		</div>
+			<div class="description short">
+				<p>This function should be called by a cron scheduler script.</p>
+			</div>
 
-		<div class="description detailed hidden">
-			<p>Temporarly sets the sandbox mode for the current session.</p>
+			<div class="description detailed hidden">
+				<p>This function should be called by a cron scheduler script.</p>
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$sandboxed</var></dt>
-					<dd>(default: true)</dd>
-				</dl></div>
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$period</var></dt>
+						<dd>The period identifier (something like 'daily'; can be defined freely)</dd>
+					</dl></div>
 
 
 
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="cron" id="_cron">
-
-		<td class="attributes"><code>
-			 public static
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_cron">#</a>
-		<code>cron( <span>string <var>$period</var></span> )</code>
-
-		<div class="description short">
-			<p>This function should be called by a cron scheduler script.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>This function should be called by a cron scheduler script.</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$period</var></dt>
-					<dd>The period identifier (something like 'daily'; can be defined freely)</dd>
-				</dl></div>
-
-
-
-				<h4>See</h4>
-				<div class="list">
-						<code><a href="class-App.html#_addHook">App::addHook()</a></code><br>
-				</div>
-				<h4>Example</h4>
-				<div class="list">
-						<pre><span class="php-comment">// Define an action in your skin's functions.php</span>
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-App.html#_addHook">App::addHook()</a></code><br>
+					</div>
+					<h4>Example</h4>
+					<div class="list">
+							<pre><span class="php-comment">// Define an action in your skin's functions.php</span>
 App::addHook(<span class="php-quote">'cron'</span>, <span class="php-keyword1">function</span>(<span class="php-var">$period</span>){
     <span class="php-comment">// Do something</span>
 });
 <span class="php-comment">// Let cron execute the actions</span>
 App::cron(<span class="php-quote">'daily'</span>);</pre><br>
-				</div>
+					</div>
 
 
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="adminNotification" id="_adminNotification">
+
+			<td class="attributes"><code>
+				 public static
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_adminNotification">#</a>
+			<code>adminNotification( <span>string <var>$msg</var></span>, <span>string <var>$subject</var> = <span class="php-keyword1">null</span></span> )</code>
+
+			<div class="description short">
+				<p>Send an email notification to the website administrator.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Send an email notification to the website administrator.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$msg</var></dt>
+						<dd>The email message</dd>
+						<dt><var>$subject</var></dt>
+						<dd>(optional) The email subject (default: 'Admin Notification')</dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getHost" id="_getHost">
+
+			<td class="attributes"><code>
+				 public static
+				string
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getHost">#</a>
+			<code>getHost( )</code>
+
+			<div class="description short">
+				<p>Returns the actual HTTP hostname, filtered by hook <code>'get-host'</code>.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Returns the actual HTTP hostname, filtered by hook <code>'get-host'</code>.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
+
+
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-App.html#_addHook">App::addHook()</a></code><br>
+					</div>
+
+
+			</div>
+			</div></td>
+		</tr>
+			</table>
 		</div>
-		</div></td>
-	</tr>
-	<tr data-order="adminNotification" id="_adminNotification">
-
-		<td class="attributes"><code>
-			 public static
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_adminNotification">#</a>
-		<code>adminNotification( <span>string <var>$msg</var></span>, <span>string <var>$subject</var> = <span class="php-keyword1">null</span></span> )</code>
-
-		<div class="description short">
-			<p>Send an email notification to the website administrator.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Send an email notification to the website administrator.</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$msg</var></dt>
-					<dd>The email message</dd>
-					<dt><var>$subject</var></dt>
-					<dd>(optional) The email subject (default: 'Admin Notification')</dd>
-				</dl></div>
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getHost" id="_getHost">
-
-		<td class="attributes"><code>
-			 public static
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getHost">#</a>
-		<code>getHost( )</code>
-
-		<div class="description short">
-			<p>Returns the actual HTTP hostname, filtered by hook <code>'get-host'</code>.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Returns the actual HTTP hostname, filtered by hook <code>'get-host'</code>.</p>
-
-
-
-
-
-				<h4>See</h4>
-				<div class="list">
-						<code><a href="class-App.html#_addHook">App::addHook()</a></code><br>
-				</div>
-
-
-		</div>
-		</div></td>
-	</tr>
-	</table>
-
-
-
-
-
-
-
 
 
 
@@ -2286,11 +2235,11 @@ App::cron(<span class="php-quote">'daily'</span>);</pre><br>
 
 
 </div>
+	</div>
 
 	<div id="footer">
-		 Firework CMS
+		 <a href="http://www.fireworkcms.com/" target="_blank">Firework CMS</a> - Copyright 2016 - All Rights Reserved.
 	</div>
-</div>
 </div>
 <script src="resources/combined.js"></script>
 <script src="elementlist.js"></script>

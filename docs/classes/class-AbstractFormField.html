@@ -5,19 +5,45 @@
 
 	<title>Class AbstractFormField</title>
 
-	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
+	<link rel="stylesheet" href="resources/bootstrap.min.css?973e37a8502921d56bc02bb55321f45b072b6f71">
+	<link rel="stylesheet" href="resources/style.css?49f43d3208c5d7e33fa16d36107a345bf11cc00d">
 
 </head>
 
 <body>
-<div id="left">
-	<div id="menu">
-		<a href="index.html" title="Overview"><span>Overview</span></a>
+	<nav id="navigation" class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a href="index.html" class="navbar-brand">Overview</a>
+			</div>
+			<div class="collapse navbar-collapse">
 
+                <form id="search" class="navbar-form navbar-left" role="search">
+                    <input type="hidden" name="cx" value="">
+                    <input type="hidden" name="ie" value="UTF-8">
+                    <div class="form-group">
+                        <input type="text" name="q" class="search-query form-control" placeholder="Search">
+					</div>
+				</form>
+
+				<ul class="nav navbar-nav">
+					<li class="active">
+<span>Class</span>					</li>
+
+
+
+
+
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div id="left">
+	<div id="menu">
 
 		<div id="groups">
 		</div>
-
 
 
 		<div id="elements">
@@ -52,16 +78,16 @@
 				<li><a href="class-LinkTracker.html">LinkTracker</a></li>
 				<li><a href="class-ListField.html">ListField</a></li>
 				<li><a href="class-MysqlDb.html">MysqlDb</a></li>
+				<li><a href="class-NonInstantiable.html">NonInstantiable</a></li>
 				<li><a href="class-Notify.html">Notify</a></li>
 				<li><a href="class-PasswordField.html">PasswordField</a></li>
-				<li><a href="class-PaymentField.html">PaymentField</a></li>
+				<li><a href="class-PaymentField.html" class="deprecated">PaymentField</a></li>
 				<li><a href="class-Pdf.html">Pdf</a></li>
 				<li><a href="class-RadioFields.html">RadioFields</a></li>
 				<li><a href="class-Random.html">Random</a></li>
 				<li><a href="class-Session.html">Session</a></li>
 				<li><a href="class-SubmitButton.html">SubmitButton</a></li>
 				<li><a href="class-SymbolTag.html">SymbolTag</a></li>
-				<li><a href="class-TCPDF_modified.html">TCPDF_modified</a></li>
 				<li><a href="class-TextField.html">TextField</a></li>
 				<li><a href="class-User.html">User</a></li>
 				<li><a href="class-VimeoVideo.html">VimeoVideo</a></li>
@@ -79,33 +105,23 @@
 <div id="splitter"></div>
 
 <div id="right">
-<div id="rightInner">
-	<form id="search">
-		<input type="hidden" name="cx" value="">
-		<input type="hidden" name="ie" value="UTF-8">
-		<input type="text" name="q" class="text" placeholder="Search">
-	</form>
-
-	<div id="navigation">
-		<ul>
-			<li>
-				<a href="index.html" title="Overview"><span>Overview</span></a>
-			</li>
-			<li class="active">
-<span>Class</span>			</li>
-		</ul>
-		<ul>
-		</ul>
-		<ul>
-		</ul>
-	</div>
-
+	<div id="rightInner">
 <div id="content" class="class">
 	<h1>Class AbstractFormField</h1>
 
 
+	<div class="description">
+	<p>Form Field.</p>
 
-	<dl class="tree">
+<p>All extending classes <strong>must</strong> declare the following <code>protected</code> method:</p>
+
+<pre><span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> init() {
+    <span class="php-var">$this</span>-&gt;<span class="php-keyword2">setType</span>(<span class="php-quote">'select'</span>);
+    <span class="php-var">$this</span>-&gt;setCssClass(<span class="php-quote">'dropdown'</span>);
+}</pre>
+	</div>
+
+	<dl class="tree well">
 		<dd style="padding-left:0px">
 			<a href="class-Instantiable.html"><span>Instantiable</span></a>
 			
@@ -129,32 +145,36 @@
 
 
 	<div>
-		<h4>Direct known subclasses</h4>
-			<a href="class-AbstractFormFieldWithOptions.html">AbstractFormFieldWithOptions</a>, 
-			<a href="class-Button.html">Button</a>, 
-			<a href="class-CheckboxField.html">CheckboxField</a>, 
-			<a href="class-EMailField.html">EMailField</a>, 
-			<a href="class-FileField.html">FileField</a>, 
-			<a href="class-HiddenField.html">HiddenField</a>, 
-			<a href="class-PasswordField.html">PasswordField</a>, 
-			<a href="class-TextField.html">TextField</a>
+		<h3>Direct known subclasses</h3>
+		<p class="elementList">
+			<code><a href="class-AbstractFormFieldWithOptions.html">AbstractFormFieldWithOptions</a></code>, 
+			<code><a href="class-Button.html">Button</a></code>, 
+			<code><a href="class-CheckboxField.html">CheckboxField</a></code>, 
+			<code><a href="class-EMailField.html">EMailField</a></code>, 
+			<code><a href="class-FileField.html">FileField</a></code>, 
+			<code><a href="class-HiddenField.html">HiddenField</a></code>, 
+			<code><a href="class-PasswordField.html">PasswordField</a></code>, 
+			<code><a href="class-TextField.html">TextField</a></code>
+		</p>
 	</div>
 
 	<div>
-		<h4>Indirect known subclasses</h4>
-			<a href="class-CurrencyField.html">CurrencyField</a>, 
-			<a href="class-DropdownField.html">DropdownField</a>, 
-			<a href="class-ListField.html">ListField</a>, 
-			<a href="class-PaymentField.html">PaymentField</a>, 
-			<a href="class-RadioFields.html">RadioFields</a>, 
-			<a href="class-SubmitButton.html">SubmitButton</a>
+		<h3>Indirect known subclasses</h3>
+		<p class="elementList">
+			<code><a href="class-CurrencyField.html">CurrencyField</a></code>, 
+			<code><a href="class-DropdownField.html">DropdownField</a></code>, 
+			<code><a href="class-ListField.html">ListField</a></code>, 
+			<code><a href="class-PaymentField.html"><span class="deprecated">PaymentField</span></a></code>, 
+			<code><a href="class-RadioFields.html">RadioFields</a></code>, 
+			<code><a href="class-SubmitButton.html">SubmitButton</a></code>
+		</p>
 	</div>
 
 
 
 
 
-	<div class="info">
+	<div class="alert alert-info">
 		<b>Abstract</b><br>
 		
 		
@@ -165,1215 +185,920 @@
 
 
 
-	<table class="summary methods" id="methods">
-	<caption>Methods summary</caption>
-	<tr data-order="init" id="_init">
-
-		<td class="attributes"><code>
-			abstract protected 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_init">#</a>
-		<code>init( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="__construct" id="___construct">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#___construct">#</a>
-		<code>__construct( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="setParentForm" id="_setParentForm">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_setParentForm">#</a>
-		<code>setParentForm( <span><code><a href="class-Form.html">Form</a></code> <var>$form</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getParentForm" id="_getParentForm">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getParentForm">#</a>
-		<code>getParentForm( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="required" id="_required">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_required">#</a>
-		<code>required( <span> <var>$required</var> = <span class="php-keyword1">null</span></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="hasError" id="_hasError">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_hasError">#</a>
-		<code>hasError( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="setAutocorrect" id="_setAutocorrect">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_setAutocorrect">#</a>
-		<code>setAutocorrect( <span> <var>$fn</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="applyAutocorrect" id="_applyAutocorrect">
-
-		<td class="attributes"><code>
-			 protected 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_applyAutocorrect">#</a>
-		<code>applyAutocorrect( <span> <var>$value</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getUserValue" id="_getUserValue">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getUserValue">#</a>
-		<code>getUserValue( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="injectUserValue" id="_injectUserValue">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_injectUserValue">#</a>
-		<code>injectUserValue( <span> <var>$value</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getInjectedUserValue" id="_getInjectedUserValue">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getInjectedUserValue">#</a>
-		<code>getInjectedUserValue( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getGenericHtml" id="_getGenericHtml">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getGenericHtml">#</a>
-		<code>getGenericHtml( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getHtml" id="_getHtml">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getHtml">#</a>
-		<code>getHtml( <span> <var>$innerHtml</var> = <span class="php-keyword1">null</span></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="setType" id="_setType">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_setType">#</a>
-		<code>setType( <span> <var>$type</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="setName" id="_setName">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_setName">#</a>
-		<code>setName( <span> <var>$name</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getName" id="_getName">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getName">#</a>
-		<code>getName( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="setLabel" id="_setLabel">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_setLabel">#</a>
-		<code>setLabel( <span> <var>$label</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getLabel" id="_getLabel">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getLabel">#</a>
-		<code>getLabel( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="setText" id="_setText">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_setText">#</a>
-		<code>setText( <span> <var>$text</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getLabelHtml" id="_getLabelHtml">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getLabelHtml">#</a>
-		<code>getLabelHtml( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="setValue" id="_setValue">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_setValue">#</a>
-		<code>setValue( <span> <var>$value</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="setCssClass" id="_setCssClass">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_setCssClass">#</a>
-		<code>setCssClass( <span> <var>$cssclass</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="addCssClass" id="_addCssClass">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_addCssClass">#</a>
-		<code>addCssClass( <span> <var>$cssclass</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="setHint" id="_setHint">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_setHint">#</a>
-		<code>setHint( <span> <var>$hint</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getHintHtml" id="_getHintHtml">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getHintHtml">#</a>
-		<code>getHintHtml( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="autofill" id="_autofill">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_autofill">#</a>
-		<code>autofill( <span> <var>$autofill</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getAutofillValue" id="_getAutofillValue">
-
-		<td class="attributes"><code>
-			 protected 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getAutofillValue">#</a>
-		<code>getAutofillValue( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="addValidation" id="_addValidation">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_addValidation">#</a>
-		<code>addValidation( <span> <var>$regex</var></span>, <span> <var>$error_msg</var> = <span class="php-quote">''</span></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	</table>
-
-	<table class="summary inherited">
-	<caption>Methods inherited from <a href="class-AbstractHtmlElement.html#methods">AbstractHtmlElement</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-AbstractHtmlElement.html#___toString">__toString()</a>, 
-			<a href="class-AbstractHtmlElement.html#_addJs">addJs()</a>, 
-			<a href="class-AbstractHtmlElement.html#_renderHtml">renderHtml()</a>, 
-			<a href="class-AbstractHtmlElement.html#_setJs">setJs()</a>
-		</code></td>
-	</tr>
-	</table>
-	<table class="summary inherited">
-	<caption>Methods inherited from <a href="class-Instantiable.html#methods">Instantiable</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-Instantiable.html#_newInstance">newInstance()</a>
-		</code></td>
-	</tr>
-	</table>
-
-
-
-
-
-
-
-
-
-
-
-	<table class="summary properties" id="properties">
-	<caption>Properties summary</caption>
-	<tr data-order="parentForm" id="$parentForm">
-		<td class="attributes"><code>
-			protected  
-			
-		</code></td>
-
-		<td class="name">
-<var>$parentForm</var>
-			<div class="description short">
+		<div class="panel panel-default">
+			<div class="panel-heading"><h2>Methods summary</h2></div>
+			<table class="summary table table-bordered table-striped methods" id="methods">
+		<tr data-order="setParentForm" id="_setParentForm">
+
+			<td class="attributes"><code>
+				 public 
 				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_setParentForm">#</a>
+			<code>setParentForm( <span><code><a href="class-Form.html">Form</a></code> <var>$form</var></span> )</code>
+
+			<div class="description short">
+				<p>Specifies the parent <code>Form</code>.</p>
 			</div>
 
 			<div class="description detailed hidden">
+				<p>Specifies the parent <code>Form</code>.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$form</var></dt>
+						<dd></dd>
+					</dl></div>
+
+
+
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-Form.html">Form</a></code><br>
+					</div>
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getParentForm" id="_getParentForm">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-Form.html">Form</a></code>
 				
+				</code>
+			</td>
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$parentForm" class="anchor">#</a>
-				<code><span class="php-keyword1">null</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="required" id="$required">
-		<td class="attributes"><code>
-			protected  
-			boolean
-		</code></td>
+			<td class="name"><div>
+			<a class="anchor" href="#_getParentForm">#</a>
+			<code>getParentForm( )</code>
 
-		<td class="name">
-<var>$required</var>
 			<div class="description short">
-				
+				<p>Returns the parent <code>Form</code>.</p>
 			</div>
 
 			<div class="description detailed hidden">
+				<p>Returns the parent <code>Form</code>.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-Form.html">Form</a></code>
+					</div>
+
+
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-Form.html">Form</a></code><br>
+					</div>
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="required" id="_required">
+
+			<td class="attributes"><code>
+				 public 
 				
+				
+				</code>
+			</td>
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$required" class="anchor">#</a>
-				<code><span class="php-keyword1">false</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="type" id="$type">
-		<td class="attributes"><code>
-			protected  
-			
-		</code></td>
+			<td class="name"><div>
+			<a class="anchor" href="#_required">#</a>
+			<code>required( <span>boolean <var>$required</var> = <span class="php-keyword1">null</span></span> )</code>
 
-		<td class="name">
-<var>$type</var>
 			<div class="description short">
-				
+				<p>Checks if the field is required or sets it required.</p>
 			</div>
 
 			<div class="description detailed hidden">
+				<p>Checks if the field is required or sets it required.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$required</var></dt>
+						<dd>(optional) If omitted, the required status is returned (<code>bool</code>); if <code>true</code> or <code>false</code> the required status is set accordingly (default: null)</dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="hasError" id="_hasError">
+
+			<td class="attributes"><code>
+				 public 
+				boolean
 				
+				</code>
+			</td>
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$type" class="anchor">#</a>
-				<code></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="name" id="$name">
-		<td class="attributes"><code>
-			protected  
-			string
-		</code></td>
+			<td class="name"><div>
+			<a class="anchor" href="#_hasError">#</a>
+			<code>hasError( )</code>
 
-		<td class="name">
-<var>$name</var>
 			<div class="description short">
-				
+				<p>Checks if the form field has an error.</p>
 			</div>
 
 			<div class="description detailed hidden">
+				<p>Checks if the form field has an error.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						boolean<br><code>true</code> if the field is errorous, <code>false</code> otherwise
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="setAutocorrect" id="_setAutocorrect">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-AbstractFormField.html">AbstractFormField</a></code>
 				
+				</code>
+			</td>
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$name" class="anchor">#</a>
-				<code><span class="php-quote">''</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="label" id="$label">
-		<td class="attributes"><code>
-			protected  
-			string
-		</code></td>
+			<td class="name"><div>
+			<a class="anchor" href="#_setAutocorrect">#</a>
+			<code>setAutocorrect( <span>callable <var>$fn</var></span> )</code>
 
-		<td class="name">
-<var>$label</var>
 			<div class="description short">
-				
+				<p>Defines an autocorrect handler.</p>
 			</div>
 
 			<div class="description detailed hidden">
+				<p>Defines an autocorrect handler.</p>
+
+<p>The function <code>$fn</code> is applied to the field value</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$fn</var></dt>
+						<dd></dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-AbstractFormField.html">AbstractFormField</a></code>
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getUserValue" id="_getUserValue">
+
+			<td class="attributes"><code>
+				 public 
+				string
 				
+				</code>
+			</td>
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$label" class="anchor">#</a>
-				<code><span class="php-quote">''</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="text" id="$text">
-		<td class="attributes"><code>
-			protected  
-			string
-		</code></td>
+			<td class="name"><div>
+			<a class="anchor" href="#_getUserValue">#</a>
+			<code>getUserValue( )</code>
 
-		<td class="name">
-<var>$text</var>
 			<div class="description short">
-				
+				<p>Returns the value of the form field the user entered.</p>
 			</div>
 
 			<div class="description detailed hidden">
+				<p>Returns the value of the form field the user entered.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="injectUserValue" id="_injectUserValue">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-AbstractFormField.html">AbstractFormField</a></code>
 				
+				</code>
+			</td>
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$text" class="anchor">#</a>
-				<code><span class="php-quote">''</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="value" id="$value">
-		<td class="attributes"><code>
-			protected  
-			string
-		</code></td>
+			<td class="name"><div>
+			<a class="anchor" href="#_injectUserValue">#</a>
+			<code>injectUserValue( <span>string <var>$value</var></span> )</code>
 
-		<td class="name">
-<var>$value</var>
 			<div class="description short">
-				
+				<p>Applies a value to the form field as if the user had been entering it.</p>
 			</div>
 
 			<div class="description detailed hidden">
+				<p>Applies a value to the form field as if the user had been entering it.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$value</var></dt>
+						<dd></dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-AbstractFormField.html">AbstractFormField</a></code>
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getInjectedUserValue" id="_getInjectedUserValue">
+
+			<td class="attributes"><code>
+				 public 
+				string
 				
+				</code>
+			</td>
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$value" class="anchor">#</a>
-				<code><span class="php-quote">''</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="injectedUserValue" id="$injectedUserValue">
-		<td class="attributes"><code>
-			protected  
-			
-		</code></td>
+			<td class="name"><div>
+			<a class="anchor" href="#_getInjectedUserValue">#</a>
+			<code>getInjectedUserValue( )</code>
 
-		<td class="name">
-<var>$injectedUserValue</var>
 			<div class="description short">
-				
+				<p>Returns the injected value, if one is present.</p>
 			</div>
 
 			<div class="description detailed hidden">
+				<p>Returns the injected value, if one is present.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
+
+
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-AbstractFormField.html#_injectUserValue">AbstractFormField::injectUserValue()</a></code><br>
+					</div>
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getGenericHtml" id="_getGenericHtml">
+
+			<td class="attributes"><code>
+				 public 
+				string
 				
+				</code>
+			</td>
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$injectedUserValue" class="anchor">#</a>
-				<code><span class="php-keyword1">null</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="cssclass" id="$cssclass">
-		<td class="attributes"><code>
-			protected  
-			string
-		</code></td>
+			<td class="name"><div>
+			<a class="anchor" href="#_getGenericHtml">#</a>
+			<code>getGenericHtml( )</code>
 
-		<td class="name">
-<var>$cssclass</var>
 			<div class="description short">
-				
+				<p>Returns a generic HTML representation of the form field.</p>
 			</div>
 
 			<div class="description detailed hidden">
+				<p>Returns a generic HTML representation of the form field.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getHtml" id="_getHtml">
+
+			<td class="attributes"><code>
+				 public 
+				string
 				
+				</code>
+			</td>
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$cssclass" class="anchor">#</a>
-				<code><span class="php-quote">''</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="hint" id="$hint">
-		<td class="attributes"><code>
-			protected  
-			string
-		</code></td>
+			<td class="name"><div>
+			<a class="anchor" href="#_getHtml">#</a>
+			<code>getHtml( <span> <var>$innerHtml</var> = <span class="php-keyword1">null</span></span> )</code>
 
-		<td class="name">
-<var>$hint</var>
 			<div class="description short">
-				
+				<p>Returns the field's HTML representation.</p>
 			</div>
 
 			<div class="description detailed hidden">
+				<p>Returns the field's HTML representation.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="setType" id="_setType">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-AbstractFormField.html">AbstractFormField</a></code>
 				
+				</code>
+			</td>
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$hint" class="anchor">#</a>
-				<code><span class="php-quote">''</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="autofill" id="$autofill">
-		<td class="attributes"><code>
-			protected  
-			boolean
-		</code></td>
+			<td class="name"><div>
+			<a class="anchor" href="#_setType">#</a>
+			<code>setType( <span>string <var>$type</var></span> )</code>
 
-		<td class="name">
-<var>$autofill</var>
 			<div class="description short">
-				
+				<p>Defines the type of the form field.</p>
 			</div>
 
 			<div class="description detailed hidden">
+				<p>Defines the type of the form field.</p>
+
+<p>Standard HTML form field types should apply.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$type</var></dt>
+						<dd></dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-AbstractFormField.html">AbstractFormField</a></code>
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="setName" id="_setName">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-AbstractFormField.html">AbstractFormField</a></code>
 				
+				</code>
+			</td>
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$autofill" class="anchor">#</a>
-				<code><span class="php-keyword1">true</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="autocorrect" id="$autocorrect">
-		<td class="attributes"><code>
-			protected  
-			
-		</code></td>
+			<td class="name"><div>
+			<a class="anchor" href="#_setName">#</a>
+			<code>setName( <span>string <var>$name</var></span> )</code>
 
-		<td class="name">
-<var>$autocorrect</var>
 			<div class="description short">
-				
+				<p>Sets the field's name.</p>
 			</div>
 
 			<div class="description detailed hidden">
+				<p>Sets the field's name.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$name</var></dt>
+						<dd></dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-AbstractFormField.html">AbstractFormField</a></code>
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getName" id="_getName">
+
+			<td class="attributes"><code>
+				 public 
+				string
 				
+				</code>
+			</td>
 
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$autocorrect" class="anchor">#</a>
-				<code><span class="php-keyword1">null</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="validation" id="$validation">
-		<td class="attributes"><code>
-			protected  
-			array
-		</code></td>
+			<td class="name"><div>
+			<a class="anchor" href="#_getName">#</a>
+			<code>getName( )</code>
 
-		<td class="name">
-<var>$validation</var>
 			<div class="description short">
-				
+				<p>Returns the field's name.</p>
 			</div>
 
 			<div class="description detailed hidden">
+				<p>Returns the field's name.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="setLabel" id="_setLabel">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-AbstractFormField.html">AbstractFormField</a></code>
 				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_setLabel">#</a>
+			<code>setLabel( <span>string <var>$label</var></span> )</code>
+
+			<div class="description short">
+				<p>Sets the field's label.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Sets the field's label.</p>
+
+<p>The label is presented to the user and should give the label a public name.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$label</var></dt>
+						<dd></dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-AbstractFormField.html">AbstractFormField</a></code>
+					</div>
+
+
+
 
 			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$validation" class="anchor">#</a>
-				<code><span class="php-keyword1">array</span>()</code>
-			</div>
-		</td>
-	</tr>
-	</table>
+			</div></td>
+		</tr>
+		<tr data-order="getLabel" id="_getLabel">
 
-	<table class="summary inherited">
-	<caption>Properties inherited from <a href="class-AbstractHtmlElement.html#properties">AbstractHtmlElement</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-AbstractHtmlElement.html#$js"><var>$js</var></a>
-		</code></td>
-	</tr>
-	</table>
+			<td class="attributes"><code>
+				 public 
+				string
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getLabel">#</a>
+			<code>getLabel( )</code>
+
+			<div class="description short">
+				<p>Returns the field's label.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Returns the field's label.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="setText" id="_setText">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-AbstractFormField.html">AbstractFormField</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_setText">#</a>
+			<code>setText( <span>string <var>$text</var></span> )</code>
+
+			<div class="description short">
+				<p>Sets the field's text.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Sets the field's text.</p>
+
+<p>The text replaces the field's label, though the label is still used in error messages.
+The text can describe the label in a more detailed way.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$text</var></dt>
+						<dd></dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-AbstractFormField.html">AbstractFormField</a></code>
+					</div>
+
+
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-AbstractFormField.html#_setLabel">AbstractFormField::setLabel()</a></code><br>
+					</div>
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getLabelHtml" id="_getLabelHtml">
+
+			<td class="attributes"><code>
+				 public 
+				string
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getLabelHtml">#</a>
+			<code>getLabelHtml( )</code>
+
+			<div class="description short">
+				<p>Returns the field's label.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Returns the field's label.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="setValue" id="_setValue">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-AbstractFormField.html">AbstractFormField</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_setValue">#</a>
+			<code>setValue( <span>string <var>$value</var></span> )</code>
+
+			<div class="description short">
+				<p>Sets the label's default value.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Sets the label's default value.</p>
+
+<p><strong>Warning:</strong> The user input is set automatically and can be retrieved via <code>getUserValue</code>.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$value</var></dt>
+						<dd></dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-AbstractFormField.html">AbstractFormField</a></code>
+					</div>
+
+
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-AbstractFormField.html#_getUserValue">AbstractFormField::getUserValue()</a></code><br>
+					</div>
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="setCssClass" id="_setCssClass">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-AbstractFormField.html">AbstractFormField</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_setCssClass">#</a>
+			<code>setCssClass( <span>string <var>$cssclass</var></span> )</code>
+
+			<div class="description short">
+				<p>Defines the CSS class of the field.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Defines the CSS class of the field.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$cssclass</var></dt>
+						<dd></dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-AbstractFormField.html">AbstractFormField</a></code>
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="addCssClass" id="_addCssClass">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-AbstractFormField.html">AbstractFormField</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_addCssClass">#</a>
+			<code>addCssClass( <span>mixed <var>$cssclass</var></span> )</code>
+
+			<div class="description short">
+				<p>Adds an additional CSS class to the field.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Adds an additional CSS class to the field.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$cssclass</var></dt>
+						<dd></dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-AbstractFormField.html">AbstractFormField</a></code>
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="setHint" id="_setHint">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-AbstractFormField.html">AbstractFormField</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_setHint">#</a>
+			<code>setHint( <span>string <var>$hint</var></span> )</code>
+
+			<div class="description short">
+				<p>Adds a fillout hint to the field.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Adds a fillout hint to the field.</p>
+
+<p>The hint message can contain HTML content and should help the user to propperly fill out the form field.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$hint</var></dt>
+						<dd></dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-AbstractFormField.html">AbstractFormField</a></code>
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getHintHtml" id="_getHintHtml">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getHintHtml">#</a>
+			<code>getHintHtml( )</code>
+
+			<div class="description short">
+				<p>Returns the hint wrapped by a <code>&lt;div&gt;</code> with the CSS class <code>hint</code>.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Returns the hint wrapped by a <code>&lt;div&gt;</code> with the CSS class <code>hint</code>.</p>
+
+
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="autofill" id="_autofill">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_autofill">#</a>
+			<code>autofill( <span>boolean <var>$autofill</var></span> )</code>
+
+			<div class="description short">
+				<p>Enables or disables browser autofill.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Enables or disables browser autofill.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$autofill</var></dt>
+						<dd></dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="addValidation" id="_addValidation">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_addValidation">#</a>
+			<code>addValidation( <span>string <var>$regex</var></span>, <span>string <var>$error_msg</var> = <span class="php-quote">''</span></span> )</code>
+
+			<div class="description short">
+				<p>Adds a regular expression that is executed on field validation.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Adds a regular expression that is executed on field validation.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$regex</var></dt>
+						<dd>The regular expression</dd>
+						<dt><var>$error_msg</var></dt>
+						<dd>(optional) If set, this error message is presented to the user if the regular expression does not match the field's user input (default: '')</dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+			</table>
+		</div>
+
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods inherited from <a href="class-AbstractHtmlElement.html#methods">AbstractHtmlElement</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-AbstractHtmlElement.html#___toString">__toString()</a></code>, 
+				<code><a href="class-AbstractHtmlElement.html#_addJs">addJs()</a></code>, 
+				<code><a href="class-AbstractHtmlElement.html#_renderHtml">renderHtml()</a></code>, 
+				<code><a href="class-AbstractHtmlElement.html#_setJs">setJs()</a></code>
+			</p>
+		</div>
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods inherited from <a href="class-Instantiable.html#methods">Instantiable</a></h3></div>
+			<p class="elementList">
+				<code><a href="class-Instantiable.html#_newInstance">newInstance()</a></code>
+			</p>
+		</div>
+
+
+
+
+
 
 
 
 
 
 </div>
+	</div>
 
 	<div id="footer">
-		 Firework CMS
+		 <a href="http://www.fireworkcms.com/" target="_blank">Firework CMS</a> - Copyright 2016 - All Rights Reserved.
 	</div>
-</div>
 </div>
 <script src="resources/combined.js"></script>
 <script src="elementlist.js"></script>

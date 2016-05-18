@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * `FormField` List field.
+ */
 class ListField extends DropdownField {
 
 	protected $size = 5;

@@ -1,9 +1,16 @@
 <?php
 
+/**
+ * Custom HTML tag `<youtube>`.
+ *
+ * @example `<youtube id="youtube_id" aspect="21:9">`
+ */
 class YoutubeVideo extends CustomHtmlTag {
 
+	/** @internal */
 	static $counter = 0;
 
+	/** @internal */
 	public function __construct() {
 
 		parent::__construct('youtube');
