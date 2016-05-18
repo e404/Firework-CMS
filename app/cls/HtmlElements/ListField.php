@@ -1,7 +1,7 @@
 <?php
 
 /**
- * `FormField` List field.
+ * Form Field List field.
  */
 class ListField extends DropdownField {
 

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * `FormField` Text field.
+ * Form Field Text field.
  */
 class TextField extends AbstractFormField {
 

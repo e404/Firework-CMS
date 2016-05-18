@@ -1,7 +1,7 @@
 <?php
 
 /**
- * `FormField` Radio fields.
+ * Form Field Radio fields.
  *
  * This is a collection of radio input fields.
  */

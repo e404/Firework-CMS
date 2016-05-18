@@ -1,7 +1,7 @@
 <?php
 
 /**
- * `FormField` File input.
+ * Form Field File input.
  */
 class FileField extends AbstractFormField {
 

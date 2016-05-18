@@ -1,7 +1,7 @@
 <?php
 
 /**
- * `FormField` Dropdown field.
+ * Form Field Dropdown field.
  */
 class DropdownField extends AbstractFormFieldWithOptions {
 

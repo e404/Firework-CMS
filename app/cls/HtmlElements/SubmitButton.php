@@ -1,7 +1,7 @@
 <?php
 
 /**
- * `FormField` Submit button.
+ * Form Field Submit button.
  */
 class SubmitButton extends Button {
 

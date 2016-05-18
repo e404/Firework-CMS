@@ -1,7 +1,7 @@
 <?php
 
 /**
- * `FormField` Text field with currency input.
+ * Form Field Text field with currency input.
  */
 class CurrencyField extends TextField {
 

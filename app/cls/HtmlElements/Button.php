@@ -1,7 +1,7 @@
 <?php
 
 /**
- * `FormField` Button.
+ * Form Field Button.
  */
 class Button extends AbstractFormField {
 

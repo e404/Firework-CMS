@@ -1,7 +1,7 @@
 <?php
 
 /**
- * `FormField` Hidden payment field.
+ * Form Field Hidden payment field.
  *
  * ***TODO:*** This field has to be implemented within the project and **must be removed here**.
  *
