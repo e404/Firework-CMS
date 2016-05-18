@@ -1,7 +1,7 @@
 <?php
 
 /**
- * `Form`.
+ * HTML `Form`.
  */
 class Form extends AbstractHtmlElement {
 

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * `FormField` Hidden field.
+ * Form Field Hidden field.
  */
 class HiddenField extends AbstractFormField {
 

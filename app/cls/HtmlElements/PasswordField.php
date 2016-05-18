@@ -1,7 +1,7 @@
 <?php
 
 /**
- * `FormField` Password field.
+ * Form Field Password field.
  */
 class PasswordField extends AbstractFormField {
 

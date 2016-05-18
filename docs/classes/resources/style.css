@@ -526,7 +526,8 @@ table#methods td.name > div:first-child > a.anchor + code > span {
 table#methods tr.deprecated td.attributes > code:first-child,
 table#methods tr.deprecated td.attributes > code:first-child *,
 table#methods tr.deprecated td.name > div:first-child > a.anchor + code,
-table#methods tr.deprecated td.name > div:first-child > a.anchor + code * {
+table#methods tr.deprecated td.name > div:first-child > a.anchor + code *,
+table#classes td.name .deprecated {
 	text-decoration: line-through;
 }
 

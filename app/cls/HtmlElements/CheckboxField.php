@@ -1,7 +1,7 @@
 <?php
 
 /**
- * `FormField` Checkbox.
+ * Form Field Checkbox.
  */
 class CheckboxField extends AbstractFormField {
 

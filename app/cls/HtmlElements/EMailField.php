@@ -1,7 +1,7 @@
 <?php
 
 /**
- * `FormField` Text field with email input.
+ * Form Field Text field with email input.
  */
 class EMailField extends AbstractFormField {
 
