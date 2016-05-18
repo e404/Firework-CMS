@@ -81,7 +81,7 @@
 				<li><a href="class-NonInstantiable.html">NonInstantiable</a></li>
 				<li><a href="class-Notify.html">Notify</a></li>
 				<li><a href="class-PasswordField.html">PasswordField</a></li>
-				<li><a href="class-PaymentField.html">PaymentField</a></li>
+				<li><a href="class-PaymentField.html" class="deprecated">PaymentField</a></li>
 				<li><a href="class-Pdf.html">Pdf</a></li>
 				<li><a href="class-RadioFields.html">RadioFields</a></li>
 				<li><a href="class-Random.html">Random</a></li>
@@ -111,9 +111,25 @@
 
 
 	<div class="description">
-	<p>Database Object.</p>
+	<p>Database Entity.</p>
 
-<p>Implements <code>$this-&gt;db</code> to any extending class</p>
+<p>Extending classes <strong>must</strong> implement the following <code>protected</code> methods:</p>
+
+<pre><span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> getTable() {
+    <span class="php-keyword1">return</span> <span class="php-quote">'my_table'</span>;
+}
+<span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> getPrimaryKey() {
+    <span class="php-keyword1">return</span> <span class="php-quote">'id'</span>;
+}
+<span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> loadFromDb() {
+    <span class="php-comment">// ...</span>
+}</pre>
+
+<p>Extending classes <strong>should</strong> implement the following <code>protected</code> method:</p>
+
+<pre><span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> isReadOnly() {
+    <span class="php-keyword1">return</span> <span class="php-keyword1">false</span>;
+}</pre>
 	</div>
 
 	<dl class="tree well">
@@ -172,37 +188,6 @@
 		<div class="panel panel-default">
 			<div class="panel-heading"><h2>Methods summary</h2></div>
 			<table class="summary table table-bordered table-striped methods" id="methods">
-		<tr data-order="__construct" id="___construct">
-
-			<td class="attributes"><code>
-				 public 
-				
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#___construct">#</a>
-			<code>__construct( )</code>
-
-			<div class="description short">
-				<p>Initializes the database.</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Initializes the database.</p>
-
-
-
-
-
-
-					<h4>Overrides</h4>
-					<div class="list"><code><a href="class-Db.html#___construct">Db::__construct</a></code></div>
-
-			</div>
-			</div></td>
-		</tr>
 		<tr data-order="loadFromDb" id="_loadFromDb">
 
 			<td class="attributes"><code>
@@ -217,11 +202,11 @@
 			<code>loadFromDb( )</code>
 
 			<div class="description short">
-				
+				<p>Loads the entity content from the database.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Loads the entity content from the database.</p>
 
 
 
@@ -236,7 +221,7 @@
 
 			<td class="attributes"><code>
 				abstract public 
-				
+				boolean
 				
 				</code>
 			</td>
@@ -246,14 +231,18 @@
 			<code>saveToDb( <span> <var>$new_if_no_id</var> = <span class="php-keyword1">true</span></span> )</code>
 
 			<div class="description short">
-				
+				<p>Saves the entity to the database.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Saves the entity to the database.</p>
 
 
 
+					<h4>Returns</h4>
+					<div class="list">
+						boolean<br><code>true</code> on success, <code>false</code> on error
+					</div>
 
 
 
@@ -265,7 +254,7 @@
 
 			<td class="attributes"><code>
 				 public 
-				
+				boolean
 				
 				</code>
 			</td>
@@ -275,16 +264,24 @@
 			<code>save( )</code>
 
 			<div class="description short">
-				
+				<p>Alias for <code>saveToDb()</code></p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Alias for <code>saveToDb()</code></p>
 
 
 
+					<h4>Returns</h4>
+					<div class="list">
+						boolean<br><code>true</code> on success, <code>false</code> on error
+					</div>
 
 
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-AbstractDbEntity.html#_saveToDb">AbstractDbEntity::saveToDb()</a></code><br>
+					</div>
 
 
 			</div>
@@ -296,6 +293,7 @@
 		<div class="panel panel-default">
 	        <div class="panel-heading"><h3>Methods inherited from <a href="class-Db.html#methods">Db</a></h3></div>
 			<p class="elementList">
+				<code><a href="class-Db.html#___construct">__construct()</a></code>, 
 				<code><a href="class-Db.html#_db">db()</a></code>
 			</p>
 		</div>

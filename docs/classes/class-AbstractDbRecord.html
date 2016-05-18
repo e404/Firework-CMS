@@ -81,7 +81,7 @@
 				<li><a href="class-NonInstantiable.html">NonInstantiable</a></li>
 				<li><a href="class-Notify.html">Notify</a></li>
 				<li><a href="class-PasswordField.html">PasswordField</a></li>
-				<li><a href="class-PaymentField.html">PaymentField</a></li>
+				<li><a href="class-PaymentField.html" class="deprecated">PaymentField</a></li>
 				<li><a href="class-Pdf.html">Pdf</a></li>
 				<li><a href="class-RadioFields.html">RadioFields</a></li>
 				<li><a href="class-Random.html">Random</a></li>
@@ -111,9 +111,17 @@
 
 
 	<div class="description">
-	<p>Database Object.</p>
+	<p>Database Record.</p>
 
-<p>Implements <code>$this-&gt;db</code> to any extending class</p>
+<p>Extending classes must implement all abstract methods from <code>AbstractDbEntity</code>.<br></p>
+
+<p>Additionally, the following <code>protected</code> method <strong>should</strong> be defined:</p>
+
+<pre><span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> generateId() {
+    <span class="php-keyword1">return</span> Random::generateString(<span class="php-num">6</span>);
+    <span class="php-comment">// You don't need to check for duplicate keys, this is done automatically.</span>
+    <span class="php-comment">// If null is returned, the database should handle the primary key assignment.</span>
+}</pre>
 	</div>
 
 	<dl class="tree well">
@@ -164,6 +172,8 @@
 		
 		
 
+				<b>See:</b>
+				<code><a href="class-AbstractDbEntity.html">AbstractDbEntity</a></code><br>
 			<b>Located at</b> app/cls/Abstracts/AbstractDbRecord.php		<br>
 	</div>
 
@@ -183,22 +193,25 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#___construct">#</a>
-			<code>__construct( <span> <var>$id</var> = <span class="php-keyword1">null</span></span> )</code>
+			<code>__construct( <span>mixed <var>$id</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
-				<p>Initializes the database.</p>
+				<p>Constructs the record.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Initializes the database.</p>
+				<p>Constructs the record.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$id</var></dt>
+						<dd>(optional) If the <code>$id</code> is set, the record content is loaded (default: null)</dd>
+					</dl></div>
 
 
 
 
-
-
-					<h4>Overrides</h4>
-					<div class="list"><code><a href="class-AbstractDbEntity.html#___construct">AbstractDbEntity::__construct</a></code></div>
 
 			</div>
 			</div></td>
@@ -214,16 +227,23 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_setId">#</a>
-			<code>setId( <span> <var>$id</var></span> )</code>
+			<code>setId( <span>string <var>$id</var></span> )</code>
 
 			<div class="description short">
-				
+				<p>Sets the ID of the record.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Sets the ID of the record.</p>
+
+<p>If the record with the specified <code>$id</code> already exists, <code>loadFromDb()</code> has to be called manually afterwards.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$id</var></dt>
+						<dd></dd>
+					</dl></div>
 
 
 
@@ -236,7 +256,7 @@
 
 			<td class="attributes"><code>
 				 public 
-				
+				string
 				
 				</code>
 			</td>
@@ -246,14 +266,18 @@
 			<code>getId( )</code>
 
 			<div class="description short">
-				
+				<p>Returns the ID of the record.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Returns the ID of the record.</p>
 
 
 
+					<h4>Returns</h4>
+					<div class="list">
+						string<br>Returns the ID or <code>null</code> if no ID is present
+					</div>
 
 
 
@@ -265,7 +289,7 @@
 
 			<td class="attributes"><code>
 				 public 
-				
+				boolean
 				
 				</code>
 			</td>
@@ -275,14 +299,18 @@
 			<code>delete( )</code>
 
 			<div class="description short">
-				
+				<p>Removes the record in the database.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Removes the record in the database.</p>
 
 
 
+					<h4>Returns</h4>
+					<div class="list">
+						boolean<br><code>true</code> on success, <code>false</code> on error
+					</div>
 
 
 
@@ -294,7 +322,7 @@
 
 			<td class="attributes"><code>
 				 public 
-				
+				boolean
 				
 				</code>
 			</td>
@@ -304,14 +332,18 @@
 			<code>loadFromDb( )</code>
 
 			<div class="description short">
-				
+				<p>Loads the record's datbase content.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Loads the record's datbase content.</p>
 
 
 
+					<h4>Returns</h4>
+					<div class="list">
+						boolean<br>Returns <code>true</code> on success, <code>false</code> if no ID has been set
+					</div>
 
 
 
@@ -323,24 +355,35 @@
 
 			<td class="attributes"><code>
 				 public 
-				
+				boolean
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_saveToDb">#</a>
-			<code>saveToDb( <span> <var>$new_if_no_id</var> = <span class="php-keyword1">true</span></span>, <span> <var>$force_new</var> = <span class="php-keyword1">false</span></span> )</code>
+			<code>saveToDb( <span>boolean <var>$new_if_no_id</var> = <span class="php-keyword1">true</span></span>, <span>boolean <var>$force_new</var> = <span class="php-keyword1">false</span></span> )</code>
 
 			<div class="description short">
-				
+				<p>Stores the record in the database.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Stores the record in the database.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$new_if_no_id</var></dt>
+						<dd>(optional) If <code>true</code>, all objects with no ID assigned will create a new database entity (default: true)</dd>
+						<dt><var>$force_new</var></dt>
+						<dd>(optional) If <code>true</code>, the current record will be saved as new record (default: false)</dd>
+					</dl></div>
 
+					<h4>Returns</h4>
+					<div class="list">
+						boolean<br><code>true</code> on success, <code>false</code> on error
+					</div>
 
 
 
@@ -348,7 +391,7 @@
 			</div>
 			</div></td>
 		</tr>
-		<tr data-order="saveAsNew" id="_saveAsNew">
+		<tr data-order="saveAsNew" id="_saveAsNew" class="deprecated">
 
 			<td class="attributes"><code>
 				 public 
@@ -362,16 +405,26 @@
 			<code>saveAsNew( )</code>
 
 			<div class="description short">
-				
+				<p>Explicit shortcut for <code>saveToDb(true, true)</code>.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Explicit shortcut for <code>saveToDb(true, true)</code>.</p>
+
+<p>Saves the current record as a new database entity.</p>
+
+					<h4>Deprecated</h4>
+					<div class="list">
+							Use <code>$this-&gt;save(true)</code> instead<br>
+					</div>
 
 
 
 
-
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-AbstractDbRecord.html#_save">AbstractDbRecord::save()</a></code><br>
+					</div>
 
 
 			</div>
@@ -381,26 +434,39 @@
 
 			<td class="attributes"><code>
 				 public 
-				
+				boolean
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_save">#</a>
-			<code>save( <span> <var>$new</var> = <span class="php-keyword1">false</span></span> )</code>
+			<code>save( <span>boolean <var>$new</var> = <span class="php-keyword1">false</span></span> )</code>
 
 			<div class="description short">
-				
+				<p>Shortcut for <code>saveToDb()</code>.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Shortcut for <code>saveToDb()</code>.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$new</var></dt>
+						<dd>(optional) If <code>true</code>, a new record will be saved (default: false)</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						boolean<br><code>true</code> on success, <code>false</code> on error
+					</div>
 
 
-
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-AbstractDbRecord.html#_saveToDb">AbstractDbRecord::saveToDb()</a></code><br>
+					</div>
 
 					<h4>Overrides</h4>
 					<div class="list"><code><a href="class-AbstractDbEntity.html#_save">AbstractDbEntity::save</a></code></div>
@@ -412,24 +478,35 @@
 
 			<td class="attributes"><code>
 				 public 
-				
+				mixed
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getField">#</a>
-			<code>getField( <span> <var>$name</var></span>, <span> <var>$try_array</var> = <span class="php-keyword1">true</span></span> )</code>
+			<code>getField( <span>string <var>$name</var></span>, <span>boolean <var>$try_array</var> = <span class="php-keyword1">true</span></span> )</code>
 
 			<div class="description short">
-				
+				<p>Returns a field of the database record.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Returns a field of the database record.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$name</var></dt>
+						<dd>The field's name</dd>
+						<dt><var>$try_array</var></dt>
+						<dd>(optional) If set to <code>true</code>, the method tries to detect and return an array as value (default: true)</dd>
+					</dl></div>
 
+					<h4>Returns</h4>
+					<div class="list">
+						mixed
+					</div>
 
 
 
@@ -441,7 +518,7 @@
 
 			<td class="attributes"><code>
 				 public 
-				
+				array
 				
 				</code>
 			</td>
@@ -451,14 +528,18 @@
 			<code>getFields( )</code>
 
 			<div class="description short">
-				
+				<p>Returns all database fields (columns).</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Returns all database fields (columns).</p>
 
 
 
+					<h4>Returns</h4>
+					<div class="list">
+						array
+					</div>
 
 
 
@@ -470,26 +551,41 @@
 
 			<td class="attributes"><code>
 				 public 
-				
+				string
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getFieldHtml">#</a>
-			<code>getFieldHtml( <span> <var>$name</var></span>, <span> <var>$empty_placeholder</var> = <span class="php-keyword1">null</span></span> )</code>
+			<code>getFieldHtml( <span>string <var>$name</var></span>, <span>string <var>$empty_placeholder</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
-				
+				<p>Returns an HTML escaped field value.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Returns an HTML escaped field value.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$name</var></dt>
+						<dd>The field's name</dd>
+						<dt><var>$empty_placeholder</var></dt>
+						<dd>(optional) If set, this value is returned if the field is empty; otherwise the value of <code>Error::emptyField()</code> is returned (default: null)</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
 
 
-
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-Error.html#_setEmptyFieldPlaceholder">Error::setEmptyFieldPlaceholder()</a></code><br>
+					</div>
 
 
 			</div>
@@ -499,24 +595,35 @@
 
 			<td class="attributes"><code>
 				 public 
-				
+				<code><a href="class-AbstractDbRecord.html">AbstractDbRecord</a></code>
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_setField">#</a>
-			<code>setField( <span> <var>$name</var></span>, <span> <var>$value</var></span> )</code>
+			<code>setField( <span>string <var>$name</var></span>, <span>mixed <var>$value</var></span> )</code>
 
 			<div class="description short">
-				
+				<p>Sets a field value.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Sets a field value.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$name</var></dt>
+						<dd>The field's name</dd>
+						<dt><var>$value</var></dt>
+						<dd>The field's value (<code>string</code> or <code>array</code>)</dd>
+					</dl></div>
 
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-AbstractDbRecord.html">AbstractDbRecord</a></code>
+					</div>
 
 
 
@@ -528,24 +635,37 @@
 
 			<td class="attributes"><code>
 				 public 
-				
+				<code><a href="class-AbstractDbRecord.html">AbstractDbRecord</a></code>
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_importForm">#</a>
-			<code>importForm( <span><code><a href="class-Form.html">Form</a></code> <var>$form</var></span>, <span> <var>$whitelist</var> = <span class="php-keyword1">array</span>()</span>, <span> <var>$blacklist</var> = <span class="php-keyword1">array</span>()</span> )</code>
+			<code>importForm( <span><code><a href="class-Form.html">Form</a></code> <var>$form</var></span>, <span>array <var>$whitelist</var> = <span class="php-keyword1">array</span>()</span>, <span>array <var>$blacklist</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 			<div class="description short">
-				
+				<p>Imports values from a <code>Form</code>.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Imports values from a <code>Form</code>.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$form</var></dt>
+						<dd></dd>
+						<dt><var>$whitelist</var></dt>
+						<dd>(optional) If set, only field names within this array are imported (default: array())</dd>
+						<dt><var>$blacklist</var></dt>
+						<dd>(optional) If set, field names within this array are not imported (default: array())</dd>
+					</dl></div>
 
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-AbstractDbRecord.html">AbstractDbRecord</a></code>
+					</div>
 
 
 
@@ -564,16 +684,21 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_importDbFields">#</a>
-			<code>importDbFields( <span> <var>$dbfields</var></span> )</code>
+			<code>importDbFields( <span>array <var>$dbfields</var></span> )</code>
 
 			<div class="description short">
-				
+				<p>Batch sets field values.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Batch sets field values.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$dbfields</var></dt>
+						<dd>An array containing field names as keys and their corresponding values</dd>
+					</dl></div>
 
 
 
@@ -586,7 +711,7 @@
 
 			<td class="attributes"><code>
 				 public 
-				
+				array
 				
 				</code>
 			</td>
@@ -596,14 +721,18 @@
 			<code>getChangedFields( )</code>
 
 			<div class="description short">
-				
+				<p>Returns an <code>array</code> of fields that have changed since the record has been loaded or saved.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Returns an <code>array</code> of fields that have changed since the record has been loaded or saved.</p>
 
 
 
+					<h4>Returns</h4>
+					<div class="list">
+						array
+					</div>
 
 
 
@@ -615,7 +744,7 @@
 
 			<td class="attributes"><code>
 				 public 
-				
+				string
 				
 				</code>
 			</td>
@@ -625,14 +754,18 @@
 			<code>getDuplicateError( )</code>
 
 			<div class="description short">
-				
+				<p>Returns the field name which raised a <code>Duplicate entry</code> SQL error.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Returns the field name which raised a <code>Duplicate entry</code> SQL error.</p>
 
 
 
+					<h4>Returns</h4>
+					<div class="list">
+						string<br>Returns the field name which raised the error, <code>false</code> if there is no error and throws a fatal error if other errors occured
+					</div>
 
 
 
@@ -644,7 +777,7 @@
 
 			<td class="attributes"><code>
 				 public 
-				
+				boolean
 				
 				</code>
 			</td>
@@ -654,14 +787,18 @@
 			<code>exists( )</code>
 
 			<div class="description short">
-				
+				<p>Checks if the record with the previously set ID exists in the database.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Checks if the record with the previously set ID exists in the database.</p>
 
 
 
+					<h4>Returns</h4>
+					<div class="list">
+						boolean<br><code>true</code> if it exists, <code>false</code> otherwise
+					</div>
 
 
 

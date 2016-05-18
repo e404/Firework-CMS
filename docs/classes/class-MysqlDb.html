@@ -81,7 +81,7 @@
 				<li><a href="class-NonInstantiable.html">NonInstantiable</a></li>
 				<li><a href="class-Notify.html">Notify</a></li>
 				<li><a href="class-PasswordField.html">PasswordField</a></li>
-				<li><a href="class-PaymentField.html">PaymentField</a></li>
+				<li><a href="class-PaymentField.html" class="deprecated">PaymentField</a></li>
 				<li><a href="class-Pdf.html">Pdf</a></li>
 				<li><a href="class-RadioFields.html">RadioFields</a></li>
 				<li><a href="class-Random.html">Random</a></li>
@@ -110,6 +110,9 @@
 	<h1>Class MysqlDb</h1>
 
 
+	<div class="description">
+	<p>MySQL Database Connector.</p>
+	</div>
 
 	<dl class="tree well">
 		<dd style="padding-left:0px">
@@ -158,16 +161,21 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_ignoreLongQueries">#</a>
-			<code>ignoreLongQueries( <span> <var>$ignore</var> = <span class="php-keyword1">true</span></span> )</code>
+			<code>ignoreLongQueries( <span>boolean <var>$ignore</var> = <span class="php-keyword1">true</span></span> )</code>
 
 			<div class="description short">
-				
+				<p>Decides if long running queries should trigger a warning.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Decides if long running queries should trigger a warning.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$ignore</var></dt>
+						<dd>If set to false, long queries will trigger a warning (default: true)</dd>
+					</dl></div>
 
 
 
@@ -187,16 +195,29 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_connect">#</a>
-			<code>connect( <span> <var>$host</var></span>, <span> <var>$username</var></span>, <span> <var>$password</var></span>, <span> <var>$database</var> = <span class="php-keyword1">null</span></span>, <span> <var>$port</var> = -<span class="php-num">1</span></span> )</code>
+			<code>connect( <span>string <var>$host</var></span>, <span>string <var>$username</var></span>, <span>string <var>$password</var></span>, <span>string <var>$database</var> = <span class="php-keyword1">null</span></span>, <span>float <var>$port</var> = -<span class="php-num">1</span></span> )</code>
 
 			<div class="description short">
-				
+				<p>Connects to the MySQL database.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Connects to the MySQL database.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$host</var></dt>
+						<dd></dd>
+						<dt><var>$username</var></dt>
+						<dd></dd>
+						<dt><var>$password</var></dt>
+						<dd></dd>
+						<dt><var>$database</var></dt>
+						<dd>(optional) If omitted, no default database will be used (default: null)</dd>
+						<dt><var>$port</var></dt>
+						<dd>(optional) <code>-1</code> means default port (default: -1)</dd>
+					</dl></div>
 
 
 
@@ -209,24 +230,35 @@
 
 			<td class="attributes"><code>
 				 public 
-				
+				mixed
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_query">#</a>
-			<code>query( <span> <var>$query</var></span> )</code>
+			<code>query( <span>string <var>$query</var></span> )</code>
 
 			<div class="description short">
-				
+				<p>Runs a MySQL query.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Runs a MySQL query.</p>
+
+<p>Returns an array on <code>SELECT</code> queries, and <code>true</code> or <code>false</code> on manipulation queries.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$query</var></dt>
+						<dd>The SQL query string</dd>
+					</dl></div>
 
+					<h4>Returns</h4>
+					<div class="list">
+						mixed
+					</div>
 
 
 
@@ -238,24 +270,35 @@
 
 			<td class="attributes"><code>
 				final public 
-				
+				mixed
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getId">#</a>
-			<code>getId( <span> <var>$query</var></span> )</code>
+			<code>getId( <span>string <var>$query</var></span> )</code>
 
 			<div class="description short">
-				
+				<p>Runs a query and returns the generated auto-increment ID if applicable.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Runs a query and returns the generated auto-increment ID if applicable.</p>
+
+<p>If no ID could be found, <code>null</code> will be returned.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$query</var></dt>
+						<dd>The SQL query string</dd>
+					</dl></div>
 
+					<h4>Returns</h4>
+					<div class="list">
+						mixed
+					</div>
 
 
 
@@ -267,24 +310,33 @@
 
 			<td class="attributes"><code>
 				 public 
-				
+				boolean
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_importSqlFile">#</a>
-			<code>importSqlFile( <span> <var>$filename</var></span> )</code>
+			<code>importSqlFile( <span>string <var>$filename</var></span> )</code>
 
 			<div class="description short">
-				
+				<p>Runs (imports) an SQL file to the database.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Runs (imports) an SQL file to the database.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$filename</var></dt>
+						<dd></dd>
+					</dl></div>
 
+					<h4>Returns</h4>
+					<div class="list">
+						boolean<br><code>true</code> on success, <code>false</code> on error
+					</div>
 
 
 
@@ -296,24 +348,33 @@
 
 			<td class="attributes"><code>
 				 public 
-				
+				boolean
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_exportSqlFile">#</a>
-			<code>exportSqlFile( <span> <var>$filename</var></span> )</code>
+			<code>exportSqlFile( <span>string <var>$filename</var></span> )</code>
 
 			<div class="description short">
-				
+				<p>Dumps the selected database to an SQL file.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Dumps the selected database to an SQL file.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$filename</var></dt>
+						<dd></dd>
+					</dl></div>
 
+					<h4>Returns</h4>
+					<div class="list">
+						boolean<br><code>true</code> on success, <code>false</code> on error
+					</div>
 
 
 
@@ -325,24 +386,33 @@
 
 			<td class="attributes"><code>
 				 public 
-				
+				string
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_escape">#</a>
-			<code>escape( <span> <var>$str</var></span> )</code>
+			<code>escape( <span>string <var>$str</var></span> )</code>
 
 			<div class="description short">
-				
+				<p>Escapes a string for safe usage within SQL queries.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Escapes a string for safe usage within SQL queries.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$str</var></dt>
+						<dd></dd>
+					</dl></div>
 
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
 
 
 
@@ -354,7 +424,7 @@
 
 			<td class="attributes"><code>
 				 public 
-				
+				boolean
 				
 				</code>
 			</td>
@@ -364,14 +434,20 @@
 			<code>startTransaction( )</code>
 
 			<div class="description short">
-				
+				<p>Starts a transaction.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Starts a transaction.</p>
+
+<p>This method will not work with MyISAM databases.</p>
 
 
 
+					<h4>Returns</h4>
+					<div class="list">
+						boolean<br><code>true</code> on success, <code>false</code> on error
+					</div>
 
 
 
@@ -383,7 +459,7 @@
 
 			<td class="attributes"><code>
 				 public 
-				
+				boolean
 				
 				</code>
 			</td>
@@ -393,14 +469,18 @@
 			<code>rollback( )</code>
 
 			<div class="description short">
-				
+				<p>Undos all queries since the lase <code>startTransaction</code> call.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Undos all queries since the lase <code>startTransaction</code> call.</p>
 
 
 
+					<h4>Returns</h4>
+					<div class="list">
+						boolean<br><code>true</code> on success, <code>false</code> on error
+					</div>
 
 
 
@@ -412,7 +492,7 @@
 
 			<td class="attributes"><code>
 				 public 
-				
+				boolean
 				
 				</code>
 			</td>
@@ -422,14 +502,18 @@
 			<code>commit( )</code>
 
 			<div class="description short">
-				
+				<p>Makes all queries since the last <code>startTransaction</code> call permanent.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Makes all queries since the last <code>startTransaction</code> call permanent.</p>
 
 
 
+					<h4>Returns</h4>
+					<div class="list">
+						boolean<br><code>true</code> on success, <code>false</code> on error
+					</div>
 
 
 
@@ -441,7 +525,7 @@
 
 			<td class="attributes"><code>
 				 public 
-				
+				string
 				
 				</code>
 			</td>
@@ -451,14 +535,18 @@
 			<code>info( )</code>
 
 			<div class="description short">
-				
+				<p>Returns a pre-formatted information of all available tables and columns.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Returns a pre-formatted information of all available tables and columns.</p>
 
 
 
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
 
 
 
@@ -470,24 +558,33 @@
 
 			<td class="attributes"><code>
 				 public 
-				
+				boolean
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_lockTable">#</a>
-			<code>lockTable( <span> <var>$table</var></span> )</code>
+			<code>lockTable( <span>string <var>$table</var></span> )</code>
 
 			<div class="description short">
-				
+				<p>Write-locks a table.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Write-locks a table.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$table</var></dt>
+						<dd></dd>
+					</dl></div>
 
+					<h4>Returns</h4>
+					<div class="list">
+						boolean<br><code>true</code> on success, <code>false</code> on error
+					</div>
 
 
 
@@ -499,7 +596,7 @@
 
 			<td class="attributes"><code>
 				 public 
-				
+				boolean
 				
 				</code>
 			</td>
@@ -509,14 +606,18 @@
 			<code>unlockTables( )</code>
 
 			<div class="description short">
-				
+				<p>Unlocks all previously locked tables.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Unlocks all previously locked tables.</p>
 
 
 
+					<h4>Returns</h4>
+					<div class="list">
+						boolean<br><code>true</code> on success, <code>false</code> on error
+					</div>
 
 
 
@@ -528,7 +629,7 @@
 
 			<td class="attributes"><code>
 				 public 
-				
+				string
 				
 				</code>
 			</td>
@@ -538,14 +639,18 @@
 			<code>getLastError( )</code>
 
 			<div class="description short">
-				
+				<p>Returns the error message of the last SQL query.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Returns the error message of the last SQL query.</p>
 
 
 
+					<h4>Returns</h4>
+					<div class="list">
+						string<br>The error message; <code>null</code> if no error was encountered.
+					</div>
 
 
 
@@ -559,8 +664,6 @@
 		<div class="panel panel-default">
 	        <div class="panel-heading"><h3>Methods inherited from <a href="class-AbstractDatabaseConnector.html#methods">AbstractDatabaseConnector</a></h3></div>
 			<p class="elementList">
-				<code><a href="class-AbstractDatabaseConnector.html#___construct">__construct()</a></code>, 
-				<code><a href="class-AbstractDatabaseConnector.html#___toString">__toString()</a></code>, 
 				<code><a href="class-AbstractDatabaseConnector.html#_begin">begin()</a></code>, 
 				<code><a href="class-AbstractDatabaseConnector.html#_countCols">countCols()</a></code>, 
 				<code><a href="class-AbstractDatabaseConnector.html#_countRows">countRows()</a></code>, 

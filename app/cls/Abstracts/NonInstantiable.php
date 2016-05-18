@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Model for classes that cannot be instantiable.
+ * Extending classes cannot be instanced.
  *
  * When trying to instantiate, a fatal error will be thrown.
  */

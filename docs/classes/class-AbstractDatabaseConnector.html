@@ -81,7 +81,7 @@
 				<li><a href="class-NonInstantiable.html">NonInstantiable</a></li>
 				<li><a href="class-Notify.html">Notify</a></li>
 				<li><a href="class-PasswordField.html">PasswordField</a></li>
-				<li><a href="class-PaymentField.html">PaymentField</a></li>
+				<li><a href="class-PaymentField.html" class="deprecated">PaymentField</a></li>
 				<li><a href="class-Pdf.html">Pdf</a></li>
 				<li><a href="class-RadioFields.html">RadioFields</a></li>
 				<li><a href="class-Random.html">Random</a></li>
@@ -110,6 +110,9 @@
 	<h1>Class AbstractDatabaseConnector</h1>
 
 
+	<div class="description">
+	<p>Database Connector.</p>
+	</div>
 
 
 
@@ -153,40 +156,11 @@
 			<code>getInstance( )</code>
 
 			<div class="description short">
-				
+				<p>Returns the current database connector instance or creates a new one.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
-
-
-
-
-
-
-
-			</div>
-			</div></td>
-		</tr>
-		<tr data-order="__construct" id="___construct">
-
-			<td class="attributes"><code>
-				 public 
-				
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#___construct">#</a>
-			<code>__construct( )</code>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
+				<p>Returns the current database connector instance or creates a new one.</p>
 
 
 
@@ -201,7 +175,7 @@
 
 			<td class="attributes"><code>
 				final public 
-				
+				boolean
 				
 				</code>
 			</td>
@@ -211,14 +185,18 @@
 			<code>isConnected( )</code>
 
 			<div class="description short">
-				
+				<p>Check if the database connector has already connected.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Check if the database connector has already connected.</p>
 
 
 
+					<h4>Returns</h4>
+					<div class="list">
+						boolean<br><code>true</code> if connected, <code>false</code> otherwise
+					</div>
 
 
 
@@ -433,7 +411,7 @@
 
 			<td class="attributes"><code>
 				final public 
-				
+				boolean
 				
 				</code>
 			</td>
@@ -443,16 +421,24 @@
 			<code>begin( )</code>
 
 			<div class="description short">
-				
+				<p>Alias for <code>startTransaction()</code>.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Alias for <code>startTransaction()</code>.</p>
 
 
 
+					<h4>Returns</h4>
+					<div class="list">
+						boolean
+					</div>
 
 
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-AbstractDatabaseConnector.html#_startTransaction">AbstractDatabaseConnector::startTransaction()</a></code><br>
+					</div>
 
 
 			</div>
@@ -520,24 +506,37 @@
 
 			<td class="attributes"><code>
 				final public 
-				
+				array
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getRows">#</a>
-			<code>getRows( <span> <var>$query</var></span>, <span> <var>$base_key</var> = <span class="php-keyword1">null</span></span>, <span> <var>$single_value</var> = <span class="php-keyword1">null</span></span> )</code>
+			<code>getRows( <span>mixed <var>$query</var></span>, <span>string <var>$base_key</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$single_value</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
-				
+				<p>Returns the resulting rows of a query.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Returns the resulting rows of a query.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$query</var></dt>
+						<dd>The resulting query <code>array</code> or an SQL query <code>string</code></dd>
+						<dt><var>$base_key</var></dt>
+						<dd>(optional) If set, the rows will be based on the specified <code>$base_key</code> (default: null)</dd>
+						<dt><var>$single_value</var></dt>
+						<dd>(optional) If set, the rows will only contain one value instead of an array (default: null)</dd>
+					</dl></div>
 
+					<h4>Returns</h4>
+					<div class="list">
+						array
+					</div>
 
 
 
@@ -549,24 +548,35 @@
 
 			<td class="attributes"><code>
 				final public 
-				
+				array
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getRow">#</a>
-			<code>getRow( <span> <var>$query</var> = <span class="php-keyword1">null</span></span>, <span> <var>$rowOffset</var> = <span class="php-num">0</span></span> )</code>
+			<code>getRow( <span>mixed <var>$query</var> = <span class="php-keyword1">null</span></span>, <span>integer <var>$rowOffset</var> = <span class="php-num">0</span></span> )</code>
 
 			<div class="description short">
-				
+				<p>Returns one row of a query.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Returns one row of a query.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$query</var></dt>
+						<dd>(optional) If omitted, the last query result will be used; otherwise the resulting query <code>array</code> or an SQL query <code>string</code> (default: null)</dd>
+						<dt><var>$rowOffset</var></dt>
+						<dd>The row number which must be used, starting with <code>0</code> (default: 0)</dd>
+					</dl></div>
 
+					<h4>Returns</h4>
+					<div class="list">
+						array
+					</div>
 
 
 
@@ -578,24 +588,37 @@
 
 			<td class="attributes"><code>
 				final public 
-				
+				string
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getCell">#</a>
-			<code>getCell( <span> <var>$query</var></span>, <span> <var>$colOffset</var> = <span class="php-num">0</span></span>, <span> <var>$rowOffset</var> = <span class="php-num">0</span></span> )</code>
+			<code>getCell( <span>mixed <var>$query</var></span>, <span>integer <var>$colOffset</var> = <span class="php-num">0</span></span>, <span>integer <var>$rowOffset</var> = <span class="php-num">0</span></span> )</code>
 
 			<div class="description short">
-				
+				<p>Returns one single value of a query.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Returns one single value of a query.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$query</var></dt>
+						<dd>The resulting query <code>array</code> or an SQL query <code>string</code></dd>
+						<dt><var>$colOffset</var></dt>
+						<dd>(optional) The column number, starting with <code>0</code> (default: 0)</dd>
+						<dt><var>$rowOffset</var></dt>
+						<dd>(optional) The row number, starting with <code>0</code> (default: 0)</dd>
+					</dl></div>
 
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
 
 
 
@@ -607,26 +630,43 @@
 
 			<td class="attributes"><code>
 				final public 
-				
+				string
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_single">#</a>
-			<code>single( <span> <var>$query</var></span>, <span> <var>$colOffset</var> = <span class="php-num">0</span></span>, <span> <var>$rowOffset</var> = <span class="php-num">0</span></span> )</code>
+			<code>single( <span>mixed <var>$query</var></span>, <span>integer <var>$colOffset</var> = <span class="php-num">0</span></span>, <span>integer <var>$rowOffset</var> = <span class="php-num">0</span></span> )</code>
 
 			<div class="description short">
-				
+				<p>Alias for <code>getCell()</code>.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Alias for <code>getCell()</code>.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$query</var></dt>
+						<dd>The resulting query <code>array</code> or an SQL query <code>string</code></dd>
+						<dt><var>$colOffset</var></dt>
+						<dd>(optional) The column number, starting with <code>0</code> (default: 0)</dd>
+						<dt><var>$rowOffset</var></dt>
+						<dd>(optional) The row number, starting with <code>0</code> (default: 0)</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
 
 
-
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-AbstractDatabaseConnector.html#_getCell">AbstractDatabaseConnector::getCell()</a></code><br>
+					</div>
 
 
 			</div>
@@ -636,24 +676,33 @@
 
 			<td class="attributes"><code>
 				final public 
-				
+				array
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getHeaders">#</a>
-			<code>getHeaders( <span> <var>$query</var></span> )</code>
+			<code>getHeaders( <span>mixed <var>$query</var></span> )</code>
 
 			<div class="description short">
-				
+				<p>Returns the column names of the query result.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Returns the column names of the query result.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$query</var></dt>
+						<dd>The resulting query <code>array</code> or an SQL query <code>string</code></dd>
+					</dl></div>
 
+					<h4>Returns</h4>
+					<div class="list">
+						array
+					</div>
 
 
 
@@ -665,24 +714,33 @@
 
 			<td class="attributes"><code>
 				final public 
-				
+				integer
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_countRows">#</a>
-			<code>countRows( <span> <var>$query</var></span> )</code>
+			<code>countRows( <span>mixed <var>$query</var></span> )</code>
 
 			<div class="description short">
-				
+				<p>The number of rows the query result produced.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>The number of rows the query result produced.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$query</var></dt>
+						<dd>The resulting query <code>array</code> or an SQL query <code>string</code></dd>
+					</dl></div>
 
+					<h4>Returns</h4>
+					<div class="list">
+						integer
+					</div>
 
 
 
@@ -694,24 +752,33 @@
 
 			<td class="attributes"><code>
 				final public 
-				
+				integer
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_countCols">#</a>
-			<code>countCols( <span> <var>$query</var></span> )</code>
+			<code>countCols( <span>mixed <var>$query</var></span> )</code>
 
 			<div class="description short">
-				
+				<p>The number of columns the query result produced.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>The number of columns the query result produced.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$query</var></dt>
+						<dd>The resulting query <code>array</code> or an SQL query <code>string</code></dd>
+					</dl></div>
 
+					<h4>Returns</h4>
+					<div class="list">
+						integer
+					</div>
 
 
 
@@ -723,7 +790,7 @@
 
 			<td class="attributes"><code>
 				final public 
-				
+				boolean
 				
 				</code>
 			</td>
@@ -733,16 +800,24 @@
 			<code>getTransactionStatus( )</code>
 
 			<div class="description short">
-				
+				<p>Checks if a transaction has been started using <code>startTransaction()</code>.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Checks if a transaction has been started using <code>startTransaction()</code>.</p>
 
 
 
+					<h4>Returns</h4>
+					<div class="list">
+						boolean<br><code>true</code> if in transaction context, <code>false</code> otherwise
+					</div>
 
 
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-AbstractDatabaseConnector.html#_startTransaction">AbstractDatabaseConnector::startTransaction()</a></code><br>
+					</div>
 
 
 			</div>
@@ -752,55 +827,60 @@
 
 			<td class="attributes"><code>
 				 public 
-				
+				string
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_prepare">#</a>
-			<code>prepare( <span> <var>$query</var></span> )</code>
+			<code>prepare( <span>string <var>$query</var></span>, <span>string <var>$field</var>,…</span> )</code>
 
 			<div class="description short">
-				
+				<p>Prepares an SQL query.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Prepares an SQL query.</p>
+
+<p>This method makes queries safe against SQL injection attempts.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$query</var></dt>
+						<dd><p>The SQL query <code>string</code>.<br>
+ <code>@VAL</code> prepares a value string,<br>
+ <code>@VAR</code> prepares a column name, or some other sort of identifier.</p></dd>
+						<dt><var>$field</var>,…</dt>
+						<dd>The fields that should be replaced in the prepared query.</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
 
 
-
-
-
-			</div>
-			</div></td>
-		</tr>
-		<tr data-order="__toString" id="___toString">
-
-			<td class="attributes"><code>
-				 public 
-				
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#___toString">#</a>
-			<code>__toString( )</code>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-
-
-
-
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-AbstractDatabaseConnector.html#_query">AbstractDatabaseConnector::query()</a></code><br>
+					</div>
+					<h4>Example</h4>
+					<div class="list">
+							<pre><span class="php-comment">// ...</span>
+<span class="php-var">$result</span> = <span class="php-var">$db</span>-&gt;query(
+    <span class="php-var">$db</span>-&gt;prepare(<span class="php-quote">'
+        SELECT *
+            FROM table
+            WHERE id=@VAL
+            AND @VAR=@VAL'</span>,
+        <span class="php-var">$id</span>,
+        <span class="php-var">$search_field</span>,
+        <span class="php-var">$search_value</span>
+    )
+);</pre><br>
+					</div>
 
 
 			</div>

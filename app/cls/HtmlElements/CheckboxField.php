@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * `FormField` Checkbox.
+ */
 class CheckboxField extends AbstractFormField {
 
 	protected $area = false;

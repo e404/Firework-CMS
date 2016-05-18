@@ -1,9 +1,16 @@
 <?php
 
+/**
+ * Custom HTML tag `<vimeo>`.
+ *
+ * @example `<vimeo id="vimeo_id" aspect="21:9">`
+ */
 class VimeoVideo extends CustomHtmlTag {
 
+	/** @internal */
 	static $counter = 0;
 
+	/** @internal */
 	public function __construct() {
 
 		parent::__construct('vimeo');

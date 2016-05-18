@@ -81,7 +81,7 @@
 				<li><a href="class-NonInstantiable.html">NonInstantiable</a></li>
 				<li><a href="class-Notify.html">Notify</a></li>
 				<li><a href="class-PasswordField.html">PasswordField</a></li>
-				<li><a href="class-PaymentField.html">PaymentField</a></li>
+				<li><a href="class-PaymentField.html" class="deprecated">PaymentField</a></li>
 				<li><a href="class-Pdf.html">Pdf</a></li>
 				<li><a href="class-RadioFields.html">RadioFields</a></li>
 				<li><a href="class-Random.html">Random</a></li>
@@ -111,9 +111,7 @@
 
 
 	<div class="description">
-	<p>Database Object.</p>
-
-<p>Implements <code>$this-&gt;db</code> to any extending class</p>
+	<p>Session class.</p>
 	</div>
 
 	<dl class="tree well">
@@ -151,6 +149,8 @@
 		
 		
 
+				<b>Extends:</b>
+				Db<br>
 			<b>Located at</b> app/cls/System/Session.php		<br>
 	</div>
 
@@ -159,42 +159,11 @@
 		<div class="panel panel-default">
 			<div class="panel-heading"><h2>Methods summary</h2></div>
 			<table class="summary table table-bordered table-striped methods" id="methods">
-		<tr data-order="__construct" id="___construct">
-
-			<td class="attributes"><code>
-				 public 
-				
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#___construct">#</a>
-			<code>__construct( )</code>
-
-			<div class="description short">
-				<p>Initializes the database.</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Initializes the database.</p>
-
-
-
-
-
-
-					<h4>Overrides</h4>
-					<div class="list"><code><a href="class-Db.html#___construct">Db::__construct</a></code></div>
-
-			</div>
-			</div></td>
-		</tr>
 		<tr data-order="getSid" id="_getSid">
 
 			<td class="attributes"><code>
 				 public 
-				
+				string
 				
 				</code>
 			</td>
@@ -204,14 +173,18 @@
 			<code>getSid( )</code>
 
 			<div class="description short">
-				
+				<p>Returns the <code>Session</code> ID.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Returns the <code>Session</code> ID.</p>
 
 
 
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
 
 
 
@@ -233,11 +206,11 @@
 			<code>destroy( )</code>
 
 			<div class="description short">
-				
+				<p>Destroys the entire <code>Session</code> including all variables.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Destroys the entire <code>Session</code> including all variables.</p>
 
 
 
@@ -259,16 +232,26 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_set">#</a>
-			<code>set( <span> <var>$key</var></span>, <span> <var>$value</var> = <span class="php-quote">'1'</span></span> )</code>
+			<code>set( <span>string <var>$key</var></span>, <span>mixed <var>$value</var> = <span class="php-quote">'1'</span></span> )</code>
 
 			<div class="description short">
-				
+				<p>Saves a value to the <code>Session</code>.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Saves a value to the <code>Session</code>.</p>
+
+<p><strong><em>Warning:</em></strong> The <code>Session</code> store saves values to the DB on destruction. This results in late consistency.
+<strong>Do not try to query the <code>sessionstore</code> table manually!</strong></p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$key</var></dt>
+						<dd>The internal key to uniquely identify the value</dd>
+						<dt><var>$value</var></dt>
+						<dd>(optional) Could be a <code>string</code> or <code>array</code> (default: '1')</dd>
+					</dl></div>
 
 
 
@@ -281,24 +264,35 @@
 
 			<td class="attributes"><code>
 				 public 
-				
+				mixed
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_get">#</a>
-			<code>get( <span> <var>$key</var></span> )</code>
+			<code>get( <span>string <var>$key</var></span> )</code>
 
 			<div class="description short">
-				
+				<p>Returns the value for the <code>$key</code> in the <code>Session</code>.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Returns the value for the <code>$key</code> in the <code>Session</code>.</p>
+
+<p>If Not set, <code>null</code> is returned.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$key</var></dt>
+						<dd></dd>
+					</dl></div>
 
+					<h4>Returns</h4>
+					<div class="list">
+						mixed
+					</div>
 
 
 
@@ -317,16 +311,23 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_remove">#</a>
-			<code>remove( <span> <var>$key</var></span> )</code>
+			<code>remove( <span>string <var>$key</var></span> )</code>
 
 			<div class="description short">
-				
+				<p>Removes a value from the <code>Session</code>.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Removes a value from the <code>Session</code>.</p>
+
+<p>If no value with this <code>$key</code> has been saved to the <code>Session</code> before, nothing will be done and no error will be triggered.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$key</var></dt>
+						<dd></dd>
+					</dl></div>
 
 
 
@@ -339,7 +340,7 @@
 
 			<td class="attributes"><code>
 				 public 
-				
+				string
 				
 				</code>
 			</td>
@@ -349,45 +350,24 @@
 			<code>__toString( )</code>
 
 			<div class="description short">
-				
+				<p>Alias for <code>getSid()</code>.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Alias for <code>getSid()</code>.</p>
 
 
 
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
 
 
-
-
-			</div>
-			</div></td>
-		</tr>
-		<tr data-order="__destruct" id="___destruct">
-
-			<td class="attributes"><code>
-				 public 
-				
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#___destruct">#</a>
-			<code>__destruct( )</code>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-
-
-
-
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-Session.html#_getSid">Session::getSid()</a></code><br>
+					</div>
 
 
 			</div>
@@ -399,6 +379,7 @@
 		<div class="panel panel-default">
 	        <div class="panel-heading"><h3>Methods inherited from <a href="class-Db.html#methods">Db</a></h3></div>
 			<p class="elementList">
+				<code><a href="class-Db.html#___construct">__construct()</a></code>, 
 				<code><a href="class-Db.html#_db">db()</a></code>
 			</p>
 		</div>

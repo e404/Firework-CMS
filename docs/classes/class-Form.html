@@ -81,7 +81,7 @@
 				<li><a href="class-NonInstantiable.html">NonInstantiable</a></li>
 				<li><a href="class-Notify.html">Notify</a></li>
 				<li><a href="class-PasswordField.html">PasswordField</a></li>
-				<li><a href="class-PaymentField.html">PaymentField</a></li>
+				<li><a href="class-PaymentField.html" class="deprecated">PaymentField</a></li>
 				<li><a href="class-Pdf.html">Pdf</a></li>
 				<li><a href="class-RadioFields.html">RadioFields</a></li>
 				<li><a href="class-Random.html">Random</a></li>
@@ -110,6 +110,9 @@
 	<h1>Class Form</h1>
 
 
+	<div class="description">
+	<p><code>Form</code>.</p>
+	</div>
 
 	<dl class="tree well">
 		<dd style="padding-left:0px">
@@ -154,57 +157,34 @@
 		<div class="panel panel-default">
 			<div class="panel-heading"><h2>Methods summary</h2></div>
 			<table class="summary table table-bordered table-striped methods" id="methods">
-		<tr data-order="__construct" id="___construct">
-
-			<td class="attributes"><code>
-				 public 
-				
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#___construct">#</a>
-			<code>__construct( <span> <var>$method</var> = <span class="php-keyword1">null</span></span> )</code>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-
-
-
-
-
-
-			</div>
-			</div></td>
-		</tr>
 		<tr data-order="wasSent" id="_wasSent">
 
 			<td class="attributes"><code>
 				 public 
-				
+				boolean
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_wasSent">#</a>
-			<code>wasSent( <span> <var>$sent</var> = <span class="php-keyword1">null</span></span> )</code>
+			<code>wasSent( )</code>
 
 			<div class="description short">
-				
+				<p>Checks if the form has been sent.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Checks if the form has been sent.</p>
+
+<p><strong><em>TODO:</em></strong> Add a more sophisticated check with a hidden field and the presence of it after sending.</p>
 
 
 
+					<h4>Returns</h4>
+					<div class="list">
+						boolean<br><code>true</code> if the form was sent, <code>false</code> otherwise
+					</div>
 
 
 
@@ -223,16 +203,21 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_setMethod">#</a>
-			<code>setMethod( <span> <var>$method</var></span> )</code>
+			<code>setMethod( <span>string <var>$method</var></span> )</code>
 
 			<div class="description short">
-				
+				<p>Sets the request mode.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Sets the request mode.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$method</var></dt>
+						<dd><code>'GET'</code> or <code>'POST'</code></dd>
+					</dl></div>
 
 
 
@@ -245,7 +230,7 @@
 
 			<td class="attributes"><code>
 				 public 
-				
+				string
 				
 				</code>
 			</td>
@@ -255,16 +240,24 @@
 			<code>getMethod( )</code>
 
 			<div class="description short">
-				
+				<p>Returns the request method.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Returns the request method.</p>
 
 
 
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
 
 
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-Form.html#_setMethod">Form::setMethod()</a></code><br>
+					</div>
 
 
 			</div>
@@ -274,24 +267,35 @@
 
 			<td class="attributes"><code>
 				 public 
-				
+				<code><a href="class-Form.html">Form</a></code>
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_setAttr">#</a>
-			<code>setAttr( <span> <var>$attr</var></span>, <span> <var>$value</var></span> )</code>
+			<code>setAttr( <span>string <var>$attr</var></span>, <span>string <var>$value</var></span> )</code>
 
 			<div class="description short">
-				
+				<p>Adds an attribute to the <code>&lt;form&gt;</code> element.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Adds an attribute to the <code>&lt;form&gt;</code> element.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$attr</var></dt>
+						<dd>The attribute's name</dd>
+						<dt><var>$value</var></dt>
+						<dd>The attribute's value</dd>
+					</dl></div>
 
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-Form.html">Form</a></code>
+					</div>
 
 
 
@@ -303,7 +307,7 @@
 
 			<td class="attributes"><code>
 				 public 
-				
+				<code><a href="class-Form.html">Form</a></code>
 				
 				</code>
 			</td>
@@ -313,14 +317,23 @@
 			<code>addField( <span><code><a href="class-AbstractFormField.html">AbstractFormField</a></code> <var>$field</var></span> )</code>
 
 			<div class="description short">
-				
+				<p>Adds a form field.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Adds a form field.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$field</var></dt>
+						<dd></dd>
+					</dl></div>
 
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-Form.html">Form</a></code>
+					</div>
 
 
 
@@ -339,19 +352,30 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_changeFieldName">#</a>
-			<code>changeFieldName( <span> <var>$oldName</var></span>, <span> <var>$newName</var></span> )</code>
+			<code>changeFieldName( <span>string <var>$oldName</var></span>, <span>string <var>$newName</var></span> )</code>
 
 			<div class="description short">
-				
+				<p>Changes the name of a form field previously defined.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Changes the name of a form field previously defined.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$oldName</var></dt>
+						<dd></dd>
+						<dt><var>$newName</var></dt>
+						<dd></dd>
+					</dl></div>
 
 
 
-
-
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-Form.html#_addField">Form::addField()</a></code><br>
+					</div>
 
 
 			</div>
@@ -361,24 +385,35 @@
 
 			<td class="attributes"><code>
 				 public 
-				
+				<code><a href="class-AbstractFormField.html">AbstractFormField</a></code>
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getField">#</a>
-			<code>getField( <span> <var>$name</var></span>, <span> <var>$no_error</var> = <span class="php-keyword1">false</span></span> )</code>
+			<code>getField( <span>string <var>$name</var></span>, <span>boolean <var>$no_error</var> = <span class="php-keyword1">false</span></span> )</code>
 
 			<div class="description short">
-				
+				<p>Returns a form field previously added.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Returns a form field previously added.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$name</var></dt>
+						<dd></dd>
+						<dt><var>$no_error</var></dt>
+						<dd>(optional) If <code>true</code>, no error is triggered if the field could not be found (default: false)</dd>
+					</dl></div>
 
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-AbstractFormField.html">AbstractFormField</a></code>
+					</div>
 
 
 
@@ -390,7 +425,7 @@
 
 			<td class="attributes"><code>
 				 public 
-				
+				array
 				
 				</code>
 			</td>
@@ -400,43 +435,18 @@
 			<code>getFields( )</code>
 
 			<div class="description short">
-				
+				<p>Returns an <code>array</code> of all form fields.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Returns an <code>array</code> of all form fields.</p>
 
 
 
-
-
-
-
-			</div>
-			</div></td>
-		</tr>
-		<tr data-order="getHtml" id="_getHtml">
-
-			<td class="attributes"><code>
-				 public 
-				
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#_getHtml">#</a>
-			<code>getHtml( )</code>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-
-
+					<h4>Returns</h4>
+					<div class="list">
+						array
+					</div>
 
 
 
@@ -455,16 +465,23 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_beginForm">#</a>
-			<code>beginForm( <span> <var>$auto_error_handling</var> = <span class="php-keyword1">false</span></span> )</code>
+			<code>beginForm( <span>boolean <var>$auto_error_handling</var> = <span class="php-keyword1">false</span></span> )</code>
 
 			<div class="description short">
-				
+				<p>Writes the opening <code>&lt;form&gt;</code> tag to the output and sets some non-caching headers.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Writes the opening <code>&lt;form&gt;</code> tag to the output and sets some non-caching headers.</p>
+
+<p><strong><em>TODO:</em></strong> Implement <code>$auto_error_handling</code>.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$auto_error_handling</var></dt>
+						<dd>(default: false)</dd>
+					</dl></div>
 
 
 
@@ -487,11 +504,11 @@
 			<code>endForm( )</code>
 
 			<div class="description short">
-				
+				<p>Writes the closing <code>&lt;/form&gt;</code> tag.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Writes the closing <code>&lt;/form&gt;</code> tag.</p>
 
 
 
@@ -506,7 +523,7 @@
 
 			<td class="attributes"><code>
 				 public 
-				
+				array
 				
 				</code>
 			</td>
@@ -516,14 +533,18 @@
 			<code>getErrors( )</code>
 
 			<div class="description short">
-				
+				<p>Returns all form field errors.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Returns all form field errors.</p>
 
 
 
+					<h4>Returns</h4>
+					<div class="list">
+						array
+					</div>
 
 
 
@@ -535,24 +556,37 @@
 
 			<td class="attributes"><code>
 				 public 
-				
+				array
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_chainDbRecord">#</a>
-			<code>chainDbRecord( <span><code><a href="class-AbstractDbRecord.html">AbstractDbRecord</a></code> <var>$record</var></span>, <span> <var>$skip</var> = <span class="php-keyword1">array</span>()</span> )</code>
+			<code>chainDbRecord( <span><code><a href="class-AbstractDbRecord.html">AbstractDbRecord</a></code> <var>$record</var></span>, <span>array <var>$skip</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 			<div class="description short">
-				
+				<p>Attaches a database record to the form.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Attaches a database record to the form.</p>
+
+<p>If sending the form, the record will automatically be updated.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$record</var></dt>
+						<dd></dd>
+						<dt><var>$skip</var></dt>
+						<dd>(optional) An array of form fields which must be ignored (default: array())</dd>
+					</dl></div>
 
+					<h4>Returns</h4>
+					<div class="list">
+						array<br>Returns all fields that have changed
+					</div>
 
 
 
@@ -568,6 +602,7 @@
 			<p class="elementList">
 				<code><a href="class-AbstractHtmlElement.html#___toString">__toString()</a></code>, 
 				<code><a href="class-AbstractHtmlElement.html#_addJs">addJs()</a></code>, 
+				<code><a href="class-AbstractHtmlElement.html#_getHtml">getHtml()</a></code>, 
 				<code><a href="class-AbstractHtmlElement.html#_renderHtml">renderHtml()</a></code>, 
 				<code><a href="class-AbstractHtmlElement.html#_setJs">setJs()</a></code>
 			</p>

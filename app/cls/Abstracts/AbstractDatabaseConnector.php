@@ -1,9 +1,18 @@
 <?php
 
+/**
+ * Database Connector.
+ */
 abstract class AbstractDatabaseConnector {
 
 	protected static $instance = null;
 
+	/**
+	 * Returns the current database connector instance or creates a new one.
+	 * 
+	 * @access public
+	 * @static
+	 */
 	public static function getInstance() {
 		$class = get_called_class();
 		return self::$instance ? self::$instance : new $class;
@@ -21,10 +30,18 @@ abstract class AbstractDatabaseConnector {
 		$lastQuery,
 		$lastRowOffset;
 
+	/** @internal */
 	public function __construct() {
 		if(self::$instance===null) self::$instance = $this;
 	}
 
+	/**
+	 * Check if the database connector has already connected.
+	 * 
+	 * @access public
+	 * @final
+	 * @return bool `true` if connected, `false` otherwise
+	 */
 	final public function isConnected() {
 		return $this->connection===false ? false : true;
 	}
@@ -37,10 +54,30 @@ abstract class AbstractDatabaseConnector {
 	abstract public function exportSqlFile($filename);
 	abstract public function escape($str);
 	abstract public function startTransaction();
+
+	/**
+	 * Alias for `startTransaction()`.
+	 * 
+	 * @access public
+	 * @final
+	 * @return bool
+	 * @see self::startTransaction()
+	 */
 	final public function begin() {return $this->startTransaction();}
+
 	abstract public function rollback();
 	abstract public function commit();
 
+	/**
+	 * Returns the resulting rows of a query.
+	 *
+	 * @access public
+	 * @final
+	 * @param mixed $query The resulting query `array` or an SQL query `string`
+	 * @param string $base_key (optional) If set, the rows will be based on the specified `$base_key` (default: null)
+	 * @param mixed $single_value (optional) If set, the rows will only contain one value instead of an array (default: null)
+	 * @return array
+	 */
 	final public function getRows($query, $base_key=null, $single_value=null) {
 		if(!is_array($query)) $query = $this->query($query);
 		if(!$base_key) return $query;
@@ -51,6 +88,15 @@ abstract class AbstractDatabaseConnector {
 		return $rows;
 	}
 
+	/**
+	 * Returns one row of a query.
+	 * 
+	 * @access public
+	 * @final
+	 * @param mixed $query (optional) If omitted, the last query result will be used; otherwise the resulting query `array` or an SQL query `string` (default: null)
+	 * @param int $rowOffset The row number which must be used, starting with `0` (default: 0)
+	 * @return array
+	 */
 	final public function getRow($query=null,$rowOffset=0) {
 		if($query===null) {
 			$query = $this->lastQuery;
@@ -63,6 +109,16 @@ abstract class AbstractDatabaseConnector {
 		return isset($query[$rowOffset]) ? $query[$rowOffset] : array();
 	}
 
+	/**
+	 * Returns one single value of a query.
+	 * 
+	 * @access public
+	 * @final
+	 * @param mixed $query The resulting query `array` or an SQL query `string`
+	 * @param int $colOffset (optional) The column number, starting with `0` (default: 0)
+	 * @param int $rowOffset (optional) The row number, starting with `0` (default: 0)
+	 * @return string
+	 */
 	final public function getCell($query,$colOffset=0,$rowOffset=0) {
 		if(!is_array($query)) $query = $this->query($query);
 		if(!isset($query[$rowOffset])) return null;
@@ -70,29 +126,101 @@ abstract class AbstractDatabaseConnector {
 		return isset($cells[$colOffset]) ? $cells[$colOffset] : null;
 	}
 
+	/**
+	 * Alias for `getCell()`.
+	 * 
+	 * @access public
+	 * @final
+	 * @param mixed $query The resulting query `array` or an SQL query `string`
+	 * @param int $colOffset (optional) The column number, starting with `0` (default: 0)
+	 * @param int $rowOffset (optional) The row number, starting with `0` (default: 0)
+	 * @return string
+	 * @see self::getCell()
+	 */
 	final public function single($query,$colOffset=0,$rowOffset=0) {
 		return $this->getCell($query,$colOffset,$rowOffset);
 	}
 
+	/**
+	 * Returns the column names of the query result.
+	 * 
+	 * @access public
+	 * @final
+	 * @param mixed $query The resulting query `array` or an SQL query `string`
+	 * @return array
+	 */
 	final public function getHeaders($query) {
 		if(!is_array($query)) $query = $this->query($query);
 		return isset($query[0]) ? array_keys($query[0]) : null;
 	}
 
+	/**
+	 * The number of rows the query result produced.
+	 * 
+	 * @access public
+	 * @final
+	 * @param mixed $query The resulting query `array` or an SQL query `string`
+	 * @return int
+	 */
 	final public function countRows($query) {
 		if(!is_array($query)) $query = $this->query($query);
 		return count($query);
 	}
 
+	/**
+	 * The number of columns the query result produced.
+	 * 
+	 * @access public
+	 * @final
+	 * @param mixed $query The resulting query `array` or an SQL query `string`
+	 * @return int
+	 */
 	final public function countCols($query) {
 		if(!is_array($query)) $query = $this->query($query);
 		return isset($query[0]) ? count($query[0]) : null;
 	}
 
+	/**
+	 * Checks if a transaction has been started using `startTransaction()`.
+	 * 
+	 * @access public
+	 * @final
+	 * @return bool `true` if in transaction context, `false` otherwise
+	 * @see self::startTransaction()
+	 */
 	final public function getTransactionStatus() {
 		return $this->transaction;
 	}
 
+	/**
+	 * Prepares an SQL query.
+	 *
+	 * This method makes queries safe against SQL injection attempts.
+	 * 
+	 * @access public
+	 * @param string $query The SQL query `string`.<br>
+	 *  `@VAL` prepares a value string,<br>
+	 *  `@VAR` prepares a column name, or some other sort of identifier.
+	 * @param string $field The fields that should be replaced in the prepared query.
+	 * @return string
+	 * @see self::query()
+	 *
+	 * @example
+	 * <code>
+	 * // ...
+	 * $result = $db->query(
+	 * 	$db->prepare('
+	 * 		SELECT *
+	 * 			FROM table
+	 * 			WHERE id=@VAL
+	 * 			AND @VAR=@VAL',
+	 * 		$id,
+	 * 		$search_field,
+	 * 		$search_value
+	 * 	)
+	 * );
+	 * </code>
+	 */
 	public function prepare($query/* [, $field[, ...]] */) {
 		$args = func_get_args();
 		array_shift($args);
@@ -127,6 +255,7 @@ abstract class AbstractDatabaseConnector {
 		return $query;
 	}
 
+	/** @internal */
 	public function __toString() {
 		return '[AbstractDb Class]';
 	}

@@ -81,7 +81,7 @@
 				<li><a href="class-NonInstantiable.html">NonInstantiable</a></li>
 				<li><a href="class-Notify.html">Notify</a></li>
 				<li><a href="class-PasswordField.html">PasswordField</a></li>
-				<li><a href="class-PaymentField.html">PaymentField</a></li>
+				<li><a href="class-PaymentField.html" class="deprecated">PaymentField</a></li>
 				<li><a href="class-Pdf.html">Pdf</a></li>
 				<li><a href="class-RadioFields.html">RadioFields</a></li>
 				<li><a href="class-Random.html">Random</a></li>
@@ -182,16 +182,21 @@ Also, <code>LinkTracker</code>s may have a context and a value assigned. As thos
 
 			<td class="name"><div>
 			<a class="anchor" href="#_setLifetime">#</a>
-			<code>setLifetime( <span> <var>$days</var></span> )</code>
+			<code>setLifetime( <span>integer <var>$days</var></span> )</code>
 
 			<div class="description short">
-				
+				<p>Defines when the link should become invalid.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Defines when the link should become invalid.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$days</var></dt>
+						<dd>The number of days the link should stay valid; if set to <code>null</code>, the link will stay valid forever</dd>
+					</dl></div>
 
 
 
@@ -211,16 +216,21 @@ Also, <code>LinkTracker</code>s may have a context and a value assigned. As thos
 
 			<td class="name"><div>
 			<a class="anchor" href="#_setUrl">#</a>
-			<code>setUrl( <span> <var>$url</var></span> )</code>
+			<code>setUrl( <span>string <var>$url</var></span> )</code>
 
 			<div class="description short">
-				
+				<p>Specifies the URL the short link should lead to after clicking.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Specifies the URL the short link should lead to after clicking.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$url</var></dt>
+						<dd></dd>
+					</dl></div>
 
 
 
@@ -240,16 +250,24 @@ Also, <code>LinkTracker</code>s may have a context and a value assigned. As thos
 
 			<td class="name"><div>
 			<a class="anchor" href="#_setDesc">#</a>
-			<code>setDesc( <span> <var>$desc</var></span> )</code>
+			<code>setDesc( <span>string <var>$desc</var></span> )</code>
 
 			<div class="description short">
-				
+				<p>Sets an internal description of the link.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Sets an internal description of the link.</p>
+
+<p>This function has no effect on the link action.
+The internal description is for internal use only.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$desc</var></dt>
+						<dd></dd>
+					</dl></div>
 
 
 
@@ -269,19 +287,33 @@ Also, <code>LinkTracker</code>s may have a context and a value assigned. As thos
 
 			<td class="name"><div>
 			<a class="anchor" href="#_setContextValue">#</a>
-			<code>setContextValue( <span> <var>$context</var></span>, <span> <var>$value</var></span> )</code>
+			<code>setContextValue( <span>string <var>$context</var></span>, <span>mixed <var>$value</var></span> )</code>
 
 			<div class="description short">
-				
+				<p>Defines a context and a value for the link.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Defines a context and a value for the link.</p>
+
+<p>These two variables are stored within the current <code>Session</code> and can be used once the link has been clicked.
+The <code>$value</code> can be <strong>a number, a string or an array</strong>.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$context</var></dt>
+						<dd></dd>
+						<dt><var>$value</var></dt>
+						<dd></dd>
+					</dl></div>
 
 
 
-
-
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-LinkTracker.html#_getContextValue">LinkTracker::getContextValue()</a></code><br>
+					</div>
 
 
 			</div>
@@ -298,16 +330,23 @@ Also, <code>LinkTracker</code>s may have a context and a value assigned. As thos
 
 			<td class="name"><div>
 			<a class="anchor" href="#_setPrettyFilename">#</a>
-			<code>setPrettyFilename( <span> <var>$pretty_filename</var></span> )</code>
+			<code>setPrettyFilename( <span>string <var>$pretty_filename</var></span> )</code>
 
 			<div class="description short">
-				
+				<p>Attaches a human readable extension to the short link URL.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Attaches a human readable extension to the short link URL.</p>
+
+<p><code>http://www.example.com/link/s8Et2m</code> could get <code>http://www.example.com/link/s8Et2m/create-free-account</code></p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$pretty_filename</var></dt>
+						<dd></dd>
+					</dl></div>
 
 
 
@@ -330,11 +369,11 @@ Also, <code>LinkTracker</code>s may have a context and a value assigned. As thos
 			<code>getLink( )</code>
 
 			<div class="description short">
-				
+				<p>Generates and returns the actual link URL.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Generates and returns the actual link URL.</p>
 
 
 
@@ -359,13 +398,20 @@ Also, <code>LinkTracker</code>s may have a context and a value assigned. As thos
 			<code>action( <span>string <var>$id</var></span> )</code>
 
 			<div class="description short">
-				
+				<p>Executes a link action.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Executes a link action.</p>
+
+<p>This method should be called when the link is clicked.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$id</var></dt>
+						<dd></dd>
+					</dl></div>
 
 
 
@@ -378,7 +424,7 @@ Also, <code>LinkTracker</code>s may have a context and a value assigned. As thos
 
 			<td class="attributes"><code>
 				 public static
-				
+				array
 				
 				</code>
 			</td>
@@ -388,14 +434,20 @@ Also, <code>LinkTracker</code>s may have a context and a value assigned. As thos
 			<code>getContextValue( )</code>
 
 			<div class="description short">
-				
+				<p>Returns the context and value after a link was clicked.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Returns the context and value after a link was clicked.</p>
+
+<p><code>['context' =&gt; 'my-context', 'value' =&gt; 'my-value']</code></p>
 
 
 
+					<h4>Returns</h4>
+					<div class="list">
+						array
+					</div>
 
 
 
@@ -414,19 +466,28 @@ Also, <code>LinkTracker</code>s may have a context and a value assigned. As thos
 
 			<td class="name"><div>
 			<a class="anchor" href="#_purge">#</a>
-			<code>purge( <span> <var>$link_id</var> = <span class="php-keyword1">null</span></span> )</code>
+			<code>purge( <span>mixed <var>$link_id</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
-				
+				<p>Deletes link context and value from current <code>Session</code>.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Deletes link context and value from current <code>Session</code>.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$link_id</var></dt>
+						<dd>(optional) If <code>null</code>, the link ID will automatically be searched in the <code>Session</code> store (default: null)</dd>
+					</dl></div>
 
 
 
-
-
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-LinkTracker.html#_setContextValue">LinkTracker::setContextValue()</a></code><br>
+					</div>
 
 
 			</div>

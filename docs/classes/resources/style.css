@@ -524,7 +524,9 @@ table#methods td.name > div:first-child > a.anchor + code > span {
 	text-decoration: none;
 }
 table#methods tr.deprecated td.attributes > code:first-child,
-table#methods tr.deprecated td.name > div:first-child > a.anchor + code {
+table#methods tr.deprecated td.attributes > code:first-child *,
+table#methods tr.deprecated td.name > div:first-child > a.anchor + code,
+table#methods tr.deprecated td.name > div:first-child > a.anchor + code * {
 	text-decoration: line-through;
 }
 

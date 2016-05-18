@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * `FormField` Password field.
+ */
 class PasswordField extends AbstractFormField {
 
 	protected function isPassHash($str) {

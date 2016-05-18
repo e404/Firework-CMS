@@ -81,7 +81,7 @@
 				<li><a href="class-NonInstantiable.html">NonInstantiable</a></li>
 				<li class="active"><a href="class-Notify.html">Notify</a></li>
 				<li><a href="class-PasswordField.html">PasswordField</a></li>
-				<li><a href="class-PaymentField.html">PaymentField</a></li>
+				<li><a href="class-PaymentField.html" class="deprecated">PaymentField</a></li>
 				<li><a href="class-Pdf.html">Pdf</a></li>
 				<li><a href="class-RadioFields.html">RadioFields</a></li>
 				<li><a href="class-Random.html">Random</a></li>
@@ -111,9 +111,9 @@
 
 
 	<div class="description">
-	<p>Model for classes that cannot be instantiable.</p>
+	<p>Front-end notification system.</p>
 
-<p>When trying to instantiate, a fatal error will be thrown.</p>
+<p>The notification will be loaded and displayed automatically in the website front-end.</p>
 	</div>
 
 	<dl class="tree well">
@@ -176,6 +176,9 @@
 
 
 
+					<h4>Internl</h4>
+					<div class="list">
+					</div>
 
 
 			</div>
@@ -192,16 +195,21 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_msg">#</a>
-			<code>msg( <span> <var>$msg</var></span> )</code>
+			<code>msg( <span>string <var>$msg</var></span> )</code>
 
 			<div class="description short">
-				
+				<p>Triggers a notification.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Triggers a notification.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$msg</var></dt>
+						<dd></dd>
+					</dl></div>
 
 
 
@@ -224,11 +232,13 @@
 			<code>setSticky( )</code>
 
 			<div class="description short">
-				
+				<p>If called, the notification will be marked as 'sticky'.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>If called, the notification will be marked as 'sticky'.</p>
+
+<p>A user action has to be taken to dismiss the notification.</p>
 
 
 
@@ -243,7 +253,7 @@
 
 			<td class="attributes"><code>
 				 public static
-				
+				boolean
 				
 				</code>
 			</td>
@@ -253,43 +263,18 @@
 			<code>isSticky( )</code>
 
 			<div class="description short">
-				
+				<p>Checks if a notification is marked as 'sticky'.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Checks if a notification is marked as 'sticky'.</p>
 
 
 
-
-
-
-
-			</div>
-			</div></td>
-		</tr>
-		<tr data-order="readMessages" id="_readMessages">
-
-			<td class="attributes"><code>
-				 public static
-				
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#_readMessages">#</a>
-			<code>readMessages( )</code>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-
-
+					<h4>Returns</h4>
+					<div class="list">
+						boolean<br><code>true</code> if sticky, <code>false</code> if not
+					</div>
 
 
 
@@ -301,7 +286,7 @@
 
 			<td class="attributes"><code>
 				 public static
-				
+				boolean
 				
 				</code>
 			</td>
@@ -311,14 +296,18 @@
 			<code>hasMessages( )</code>
 
 			<div class="description short">
-				
+				<p>Checks if there are notifications to be displayed.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Checks if there are notifications to be displayed.</p>
 
 
 
+					<h4>Returns</h4>
+					<div class="list">
+						boolean<br><code>true</code> if notifications are present, <code>false</code> if not
+					</div>
 
 
 

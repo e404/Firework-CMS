@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * `FormField` File input.
+ */
 class FileField extends AbstractFormField {
 
 	public function getUserValue() {

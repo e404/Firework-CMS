@@ -1,7 +1,7 @@
 <?php
 
 /**
- * <u> Firework CMS (Main Application). </u>
+ * <u>Firework CMS</u> (Main Application).
  *
  * ***TODO:*** (system wide) optimize path handling:
  *
