@@ -16,7 +16,7 @@ class App extends NonInstantiable {
 	/** @internal */
 	const PRODUCT = 'Firework CMS';
 	/** @internal */
-	const VERSION = '1.0.3';
+	const VERSION = '1.0.4';
 
 	protected static $start_time;
 	protected static $app_dir = './';
