@@ -929,22 +929,6 @@ class App extends NonInstantiable {
 	}
 
 	/**
-	 * Returns the current `User` ID if a user is logged in.
-	 *
-	 * This method is failsafe, which means if no `User` ID can be found, `null` will be returned and no error will be triggered.
-	 * This function can be used to check if a user is currently logged in.
-	 * 
-	 * @access public
-	 * @static
-	 * @return string
-	 * @deprecated Use User::getSessionUid() instead
-	 */
-	public static function getUid() {
-		Error::deprecated('User::getSessionUid()');
-		return User::getSessionUid();
-	}
-
-	/**
 	 * getUrl function.
 	 * 
 	 * @access public
@@ -1000,21 +984,6 @@ class App extends NonInstantiable {
 			$url = App::getLink($url);
 		}
 		header("Location: $url");
-		self::halt();
-	}
-
-	/**
-	 * Causes the current location to be reloaded.
-	 * 
-	 * @access public
-	 * @static
-	 * @return void
-	 * @deprecated
-	 */
-	public static function refresh() {
-		Error::deprecated();
-		self::clear();
-		header("Location: ".self::getUrl());
 		self::halt();
 	}
 
@@ -1086,19 +1055,6 @@ class App extends NonInstantiable {
 	}
 
 	/**
-	 * Returns the path to user uploaded files meant for permanent storage.
-	 * 
-	 * @access public
-	 * @static
-	 * @return string
-	 * @deprecated Use User::getUploadDir() instead
-	 */
-	public static function getUserUploadDir() {
-		Error::deprecated('User::getUploadDir()');
-		return User::getUploadDir();
-	}
-
-	/**
 	 * Creates a temp file and returns its path.
 	 * 
 	 * @access public
@@ -1110,33 +1066,6 @@ class App extends NonInstantiable {
 		$tempfile = tempnam(self::getTempDir(), $prefix.'_');
 		chmod($tempfile, 0777);
 		return $tempfile;
-	}
-
-	/**
-	 * Creates a file in the user upload directory and returns its path.
-	 * 
-	 * @access public
-	 * @static
-	 * @param string $suffix The suffix of the file.
-	 * @return string
-	 * @deprecated Use User::createUploadFile() instead
-	 */
-	public static function createUserUploadFile($suffix) {
-		Error::deprecated('User::createUploadFile()');
-		return User::createUploadFile();
-	}
-
-	/**
-	 * processLinkTrackerAction function.
-	 * 
-	 * @access public
-	 * @static
-	 * @return void
-	 * @deprecated Use LinkTracker::action(App::getPage(1)) instead
-	 */
-	public static function processLinkTrackerAction() {
-		Error::deprecated('LinkTracker::processAction()');
-		LinkTracker::action(self::getPage(1));
 	}
 
 	/**

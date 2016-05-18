@@ -36,33 +36,6 @@ class Cache extends NonInstantiable {
 	}
 
 	/**
-	 * Sets the base URI to the cache directory.
-	 * 
-	 * @access public
-	 * @static
-	 * @param string $uri
-	 * @return void
-	 * @deprecated
-	 */
-	public static function setUri($uri) {
-		Error::deprecated();
-		self::$uri = rtrim($uri);
-	}
-
-	/**
-	 * Returns the base URI to the cache directory.
-	 * 
-	 * @access public
-	 * @static
-	 * @return string
-	 * @deprecated
-	 */
-	public static function getUri() {
-		Error::deprecated();
-		return self::$uri;
-	}
-
-	/**
 	 * Returns the path to the cachefile.
 	 * 
 	 * @access public

@@ -146,33 +146,6 @@ class User extends AbstractDbRecord {
 	}
 
 	/**
-	 * getUserByDomain function.
-	 *
-	 * ***TODO:*** This method is project specific and must be removed.
-	 * 
-	 * @access public
-	 * @static
-	 * @param string $domain
-	 * @param array $where (default: array())
-	 * @return User
-	 * @deprecated
-	 */
-	public static function getUserByDomain($domain, $where=array()) {
-		Error::warning('This method is project specific and must be removed.');
-		if(!$domain) return null;
-		$sql = self::db()->prepare("SELECT `uid` FROM `users` WHERE `domain`=@VAL", $domain);
-		if($where) {
-			foreach($where as $field=>$value) {
-				$sql.= " AND `".self::db()->escape($field)."`='".self::db()->escape($value)."'";
-			}
-		}
-		$sql.= " LIMIT 1";
-		$uid = self::db()->single($sql);
-		if(!$uid) return null;
-		return self::newInstance($uid);
-	}
-
-	/**
 	 * Returns the path to user uploaded files meant for permanent storage.
 	 * 
 	 * @access public

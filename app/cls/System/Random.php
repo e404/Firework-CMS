@@ -9,23 +9,6 @@ class Random extends NonInstantiable {
 	 * Generates a random string.
 	 * 
 	 * The string contains upper-case letters, lower-case letters and numbers.
-	 *
-	 * @access public
-	 * @static
-	 * @param int $length (optional) The length of the generated random string (default: 6)
-	 * @return string
-	 * @deprecated Use `Random::generateString()` instead
-	 * @see Random::generateString()
-	 */
-	public static function generate($length=6) {
-		Error::deprecated('Random::generateString()');
-		return self::generateString($length);
-	}
-
-	/**
-	 * Generates a random string.
-	 * 
-	 * The string contains upper-case letters, lower-case letters and numbers.
 	 * `[A-Za-z0-9]{$length}`
 	 *
 	 * @access public

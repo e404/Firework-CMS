@@ -161,20 +161,6 @@ abstract class AbstractDbRecord extends AbstractDbEntity {
 	}
 
 	/**
-	 * Explicit shortcut for `saveToDb(true, true)`.
-	 *
-	 * Saves the current record as a new database entity.
-	 * 
-	 * @access public
-	 * @see self::save()
-	 * @deprecated Use `$this->save(true)` instead
-	 */
-	public function saveAsNew() {
-		Error::deprecated('$this->save(true)');
-		return $this->saveToDb(true, true);
-	}
-
-	/**
 	 * Shortcut for `saveToDb()`.
 	 * 
 	 * @access public
