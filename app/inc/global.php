@@ -23,7 +23,7 @@ if(PHP_SAPI!=='cli') {
 }
 
 // Check if app has already been set up
-if(!file_exists('config.ini') || !is_dir('pages')) {
+if(!file_exists('config.ini')) {
 	require(App::getAppDir().'inc/install/install.php');
 	die();
 }
