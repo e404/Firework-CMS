@@ -22,7 +22,7 @@ class App extends NonInstantiable {
 
 	protected static $start_time;
 	protected static $app_dir = './';
-	protected static $site_dir = './site/';
+	protected static $site_dir = 'site/';
 	protected static $path = null;
 	protected static $languages = array();
 	protected static $lang = null;
@@ -69,7 +69,7 @@ class App extends NonInstantiable {
 	}
 
 	/**
-	 * Sets the site directory.
+	 * Sets the site directory and adds it to the include path.
 	 *
 	 * This is usually just "site", however, you are free to adjust it.
 	 * In your `config.ini` write
@@ -77,7 +77,7 @@ class App extends NonInstantiable {
 	 * [dirs]
 	 * site = "site"
 	 * </code>
-	 * 
+	 *
 	 * @access public
 	 * @static
 	 * @param string $dir Site directory path
@@ -86,6 +86,7 @@ class App extends NonInstantiable {
 	 */
 	public static function setSiteDir($dir) {
 		self::$site_dir = rtrim($dir,'/').'/';
+		set_include_path(get_include_path().PATH_SEPARATOR.self::$site_dir);
 	}
 
 	/**
@@ -262,6 +263,8 @@ class App extends NonInstantiable {
 				});
 			}
 		}
+		// Make sure the site dir is added to the include path
+		set_include_path(get_include_path().PATH_SEPARATOR.self::getSiteDir());
 	}
 
 	/**
@@ -281,7 +284,7 @@ class App extends NonInstantiable {
 		self::addHook('menu',function(){
 			$html = '';
 			$current = self::getSeofreePage();
-			$loggedin = self::getUid();
+			$loggedin = User::getSessionUid();
 			foreach(Config::get('menu','main') as $item=>$text) {
 				if(strstr($item,':')) {
 					list($scope,$item) = explode(':',$item,2);
@@ -361,6 +364,13 @@ class App extends NonInstantiable {
 		return $product_name ? self::PRODUCT.' '.self::VERSION : self::VERSION;
 	}
 
+	/** @internal */
+	protected static function spawn($__phpfile) {
+		call_user_func(function() use ($__phpfile){
+			require($__phpfile);
+		});
+	}
+
 	/**
 	 * Main render method, loads propper site templates and renders the requested page.
 	 * 
@@ -395,7 +405,7 @@ class App extends NonInstantiable {
 			foreach($load as $plugin) {
 				$pluginfile = $plugins_dir.'/'.$plugin.'/plugin.php';
 				if(file_exists($pluginfile)) {
-					require_once($pluginfile);
+					self::spawn($pluginfile);
 					$jsfile = $plugins_dir.'/'.$plugin.'/plugin.js';
 					if(file_exists($jsfile)) {
 						App::addHook('head', function() use($jsfile) {
@@ -412,13 +422,13 @@ class App extends NonInstantiable {
 		include($tpl_head_file);
 		// Load content
 		if($pathok && file_exists($contentfile)) {
-			require_once($contentfile);
+			self::spawn($contentfile);
 		}elseif(!$pathok) {
-			require_once($pages_dir.'+start.php');
+			self::spawn($pages_dir.'+start.php');
 		}elseif(preg_match('/\.(jpe?g|gif|png)$/i',self::$path)) {
-			require_once($pages_dir.'+404+image.php');
+			self::spawn($pages_dir.'+404+image.php');
 		}else{
-			require_once($pages_dir.'+404.php');
+			self::spawn($pages_dir.'+404.php');
 		}
 		// Load foot
 		$tpl_foot_file = self::getSkinPath().'tpl-foot.php';
@@ -1072,7 +1082,7 @@ class App extends NonInstantiable {
 	 * @return string
 	 */
 	public static function getSkinPath() {
-		return 'skins/'.Config::get('env', 'skin').'/';
+		return self::getSiteDir().'skins/'.Config::get('env', 'skin').'/';
 	}
 
 	/**
