@@ -41,7 +41,7 @@ class Error extends NonInstantiable {
 	}
 
 	/** @internal */
-	public static function deprecated(string $use_instead=null) {
+	public static function deprecated($use_instead=null) {
 		trigger_error('This function is deprecated and will be removed in a future version.'.($use_instead ? ' Use '.$use_instead.' instead.' : ''), E_USER_WARNING);
 	}
 
