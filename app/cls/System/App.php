@@ -1,5 +1,7 @@
 <?php
 
+require_once(__DIR__.'/../Abstracts/NonInstantiable.php');
+
 /**
  * <u>Firework CMS</u> (Main Application).
  *
