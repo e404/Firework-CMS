@@ -837,6 +837,20 @@ class App extends NonInstantiable {
 
 	/**
 	 * Returns the current page's URI parts or one specific part.
+	 * 
+	 * @access public
+	 * @static
+	 * @param float $part (optional) The part number (default: -1)
+	 * @return mixed
+	 * @deprecated Use getPage() instead
+	 */
+	public static function getTnt($part=-1) {
+		Error::deprecated('App::getPage()');
+		return self::getPage($part===-1 ? null : $part);
+	}
+
+	/**
+	 * Returns the current page's URI parts or one specific part.
 	 *
 	 * This method is error safe, which means if the given part number does not exist, `null` will be returned and no error will be triggered.
 	 *
