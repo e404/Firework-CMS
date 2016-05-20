@@ -1,5 +1,7 @@
 <?php
 
+Error::deprecated('Language::getCountriesList()');
+
 $countries = array();
 
 if(class_exists('App') && App::getLang()) {
