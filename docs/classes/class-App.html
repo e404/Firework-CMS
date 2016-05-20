@@ -253,11 +253,11 @@ However, this path is automatically determined by the application.</p>
 			<code>setSiteDir( <span>string <var>$dir</var></span> )</code>
 
 			<div class="description short">
-				<p>Sets the site directory.</p>
+				<p>Sets the site directory and adds it to the include path.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Sets the site directory.</p>
+				<p>Sets the site directory and adds it to the include path.</p>
 
 <p>This is usually just "site", however, you are free to adjust it.
 In your <code>config.ini</code> write</p>
@@ -1152,6 +1152,48 @@ cdn_host = <span class="php-quote">&quot;cdn.example.com&quot;</span></pre>
 						<dd>The widget identifier</dd>
 					</dl></div>
 
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getTnt" id="_getTnt" class="deprecated">
+
+			<td class="attributes"><code>
+				 public static
+				mixed
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getTnt">#</a>
+			<code>getTnt( <span>float <var>$part</var> = -<span class="php-num">1</span></span> )</code>
+
+			<div class="description short">
+				<p>Returns the current page's URI parts or one specific part.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Returns the current page's URI parts or one specific part.</p>
+
+					<h4>Deprecated</h4>
+					<div class="list">
+							Use getPage() instead<br>
+					</div>
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$part</var></dt>
+						<dd>(optional) The part number (default: -1)</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						mixed
+					</div>
 
 
 
