@@ -5,7 +5,7 @@ require_once('app/inc/global.php');
 if(Config::get('env', 'published')) {
 	$forbidden = false;
 }else{
-	$ip = $_SERVER['REMOTE_ADDR'];
+	$ip = App::getSession()->getRemoteIp();
 	$allow = Config::get('env', 'allow');
 	if($allow && !is_array($allow)) $allow = array($allow);
 	if($allow && (in_array($ip, $allow) || in_array(App::getSid(), $allow))) {

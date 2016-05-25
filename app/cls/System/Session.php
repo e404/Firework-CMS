@@ -11,9 +11,25 @@ class Session extends Db {
 	protected $store = array();
 	protected $changed = array();
 
+	/**
+	 * Returns the client's IP address.
+	 *
+	 * @access public
+	 * @return string
+	 */
+	public function getRemoteIp() {
+		if(isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+			$ips = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
+			$ip = trim(array_pop($ips));
+			if($ip) return $ip;
+		}
+		return $_SERVER['REMOTE_ADDR'];
+	}
+
 	/** @internal */
 	public function __construct() {
 		parent::__construct();
+		$ip = $this->getRemoteIp();
 		$valid = false;
 		if(isset($_COOKIE['session'])) {
 			$sid = $_COOKIE['session'];
@@ -23,7 +39,7 @@ class Session extends Db {
 			if($session) {
 				$this->sid = $session['sid'];
 				$valid = true;
-				self::$db->query(self::$db->prepare("UPDATE sessions SET t=NOW(), ip=@VAL WHERE sid=@VAL LIMIT 1", $_SERVER['REMOTE_ADDR'], $this->sid));
+				self::$db->query(self::$db->prepare("UPDATE sessions SET t=NOW(), ip=@VAL WHERE sid=@VAL LIMIT 1", $ip, $this->sid));
 				foreach(self::$db->query(self::$db->prepare("SELECT * FROM sessionstore WHERE sid=@VAL", $this->sid)) as $row) {
 					$this->store[$row['key']] = $row['value'];
 				}
@@ -31,7 +47,7 @@ class Session extends Db {
 		}
 		if(!$valid) {
 			$this->sid = sha1(uniqid('',true).Config::get('session', 'salt'));
-			self::$db->query(self::$db->prepare("INSERT INTO sessions SET sid=@VAL, ip=@VAL, t=NOW()", $this->sid, $_SERVER['REMOTE_ADDR']));
+			self::$db->query(self::$db->prepare("INSERT INTO sessions SET sid=@VAL, ip=@VAL, t=NOW()", $this->sid, $ip));
 		}
 		setcookie('session',$this->sid,time()+86400*Config::get('session','lifetime_days'),'/',Config::get('session','cookiedomain'));
 	}
