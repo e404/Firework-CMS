@@ -17,7 +17,7 @@ class RadioFields extends AbstractFormFieldWithOptions {
 		foreach($this->options as $option_value=>$option_label) {
 			$html.= $this->getChildHtml($option_value);
 		}
-		return $html;
+		return parent::getHtml('<div class="radio-label"><span>'.$this->getLabelHtml().' </span></div>'.$html);
 	}
 
 	public function getChildHtml($option_value) {

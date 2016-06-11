@@ -11,10 +11,22 @@ class Form extends AbstractHtmlElement {
 	protected $method = 'post';
 	protected $sent = false;
 	protected $attr = array();
+	protected $id = '';
 
 	/** @internal */
 	public function __construct($method=null) {
 		if($method!==null) $this->setMethod($method);
+	}
+
+	/**
+	 * Sets the `<form>` id.
+	 * 
+	 * @access public
+	 * @param string $id
+	 * @return void
+	 */
+	public function setId($id) {
+		$this->id = $id;
 	}
 
 	/**
@@ -146,7 +158,7 @@ class Form extends AbstractHtmlElement {
 			$link.= '#'.$anchor;
 			$html.= '<div id="'.$anchor.'" class="form-anchor"></div>';
 		}
-		$html.= '<form method="'.($this->method==='post' ? 'post" enctype="multipart/form-data' : $this->method).'" action="'.$link.'"';
+		$html.= '<form'.($this->id ? ' id="'.$this->id.'"' : '').' method="'.($this->method==='post' ? 'post" enctype="multipart/form-data' : $this->method).'" action="'.$link.'"';
 		foreach($this->attr as $attr=>$value) {
 			$html.= ' '.$attr.'="'.htmlspecialchars($value).'"';
 		}
