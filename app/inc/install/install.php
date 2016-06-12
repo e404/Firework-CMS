@@ -101,7 +101,7 @@ switch((int) $_GET['install']) {
 						break;
 					case 'SALT':
 						$label = 'SESSION SALT';
-						$value = Random::generate(64);
+						$value = Random::generateString(64);
 						break;
 					case 'TITLE':
 						$label = 'TITLE FOR HOME (COMPLETE, NO SUFFIX ADDED)';

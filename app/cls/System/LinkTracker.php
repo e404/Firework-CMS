@@ -105,7 +105,7 @@ class LinkTracker extends Db {
 		if(!$this->url) return Error::fatal('URL not set.');
 		if(!$this->desc) return Error::fatal('Description not set.');
 		do {
-			$id = Random::generate(8);
+			$id = Random::generateString(8);
 		} while(self::$db->single("SELECT id FROM links WHERE id='$id' LIMIT 1"));
 		$expires = $this->lifetime_days ? date('Y-m-d H:i:s', time()+$this->lifetime_days*3600*24) : null;
 		$query = self::$db->prepare("INSERT INTO `links` SET `id`=@VAL, `url`=@VAL, `desc`=@VAL, `context`=@VAL, `value`=@VAL, `expires`=@VAL", $id, $this->url, $this->desc, $this->context, $this->value, $expires);
