@@ -126,7 +126,13 @@ class LinkTracker extends Db {
 	 * @return void
 	 */
 	public static function action($id=null) {
-		if(!$id===null) $id = App::getPage(1);
+		if(!$id===null) {
+			if(preg_match('@/link/([^/]+)@', $_SERVER['REQUEST_URI'], $matches)) {
+				$id = $matches[1];
+			}else{
+				Error::fatal('Could not complete link tracker action: ID not found.');
+			}
+		}
 		$link = self::$db->getRow(self::$db->prepare("SELECT `url`, `context`, `value` FROM `links` WHERE `id`=@VAL LIMIT 1", $id));
 		if(!$link['url']) App::redirect(404);
 		App::getSession()->set('link_id', $id);
