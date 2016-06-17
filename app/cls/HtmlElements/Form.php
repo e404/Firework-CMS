@@ -7,14 +7,17 @@ class Form extends AbstractHtmlElement {
 
 	protected static $count = 0;
 
+	protected $formcode = '';
 	protected $fields = array();
 	protected $method = 'post';
-	protected $sent = false;
+	protected $sent = null;
 	protected $attr = array();
 	protected $id = '';
 
 	/** @internal */
 	public function __construct($method=null) {
+		$bt = debug_backtrace()[0];
+		$this->formcode = 'form_'.md5($bt['file'].':'.$bt['line'].':'.filemtime($bt['file']));
 		if($method!==null) $this->setMethod($method);
 	}
 
@@ -32,12 +35,19 @@ class Form extends AbstractHtmlElement {
 	/**
 	 * Checks if the form has been sent.
 	 *
-	 * ***TODO:*** Add a more sophisticated check with a hidden field and the presence of it after sending.
-	 * 
 	 * @access public
 	 * @return bool `true` if the form was sent, `false` otherwise
 	 */
 	public function wasSent() {
+		if($this->sent!==null) return $this->sent;
+		switch($this->method) {
+			case 'post':
+				$this->sent = isset($_POST[$this->formcode]);
+				break;
+			case 'get':
+				$this->sent = isset($_GET[$this->formcode]);
+				break;
+		}
 		return $this->sent;
 	}
 
@@ -45,7 +55,7 @@ class Form extends AbstractHtmlElement {
 	 * Sets the request mode.
 	 * 
 	 * @access public
-	 * @param string $method `'GET'` or `'POST'`
+	 * @param string $method `'get'` or `'post'`
 	 * @return void
 	 */
 	public function setMethod($method) {
@@ -56,7 +66,7 @@ class Form extends AbstractHtmlElement {
 	 * Returns the request method.
 	 * 
 	 * @access public
-	 * @return string
+	 * @return string `'get'` or `'post'`
 	 * @see self::setMethod()
 	 */
 	public function getMethod() {
@@ -86,7 +96,6 @@ class Form extends AbstractHtmlElement {
 	public function addField(AbstractFormField $field) {
 		$this->fields[$field->getName()] = $field;
 		$field->setParentForm($this);
-		if($field->getUserValue()!==null) $this->sent = true;
 		return $this;
 	}
 
@@ -162,7 +171,7 @@ class Form extends AbstractHtmlElement {
 		foreach($this->attr as $attr=>$value) {
 			$html.= ' '.$attr.'="'.htmlspecialchars($value).'"';
 		}
-		$html.= ">\n";
+		$html.= '><input type="hidden" name="'.$this->formcode.'" value="1">'."\n";
 
 		if($auto_error_handling) {
 			// TODO
