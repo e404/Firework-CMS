@@ -126,7 +126,7 @@ class LinkTracker extends Db {
 	 * @return void
 	 */
 	public static function action($id=null) {
-		if(!$id===null) {
+		if($id===null) {
 			if(preg_match('@/link/([^/]+)@', $_SERVER['REQUEST_URI'], $matches)) {
 				$id = $matches[1];
 			}else{
