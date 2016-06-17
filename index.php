@@ -26,7 +26,7 @@ if($forbidden) {
 	header('Pragma: no-cache');
 	App::renderajax();
 }elseif(isset($_SERVER['REDIRECT_IS_LINK_REQUEST'])) {
-	App::processLinkTrackerAction();
+	LinkTracker::action();
 }else{
 	App::render();
 }

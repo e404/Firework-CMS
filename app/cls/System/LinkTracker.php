@@ -122,10 +122,11 @@ class LinkTracker extends Db {
 	 * 
 	 * @access public
 	 * @static
-	 * @param string $id
+	 * @param string $id (default: null)
 	 * @return void
 	 */
-	public static function action($id) {
+	public static function action($id=null) {
+		if(!$id===null) $id = App::getPage(1);
 		$link = self::$db->getRow(self::$db->prepare("SELECT `url`, `context`, `value` FROM `links` WHERE `id`=@VAL LIMIT 1", $id));
 		if(!$link['url']) App::redirect(404);
 		App::getSession()->set('link_id', $id);
