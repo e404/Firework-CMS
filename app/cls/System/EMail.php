@@ -295,11 +295,11 @@ class EMail extends Instantiable {
 		$text = $html;
 		$text = preg_replace("@<script[^>]*?>.*?</script>@si","",$text);
 		$text = preg_replace("@<style.*?</style>@siU","",$text);
-		$text = preg_replace("@<br[^>]*?>@si","[\0LINEBREAK\0]",$text);
-		$text = preg_replace("@</(p|div|h1|h2|h3|h4|h5|h6)>@i","[\0LINEBREAK\0]",$text);
+		$text = preg_replace("@<br[^>]*?>@si","[\0]",$text);
+		$text = preg_replace("@</(p|div|h1|h2|h3|h4|h5|h6)>@i","[\0][\0]",$text);
 		$text = preg_replace("@<[\/\!]*?[^<>]*?>@si","",$text);
 		$text = preg_replace("@<![\s\S]*?--[ \t\n\r]*>@","",$text);
-		$text = str_replace("[\0LINEBREAK\0]","\n",$text);
+		$text = str_replace("[\0]","\n",$text);
 		$text = htmlspecialchars_decode($text);
 		$text = trim($text);
 		$text = preg_replace("/[ \t]+/"," ",$text);
