@@ -79,7 +79,8 @@ abstract class AbstractFormField extends AbstractHtmlElement {
 		$value = $this->getUserValue();
 		if(!$value) return $this->required;
 		if(!$this->validation) return false;
-		foreach($this->validation as $regex_or_callback=>$error_msg) {
+		foreach($this->validation as $validation) {
+			list($regex_or_callback, $error_msg) = $validation;
 			if(!$error_msg) $error_msg = true;
 			if(is_callable($regex_or_callback)) {
 				return $regex_or_callback($value);
@@ -359,7 +360,7 @@ abstract class AbstractFormField extends AbstractHtmlElement {
 	 * @return void
 	 */
 	public function addValidation($regex_or_callback, $error_msg='') {
-		$this->validation[$regex_or_callback] = $error_msg;
+		$this->validation[] = array($regex_or_callback, $error_msg);
 		return $this;
 	}
 
