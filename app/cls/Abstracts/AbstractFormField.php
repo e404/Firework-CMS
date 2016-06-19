@@ -79,11 +79,14 @@ abstract class AbstractFormField extends AbstractHtmlElement {
 		$value = $this->getUserValue();
 		if(!$value) return $this->required;
 		if(!$this->validation) return false;
-		foreach($this->validation as $regex=>$error_msg) {
-			if(substr($regex,0,1)==='!') {
-				if(preg_match(substr($regex,1), $value)) return $error_msg;
+		foreach($this->validation as $regex_or_callback=>$error_msg) {
+			if(!$error_msg) $error_msg = true;
+			if(is_callable($regex_or_callback)) {
+				return $regex_or_callback($value);
+			}elseif(substr($regex_or_callback,0,1)==='!') {
+				if(preg_match(substr($regex_or_callback,1), $value)) return $error_msg;
 			}else{
-				if(!preg_match($regex, $value)) return $error_msg;
+				if(!preg_match($regex_or_callback, $value)) return $error_msg;
 			}
 		}
 		return false;
@@ -348,15 +351,15 @@ abstract class AbstractFormField extends AbstractHtmlElement {
 	}
 
 	/**
-	 * Adds a regular expression that is executed on field validation.
+	 * Adds a regular expression or callback function that is executed on field validation.
 	 * 
 	 * @access public
-	 * @param string $regex The regular expression
+	 * @param string $regex_or_callback The regular expression or callback function
 	 * @param string $error_msg (optional) If set, this error message is presented to the user if the regular expression does not match the field's user input (default: '')
 	 * @return void
 	 */
-	public function addValidation($regex, $error_msg='') {
-		$this->validation[$regex] = $error_msg;
+	public function addValidation($regex_or_callback, $error_msg='') {
+		$this->validation[$regex_or_callback] = $error_msg;
 		return $this;
 	}
 
