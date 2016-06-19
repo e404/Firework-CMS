@@ -298,6 +298,10 @@ class EMail extends Instantiable {
 		$text = preg_replace("@<br[^>]*?>@si","[\0]",$text);
 		$text = preg_replace("@</div>@i","[\0]",$text);
 		$text = preg_replace("@</(p|h1|h2|h3|h4|h5|h6)>@i","[\0][\0]",$text);
+		$text = preg_replace_callback('@<a(\s+[^>]+)>@si', function($matches){
+			if(!preg_match('@\shref=["\']([^"\']+)["\']@', $matches[1], $href)) return '';
+			return '['.$href[1].'] ';
+		},$text);
 		$text = preg_replace("@<[\/\!]*?[^<>]*?>@si","",$text);
 		$text = preg_replace("@<![\s\S]*?--[ \t\n\r]*>@","",$text);
 		$text = str_replace("[\0]","\n",$text);
