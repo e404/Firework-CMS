@@ -83,7 +83,7 @@ abstract class AbstractFormField extends AbstractHtmlElement {
 			list($regex_or_callback, $error_msg) = $validation;
 			if(!$error_msg) $error_msg = true;
 			if(is_callable($regex_or_callback)) {
-				return $regex_or_callback($value);
+				return $regex_or_callback($value) ? false : $error_msg;
 			}elseif(substr($regex_or_callback,0,1)==='!') {
 				if(preg_match(substr($regex_or_callback,1), $value)) return $error_msg;
 			}else{
