@@ -28,7 +28,7 @@ class EMail extends Instantiable {
 	}
 
 	protected static function encodeContact($email, $name='') {
-		return $name ? (preg_match('/^[A-Za-z0-9 _-]+$/',$name) ? '"'.$name.'"' : self::encodeHeaderValue($name)).' <'.$from.'>' : $from;
+		return $name ? (preg_match('/^[A-Za-z0-9 _-]+$/',$name) ? '"'.$name.'"' : self::encodeHeaderValue($name)).' <'.$email.'>' : $email;
 	}
 
 	/**
