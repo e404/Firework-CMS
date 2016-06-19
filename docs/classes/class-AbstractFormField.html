@@ -1038,20 +1038,20 @@ The text can describe the label in a more detailed way.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_addValidation">#</a>
-			<code>addValidation( <span>string <var>$regex</var></span>, <span>string <var>$error_msg</var> = <span class="php-quote">''</span></span> )</code>
+			<code>addValidation( <span>string <var>$regex_or_callback</var></span>, <span>string <var>$error_msg</var> = <span class="php-quote">''</span></span> )</code>
 
 			<div class="description short">
-				<p>Adds a regular expression that is executed on field validation.</p>
+				<p>Adds a regular expression or callback function that is executed on field validation.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Adds a regular expression that is executed on field validation.</p>
+				<p>Adds a regular expression or callback function that is executed on field validation.</p>
 
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
-						<dt><var>$regex</var></dt>
-						<dd>The regular expression</dd>
+						<dt><var>$regex_or_callback</var></dt>
+						<dd>The regular expression or callback function</dd>
 						<dt><var>$error_msg</var></dt>
 						<dd>(optional) If set, this error message is presented to the user if the regular expression does not match the field's user input (default: '')</dd>
 					</dl></div>
