@@ -23,6 +23,14 @@ class EMail extends Instantiable {
 	protected $texttemplate = '';
 	protected $templatereplacements = array();
 
+	protected static function encodeHeaderValue($string) {
+		return '=?UTF-8?Q?'.imap_8bit($string).'?=';
+	}
+
+	protected static function encodeContact($email, $name='') {
+		return $name ? (preg_match('/^[A-Za-z0-9 _-]+$/',$name) ? '"'.$name.'"' : self::encodeHeaderValue($name)).' <'.$from.'>' : $from;
+	}
+
 	/**
 	 * Returns a obfuscated clickable email link.
 	 * 
@@ -76,7 +84,7 @@ class EMail extends Instantiable {
 	 * @return void
 	 */
 	public function setFrom($from, $name='') {
-		$this->from = $name ? '"'.$name.'" <'.$from.'>' : $from;
+		$this->from = self::encodeContact($from, $name);
 	}
 
 	/**
@@ -98,7 +106,7 @@ class EMail extends Instantiable {
 	 * @return void
 	 */
 	public function addTo($to, $name='') {
-		$this->to[] = $name ? '"'.$name.'" <'.$to.'>' : $to;
+		$this->to[] = self::encodeContact($to, $name);
 	}
 
 	/**
@@ -110,7 +118,7 @@ class EMail extends Instantiable {
 	 * @return void
 	 */
 	public function addCc($cc, $name='') {
-		$this->cc[] = $name ? '"'.$name.'" <'.$cc.'>' : $cc;
+		$this->cc[] = self::encodeContact($cc, $name);
 	}
 
 	/**
@@ -160,7 +168,7 @@ class EMail extends Instantiable {
 	 * @return void
 	 */
 	public function setSubject($subject) {
-		$this->subject = $subject;
+		$this->subject = self::encodeHeaderValue($subject);
 	}
 
 	/**
@@ -280,13 +288,7 @@ class EMail extends Instantiable {
 				$body = '--'.$boundaryMixed."\n".implode("\n\n--".$boundaryMixed."\n",$att)."\n\n--".$boundaryMixed.'--';
 			}
 		}
-		$mail = array(
-			'to' => implode(', ',$this->to),
-			'subject' => '=?UTF-8?Q?'.imap_8bit($this->subject).'?=',
-			'body' => $body,
-			'headers' => implode("\n",$headers)
-		);
-		return mail($mail['to'],$mail['subject'],$mail['body'],$mail['headers']) ? true : false;
+		return mail(implode(', ',$this->to), $this->subject, $body, implode("\n",$headers)) ? true : false;
 	}
 
 	protected function transformHtmlToText($html) {
