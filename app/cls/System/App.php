@@ -192,7 +192,7 @@ class App extends NonInstantiable {
 	 * @return void
 	 */
 	public static function autoload($cls) {
-		if(($cls_dir = Config::get('dirs', 'classes_autoload')) && file_exists($cls_file = $cls_dir.'/'.$cls.'.php')) {
+		if(class_exists('Config') && ($cls_dir = Config::get('dirs', 'classes_autoload')) && file_exists($cls_file = $cls_dir.'/'.$cls.'.php')) {
 			require_once($cls_file);
 		}elseif(isset(self::$cls_files[$cls])) {
 			require_once(self::$cls_files[$cls]);
