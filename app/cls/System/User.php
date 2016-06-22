@@ -34,11 +34,9 @@ class User extends AbstractDbRecord {
 	 * @return bool `true` on success, `false` on error
 	 */
 	public function activate() {
-		if($this->getField('mailing')) {
-			NewsletterSubscriber::addCustomer($this->getField('email'));
-		}
-		$expires = date('Y-m-d', strtotime('+1 year'));
-		return self::$db->query(self::$db->prepare("UPDATE `users` SET `active`=1, `expires`=@VAL WHERE `uid`=@VAL LIMIT 1", $expires, $this->getId()));
+		$success = self::$db->query(self::$db->prepare("UPDATE `users` SET `active`=1 WHERE `uid`=@VAL LIMIT 1", $this->getId()));
+		App::executeHooks('user-activated', $this);
+		return $success;
 	}
 
 	/**
@@ -48,7 +46,9 @@ class User extends AbstractDbRecord {
 	 * @return bool `true` on success, `false` on error
 	 */
 	public function deactivate() {
-		return self::$db->query(self::$db->prepare("UPDATE `users` SET `active`=0 WHERE `uid`=@VAL LIMIT 1", $expires, $this->getId()));
+		$success = self::$db->query(self::$db->prepare("UPDATE `users` SET `active`=0 WHERE `uid`=@VAL LIMIT 1", $expires, $this->getId()));
+		App::executeHooks('user-deactivated', $this);
+		return $success;
 	}
 
 	/**
@@ -83,32 +83,6 @@ class User extends AbstractDbRecord {
 		if(!$uid) return false;
 		$uid = self::db()->single(self::db()->prepare("SELECT uid FROM users WHERE uid=@VAL LIMIT 1", $uid));
 		return $uid ? $uid : false;
-	}
-
-	/**
-	 * See if the user account is expired.
-	 * 
-	 * @access public
-	 * @return bool `true` if expired, `false` otherwise
-	 */
-	public function isExpired() {
-		$expires = $this->getField('expires');
-		if(!$expires) return false;
-		$today = strtotime(date('Y-m-d'));
-		$expires = strtotime($expires);
-		return $today>=$expires;
-	}
-
-	/**
-	 * Extends the date of expiry of the user account.
-	 * 
-	 * @access public
-	 * @param string $extension (optional) Amount of expiry extension (default: '+1 year')
-	 * @return bool `true` on success, `false` on error
-	 */
-	public function extendExpiry($extension='+1 year') {
-		$expires = date('Y-m-d', strtotime($this->getField('expires').' '.$extension));
-		return self::$db->query(self::$db->prepare("UPDATE `users` SET `expires`=@VAL WHERE `uid`=@VAL LIMIT 1", $expires, $this->getId()));
 	}
 
 	/**
@@ -152,7 +126,7 @@ class User extends AbstractDbRecord {
 	 * @static
 	 * @return string
 	 */
-	public static function getUserUploadDir() {
+	public static function getUploadDir() {
 		return rtrim(Config::get('dirs', 'user_upload', true),'/').'/';
 	}
 
