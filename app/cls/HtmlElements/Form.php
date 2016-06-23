@@ -228,7 +228,7 @@ class Form extends AbstractHtmlElement {
 			$field = $this->getField($key, true);
 			if(!$field) continue;
 			$field->injectUserValue($value);
-			if($errormsg = $field->hasError()) {
+			if($error_msg = $field->hasError()) {
 				$return['error'][$key] = $error_msg===true ? '' : $error_msg;
 				continue;
 			}
