@@ -31,9 +31,9 @@ class TextField extends AbstractFormField {
 			$onchange = ' onchange="this.value=('.str_replace('"','&quot;',$this->jsautocorrect).')(this.value); return false;"';
 		}
 		if($this->area) {
-			$html.= '<textarea name="'.$this->name.'"'.$onchange.'>'.htmlspecialchars($userValue===null ? $this->value : $userValue).'</textarea>';
+			$html.= '<textarea name="'.$this->name.'"'.($this->maxlength ? ' maxlength="'.$this->maxlength.'"' : '').$onchange.'>'.htmlspecialchars($userValue===null ? $this->value : $userValue).'</textarea>';
 		}else{
-			$html.= '<input type="'.$this->type.'" name="'.$this->name.'" value="'.htmlspecialchars($userValue===null ? $this->value : $userValue).'"'.$onchange.'>';
+			$html.= '<input type="'.$this->type.'" name="'.$this->name.'"'.($this->maxlength ? ' maxlength="'.$this->maxlength.'"' : '').' value="'.htmlspecialchars($userValue===null ? $this->value : $userValue).'"'.$onchange.'>';
 		}
 		$html.= '</label>';
 		return parent::getHtml($html);
