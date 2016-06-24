@@ -283,6 +283,7 @@ abstract class AbstractFormField extends AbstractHtmlElement {
 	public function setMaxLength($length) {
 		$length = (int) $length;
 		$this->maxlength = $length;
+		return $this;
 	}
 
 	/**
