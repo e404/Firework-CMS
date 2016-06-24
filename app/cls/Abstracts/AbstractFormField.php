@@ -26,6 +26,7 @@ abstract class AbstractFormField extends AbstractHtmlElement {
 	protected $autofill = true;
 	protected $autocorrect = null;
 	protected $validation = array();
+	protected $maxlength = 0;
 
 	abstract protected function init();
 
@@ -166,7 +167,7 @@ abstract class AbstractFormField extends AbstractHtmlElement {
 	public function getGenericHtml() {
 		$userValue = $this->getAutofillValue();
 		return '<label><span>'.$this->getLabelHtml().
-			' </span><input type="'.$this->type.'"'.($this->name ? ' name="'.$this->name.'"' : '').
+			' </span><input type="'.$this->type.'"'.($this->name ? ' name="'.$this->name.'"' : '').($this->maxlength ? ' size="'.$this->maxlength.'"' : '').
 			' value="'.htmlspecialchars($userValue===null ? $this->value : $userValue).'"></label>';
 	}
 
@@ -270,6 +271,18 @@ abstract class AbstractFormField extends AbstractHtmlElement {
 	 */
 	public function getLabelHtml() {
 		return $this->text ? $this->text : $this->label;
+	}
+
+	/**
+	 * Defines the field's maximum input length.
+	 * 
+	 * @access public
+	 * @param int $length
+	 * @return void
+	 */
+	public function setMaxLength($length) {
+		$length = (int) $length;
+		$this->maxlength = $length;
 	}
 
 	/**
