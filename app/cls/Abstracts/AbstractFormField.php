@@ -167,7 +167,7 @@ abstract class AbstractFormField extends AbstractHtmlElement {
 	public function getGenericHtml() {
 		$userValue = $this->getAutofillValue();
 		return '<label><span>'.$this->getLabelHtml().
-			' </span><input type="'.$this->type.'"'.($this->name ? ' name="'.$this->name.'"' : '').($this->maxlength ? ' size="'.$this->maxlength.'"' : '').
+			' </span><input type="'.$this->type.'"'.($this->name ? ' name="'.$this->name.'"' : '').($this->maxlength ? ' maxlength="'.$this->maxlength.'"' : '').
 			' value="'.htmlspecialchars($userValue===null ? $this->value : $userValue).'"></label>';
 	}
 
