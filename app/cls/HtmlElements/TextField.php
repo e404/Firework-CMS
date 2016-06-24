@@ -31,7 +31,7 @@ class TextField extends AbstractFormField {
 			$onchange = ' onchange="this.value=('.str_replace('"','&quot;',$this->jsautocorrect).')(this.value); return false;"';
 		}
 		if($this->multiline) {
-			$html.= '<textmultiline name="'.$this->name.'"'.($this->maxlength ? ' maxlength="'.$this->maxlength.'"' : '').$onchange.'>'.htmlspecialchars($userValue===null ? $this->value : $userValue).'</textmultiline>';
+			$html.= '<textarea name="'.$this->name.'"'.($this->maxlength ? ' maxlength="'.$this->maxlength.'"' : '').$onchange.'>'.htmlspecialchars($userValue===null ? $this->value : $userValue).'</textarea>';
 		}else{
 			$html.= '<input type="'.$this->type.'" name="'.$this->name.'"'.($this->maxlength ? ' maxlength="'.$this->maxlength.'"' : '').' value="'.htmlspecialchars($userValue===null ? $this->value : $userValue).'"'.$onchange.'>';
 		}
