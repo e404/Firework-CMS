@@ -5,7 +5,7 @@
  */
 class TextField extends AbstractFormField {
 
-	protected $area = false;
+	protected $multiline = false;
 	protected $jsautocorrect = null;
 
 	protected function init() {
@@ -13,8 +13,8 @@ class TextField extends AbstractFormField {
 		$this->setCssClass('text');
 	}
 
-	public function setArea($area=true) {
-		$this->area = !!$area;
+	public function setMultiline($multiline=true) {
+		$this->multiline = (bool) $multiline;
 		return $this;
 	}
 
@@ -30,8 +30,8 @@ class TextField extends AbstractFormField {
 		if($this->jsautocorrect) {
 			$onchange = ' onchange="this.value=('.str_replace('"','&quot;',$this->jsautocorrect).')(this.value); return false;"';
 		}
-		if($this->area) {
-			$html.= '<textarea name="'.$this->name.'"'.($this->maxlength ? ' maxlength="'.$this->maxlength.'"' : '').$onchange.'>'.htmlspecialchars($userValue===null ? $this->value : $userValue).'</textarea>';
+		if($this->multiline) {
+			$html.= '<textmultiline name="'.$this->name.'"'.($this->maxlength ? ' maxlength="'.$this->maxlength.'"' : '').$onchange.'>'.htmlspecialchars($userValue===null ? $this->value : $userValue).'</textmultiline>';
 		}else{
 			$html.= '<input type="'.$this->type.'" name="'.$this->name.'"'.($this->maxlength ? ' maxlength="'.$this->maxlength.'"' : '').' value="'.htmlspecialchars($userValue===null ? $this->value : $userValue).'"'.$onchange.'>';
 		}
