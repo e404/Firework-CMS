@@ -138,7 +138,7 @@ class User extends AbstractDbRecord {
 	 * @param string $suffix The suffix of the file.
 	 * @return string File path
 	 */
-	public static function createUploadFile(string $suffix) {
+	public static function createUploadFile($suffix) {
 		$path = self::getUploadDir();
 		do {
 			$subdir = mt_rand(10,99);
