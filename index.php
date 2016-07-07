@@ -5,13 +5,22 @@ require_once('app/inc/global.php');
 if(Config::get('env', 'published')) {
 	$forbidden = false;
 }else{
+	$forbidden = true;
 	$ip = App::getSession()->getRemoteIp();
-	$allow = Config::get('env', 'allow');
-	if($allow && !is_array($allow)) $allow = array($allow);
-	if($allow && (in_array($ip, $allow) || in_array(App::getSid(), $allow))) {
-		$forbidden = false;
-	}else{
-		$forbidden = true;
+	$sid = App::getSid();
+	if($allow = Config::get('env', 'allow')) {
+		if(!is_array($allow)) $allow = array($allow);
+		foreach($allow as $value) {
+			if(substr($value,0,1)==='[') {
+				list($key, $value) = explode(':',str_replace(array('[',']'),'',$value),2);
+				if($_SERVER[trim($key)]===trim($value)) {
+					$forbidden = false;
+					break;
+				}
+			}elseif($ip===$value || $sid===$value) {
+				$forbidden = false;
+			}
+		}
 	}
 }
 
