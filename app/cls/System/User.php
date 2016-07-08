@@ -107,6 +107,21 @@ class User extends AbstractDbRecord {
 	}
 
 	/**
+	 * Get the user object by user ID stored in the `Session`.
+	 *
+	 * If no `Session` is present or it contains no user ID, `null` is returned.
+	 * 
+	 * @access public
+	 * @static
+	 * @return User
+	 * @see Session
+	 */
+	public static function getSessionUser() {
+		$uid = self::getSessionUid();
+		return $uid ? new self($uid) : null;
+	}
+
+	/**
 	 * Returns the `User` object of the user with the given email address.
 	 *
 	 * If no user with this email address exists, `null` is returned.
