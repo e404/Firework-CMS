@@ -5,6 +5,8 @@
  */
 class User extends AbstractDbRecord {
 
+	use Inject;
+
 	protected function getTable() {
 		return 'users';
 	}
