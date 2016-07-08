@@ -14,6 +14,8 @@ class User extends AbstractDbRecord {
 	}
 
 	protected function generateId() {
+		$uid_generator = Config::get('env', 'uid_generator');
+		if($uid_generator && is_callable($uid_generator)) return $uid_generator();
 		return date('y').mt_rand(1000,9999).mt_rand(1000,9999).mt_rand(1000,9999);
 	}
 
