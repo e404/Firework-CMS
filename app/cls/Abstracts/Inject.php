@@ -11,6 +11,7 @@ trait Inject {
 	public function __call($name, $arguments) {
 		$name = strtoupper($name);
 		if(isset(self::$injectedMethods[$name])) {
+			array_unshift($arguments, $this);
 			return call_user_func_array(self::$injectedMethods[$name], $arguments);
 		}else{
 			return null;
