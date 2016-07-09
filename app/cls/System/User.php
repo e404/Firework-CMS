@@ -7,6 +7,8 @@ class User extends AbstractDbRecord {
 
 	use Inject;
 
+	protected $uid_generator = null;
+
 	protected function getTable() {
 		return 'users';
 	}
@@ -16,9 +18,12 @@ class User extends AbstractDbRecord {
 	}
 
 	protected function generateId() {
-		$uid_generator = Config::get('env', 'uid_generator');
-		if($uid_generator && is_callable($uid_generator)) return $uid_generator();
-		return date('y').mt_rand(1000,9999).mt_rand(1000,9999).mt_rand(1000,9999);
+		if($this->uid_generator && is_callable($this->uid_generator)) return $this->uid_generator();
+		return null;
+	}
+
+	public function setUidGenerator($function) {
+		$this->uid_generator = $function;
 	}
 
 	/**
