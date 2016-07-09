@@ -22,6 +22,13 @@ class User extends AbstractDbRecord {
 		return null;
 	}
 
+	/**
+	 * Attaches a user-defined ID generator function.
+	 * 
+	 * @access public
+	 * @param callable $function If `null`, auto-increment will be implied.
+	 * @return void
+	 */
 	public function setUidGenerator($function) {
 		$this->uid_generator = $function;
 	}
