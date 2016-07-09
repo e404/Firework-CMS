@@ -7,7 +7,7 @@ class User extends AbstractDbRecord {
 
 	use Inject;
 
-	protected $uid_generator = null;
+	protected static $uid_generator = null;
 
 	protected function getTable() {
 		return 'users';
@@ -17,20 +17,21 @@ class User extends AbstractDbRecord {
 		return 'uid';
 	}
 
-	protected function generateId() {
-		if($this->uid_generator && is_callable($this->uid_generator)) return $this->uid_generator();
-		return null;
-	}
-
 	/**
 	 * Attaches a user-defined ID generator function.
 	 * 
 	 * @access public
+	 * @static
 	 * @param callable $function If `null`, auto-increment will be implied.
 	 * @return void
 	 */
-	public function setUidGenerator($function) {
-		$this->uid_generator = $function;
+	public static function setUidGenerator($function) {
+		self::$uid_generator = $function;
+	}
+
+	protected function generateId() {
+		if(self::$uid_generator && is_callable(self::$uid_generator)) return self::$uid_generator();
+		return null;
 	}
 
 	/**
