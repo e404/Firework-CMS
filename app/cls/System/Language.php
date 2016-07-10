@@ -251,7 +251,7 @@ class Language extends Instantiable {
 	 * @param bool $seconds (default: false)
 	 * @return string
 	 */
-	public function date($str, $time=false, $seconds=false) {
+	public function dateformat($str, $time=false, $seconds=false) {
 		$time = strtotime($str);
 		if(!$time) return null;
 		$date_format = Config::get('lang', 'date_format');
