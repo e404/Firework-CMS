@@ -263,8 +263,8 @@ class Language extends Instantiable {
 		if(!$time) return null;
 		$date_format = $this->date_format;
 		if($time) {
-			$date_format.' H:i';
-			if($seconds) $date_format.':s';
+			$date_format.= ' H:i';
+			if($seconds) $date_format.= ':s';
 		}
 		return date($date_format, $time);
 	}
