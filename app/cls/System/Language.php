@@ -243,6 +243,26 @@ class Language extends Instantiable {
 	}
 
 	/**
+	 * Translates a date to the right localized format.
+	 * 
+	 * @access public
+	 * @param mixed $str
+	 * @param bool $time (default: false)
+	 * @param bool $seconds (default: false)
+	 * @return string
+	 */
+	public function date($str, $time=false, $seconds=false) {
+		$time = strtotime($str);
+		if(!$time) return null;
+		$date_format = Config::get('lang', 'date_format');
+		if($time) {
+			$date_format.' H:i';
+			if($seconds) $date_format.':s';
+		}
+		return date($date_format, $time);
+	}
+
+	/**
 	 * Gets the current language code.
 	 * 
 	 * @access public
