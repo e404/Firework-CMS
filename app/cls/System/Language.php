@@ -18,6 +18,7 @@ class Language extends Instantiable {
 	protected $currency_prefix = '';
 	protected $currency_suffix = '';
 	protected $currency_decimals = 2;
+	protected $date_format = '';
 
 	/**
 	 * Sets the auto-append mode.
@@ -83,6 +84,12 @@ class Language extends Instantiable {
 			$decimals = $decimals[$this->lang];
 		}
 		$this->currency_decimals = $decimals;
+		$dateformat = Config::get('lang','date_format');
+		if(is_array($dateformat) && isset($dateformat[$this->lang])) {
+			$dateformat = $dateformat[$this->lang];
+		}
+		$this->date_format = $dateformat;
+		if(!$this->date_format) $this->date_format = 'Y-m-d';
 		return true;
 	}
 
@@ -251,10 +258,10 @@ class Language extends Instantiable {
 	 * @param bool $seconds (default: false)
 	 * @return string
 	 */
-	public function dateformat($str, $time=false, $seconds=false) {
+	public function date($str, $time=false, $seconds=false) {
 		$time = strtotime($str);
 		if(!$time) return null;
-		$date_format = Config::get('lang', 'date_format');
+		$date_format = $this->date_format;
 		if($time) {
 			$date_format.' H:i';
 			if($seconds) $date_format.':s';
