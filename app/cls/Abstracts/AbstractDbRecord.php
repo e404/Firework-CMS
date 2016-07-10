@@ -76,6 +76,26 @@ abstract class AbstractDbRecord extends AbstractDbEntity {
 	}
 
 	/**
+	 * Clones a database record <strong>without saving it</strong>.
+	 *
+	 * The ID is removed after cloning. When saving, a new ID will be generated.
+	 *
+	 * @access public
+	 * @return AbstractDbRecord
+	 * @see self::save()
+	 */
+	public function duplicate() {
+		if(!$this->getId() || !$this->exists()) {
+			Error::warning('Tried to duplicate non-existing DB record.');
+			return null;
+		}
+		$new_record = clone $this;
+		$new_record->setId(null);
+		$new_record->setField($this->getPrimaryKey(), null);
+		return $new_record;
+	}
+
+	/**
 	 * Loads the record's datbase content.
 	 * 
 	 * @access public
