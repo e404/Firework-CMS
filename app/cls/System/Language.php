@@ -3,7 +3,7 @@
 /**
  * Language Translation.
  */
-class Language extends Instantiable {
+class Language extends ISystem {
 
 	protected $autoappend = false;
 	protected $autoappend_added = array();

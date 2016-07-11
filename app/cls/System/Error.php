@@ -3,7 +3,7 @@
 /**
  * Error class.
  */
-class Error extends NonInstantiable {
+class Error extends NISystem {
 
 	private static $debug_msg_counter = 0;
 	private static $mode = null;

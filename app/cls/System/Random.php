@@ -3,7 +3,7 @@
 /**
  * Random generator.
  */
-class Random extends NonInstantiable {
+class Random extends NISystem {
 
 	/**
 	 * Generates a random string.

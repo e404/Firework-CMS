@@ -7,6 +7,8 @@
  */
 class Session extends Db {
 
+	use Inject;
+
 	protected $sid = null;
 	protected $store = array();
 	protected $changed = array();

@@ -5,7 +5,7 @@
  *
  * The notification will be loaded and displayed automatically in the website front-end.
  */
-class Notify extends NonInstantiable {
+class Notify extends NISystem {
 
 	/** @internl */
 	public static function ajax() {

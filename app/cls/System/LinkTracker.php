@@ -22,6 +22,8 @@
  */
 class LinkTracker extends Db {
 
+	use Inject;
+
 	protected $lifetime_days = null;
 	protected $url = null;
 	protected $desc = null;

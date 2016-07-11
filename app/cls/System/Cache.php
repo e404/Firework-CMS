@@ -3,7 +3,7 @@
 /**
  * Automated caching of files and other data.
  */
-class Cache extends NonInstantiable {
+class Cache extends NISystem {
 
 	private static $dir = null;
 	private static $last_inline_id = null;

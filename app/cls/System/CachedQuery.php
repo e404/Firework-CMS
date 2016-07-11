@@ -5,6 +5,8 @@
  */
 class CachedQuery extends Db {
 
+	use Inject;
+
 	protected $lifetime_sec = null;
 
 	/**

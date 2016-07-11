@@ -5,7 +5,7 @@
  *
  * @see EMailAttachment
  */
-class EMail extends Instantiable {
+class EMail extends ISystem {
 
 	protected $from = '';
 	protected $to = array();

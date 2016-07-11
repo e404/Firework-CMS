@@ -3,7 +3,7 @@
 /**
  * Creates a custom HTML tag that can be rendered within the application.
  */
-class CustomHtmlTag extends Instantiable {
+class CustomHtmlTag extends ISystem {
 
 	protected $tag = '';
 	protected $atts = array();

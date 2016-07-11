@@ -5,7 +5,7 @@
  *
  * @see EMail
  */
-class EMailAttachment extends Instantiable {
+class EMailAttachment extends ISystem {
 
 	private $data;
 	private $mimeType;

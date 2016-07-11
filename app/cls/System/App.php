@@ -13,7 +13,7 @@ require_once(__DIR__.'/../Abstracts/NonInstantiable.php');
  * @copyright Roadfamily LLC, 2016
  * @license ../license.txt
  */
-class App extends NonInstantiable {
+class App extends NISystem {
 
 	/** @internal */
 	const PRODUCT = 'Firework CMS';

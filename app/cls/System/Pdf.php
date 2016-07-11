@@ -24,7 +24,9 @@ class TCPDF_modified extends TCPDF {
 /**
  * PDF Generator.
  */
-class Pdf extends Instantiable {
+class Pdf extends ISystem {
+
+	use Inject;
 
 	protected $pdf;
 

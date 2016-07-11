@@ -3,7 +3,7 @@
 /**
  * Configuration class.
  */
-class Config extends NonInstantiable {
+class Config extends NISystem {
 
 	private static $conf = array();
 
