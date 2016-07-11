@@ -1,24 +1,30 @@
 <?php
 
-require_once(__DIR__.'/../Abstracts/NonInstantiable.php');
+/* ***TODO:*** (system wide) optimize path handling:
+ *
+ * - Never end a path with trailing /
+ * - Never use hard-coded / as dir separator (use DIRECTORY_SEPARATOR global constant)
+ */
 
 /**
  * <u>Firework CMS</u> (Main Application).
  *
- * ***TODO:*** (system wide) optimize path handling:
- *
- * - Never end a path with trailing /
- * - Never use hard-coded / as dir separator (use DIRECTORY_SEPARATOR global constant)
- *
  * @copyright Roadfamily LLC, 2016
  * @license ../license.txt
  */
-class App extends NISystem {
+class App {
+
+	use Inject;
 
 	/** @internal */
 	const PRODUCT = 'Firework CMS';
 	/** @internal */
 	const VERSION = '1.1.0';
+
+	/** @internal */
+	final public function __construct() {
+		Error::fatal('Trying to instantiate a non-instantiable class.');
+	}
 
 	protected static $start_time;
 	protected static $app_dir = './';
