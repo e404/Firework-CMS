@@ -6,6 +6,8 @@
  * - Never use hard-coded / as dir separator (use DIRECTORY_SEPARATOR global constant)
  */
 
+require_once(__DIR__.'/../Abstracts/Inject');
+
 /**
  * <u>Firework CMS</u> (Main Application).
  *
