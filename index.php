@@ -12,13 +12,24 @@ if(Config::get('env', 'published')) {
 		if(!is_array($allow)) $allow = array($allow);
 		foreach($allow as $value) {
 			if(substr($value,0,1)==='[') {
+				// HTTP request header value
 				list($key, $value) = explode(':',str_replace(array('[',']'),'',$value),2);
 				if($_SERVER[trim($key)]===trim($value)) {
 					$forbidden = false;
 					break;
 				}
 			}elseif($ip===$value || $sid===$value) {
+				// IP or Session ID
 				$forbidden = false;
+			}elseif(substr($value,0,1)==='/' && isset($_SERVER['REQUEST_URI'])) {
+				// URL
+				if(substr($value,-1)==='*' && substr($value,0,-1)===substr($_SERVER['REQUEST_URI'],0,strlen($value)-1)) {
+					// URL with trailing * wildcard
+					$forbidden = false;
+				}elseif($_SERVER['REQUEST_URI']===$value) {
+					// Exact URL
+					$forbidden = false;
+				}
 			}
 		}
 	}
