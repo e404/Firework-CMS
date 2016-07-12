@@ -150,11 +150,15 @@ class App {
 	 * 
 	 * @access public
 	 * @static
-	 * @param string $preload
+	 * @param mixed $preload
 	 * @return void
 	 */
 	public static function preload($preload) {
-		self::$preload = $preload;
+		if(is_array($preload)) {
+			self::$preload = array_merge(self::$preload, $preload);
+		}else{
+			self::$preload[] = $preload;
+		}
 	}
 
 	/**
