@@ -13,6 +13,7 @@ class Form extends AbstractHtmlElement {
 	protected $sent = null;
 	protected $attr = array();
 	protected $id = '';
+	protected $error_handler = null;
 
 	/** @internal */
 	public function __construct($method=null) {
@@ -145,15 +146,27 @@ class Form extends AbstractHtmlElement {
 	}
 
 	/**
+	 * Defines a function that handles errors after Form submit.
+	 * 
+	 * @access public
+	 * @param callable $fn
+	 * @return Form
+	 */
+	public function setErrorHandler(callable $fn) {
+		$this->error_handler = $fn;
+		return $this;
+	}
+
+	/**
 	 * Writes the opening `<form>` tag to the output and sets some non-caching headers.
 	 * 
 	 * ***TODO:*** Implement `$auto_error_handling`.
 	 *
 	 * @access public
-	 * @param bool $auto_error_handling (default: false)
+	 * @param bool $use_anchor_link (default: false)
 	 * @return void
 	 */
-	public function beginForm($auto_error_handling=false) {
+	public function beginForm($use_anchor_link=false) {
 		self::$count++;
 		header('Expires: Sat, 01 Jan 2000 00:00:00 GMT');
 		header('Last-Modified: ' . gmdate( 'D, d M Y H:i:s') . ' GMT');
@@ -162,7 +175,7 @@ class Form extends AbstractHtmlElement {
 		header('Pragma: no-cache');
 		$html = '';
 		$link = App::getLink();
-		if($auto_error_handling) {
+		if($use_anchor_link) {
 			$anchor = 'form'.self::$count;
 			$link.= '#'.$anchor;
 			$html.= '<div id="'.$anchor.'" class="form-anchor"></div>';
@@ -173,8 +186,8 @@ class Form extends AbstractHtmlElement {
 		}
 		$html.= '><input type="hidden" name="'.$this->formcode.'" value="1">'."\n";
 
-		if($auto_error_handling) {
-			// TODO
+		if($this->error_handler && $this->wasSent()) {
+			echo call_user_func($this->error_handler, $this);
 		}
 
 		echo $html;
