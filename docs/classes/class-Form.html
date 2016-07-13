@@ -491,7 +491,7 @@
 			</div>
 			</div></td>
 		</tr>
-		<tr data-order="setErrorHandler" id="_setErrorHandler">
+		<tr data-order="setSubmitHandler" id="_setSubmitHandler">
 
 			<td class="attributes"><code>
 				 public 
@@ -501,15 +501,17 @@
 			</td>
 
 			<td class="name"><div>
-			<a class="anchor" href="#_setErrorHandler">#</a>
-			<code>setErrorHandler( <span>callable <var>$fn</var></span> )</code>
+			<a class="anchor" href="#_setSubmitHandler">#</a>
+			<code>setSubmitHandler( <span>callable <var>$fn</var></span> )</code>
 
 			<div class="description short">
-				<p>Defines a function that handles errors after Form submit.</p>
+				<p>Defines a function that handles errors after Form submit.
+The handler itself should return <code>true</code> on success and <code>false</code> on errors.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Defines a function that handles errors after Form submit.</p>
+				<p>Defines a function that handles errors after Form submit.
+The handler itself should return <code>true</code> on success and <code>false</code> on errors.</p>
 
 
 					<h4>Parameters</h4>
@@ -524,6 +526,45 @@
 					</div>
 
 
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="handleSubmit" id="_handleSubmit">
+
+			<td class="attributes"><code>
+				 public 
+				boolean
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_handleSubmit">#</a>
+			<code>handleSubmit( )</code>
+
+			<div class="description short">
+				<p>Handles the Form submit event.
+If not defined via <code>Form::setSubmitHandler</code>, a default handler is applied.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Handles the Form submit event.
+If not defined via <code>Form::setSubmitHandler</code>, a default handler is applied.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						boolean<br>Should return <code>true</code> on success, <code>false</code> on errors.
+					</div>
+
+
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-Form.html#_setSubmitHandler">Form::setSubmitHandler()</a></code><br>
+					</div>
 
 
 			</div>
