@@ -13,7 +13,7 @@ class Form extends AbstractHtmlElement {
 	protected $sent = null;
 	protected $attr = array();
 	protected $id = '';
-	protected $error_handler = null;
+	protected $submit_handler = null;
 
 	/** @internal */
 	public function __construct($method=null) {
@@ -147,14 +147,28 @@ class Form extends AbstractHtmlElement {
 
 	/**
 	 * Defines a function that handles errors after Form submit.
+	 * The handler itself should return `true` on success and `false` on errors.
 	 * 
 	 * @access public
 	 * @param callable $fn
 	 * @return Form
 	 */
-	public function setErrorHandler(callable $fn) {
-		$this->error_handler = $fn;
+	public function setSubmitHandler(callable $fn) {
+		$this->submit_handler = $fn;
 		return $this;
+	}
+
+	/**
+	 * Handles the Form submit event.
+	 * If not defined via `Form::setSubmitHandler`, a default handler is applied.
+	 * 
+	 * @access public
+	 * @return bool Should return `true` on success, `false` on errors.
+	 * @see self::setSubmitHandler()
+	 */
+	public function handleSubmit() {
+		if(!$this->submit_handler) Error::fatal('No submit handler found.');
+		return call_user_func($this->submit_handler, $this);
 	}
 
 	/**
@@ -185,11 +199,6 @@ class Form extends AbstractHtmlElement {
 			$html.= ' '.$attr.'="'.htmlspecialchars($value).'"';
 		}
 		$html.= '><input type="hidden" name="'.$this->formcode.'" value="1">'."\n";
-
-		if($this->error_handler && $this->wasSent()) {
-			echo call_user_func($this->error_handler, $this);
-		}
-
 		echo $html;
 	}
 
