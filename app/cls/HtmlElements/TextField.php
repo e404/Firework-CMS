@@ -26,6 +26,7 @@ class TextField extends AbstractFormField {
 
 	public function setPlaceholder($placeholder_text) {
 		$this->placeholder = $placeholder_text;
+		return $this;
 	}
 
 	public function getHtml() {
