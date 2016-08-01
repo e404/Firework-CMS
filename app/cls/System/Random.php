@@ -42,7 +42,7 @@ class Random extends NISystem {
 	 * @return string
 	 */
 	public static function generateEasyCode($length) {
-		$code = self::generate($length*5);
+		$code = self::generateString($length*5);
 		$code = strtoupper($code);
 		$code = str_replace(array('A','E','I','1','O','0','U','S','5'), '', $code);
 		if(strlen($code)<$length) return self::generateEasyCode($length);
