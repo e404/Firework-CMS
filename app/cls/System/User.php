@@ -30,8 +30,11 @@ class User extends AbstractDbRecord {
 	}
 
 	protected function generateId() {
-		if(self::$uid_generator && is_callable(self::$uid_generator)) return self::$uid_generator();
-		return null;
+		if(self::$uid_generator && is_callable(self::$uid_generator)) {
+			return call_user_func(self::$uid_generator);
+		}else{
+			return null;
+		}
 	}
 
 	/**
