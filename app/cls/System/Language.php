@@ -184,6 +184,7 @@ class Language extends ISystem {
 			if(!isset($this->autoappend_added[$str])) {
 				if($translated = App::executeHooks('generic-translation', ['from'=>$this->base, 'to'=>$this->lang, 'text'=>$str])) {
 					fputcsv($this->filehandle,array($str, $translated),"\t",'"');
+					$str = $translated;
 				}else{
 					fputcsv($this->filehandle,array($str,$str),"\t",'"');
 				}
