@@ -217,6 +217,23 @@ abstract class AbstractDbRecord extends AbstractDbEntity {
 		return $this->dbfields[$name];
 	}
 
+	public function getBool($fieldname) {
+		return !!$this->getField($fieldname, false);
+	}
+
+	public function getInt($fieldname) {
+		return (int) $this->getField($fieldname, false);
+	}
+
+	public function getFloat($fieldname) {
+		return (float) $this->getField($fieldname, false);
+	}
+
+	public function getArray($fieldname) {
+		$val = $this->getField($fieldname, true);
+		return is_array($val) ? $val : array();
+	}
+
 	/**
 	 * Returns all database fields (columns).
 	 * 
