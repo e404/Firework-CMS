@@ -178,20 +178,22 @@ class Language extends ISystem {
 		if($this->lang===$this->base) return $str;
 		$this->load();
 		if(isset($this->strings[$str])) return $this->strings[$str];
+		$translated = App::executeHooks('generic-translation', ['from'=>$this->base, 'to'=>$this->lang, 'text'=>$str]);
 		if($this->autoappend) {
-			$lang_dir = rtrim(Config::get('dirs', 'lang'),'/').'/';
-			if(!$this->filehandle) $this->filehandle = fopen($lang_dir.$this->lang.'.csv',$this->autoappend ? 'a+' : 'r');
+			if(!$this->filehandle) {
+				$lang_dir = rtrim(Config::get('dirs', 'lang'),'/').'/';
+				$this->filehandle = fopen($lang_dir.$this->lang.'.csv',$this->autoappend ? 'a+' : 'r');
+			}
 			if(!isset($this->autoappend_added[$str])) {
-				if($translated = App::executeHooks('generic-translation', ['from'=>$this->base, 'to'=>$this->lang, 'text'=>$str])) {
+				if($translated) {
 					fputcsv($this->filehandle,array($str, $translated),"\t",'"');
-					$str = $translated;
 				}else{
 					fputcsv($this->filehandle,array($str,$str),"\t",'"');
 				}
 				$this->autoappend_added[$str] = true;
 			}
 		}
-		return $str;
+		return $translated ? $translated : $str;
 	}
 
 	/**
