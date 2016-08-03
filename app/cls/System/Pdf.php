@@ -26,8 +26,6 @@ class TCPDF_modified extends TCPDF {
  */
 class Pdf extends ISystem {
 
-	use Inject;
-
 	protected $pdf;
 
 	/**
