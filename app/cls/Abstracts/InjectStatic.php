@@ -8,7 +8,7 @@ trait InjectStatic {
 		self::$injectedStaticMethods[strtoupper($methodName)] = $methodFunction;
 	}
 
-	public function __callStatic($name, $arguments) {
+	public static function __callStatic($name, $arguments) {
 		$name = strtoupper($name);
 		if(isset(self::$injectedStaticMethods[$name])) {
 			array_unshift($arguments, get_called_class());
