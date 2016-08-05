@@ -1,5 +1,7 @@
 <?php
 
+require_once(rtrim(__DIR__,'/').'/InjectStatic.php');
+
 trait Inject {
 
 	use InjectStatic;
