@@ -1,3 +1,7 @@
 <?php
 
-abstract class NISystem extends NonInstantiable {}
+abstract class NISystem extends NonInstantiable {
+
+	use InjectStatic;
+
+}

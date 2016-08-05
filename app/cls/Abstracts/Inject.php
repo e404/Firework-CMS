@@ -2,6 +2,8 @@
 
 trait Inject {
 
+	use InjectStatic;
+
 	protected static $injectedMethods = [];
 
 	public static function injectMethod($methodName, $methodFunction) {
