@@ -217,6 +217,10 @@ abstract class AbstractDbRecord extends AbstractDbEntity {
 		return $this->dbfields[$name];
 	}
 
+	public function getStr($fieldname) {
+		return $this->getField($fieldname, false);
+	}
+
 	public function getBool($fieldname) {
 		return !!$this->getField($fieldname, false);
 	}
