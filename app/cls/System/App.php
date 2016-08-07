@@ -491,11 +491,11 @@ class App {
 			$html = str_replace('[[[CANONICAL]]]',$canonical,$html);
 		}else{
 			$html = str_replace('[[[TITLE]]]',Config::get('htmlhead','title'),$html);
-			$html = str_replace('[[[CANONICAL]]]',self::getLink(self::getPage()),$html);
+			$html = str_replace('[[[CANONICAL]]]',self::getLink(self::getUrlPart()),$html);
 		}
 		$html = str_replace('[[[LANG]]]',self::getLang(),$html);
 		$html = str_replace('[[[DESCRIPTION]]]',Config::get('htmlhead','description'),$html);
-		$html = str_replace('[[[BODYCLASS]]]', self::getLang().' '.(self::getPage(0) ? 'page-'.self::getPage(0) : 'page-start').' '.(count(self::getPage())>1 ? 'sub' : 'root').' '.(self::isSandboxed() ? 'sandboxed' : 'production'),$html);
+		$html = str_replace('[[[BODYCLASS]]]', self::getLang().' '.(self::getUrlPart(0) ? 'page-'.self::getUrlPart(0) : 'page-start').' '.(count(self::getUrlPart())>1 ? 'sub' : 'root').' '.(self::isSandboxed() ? 'sandboxed' : 'production'),$html);
 		$html = preg_replace_callback('/\[\[\[HOOK:([^\]]+)\]\]\]\n?/', function($matches){
 			return self::executeHooks($matches[1]);
 		}, $html);
@@ -781,7 +781,7 @@ class App {
 	 * </code>
 	 */
 	public static function getLink($page=null, $seostr=null) {
-		if($page===null) $page = self::getPage();
+		if($page===null) $page = self::getUrlPart();
 		return self::link($page,$seostr,true);
 	}
 
@@ -800,7 +800,7 @@ class App {
 	 */
 	public static function switchLangLink($newlang) {
 		if(self::getLang()===$newlang) {
-			$uri = self::getPage().'/';
+			$uri = self::getUrlPart().'/';
 		}else{
 			$uri = self::getSeofreePage($uri).'/';
 		}
@@ -848,6 +848,20 @@ class App {
 	}
 
 	/**
+	 * ***DEPRECATED*** Returns the current page's URI parts or one specific part.
+
+	 * @access public
+	 * @static
+	 * @param integer $part (optional) The part number (default: null)
+	 * @return mixed
+	 * @deprecated Use App::getUrlPart() instead
+	 * @see self::getUrlPart()
+	 */
+	public static function getPage($part=null) {
+		return self::getUrlPart($part);
+	}
+
+	/**
 	 * Returns the current page's URI parts or one specific part.
 	 *
 	 * This method is error safe, which means if the given part number does not exist, `null` will be returned and no error will be triggered.
@@ -860,13 +874,13 @@ class App {
 	 * @example
 	 * <code>
 	 * //Current URL: http://www.example.com/about/more/info
-	 * App::getPage(); // returns (array) ['about', 'more', 'info']
-	 * App::getPage(0); // returns (string) 'about'
-	 * App::getPage(2); // returns (string) 'info'
-	 * App::getPage(99); // returns null
+	 * App::getUrlPart(); // returns (array) ['about', 'more', 'info']
+	 * App::getUrlPart(0); // returns (string) 'about'
+	 * App::getUrlPart(2); // returns (string) 'info'
+	 * App::getUrlPart(99); // returns null
 	 * </code>
 	 */
-	public static function getPage($part=null) {
+	public static function getUrlPart($part=null) {
 		$page = self::getSeofreePage();
 		if($part===null) return $page;
 		$page = explode('/',$page);
@@ -889,7 +903,7 @@ class App {
 	 * </code>
 	 */
 	public static function getUri(array $get=array()) {
-		$uri = self::getPage();
+		$uri = self::getUrlPart();
 		if($get) {
 			if(is_array($get)) $uri.= '?'.http_build_query($get);
 			else $uri.= '?'.$get;
