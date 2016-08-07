@@ -1153,7 +1153,7 @@ cdn_host = <span class="php-quote">&quot;cdn.example.com&quot;</span></pre>
 			</div>
 			</div></td>
 		</tr>
-		<tr data-order="getPage" id="_getPage">
+		<tr data-order="getPage" id="_getPage" class="deprecated">
 
 			<td class="attributes"><code>
 				 public static
@@ -1165,6 +1165,52 @@ cdn_host = <span class="php-quote">&quot;cdn.example.com&quot;</span></pre>
 			<td class="name"><div>
 			<a class="anchor" href="#_getPage">#</a>
 			<code>getPage( <span>integer <var>$part</var> = <span class="php-keyword1">null</span></span> )</code>
+
+			<div class="description short">
+				<p><strong><em>DEPRECATED</em></strong> Returns the current page's URI parts or one specific part.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p><strong><em>DEPRECATED</em></strong> Returns the current page's URI parts or one specific part.</p>
+
+					<h4>Deprecated</h4>
+					<div class="list">
+							Use App::getUrlPart() instead<br>
+					</div>
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$part</var></dt>
+						<dd>(optional) The part number (default: null)</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						mixed
+					</div>
+
+
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-App.html#_getUrlPart">App::getUrlPart()</a></code><br>
+					</div>
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getUrlPart" id="_getUrlPart">
+
+			<td class="attributes"><code>
+				 public static
+				mixed
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getUrlPart">#</a>
+			<code>getUrlPart( <span>integer <var>$part</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
 				<p>Returns the current page's URI parts or one specific part.</p>
@@ -1191,10 +1237,10 @@ cdn_host = <span class="php-quote">&quot;cdn.example.com&quot;</span></pre>
 					<h4>Example</h4>
 					<div class="list">
 							<pre><span class="php-comment">//Current URL: http://www.example.com/about/more/info</span>
-App::getPage(); <span class="php-comment">// returns (array) ['about', 'more', 'info']</span>
-App::getPage(<span class="php-num">0</span>); <span class="php-comment">// returns (string) 'about'</span>
-App::getPage(<span class="php-num">2</span>); <span class="php-comment">// returns (string) 'info'</span>
-App::getPage(<span class="php-num">99</span>); <span class="php-comment">// returns null</span></pre><br>
+App::getUrlPart(); <span class="php-comment">// returns (array) ['about', 'more', 'info']</span>
+App::getUrlPart(<span class="php-num">0</span>); <span class="php-comment">// returns (string) 'about'</span>
+App::getUrlPart(<span class="php-num">2</span>); <span class="php-comment">// returns (string) 'info'</span>
+App::getUrlPart(<span class="php-num">99</span>); <span class="php-comment">// returns null</span></pre><br>
 					</div>
 
 
