@@ -1,18 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title>Firework CMS</title>
-	<link rel="stylesheet" href="classes/resources/bootstrap.min.css">
-	<link rel="stylesheet" href="classes/resources/style.css">
-</head>
-<body style="margin: 0; padding: 0;">
-	<div id="content" style="max-width: 600px;">
-		<h1>Firework CMS</h1>
-		<div class="panel panel-default">
-			<div class="panel-heading"><h2>Please read the License Agreement first</h2></div>
-			<div class="panel-body">
-<pre style="overflow: auto; max-height: 24em;">Firework CMS License Agreement
+```
+Firework CMS License Agreement
 ============================================
 
 (c) Copyright 2016, Roadfamily LLC
@@ -47,10 +34,4 @@ customers.
 
 Be fair.
 Thank you.
-</pre></div>
-			<div class="panel-footer"><a href="classes/index.html" style="font-size:1.2em">Accept &amp; Continue to Class Reference ▶︎</a></div>
-		</div>
-	</div>
-	<p id="footer"><a href="http://www.fireworkcms.com/" target="_blank">Firework CMS</a> - Copyright 2016 - All Rights Reserved.</p>
-</body>
-</html>
+```

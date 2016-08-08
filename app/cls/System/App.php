@@ -1,18 +1,12 @@
 <?php
 
-/* ***TODO:*** (system wide) optimize path handling:
- *
- * - Never end a path with trailing /
- * - Never use hard-coded / as dir separator (use DIRECTORY_SEPARATOR global constant)
- */
-
 require_once(__DIR__.'/../Abstracts/Inject.php');
 
 /**
  * <u>Firework CMS</u> (Main Application).
  *
  * @copyright Roadfamily LLC, 2016
- * @license ../license.txt
+ * @license ../license.md
  */
 class App {
 
@@ -21,7 +15,7 @@ class App {
 	/** @internal */
 	const PRODUCT = 'Firework CMS';
 	/** @internal */
-	const VERSION = '1.1.0';
+	const VERSION = '1.2.0';
 
 	/** @internal */
 	final public function __construct() {
