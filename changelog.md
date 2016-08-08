@@ -6,7 +6,8 @@ Firework CMS Changelog
 
 Version 1.2.0
 -------------
-- Current dev branch
+- *Current dev branch*
+- Changed +403.php search to pages directory
 
 
 Version 1.1.0
