@@ -180,7 +180,7 @@ class Error extends NISystem {
 			}
 			$err = nl2br($err, false);
 			self::$debug_msg_counter++;
-			setrawcookie('debug_msg'.self::$debug_msg_counter, rawurlencode($err));
+			setrawcookie('debug_msg'.self::$debug_msg_counter, rawurlencode($err), time()+10, '/');
 			return;
 		}
 		$html = self::debugErrorHandlerReturn($errno, $errstr, $errfile, $errline);
