@@ -858,6 +858,7 @@ class App {
 	 * @see self::getUrlPart()
 	 */
 	public static function getPage($part=null) {
+		Error::deprecated('getUrlPart()');
 		return self::getUrlPart($part);
 	}
 
