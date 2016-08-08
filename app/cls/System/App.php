@@ -684,7 +684,7 @@ class App {
 		$sec = round(microtime(true)-self::$start_time,3).'000';
 		$dot = strpos($sec,'.');
 		$sec = '<b>'.substr($sec,0,$dot).'.'.substr($sec,$dot+1,1).'</b>'.substr($sec,$dot+2,2);
-		$html = str_replace('</body>','<div id="debug-info" style="position: fixed; z-index: 80000000; left: 0px; top: 0px; background: rgb(0, 0, 0); color: rgb(255, 255, 255); padding: 0.3em 1em 0.6em 0.3em; opacity: 0.05; white-space: nowrap; max-height: 50%; max-width: 50%; overflow: auto;" onmouseover="this.style.opacity=0.5" onmouseout="this.style.opacity=0.05">Processing time</span><br>'.$sec.' s</div>'."\n".'</body>',$html);
+		$html = str_replace('</body>','<div id="debug-info" style="position: fixed; z-index: 80000000; left: 0px; top: 0px; background: rgb(0, 0, 0); color: rgb(255, 255, 255); padding: 0.3em 1em 0.6em 0.3em; opacity: 0.05; white-space: nowrap; max-height: 50%; max-width: 50%; overflow: auto;" onmouseover="this.style.opacity=0.5" onmouseout="this.style.opacity=0.05"><span style="font-size: 0.8em;">Processing time</span><br>'.$sec.' s</div>'."\n".'</body>',$html);
 		return $html;
 	}
 
