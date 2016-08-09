@@ -984,6 +984,7 @@ class App {
 	 */
 	public static function clear() {
 		ob_end_clean();
+		ob_start();
 	}
 
 	/**
