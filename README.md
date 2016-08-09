@@ -1,5 +1,9 @@
-Firework-CMS
+Firework CMS
 ============
+
+Copyright (c) 2016 Roadfamily LLC
+
+**[(MIT license)](LICENSE.md)**
 
 Firework CMS is a highly sophisticated, multi-purpose CMS and a complete website framework written in pure object oriented PHP.
 Every single aspect of this application is adjustable.
@@ -19,3 +23,25 @@ Docs
 ----
 Firework CMS is completely documented.
 You can read the entire [Class Reference online](http://www.fireworkcms.com/docs/).
+
+Changelog
+=========
+
+Version 1.2.0
+-------------
+- *Current dev branch*
+- Made open source (MIT License)
+- Changed +403.php search to pages directory
+
+Version 1.1.0
+-------------
+- `App::getPage()` is deprecated
+- Introducing `App::getUrlPart()` as *getPage()* replacement
+- All system classes are now based on `ISystem` or `NISystem`
+- System classes now support `injectMethod()` and/or `injectStaticMethod()`
+- Debug info box UI enhancements
+- Bug fixes
+
+Version 1.0.0
+-------------
+- Initial public version

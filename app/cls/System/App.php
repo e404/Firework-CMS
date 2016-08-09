@@ -6,7 +6,7 @@ require_once(__DIR__.'/../Abstracts/Inject.php');
  * <u>Firework CMS</u> (Main Application).
  *
  * @copyright Roadfamily LLC, 2016
- * @license ../license.md
+ * @license ../license.txt
  */
 class App {
 
