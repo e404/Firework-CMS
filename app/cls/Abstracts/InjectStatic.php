@@ -14,6 +14,7 @@ trait InjectStatic {
 			array_unshift($arguments, get_called_class());
 			return call_user_func_array(self::$injectedStaticMethods[$name], $arguments);
 		}else{
+			Error::fatal('Class method not found: '.$name.'()');
 			return null;
 		}
 	}

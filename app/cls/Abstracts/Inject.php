@@ -18,6 +18,7 @@ trait Inject {
 			array_unshift($arguments, $this);
 			return call_user_func_array(self::$injectedMethods[$name], $arguments);
 		}else{
+			Error::fatal('Class method not found: '.$name.'()');
 			return null;
 		}
 	}
