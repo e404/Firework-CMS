@@ -45,12 +45,12 @@ class VimeoVideo extends CustomHtmlTag {
 				$options[] = 'title=0';
 			}
 			if($nointeraction) {
-				$option[] = 'background=1';
+				$options[] = 'background=1';
 			}
 			self::$counter++;
 			$element_id = 'vimeo'.self::$counter;
 			$html = '<div class="video vimeo"><div class="placeholder" style="padding-top:'.$h.'%;"></div><div class="video-wrapper"><iframe id="'.$element_id.'" src="https://player.vimeo.com/video/'.$atts['id'].'?api=1&amp;player_id='.$element_id.($options ? '&amp;'.implode('&amp;',$options) : '').'" frameborder="0" allowfullscreen></iframe></div>';
-			if(in_array(strtolower($atts['nointeraction']), ['true', 'yes', '1', 'on'])) {
+			if($nointeraction) {
 				$html.= '<div class="video-cover"></div>';
 			}
 			$html.= '</div>';
