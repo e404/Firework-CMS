@@ -32,8 +32,10 @@ class VimeoVideo extends CustomHtmlTag {
 					list($w, $h) = explode(':', $atts['aspect'], 2);
 					$h = round((100/$w) * $h, 5);
 			}
+			$loop = in_array(strtolower($atts['loop']), ['true', 'yes', '1', 'on', true]);
+			$nointeraction = in_array(strtolower($atts['nointeraction']), ['true', 'yes', '1', 'on', true]);
 			$options = [];
-			if(in_array(strtolower($atts['loop']), ['true', 'yes', '1', 'on'])) {
+			if($loop) {
 				$options[] = 'autopause=0';
 				$options[] = 'autoplay=1';
 				$options[] = 'badge=0';
@@ -41,6 +43,9 @@ class VimeoVideo extends CustomHtmlTag {
 				$options[] = 'loop=1';
 				$options[] = 'portrait=0';
 				$options[] = 'title=0';
+			}
+			if($nointeraction) {
+				$option[] = 'background=1';
 			}
 			self::$counter++;
 			$element_id = 'vimeo'.self::$counter;
