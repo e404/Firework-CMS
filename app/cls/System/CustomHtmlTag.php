@@ -98,6 +98,13 @@ class CustomHtmlTag extends ISystem {
 			$atts = $customtag->getAttributes();
 			foreach($atts as $attribute=>$default) {
 				if(preg_match('@'.$attribute.'="([^"]+)"@i', $attshtml, $matches)) {
+					$val = $matches[1];
+					$test = strtolower($val);
+					if(in_array($test, ['true', 'yes', '1', 'on'], true)) {
+						$val = true;
+					}elseif(in_array($test, ['false', 'no', '0', 'off'], true)) {
+						$val = false;
+					}
 					$atts[$attribute] = $matches[1];
 				}elseif($default===null) {
 					Error::warning('Attribute '.$attribute.' not set for custom HTML tag "'.$customtag->getTag().'".');
