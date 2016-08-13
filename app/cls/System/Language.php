@@ -253,7 +253,7 @@ class Language extends ISystem {
 		if(!is_numeric($number) || !$this->lang) return $number;
 		$number = $this->number($number, $this->currency_decimals, true);
 		if($simple) $number = preg_replace('@'.preg_quote($this->number_dec_point).'0+$@','',$number);
-		$number = trim($this->currency_prefix.' '.$number.' '.$this->currency_suffix);
+		$number = trim($this->currency_prefix.''.$number.''.$this->currency_suffix);
 		return $number;
 	}
 
