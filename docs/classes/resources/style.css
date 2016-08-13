@@ -509,3 +509,45 @@ span.l a.l:hover, span.l a.l:active, span.l a.l:focus {
 .right, .summary td.right {
 	text-align: right;
 }
+
+table#methods td.attributes > code:first-child {
+	color: #555;
+}
+table#methods td.attributes > code:first-child a {
+	font-size: 1.15em;
+}
+table#methods td.name > div:first-child > a.anchor + code > span {
+	display: inline-block;
+}
+
+.deprecated {
+	text-decoration: none;
+}
+table#methods tr.deprecated td.attributes > code:first-child,
+table#methods tr.deprecated td.attributes > code:first-child *,
+table#methods tr.deprecated td.name > div:first-child > a.anchor + code,
+table#methods tr.deprecated td.name > div:first-child > a.anchor + code *,
+table#classes td.name .deprecated {
+	text-decoration: line-through;
+}
+
+#footer {
+	text-align: left;
+}
+#footer a,
+u {
+	color: #EF3185;
+	text-decoration: none;
+}
+#footer a:hover {
+	color: #000;
+}
+#footer a:before {
+	content: '';
+	background: url(icon.png) left top no-repeat;
+	display: block;
+	float: left;
+	width: 16px;
+	height: 16px;
+	margin-right: 4px;
+}
