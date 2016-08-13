@@ -32,6 +32,8 @@ Version 1.2.0
 - *Current dev branch*
 - Made open source (MIT License)
 - Changed +403.php search to pages directory
+- Improved translation in `Language::currency()`
+- Bug fixes
 
 Version 1.1.0
 -------------
