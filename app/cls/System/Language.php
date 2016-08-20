@@ -267,14 +267,14 @@ class Language extends ISystem {
 	 * @return string
 	 */
 	public function date($str, $time=false, $seconds=false) {
-		$time = strtotime($str);
-		if(!$time) return null;
+		$ts = is_numeric($str) ? $str : strtotime($str);
+		if(!$ts) return null;
 		$date_format = $this->date_format;
 		if($time) {
 			$date_format.= ' H:i';
 			if($seconds) $date_format.= ':s';
 		}
-		return date($date_format, $time);
+		return date($date_format, $ts);
 	}
 
 	/**
