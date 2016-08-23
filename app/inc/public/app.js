@@ -165,7 +165,7 @@ var app = {
 	forms: {
 		init: function(){
 			$('form[method="post"] input, form[method="post"] select, form[method="post"] textarea').change(app.forms.triggerChange);
-			$('form').submit(function(){
+			$('form:not(no-loading-indicator)').submit(function(){
 				app.loadingIndicator(true);
 				$(this).find('input[type="submit"]').prop('disabled', true);
 				window.onbeforeunload = null;

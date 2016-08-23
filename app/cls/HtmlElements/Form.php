@@ -14,6 +14,7 @@ class Form extends AbstractHtmlElement {
 	protected $attr = array();
 	protected $id = '';
 	protected $submit_handler = null;
+	protected $css_class = '';
 
 	/** @internal */
 	public function __construct($method=null) {
@@ -31,6 +32,17 @@ class Form extends AbstractHtmlElement {
 	 */
 	public function setId($id) {
 		$this->id = $id;
+	}
+
+	/**
+	 * Sets css classes.
+	 * 
+	 * @access public
+	 * @param string $css_class
+	 * @return void
+	 */
+	public function setCssClass($css_class) {
+		$this->css_class = $css_class;
 	}
 
 	/**
@@ -194,7 +206,7 @@ class Form extends AbstractHtmlElement {
 			$link.= '#'.$anchor;
 			$html.= '<div id="'.$anchor.'" class="form-anchor"></div>';
 		}
-		$html.= '<form'.($this->id ? ' id="'.$this->id.'"' : '').' method="'.($this->method==='post' ? 'post" enctype="multipart/form-data' : $this->method).'" action="'.$link.'"';
+		$html.= '<form'.($this->id ? ' id="'.$this->id.'"' : '').($this->css_class ? ' class="'.$this->css_class.'"' : '').' method="'.($this->method==='post' ? 'post" enctype="multipart/form-data' : $this->method).'" action="'.$link.'"';
 		foreach($this->attr as $attr=>$value) {
 			$html.= ' '.$attr.'="'.htmlspecialchars($value).'"';
 		}
