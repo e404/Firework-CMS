@@ -238,7 +238,7 @@ var app = {
 	webcron: {
 		execute: function(){
 			$(window).load(function(){
-				$.ajax('app/inc/public/webcron');
+				$.ajax('app/inc/public/webcron.php');
 			});
 		}
 	}
