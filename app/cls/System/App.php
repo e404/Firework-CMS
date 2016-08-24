@@ -258,6 +258,18 @@ class App {
 				self::executeHooks('first-time-visit');
 			}
 			setcookie('r', time(), time()+86400 * Config::get('session','returning_days'), '/', Config::get('session','cookiedomain'));
+			// Make sure webcron gets executed if enabled
+			if(Config::get('env', 'webcron')) {
+				if(self::$session) {
+					$last_webcron_exec = self::$session->get('webcron_exec');
+					if(!$last_webcron_exec || time()>$last_webcron_exec+3600) {
+						App::addHook('head', function(){
+							App::getSession()->set('webcron_exec', time());
+							return "<script>app.webcron.execute();</script>\n";
+						});
+					}
+				}
+			}
 			self::fillMenu();
 			if(self::$preload) {
 				App::addHook('head',function(){
@@ -1111,6 +1123,7 @@ class App {
 	 * @param mixed $param (default: null)
 	 * @return string
 	 * @see self::addHook()
+	 * @see self::hasHooks()
 	 */
 	public static function executeHooks($id, $param=null) {
 		if(!isset(self::$hooks[$id])) return;
@@ -1130,10 +1143,26 @@ class App {
 	 * @param function $function An executable function or class method reference
 	 * @return void
 	 * @see self::executeHooks()
+	 * @see self::hasHooks()
 	 */
 	public static function addHook($id, callable $function) {
 		if(!isset(self::$hooks[$id])) self::$hooks[$id] = array();
 		self::$hooks[$id][] = $function;
+	}
+
+	/**
+	 * Checks if there are hooks for a certain id.
+	 * 
+	 * @access public
+	 * @static
+	 * @param string $id The hook id
+	 * @return mixed The number of the hooks or `false` if none
+	 * @see self::addHook()
+	 * @see self::executeHooks()
+	 */
+	public static function hasHooks($id) {
+		if(!isset(self::$hooks[$id])) return false;
+		return count(self::$hooks[$id]);
 	}
 
 	/**
@@ -1219,6 +1248,50 @@ class App {
 	public static function cron($period) {
 		if(!$period) return;
 		self::executeHooks('cron', $period);
+	}
+
+	/**
+	 * Alternatively to cron, webcron can be used
+	 * 
+	 * Webcron can be enables via config.ini setting.
+	 * <code>
+	 * [env]
+	 * webcron = true
+	 * </code>
+	 * 
+	 * @access public
+	 * @static
+	 * @return void
+	 * @see self::addHook()
+	 * @see self::cron()
+	 * 
+	 * The webcron hook will be called automatically on every first visit and after every hour or with a minimum interval set via config.ini setting.
+	 * <code>
+	 * [env]
+	 * webcron_interval = 600
+	 * </code>
+	 *
+	 * ***Warning***: This is no reliable method for executing functions that require timing.
+	 * All assigned webcron functions will not be called at all when the site encounteres no page visits.
+	 *
+	 * @example
+	 * <code>
+	 * // Make sure webcron is enabled
+	 * // Define a webcron action in your skin's functions.php
+	 * App::addHook('webcron', function(){
+	 * 	// Do something
+	 * });
+	 * </code>
+	 */
+	public static function webcron() {
+		if(!App::hasHooks('webcron') || !Config::get('env', 'webcron')) return;
+		$min_interval = Config::get('env', 'webcron_interval');
+		if(!$min_interval) $min_interval = 3600;
+		$last_webcron_exec = Cache::get('webcron_exec', 86400);
+		if(!$last_webcron_exec || time()>$last_webcron_exec+3600) {
+			App::executeHooks('webcron');
+			Cache::set('webcron_exec', time());
+		}
 	}
 
 	/**

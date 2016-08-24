@@ -234,6 +234,13 @@ var app = {
 	remove: function(what, el) {
 		$(el).closest(what).remove();
 		return false;
+	},
+	webcron: {
+		execute: function(){
+			$(window).load(function(){
+				$.ajax('app/inc/public/webcron');
+			});
+		}
 	}
 };
 
