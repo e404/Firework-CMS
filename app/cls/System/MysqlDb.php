@@ -123,7 +123,7 @@ class MysqlDb extends AbstractDatabaseConnector {
 	 * 
 	 * @access public
 	 * @param string $query The SQL queries string
-	 * @return mixed
+	 * @return mixed array or `false` on error
 	 */
 	public function multiQuery($query) {
 		$this->openConnection();
@@ -145,19 +145,24 @@ class MysqlDb extends AbstractDatabaseConnector {
 			do {
 				$result[$count] = array();
 				if($sql_result = mysqli_store_result($this->connection)) {
-					if(is_bool($sql_result)) {
-						$result[$count] = $sql_result;
-					}else{
-						while($row = mysqli_fetch_assoc($sql_result)) {
-							$result[$count][] = $row;
-						}
-						mysqli_free_result($sql_result);
+					while($row = mysqli_fetch_assoc($sql_result)) {
+						$result[$count][] = $row;
 					}
+					mysqli_free_result($sql_result);
+					if(!mysqli_more_results($this->connection)) break;
+					if(!mysqli_next_result($this->connection)) {
+						$this->error();
+						return false;
+					}
+				}else{
+					$this->error();
+					$result[$count] = $sql_result;
 				}
 				$count++;
-			}while(mysqli_more_results($this->connection) && mysqli_next_result($this->connection));
+			}while(true);
 			return $result;
 		}else{
+			$this->error();
 			return false;
 		}
 	}
