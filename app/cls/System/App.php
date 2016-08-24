@@ -122,10 +122,6 @@ class App {
 			// Delete expired trace links
 			'DELETE FROM links WHERE expires<=NOW()'
 		);
-		// Empty file cache
-		foreach(glob('cache/*') as $file) {
-			unlink($file);
-		}
 		// Delete old temp files
 		foreach(glob(self::getTempDir().'*') as $file) {
 			if(time()>filectime($file)+86400) {
