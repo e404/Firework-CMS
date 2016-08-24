@@ -127,7 +127,7 @@ class App {
 			unlink($file);
 		}
 		// Delete old temp files
-		foreach(glob(self::getTempDir().'*') as $file) {
+		foreach(glob('cache/*') as $file) {
 			if(time()>filemtime($file)+86400) {
 				unlink($file);
 			}
