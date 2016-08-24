@@ -128,7 +128,7 @@ class App {
 		}
 		// Delete old temp files
 		foreach(glob(self::getTempDir().'*') as $file) {
-			if(filemtime($file)<time()-86400) {
+			if(time()>filemtime($file)+86400) {
 				unlink($file);
 			}
 		}
