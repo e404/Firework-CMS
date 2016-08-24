@@ -256,6 +256,23 @@ class MysqlDb extends AbstractDatabaseConnector {
 	}
 
 	/**
+	 * Executes a stored procedure.
+	 *
+	 * @access public
+	 * @param string $name The name of the routine
+	 * @param mixed $param,... (optional) Routine parameters
+	 * @return mixed `true` on success for empty responses, otherwise an array; `false` on error
+	 */
+	public function callProcedure($name) {
+		$args = func_get_args();
+		array_shift($args);
+		array_map([$this, 'escape'], $args);
+		$args = $args ? "'".implode("', '", $args)."'" : '';
+		$result = $this->query('CALL `'.$this->escape($name).'`('.$args.')');
+		return $result ? $result : !$this->getLastError();
+	}
+
+	/**
 	 * Returns the error message of the last SQL query.
 	 * 
 	 * @access public
