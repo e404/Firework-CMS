@@ -238,7 +238,7 @@ var app = {
 	webcron: {
 		execute: function(){
 			$(window).load(function(){
-				var base = document.getElementsByTagName('base')[0].href+'').replace(/^https?:\/\//, '').replace(/\/$/, '');
+				var base = (document.getElementsByTagName('base')[0].href+'').replace(/^https?:\/\//, '').replace(/\/$/, '');
 				$.ajax('//'+base+'/app/inc/public/webcron.php');
 			});
 		}
