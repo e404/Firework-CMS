@@ -123,7 +123,7 @@ class App {
 			'DELETE FROM links WHERE expires<=NOW()'
 		);
 		// Empty file cache
-		foreach(glob(rtrim(Config::get('dirs', 'cache', true),'/').'/*') as $file) {
+		foreach(glob('cache/*') as $file) {
 			unlink($file);
 		}
 		// Delete old temp files
