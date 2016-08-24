@@ -149,17 +149,14 @@ class MysqlDb extends AbstractDatabaseConnector {
 						$result[$count][] = $row;
 					}
 					mysqli_free_result($sql_result);
-					if(!mysqli_more_results($this->connection)) break;
-					if(!mysqli_next_result($this->connection)) {
+				}else{
+					if(mysqli_errno($this->connection)) {
 						$this->error();
 						return false;
 					}
-				}else{
-					$this->error();
-					$result[$count] = $sql_result;
 				}
 				$count++;
-			}while(true);
+			}while(mysqli_more_results($this->connection) && mysqli_next_result($this->connection));
 			return $result;
 		}else{
 			$this->error();
