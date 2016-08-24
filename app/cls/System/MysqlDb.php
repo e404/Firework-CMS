@@ -112,7 +112,8 @@ class MysqlDb extends AbstractDatabaseConnector {
 		}
 		$this->lastQuery = $result;
 		$this->lastRowOffset = null;
-		mysqli_free_result($query_obj);
+		@mysqli_free_result($query_obj);
+		@mysqli_next_result($this->connection);
 		return $result;
 	}
 
