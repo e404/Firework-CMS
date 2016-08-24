@@ -97,6 +97,7 @@ class MysqlDb extends AbstractDatabaseConnector {
 		$this->openConnection();
 		$time_start = microtime(true);
 		$query_obj = mysqli_query($this->connection,$query);
+		@mysqli_next_result($this->connection);
 		$this->error();
 		$duration = round(microtime(true)-$time_start, 4);
 		if(Config::get('debug') && Config::get('debug','db_queries')) {
@@ -113,7 +114,6 @@ class MysqlDb extends AbstractDatabaseConnector {
 		$this->lastQuery = $result;
 		$this->lastRowOffset = null;
 		@mysqli_free_result($query_obj);
-		@mysqli_next_result($this->connection);
 		return $result;
 	}
 
