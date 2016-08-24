@@ -127,8 +127,8 @@ class App {
 			unlink($file);
 		}
 		// Delete old temp files
-		foreach(glob('cache/*') as $file) {
-			if(time()>filemtime($file)+86400) {
+		foreach(glob(self::getTempDir().'*') as $file) {
+			if(time()>filectime($file)+86400) {
 				unlink($file);
 			}
 		}
@@ -1096,8 +1096,7 @@ class App {
 	 * @return string
 	 */
 	public static function getTempDir() {
-		$dir = realpath(Config::get('dirs', 'temp', true));
-		return rtrim($dir,'/').'/';
+		return rtrim(realpath('cache'),'/').'/';
 	}
 
 	/**
