@@ -19,7 +19,10 @@ class Cache extends NISystem {
 	 */
 	public static function setDirectory($dir) {
 		$realdir = @realpath($dir);
-		if(!$realdir) return false;
+		if(!$realdir) {
+			Error::warning('Directory not found: '.$dir);
+			return false;
+		}
 		self::$dir = rtrim(realpath($realdir),"/");
 		return true;
 	}
