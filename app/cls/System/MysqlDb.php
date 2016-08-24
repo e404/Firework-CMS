@@ -97,13 +97,6 @@ class MysqlDb extends AbstractDatabaseConnector {
 		$this->openConnection();
 		$time_start = microtime(true);
 		$query_obj = mysqli_query($this->connection,$query);
-		$i = 0;
-		while(@mysqli_next_result($this->connection)) {
-			$i++;
-			if($i>1024) {
-				Error::fatal('Infinite loop.');
-			}
-		}
 		$this->error();
 		$duration = round(microtime(true)-$time_start, 4);
 		if(Config::get('debug') && Config::get('debug','db_queries')) {
@@ -119,8 +112,54 @@ class MysqlDb extends AbstractDatabaseConnector {
 		}
 		$this->lastQuery = $result;
 		$this->lastRowOffset = null;
-		@mysqli_free_result($query_obj);
+		mysqli_free_result($query_obj);
 		return $result;
+	}
+
+	/**
+	 * Runs a MySQL multi query.
+	 *
+	 * Returns a two-dimensional array.
+	 * 
+	 * @access public
+	 * @param string $query The SQL queries string
+	 * @return mixed
+	 */
+	public function multiQuery($query) {
+		$this->openConnection();
+		$time_start = microtime(true);
+		$query_ok = mysqli_multi_query($this->connection, $query);
+		$this->error();
+		$duration = round(microtime(true)-$time_start, 4);
+		if(Config::get('debug') && Config::get('debug','db_queries')) {
+			Error::debug('DB Multi Query: "'.substr($query,0,64).(strlen($query)>64 ? '"...' : '"')."\n→ ".$duration.' sec');
+		}
+		if(!$this->ignore_long_queries && $duration>0.2) {
+			Error::warning('DB Query took a long time ('.$duration.' sec)');
+		}
+		$this->lastQuery = null;
+		$this->lastRowOffset = null;
+		if($query_ok) {
+			$result = array();
+			$count = 0;
+			do {
+				$result[$count] = array();
+				if($sql_result = mysqli_store_result($this->connection)) {
+					if(is_bool($sql_result)) {
+						$result[$count] = $sql_result;
+					}else{
+						while($row = mysqli_fetch_assoc($sql_result)) {
+							$result[$count][] = $row;
+						}
+						mysqli_free_result($sql_result);
+					}
+				}
+				$count++;
+			}while(mysqli_next_result($this->connection));
+			return $result ? $result : true;
+		}else{
+			return false;
+		}
 	}
 
 	/**
@@ -276,8 +315,7 @@ class MysqlDb extends AbstractDatabaseConnector {
 		array_shift($args);
 		array_map([$this, 'escape'], $args);
 		$args = $args ? "'".implode("', '", $args)."'" : '';
-		$result = $this->query('CALL `'.$this->escape($name).'`('.$args.')');
-		return $result ? $result : !$this->getLastError();
+		return $this->multiQuery('CALL `'.$this->escape($name).'`('.$args.')');
 	}
 
 	/**
