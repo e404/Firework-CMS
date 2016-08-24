@@ -263,7 +263,7 @@ class MysqlDb extends AbstractDatabaseConnector {
 	 * @param mixed $params,... (optional) Procedure parameters
 	 * @return mixed `true` on success for empty responses, otherwise an array; `false` on error
 	 */
-	public function callProcedure($name, $params=null) {
+	public function callProcedure($name, $params=null /*[, $params[, ...]]*/) {
 		$args = func_get_args();
 		array_shift($args);
 		array_map([$this, 'escape'], $args);
