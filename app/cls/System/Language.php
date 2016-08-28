@@ -36,11 +36,7 @@ class Language extends ISystem {
 				$return[$key] = '';
 				continue;
 			}
-			if(strpos($value, '{{')!==false && strpos($value, '}}')!==false) {
-				$return[$key] = $lang->translateHtml($value);
-			}else{
-				$return[$key] = $lang->translateString($value);
-			}
+			$return[$key] = $lang->translateHtml($value);
 		}
 		return $return;
 	}
