@@ -259,14 +259,23 @@ var app = {
 			});
 		}
 	},
+	_translationcache: {},
 	translate: function(strings, callback){
+		var json = JSON.stringify(strings);
+		if(app._translationcache[json]) {
+			setTimeout(function(){
+				callback(app._translationcache[json]);
+			},0);
+			return;
+		}
 		$.ajax({
 			type: 'POST',
 			timeout: 10000,
 			url: 'ajax/Language',
-			data: {s: JSON.stringify(strings)},
+			data: {s: json},
 			success: function(response){
 				if(typeof response==='string') response = JSON.parse(response);
+				app._translationcache[json] = response;
 				callback(response);
 			},
 			error: function(){
