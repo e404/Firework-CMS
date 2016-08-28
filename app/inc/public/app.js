@@ -3,6 +3,7 @@ if(!window.$) $ = jQuery;
 var app = {
 	init: function(){
 		app.preload.init();
+		app.layout.init();
 		app.forms.init();
 		app.email.init();
 		app.fullwidth.init();
@@ -32,15 +33,6 @@ var app = {
 	plugins: {},
 	firstvisit: false,
 	mobile: false,
-	preload: {
-		init: function(){
-			$('body').addClass('loading');
-			$(window).on('load', function(){
-				$('body').removeClass('loading');
-				$('body').addClass('loaded');
-			});
-		}
-	},
 	loadingIndicator: function(show) {
 		if(show) {
 			if($('#loadingindicator').length) return;
@@ -71,6 +63,25 @@ var app = {
 			default:
 				if(!args.length) return;
 				app.chain(args);
+		}
+	},
+	preload: {
+		init: function(){
+			$('body').addClass('loading');
+			$(window).on('load', function(){
+				$('body').removeClass('loading');
+				$('body').addClass('loaded');
+			});
+		}
+	},
+	layout: {
+		init: function(){
+			$('.row .box:last-child').each(function(){
+				var box = $(this);
+				var parentWidth = box.parent().width();
+				var relativeRight = box.position().left + box.width() + parseInt(box.css('padding-left')) + parseInt(box.css('padding-right')) + 2; // add a little tolerance
+				if(relativeRight < parentWidth) box.addClass('trailing');
+			});
 		}
 	},
 	scroll: {
