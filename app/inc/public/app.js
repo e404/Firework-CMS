@@ -42,27 +42,36 @@ var app = {
 			$('#loadingindicator').remove();
 		}
 	},
-	chain: function(_args){
-		if(typeof(_args)==='object' && _args.length) {
-			var args = _args;
-		}else{
-			if(!arguments.length) return;
-			var args = [];
-			Array.prototype.push.apply(args, arguments);
-		}
-		var arg = args.shift();
-		switch(typeof(arg)) {
-			case 'number':
-				if(!args.length) return;
-				setTimeout(function(){
-					app.chain(args);
-				},arg);
-				break;
-			case 'function':
-				arg();
-			default:
-				if(!args.length) return;
-				app.chain(args);
+	utils: {
+		htmlescape: function(str){
+			return (new Option(str)).innerHTML; // Very fast native method of escaping HTML special chars
+		},
+		remove: function(what, el) {
+			$(el).closest(what).remove();
+			return false;
+		},
+		timechain: function(_args){
+			if(typeof(_args)==='object' && _args.length) {
+				var args = _args;
+			}else{
+				if(!arguments.length) return;
+				var args = [];
+				Array.prototype.push.apply(args, arguments);
+			}
+			var arg = args.shift();
+			switch(typeof(arg)) {
+				case 'number':
+					if(!args.length) return;
+					setTimeout(function(){
+						app.utils.timechain(args);
+					},arg);
+					break;
+				case 'function':
+					arg();
+				default:
+					if(!args.length) return;
+					app.utils.timechain(args);
+			}
 		}
 	},
 	preload: {
@@ -93,7 +102,7 @@ var app = {
 					target = target.length ? target : $('[name=' + hash.slice(1) +']');
 					if(target.length) {
 						app.scroll.to(target, function(){
-						app.chain(
+						app.utils.timechain(
 							300,
 							function(){
 								target.addClass('anchor-target-active');
@@ -165,7 +174,7 @@ var app = {
 			row.before('<div class="clickzoom-overlay" onclick="return app.clickzoom.close()"/>');
 			row.before($('<div class="row clickzoomed"/>').append(box));
 			row.after('<div class="row clickzoom-close"><a href="javascript:void(0)" onclick="return app.clickzoom.close()">X</a></div>');
-			app.remove('.row',row);
+			app.utils.remove('.row',row);
 			return false;
 		},
 		close: function(){
@@ -241,10 +250,6 @@ var app = {
 				$(this).replaceWith(html);
 			});
 		}
-	},
-	remove: function(what, el) {
-		$(el).closest(what).remove();
-		return false;
 	},
 	webcron: {
 		execute: function(){
