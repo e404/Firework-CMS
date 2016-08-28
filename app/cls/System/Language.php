@@ -25,13 +25,13 @@ class Language extends ISystem {
 	 */
 	public static function ajax() {
 		if(!isset($_POST['s'])) return [];
-		$strings = @json_decode($_POST['s']);
+		$strings = @json_decode($_POST['s'], true);
 		if(!$strings) return [];
 		$return = [];
 		$lang = App::getLang();
 		if(!$lang) Error::fatal('Language has not been loaded.');
-		foreach($strings as $string) {
-			$return[] = $lang->translateString($string);
+		for($i=0; $i<cound($strings); $i++) {
+			$return[] = $lang->translateString($strings[$i]);
 		}
 		return $return;
 	}
