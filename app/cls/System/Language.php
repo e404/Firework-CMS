@@ -32,7 +32,15 @@ class Language extends ISystem {
 		$lang = App::getLang();
 		if(!$lang) Error::fatal('Language has not been loaded.');
 		foreach($strings as $key=>$value) {
-			$return[$key] = $lang->translateString($value);
+			if(!is_string($value)) {
+				$return[$key] = '';
+				continue;
+			}
+			if(strpos($value, '{{')!==false && strpos($value, '}}')!==false) {
+				$return[$key] = $lang->translateHtml($value);
+			}else{
+				$return[$key] = $lang->translateString($value);
+			}
 		}
 		return $return;
 	}
@@ -192,6 +200,7 @@ class Language extends ISystem {
 	 * @see self::setLanguage()
 	 */
 	public function translateString($str) {
+		if(!$str) return '';
 		if($this->lang===$this->base) return $str;
 		$this->load();
 		if(isset($this->strings[$str])) return $this->strings[$str];
@@ -231,6 +240,7 @@ class Language extends ISystem {
 	 * </code>
 	 */
 	public function translateHtml($html,$prefix='{{',$suffix='}}') {
+		if(!$html) return '';
 		$parts = preg_split('/('.preg_quote($prefix,'/').'(.*?)'.preg_quote($suffix,'/').')/',$html,null,PREG_SPLIT_DELIM_CAPTURE);
 		$html = '';
 		for($i=0; $i<count($parts); $i++) {
