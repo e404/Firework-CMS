@@ -30,7 +30,7 @@ class Language extends ISystem {
 		$return = [];
 		$lang = App::getLang();
 		if(!$lang) Error::fatal('Language has not been loaded.');
-		for($i=0; $i<cound($strings); $i++) {
+		for($i=0; $i<count($strings); $i++) {
 			$return[] = $lang->translateString($strings[$i]);
 		}
 		return $return;
