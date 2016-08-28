@@ -253,6 +253,21 @@ var app = {
 				$.ajax('//'+base+'/app/inc/public/webcron.php');
 			});
 		}
+	},
+	translate: function(strings, callback){
+		$.ajax({
+			type: 'POST',
+			timeout: 10000,
+			url: 'ajax/Language',
+			data: {s: JSON.stringify(strings)},
+			success: function(response){
+				if(typeof response==='string') response = JSON.parse(response);
+				callback(response);
+			},
+			error: function(){
+				callback(false);
+			}
+		});
 	}
 };
 

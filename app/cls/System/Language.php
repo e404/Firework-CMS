@@ -21,6 +21,22 @@ class Language extends ISystem {
 	protected $date_format = '';
 
 	/**
+	 * @internal
+	 */
+	public static function ajax() {
+		if(!isset($_POST['s'])) return [];
+		$strings = @json_decode($_POST['s']);
+		if(!$strings) return [];
+		$return = [];
+		$lang = App::getLang();
+		if(!$lang) Error::fatal('Language has not been loaded.');
+		foreach($strings as $string) {
+			$return[] = $lang->translateString($string);
+		}
+		return $return;
+	}
+
+	/**
 	 * Sets the auto-append mode.
 	 *
 	 * If enabled, the auto-append mode automatically appends language translation strings at the end of the current language file.
