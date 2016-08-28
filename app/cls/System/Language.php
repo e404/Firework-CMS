@@ -27,6 +27,7 @@ class Language extends ISystem {
 		if(!isset($_POST['s'])) return [];
 		$strings = @json_decode($_POST['s'], true);
 		if(!$strings) return [];
+		if(!is_array($strings)) $strings = [$strings];
 		$return = [];
 		$lang = App::getLang();
 		if(!$lang) Error::fatal('Language has not been loaded.');
