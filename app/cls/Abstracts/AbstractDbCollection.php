@@ -172,6 +172,7 @@ abstract class AbstractDbCollection extends AbstractDbEntity implements Iterator
 	 * @internal
 	 */
 	function valid() {
+		if(!$this->loadFromDb() || !$this->rows) return false;
 		return ($this->_position >= 0) && ($this->_position < count($this->rows));
 	}
 
