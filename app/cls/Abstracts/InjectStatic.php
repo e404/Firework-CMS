@@ -9,10 +9,10 @@ trait InjectStatic {
 	}
 
 	public static function __callStatic($name, $arguments) {
-		$name = strtoupper($name);
-		if(isset(self::$injectedStaticMethods[$name])) {
+		$name_uc = strtoupper($name);
+		if(isset(self::$injectedStaticMethods[$name_uc])) {
 			array_unshift($arguments, get_called_class());
-			return call_user_func_array(self::$injectedStaticMethods[$name], $arguments);
+			return call_user_func_array(self::$injectedStaticMethods[$name_uc], $arguments);
 		}else{
 			Error::fatal('Class method not found: '.$name.'()');
 			return null;

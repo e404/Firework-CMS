@@ -13,10 +13,10 @@ trait Inject {
 	}
 
 	public function __call($name, $arguments) {
-		$name = strtoupper($name);
-		if(isset(self::$injectedMethods[$name])) {
+		$name_uc = strtoupper($name);
+		if(isset(self::$injectedMethods[$name_uc])) {
 			array_unshift($arguments, $this);
-			return call_user_func_array(self::$injectedMethods[$name], $arguments);
+			return call_user_func_array(self::$injectedMethods[$name_uc], $arguments);
 		}else{
 			Error::fatal('Class method not found: '.$name.'()');
 			return null;
