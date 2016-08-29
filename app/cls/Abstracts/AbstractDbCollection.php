@@ -107,6 +107,22 @@ abstract class AbstractDbCollection extends AbstractDbEntity implements Iterator
 	}
 
 	/**
+	 * Returns one object of the collection at `$position`.
+	 * 
+	 * @access public
+	 * @param int $position
+	 * @return object
+	 */
+	public function getNthRecord($position) {
+		if(!$this->loadFromDb() || !$this->rows) return null;
+		$record_class_name = $this->getRecordClassName();
+		$obj = new $record_class_name;
+		list($row) = array_slice($this->rows, $position, 1);
+		$obj->importDbFields($row);
+		return $obj;
+	}
+
+	/**
 	 * Saves all collection objects to the database.
 	 *
 	 * ***TODO:*** This method needs to be implemented and has currently no effect.
@@ -135,7 +151,7 @@ abstract class AbstractDbCollection extends AbstractDbEntity implements Iterator
 	 * @internal
 	 */
 	function current() {
-		return $this->rows[$this->_position];
+		return $this->getNthRecord($this->_position);
 	}
 
 	/**
@@ -156,7 +172,7 @@ abstract class AbstractDbCollection extends AbstractDbEntity implements Iterator
 	 * @internal
 	 */
 	function valid() {
-		return isset($this->rows[$this->_position]);
+		return ($this->_position >= 0) && ($this->_position < count($this->rows));
 	}
 
 	
