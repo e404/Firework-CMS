@@ -20,7 +20,7 @@
  * }
  * </code>
  */
-abstract class AbstractDbCollection extends AbstractDbEntity {
+abstract class AbstractDbCollection extends AbstractDbEntity implements Iterator {
 
 	protected $rows = array();
 
@@ -120,4 +120,44 @@ abstract class AbstractDbCollection extends AbstractDbEntity {
 		return false;
 	}
 
+	// Iteration functionality
+
+	private $_position = 0;
+
+	/**
+	 * @internal
+	 */
+	function rewind() {
+		$this->_position = 0;
+	}
+
+	/**
+	 * @internal
+	 */
+	function current() {
+		return $this->rows[$this->_position];
+	}
+
+	/**
+	 * @internal
+	 */
+	function key() {
+		return $this->_position;
+	}
+
+	/**
+	 * @internal
+	 */
+	function next() {
+		++$this->_position;
+	}
+
+	/**
+	 * @internal
+	 */
+	function valid() {
+		return isset($this->rows[$this->_position]);
+	}
+
+	
 }
