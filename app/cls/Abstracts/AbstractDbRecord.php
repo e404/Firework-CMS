@@ -368,4 +368,29 @@ abstract class AbstractDbRecord extends AbstractDbEntity {
 		return (bool) $this->dbfields;
 	}
 
+	/**
+	 * Get DB field shortcut.
+	 * 
+	 * @access public
+	 * @param string $fieldname The name of the DB field
+	 * @return mixed Field value
+	 * @see self::getField()
+	 */
+	public function __get($fieldname) {
+		return $this->getField($fieldname);
+	}
+
+	/**
+	 * Set DB field shortcut.
+	 * 
+	 * @access public
+	 * @param string $fieldname The name of the DB field
+	 * @param mixed $value The value (array supported)
+	 * @return void
+	 * @see self::setField()
+	 */
+	public function __set($fieldname, $value) {
+		$this->setField($fieldname, $value);
+	}
+
 }
