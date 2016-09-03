@@ -197,7 +197,6 @@ var app = {
 					app.navigation.check = !!changed;
 				}
 			};
-			app.navigation.initForm();
 		},
 		confirm: function(callback, msg){
 			app.dialog({msg: msg ? msg : app.navigation.msg, ok: '{{Stay Here}}', cancel: '{{Leave Page}}', callback: function(stay){
