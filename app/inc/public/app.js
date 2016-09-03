@@ -9,6 +9,7 @@ var app = {
 		app.clickzoom.init();
 		app.scroll.init();
 		app.navigation.init();
+		app.forms.init();
 		if(app.plugins) {
 			for(var id in app.plugins) {
 				if(typeof(app.plugins[id].init)==='function') {
@@ -185,8 +186,9 @@ var app = {
 				if(app.navigation.check) {
 					app.loadingIndicator(false);
 					return 'You changed something on this page. Are you sure you want to leave it?';
+				}else{
+					app.loadingIndicator(true);
 				}
-				app.loadingIndicator(true);
 			});
 			app.changed = function(changed){
 				if(typeof changed==='undefined') {
@@ -197,7 +199,14 @@ var app = {
 			};
 			app.navigation.initForm();
 		},
-		initForm: function(){
+		confirm: function(callback, msg){
+			app.dialog({msg: msg ? msg : app.navigation.msg, ok: '{{Stay Here}}', cancel: '{{Leave Page}}', callback: function(stay){
+				callback(!stay);
+			}});
+		}
+	},
+	forms: {
+		init: function(){
 			$('form[method="post"] input, form[method="post"] select, form[method="post"] textarea').change(function(){
 				app.changed(true);
 			});
@@ -213,11 +222,6 @@ var app = {
 			$('.field input, .field select, .field textarea').blur(function(){
 				$(this).closest('.field').removeClass('focus');
 			});
-		},
-		confirm: function(callback, msg){
-			app.dialog({msg: msg ? msg : app.navigation.msg, ok: '{{Stay Here}}', cancel: '{{Leave Page}}', callback: function(stay){
-				callback(!stay);
-			}});
 		}
 	},
 	preload: {
