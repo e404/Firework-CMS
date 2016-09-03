@@ -117,7 +117,9 @@ abstract class AbstractDbCollection extends AbstractDbEntity implements Iterator
 		if(!$this->loadFromDb() || !$this->rows) return null;
 		$record_class_name = $this->getRecordClassName();
 		$obj = new $record_class_name;
-		list($row) = array_slice($this->rows, $position, 1);
+		$row = @array_slice($this->rows, $position, 1);
+		if(!$row) return null;
+		$row = array_shift($row);
 		$obj->importDbFields($row);
 		return $obj;
 	}
