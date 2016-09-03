@@ -185,6 +185,9 @@ var app = {
 			$(window).on('beforeunload', function(){
 				app.loadingIndicator(true);
 				if(app.navigation.check) {
+					setTimeout(function(){
+						app.loadingIndicator(false);
+					}, 100);
 					return 'You changed something on this page. Are you sure you want to leave it?';
 				}
 			});
