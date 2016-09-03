@@ -9,6 +9,7 @@ var app = {
 		app.fullwidth.init();
 		app.clickzoom.init();
 		app.scroll.init();
+		app.navigation.init();
 		if(app.plugins) {
 			for(var id in app.plugins) {
 				if(typeof(app.plugins[id].init)==='function') {
@@ -36,11 +37,92 @@ var app = {
 	loadingIndicator: function(show) {
 		if(show) {
 			if($('#loadingindicator').length) return;
+			$('body').addClass('has-overlay');
 			$('body').append('<div id="loadingindicator"><div class="icon"/></div>');
 			if(document.activeElement) document.activeElement.blur();
 		}else{
 			$('#loadingindicator').remove();
+			$('body').removeClass('has-overlay');
 		}
+	},
+	overlay: function(show,fadein){
+		if(show) {
+			if($('#loadingindicator').length) return false;
+			$('body').addClass('has-overlay');
+			var li = $('<div id="loadingindicator"/>').appendTo(document.body);
+			if(fadein) {
+				li.css({opacity: 0});
+				setTimeout(function(){
+					li.addClass('animate-slowly').css({opacity: 1});
+				},10);
+			}
+			return true;
+		}else{
+			if(!$('#loadingindicator').length) return false;
+			$('body').removeClass('has-overlay');
+			$('#loadingindicator').remove();
+			return true;
+		}
+	},
+	dialog: function(userOptions){
+		if($('#dialog').length) return;
+		var options = {
+			msg: '{{Should this action really be performed?}}',
+			ok: '{{OK}}',
+			cancel: '{{Cancel}}',
+			input: false,
+			placeholder: '',
+			callback: function(){},
+		};
+		$.extend(true, options, userOptions);
+		var dialog = $('<div id="dialog"><div class="msg">'+app.lang.basehtml(options.msg)+'</div><div class="ok"><a class="button" href="javascript:void(0)">'+app.lang.basehtml(options.ok)+'</a></div><div class="cancel"><a class="button red" href="javascript:void(0)">'+app.lang.basehtml(options.cancel)+'</a></div></div>');
+		$('body').append(dialog).addClass('dialog-present');
+		if(!options.cancel) dialog.find('.cancel').remove();
+		if(options.input) {
+			var input = $('<div class="dialog-input"><input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="'+app.utils.htmlescape(options.placeholder)+'"></div>');
+			dialog.find('.msg').after(input);
+			input.on('keydown', function(event){
+				switch(event.key) {
+					case 'Enter':
+						dialog.find('.ok a').click();
+						break;
+					case 'Escape':
+						dialog.find('.cancel a').click();
+						break;
+				}
+			});
+		}
+		dialog.find('.ok > a, .cancel > a').click(function(){
+			var inputValue = options.input ? dialog.find('.dialog-input input').val() : null;
+			app.overlay(false);
+			dialog.hide().attr('id', 'dialog-sentenced');
+			if($(this).parent().hasClass('ok')) {
+				options.callback(true, inputValue, dialog);
+			}else{
+				options.callback(false, inputValue, dialog);
+			}
+			dialog.remove();
+			$('body').removeClass('dialog-present');
+		});
+		app.lang.translate({
+			msg: options.msg,
+			ok: options.ok,
+			cancel: options.cancel,
+			placeholder: options.placeholder || ''
+		},function(lang){
+			if(!$('#dialog').length) return;
+			dialog.find('.msg').html(lang.msg);
+			dialog.find('.ok > a').html(lang.ok);
+			dialog.find('.cancel > a').html(lang.cancel);
+			dialog.find('.dialog-input > input').attr('placeholder', lang.placeholder);
+		});
+		setTimeout(function(){
+			app.overlay(true, true);
+			dialog.addClass('appear');
+			if(options.input) {
+				dialog.find('.dialog-input input').focus();
+			}
+		},10);
 	},
 	utils: {
 		htmlescape: function(str){
@@ -72,6 +154,49 @@ var app = {
 					if(!args.length) return;
 					app.utils.timechain(args);
 			}
+		}
+	},
+	navigation: {
+		check: false,
+		msg: '{{You changed something on this page. Are you sure you want to leave it?}}',
+		init: function(){
+			$('body').click(function(event){
+				if(!app.navigation.check) return;
+				if($('#dialog').length) return; // no checks when dialog is open
+				if($(event.target).closest('#dialog-sentenced').length) return; // no ckecks if dialog is about to close
+				var el = $(event.target).closest('a');
+				if(!el.length) return;
+				var target = el.attr('target');
+				if(target && target!=='_self' && target!=='_parent' && target!=='_top') { // let _blank and addressed window links happen
+					return;
+				}
+				var actionurl = el.attr('href');
+				if(actionurl.substr(0,11)==='javascript:') return;
+				event.preventDefault();
+				app.navigation.confirm(function(confirmed){
+					if(!confirmed) return;
+					app.navigation.check = false;
+					app.loadingIndicator(true);
+					try {
+						location.href = actionurl;
+					}catch(e) {}
+				});
+			});
+			$(window).on('beforeunload', function(){
+				app.loadingIndicator(true);
+			});
+			app.changed = function(changed){
+				if(typeof changed==='undefined') {
+					return app.navigation.check;
+				}else{
+					app.navigation.check = !!changed;
+				}
+			};
+		},
+		confirm: function(callback, msg){
+			app.dialog({msg: msg ? msg : app.navigation.msg, ok: '{{Stay Here}}', cancel: '{{Leave Page}}', callback: function(stay){
+				callback(!stay);
+			}});
 		}
 	},
 	preload: {
