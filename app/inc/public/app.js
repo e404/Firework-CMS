@@ -4,7 +4,6 @@ var app = {
 	init: function(){
 		app.preload.init();
 		app.layout.init();
-		app.forms.init();
 		app.email.init();
 		app.fullwidth.init();
 		app.clickzoom.init();
@@ -183,6 +182,10 @@ var app = {
 				});
 			});
 			$(window).on('beforeunload', function(){
+				if(app.navigation.check) {
+					app.loadingIndicator(false);
+					return 'You changed something on this page. Are you sure you want to leave it?';
+				}
 				app.loadingIndicator(true);
 			});
 			app.changed = function(changed){
@@ -192,6 +195,24 @@ var app = {
 					app.navigation.check = !!changed;
 				}
 			};
+			app.navigation.initForm();
+		},
+		initForm: function(){
+			$('form[method="post"] input, form[method="post"] select, form[method="post"] textarea').change(function(){
+				app.changed(true);
+			});
+			$('form:not(.no-loading-indicator)').submit(function(){
+				app.loadingIndicator(true);
+				$(this).find('input[type="submit"]').prop('disabled', true);
+				app.changed(false);
+				var form = $(this);
+			});
+			$('.field input, .field select, .field textarea').focus(function(){
+				$(this).closest('.field').addClass('focus');
+			});
+			$('.field input, .field select, .field textarea').blur(function(){
+				$(this).closest('.field').removeClass('focus');
+			});
 		},
 		confirm: function(callback, msg){
 			app.dialog({msg: msg ? msg : app.navigation.msg, ok: '{{Stay Here}}', cancel: '{{Leave Page}}', callback: function(stay){
@@ -305,28 +326,6 @@ var app = {
 		close: function(){
 			$('.clickzoom-overlay, .row.clickzoomed, .clickzoom-close').remove();
 			return false;
-		}
-	},
-	forms: {
-		init: function(){
-			$('form[method="post"] input, form[method="post"] select, form[method="post"] textarea').change(app.forms.triggerChange);
-			$('form:not(.no-loading-indicator)').submit(function(){
-				app.loadingIndicator(true);
-				$(this).find('input[type="submit"]').prop('disabled', true);
-				window.onbeforeunload = null;
-				var form = $(this);
-			});
-			$('.field input, .field select, .field textarea').focus(function(){
-				$(this).closest('.field').addClass('focus');
-			});
-			$('.field input, .field select, .field textarea').blur(function(){
-				$(this).closest('.field').removeClass('focus');
-			});
-		},
-		triggerChange: function(){
-			window.onbeforeunload = function() {
-				return 'You changed data in the form. Do you really want to leave this page?';
-			};
 		}
 	},
 	notify: {
