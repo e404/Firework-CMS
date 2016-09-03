@@ -2176,6 +2176,46 @@ App::addHook(<span class="php-quote">'webcron'</span>, <span class="php-keyword1
 			</div>
 			</div></td>
 		</tr>
+		<tr data-order="setHttpStatus" id="_setHttpStatus">
+
+			<td class="attributes"><code>
+				 public static
+				boolean
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_setHttpStatus">#</a>
+			<code>setHttpStatus( <span>integer <var>$code</var></span>, <span>integer <var>$message</var> = <span class="php-keyword1">null</span></span> )</code>
+
+			<div class="description short">
+				<p>Writes a HTTP status header.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Writes a HTTP status header.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$code</var></dt>
+						<dd>The HTTP status code</dd>
+						<dt><var>$message</var></dt>
+						<dd>(optional) The error message within the HTTP header</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						boolean<br><code>true</code> on success, <code>false</code> if headers could not be sent or the <code>$code</code> was invalid
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
 			</table>
 		</div>
 
