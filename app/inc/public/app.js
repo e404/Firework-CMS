@@ -162,9 +162,6 @@ var app = {
 		msg: '{{You changed something on this page. Are you sure you want to leave it?}}',
 		init: function(){
 			$('body').click(function(event){
-				if(!app.navigation.check) return;
-				if($('#dialog').length) return; // no checks when dialog is open
-				if($(event.target).closest('#dialog-sentenced').length) return; // no ckecks if dialog is about to close
 				var el = $(event.target).closest('a');
 				if(!el.length) return;
 				var target = el.attr('target');
@@ -172,15 +169,15 @@ var app = {
 					return;
 				}
 				if(el.hasClass('disabled')) { // don't execute clicks on disabled 'a.button' elements
-					console.log('disabled link clicked');
 					event.preventDefault();
-					event.stopPropagation();
 					return false;
 				}
+				if(!app.navigation.check) return;
+				if($('#dialog').length) return; // no checks when dialog is open
+				if($(event.target).closest('#dialog-sentenced').length) return; // no ckecks if dialog is about to close
 				var actionurl = el.attr('href');
 				if(actionurl.substr(0,11)==='javascript:') return;
 				event.preventDefault();
-				event.stopPropagation();
 				app.navigation.confirm(function(confirmed){
 					if(!confirmed) return;
 					app.loadingIndicator(true);
