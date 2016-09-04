@@ -171,6 +171,10 @@ var app = {
 				if(target && target!=='_self' && target!=='_parent' && target!=='_top') { // let _blank and addressed window links happen
 					return;
 				}
+				if(el.hasClass('disabled')) { // don't execute clicks on disabled 'a.button' elements
+					event.preventDefault();
+					return false;
+				}
 				var actionurl = el.attr('href');
 				if(actionurl.substr(0,11)==='javascript:') return;
 				event.preventDefault();
