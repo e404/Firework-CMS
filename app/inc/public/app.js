@@ -158,6 +158,7 @@ var app = {
 	},
 	navigation: {
 		check: false,
+		changedCallbacks: [],
 		msg: '{{You changed something on this page. Are you sure you want to leave it?}}',
 		init: function(){
 			$('body').click(function(event){
@@ -199,10 +200,16 @@ var app = {
 				}
 			});
 			app.changed = function(changed){
-				if(typeof changed==='undefined') {
-					return app.navigation.check;
-				}else{
-					app.navigation.check = !!changed;
+				switch(typeof changed) {
+					case 'undefined':
+						return app.navigation.check;
+					case 'function':
+						app.navigation.changedCallbacks.push(changed);
+					default:
+						app.navigation.check = !!changed;
+						for(var i=0; i<app.navigation.changedCallbacks.length; i++) {
+							app.navigation.changedCallbacks[i](app.navigation.check);
+						}
 				}
 			};
 		},
