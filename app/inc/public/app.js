@@ -226,6 +226,18 @@ var app = {
 				}
 				callback(!stay);
 			}});
+		},
+		reloadaftererror: function(){
+			app.dialog({
+				msg: '{{An error occured. Please reload this page and try again.}}',
+				ok: false,
+				cancel: '{{Reload Page}}',
+				callback: function(){
+					app.changed(false);
+					app.loadingIndicator(true);
+					location.reload();
+				}
+			});
 		}
 	},
 	forms: {
