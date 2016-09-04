@@ -209,6 +209,7 @@ var app = {
 						return app.navigation.check;
 					case 'function':
 						app.navigation.changedCallbacks.push(changed);
+						break;
 					default:
 						app.navigation.check = !!changed;
 						for(var i=0; i<app.navigation.changedCallbacks.length; i++) {
