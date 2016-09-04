@@ -378,7 +378,7 @@ abstract class AbstractDbRecord extends AbstractDbEntity {
 	 */
 	public function __get($fieldname) {
 		if(!isset($this->dbfields[$fieldname]) && substr($fieldname,-5)==='_html') {
-			return $this->getFieldHtml(substr($fieldname,0,-5));
+			return htmlspecialchars($this->getStr(substr($fieldname,0,-5)));
 		}
 		return $this->getField($fieldname);
 	}
