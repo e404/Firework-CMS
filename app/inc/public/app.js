@@ -173,11 +173,13 @@ var app = {
 				}
 				if(el.hasClass('disabled')) { // don't execute clicks on disabled 'a.button' elements
 					event.preventDefault();
+					event.stopPropagation();
 					return false;
 				}
 				var actionurl = el.attr('href');
 				if(actionurl.substr(0,11)==='javascript:') return;
 				event.preventDefault();
+				event.stopPropagation();
 				app.navigation.confirm(function(confirmed){
 					if(!confirmed) return;
 					app.loadingIndicator(true);
