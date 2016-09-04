@@ -77,6 +77,7 @@ var app = {
 		$.extend(true, options, userOptions);
 		var dialog = $('<div id="dialog"><div class="msg">'+app.lang.basehtml(options.msg)+'</div><div class="ok"><a class="button" href="javascript:void(0)">'+app.lang.basehtml(options.ok)+'</a></div><div class="cancel"><a class="button red" href="javascript:void(0)">'+app.lang.basehtml(options.cancel)+'</a></div></div>');
 		$('body').append(dialog).addClass('dialog-present');
+		if(!options.ok) dialog.find('.ok').remove();
 		if(!options.cancel) dialog.find('.cancel').remove();
 		if(options.input) {
 			var input = $('<div class="dialog-input"><input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="'+app.utils.htmlescape(options.placeholder)+'"></div>');
