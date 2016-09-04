@@ -175,7 +175,6 @@ var app = {
 				event.preventDefault();
 				app.navigation.confirm(function(confirmed){
 					if(!confirmed) return;
-					app.navigation.check = false;
 					app.loadingIndicator(true);
 					try {
 						location.href = actionurl;
@@ -209,6 +208,9 @@ var app = {
 		},
 		confirm: function(callback, msg){
 			app.dialog({msg: msg ? msg : app.navigation.msg, ok: '{{Stay Here}}', cancel: '{{Leave Page}}', callback: function(stay){
+				if(!stay) {
+					app.changed(false);
+				}
 				callback(!stay);
 			}});
 		}
