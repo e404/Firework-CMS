@@ -161,7 +161,7 @@ var app = {
 		changedCallbacks: [],
 		msg: '{{You changed something on this page. Are you sure you want to leave it?}}',
 		init: function(){
-			$('body').click(function(event){
+			$('body, a').click(function(event){
 				if(!app.navigation.check) return;
 				if($('#dialog').length) return; // no checks when dialog is open
 				if($(event.target).closest('#dialog-sentenced').length) return; // no ckecks if dialog is about to close
