@@ -175,13 +175,13 @@ var app = {
 				}
 				if($('#dialog').length) return; // no checks when dialog is open
 				if($(event.target).closest('#dialog-sentenced').length) return; // no ckecks if dialog is about to close
-				event.preventDefault();
 				var actionurl = el.attr('href');
 				if(actionurl.substr(0,11)==='javascript:') return;
 				if(!app.navigation.check) {
 					app.loadingIndicator(true);
 					return;
 				}
+				event.preventDefault();
 				app.navigation.confirm(function(confirmed){
 					if(!confirmed) return;
 					app.loadingIndicator(true);
