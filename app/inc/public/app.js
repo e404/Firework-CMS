@@ -66,6 +66,7 @@ var app = {
 	},
 	dialog: function(userOptions){
 		if($('#dialog').length) return;
+		app.utils.blur();
 		var options = {
 			msg: '{{Should this action really be performed?}}',
 			ok: '{{OK}}',
@@ -155,6 +156,9 @@ var app = {
 					if(!args.length) return;
 					app.utils.timechain(args);
 			}
+		},
+		blur: function(){
+			$('input:focus, select:focus, a:focus, button:focus, :focus').first().blur();
 		}
 	},
 	navigation: {
