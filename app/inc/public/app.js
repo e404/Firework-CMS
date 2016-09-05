@@ -159,6 +159,25 @@ var app = {
 		},
 		blur: function(){
 			$('input:focus, select:focus, a:focus, button:focus, :focus').first().blur();
+		},
+		json: {
+			isSupported: function(){
+				if(window.JSON) return true;
+				else return false;
+			},
+			encode: function(obj){
+				if(app.utils.json.isSupported()) {
+					return JSON.stringify(obj);
+				}else{
+					app.dialog({
+						msg: '{{<strong>Error:</strong> This browser does not support JSON encoding. Please use a modern browser and try again.}}',
+						cancel: false
+					});
+				}
+			},
+			decode: function(str){
+				return $.parseJSON(str);
+			}
 		}
 	},
 	navigation: {
@@ -380,7 +399,7 @@ var app = {
 				url: 'ajax/Notify',
 				success: function(result){
 					if(!result || $('#notify').length) return;
-					result = JSON.parse(result);
+					result = app.utils.json.decode(result);
 					if(!result || !result.msgs) return;
 					var msgs = $(result.msgs);
 					if(!msgs.length) return;
@@ -432,7 +451,7 @@ var app = {
 	lang: {
 		translationcache: {},
 		translate: function(strings, callback){
-			var json = JSON.stringify(strings);
+			var json = app.utils.json.encode(strings);
 			if(app.lang.translationcache[json]) {
 				setTimeout(function(){
 					callback(app.lang.translationcache[json]);
@@ -445,7 +464,7 @@ var app = {
 				url: 'ajax/Language',
 				data: {s: json},
 				success: function(response){
-					if(typeof response==='string') response = JSON.parse(response);
+					if(typeof response==='string') response = app.utils.json.decode(response);
 					app.lang.translationcache[json] = response;
 					callback(response);
 				},
