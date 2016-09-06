@@ -286,7 +286,7 @@ var app = {
 			$('.field textarea').on('input',function(){
 				var el = $(this);
 				el.css({height: ''});
-				el.css({height: el.prop('scrollHeight') + parseInt(el.css('padding-top'), 10) + parseInt(el.css('padding-bottom'), 10)});
+				el.css({height: el.prop('scrollHeight') + parseInt(el.css('border-top-width'), 10) + parseInt(el.css('border-bottom-width'), 10)});
 			});
 		}
 	},
