@@ -29,11 +29,20 @@ Changelog
 
 Version 1.2.0
 -------------
-- *Current dev branch*
+- EMail class improvements
+- Added app.utils app wide JavaScript tools
+- Every AbstractDbCollection is now directly iterable using foreach()
+- Database fields can now be directly read and written via $row->fieldname
+- HTML escaped representations of database fields can be read using $row->fieldname_html
+- App wide app.changed() function
+- A website overlay can be raised using app.overlay()
+- Added JavaScript translation access via app.lang.translate() using a callback function
+- Added 'webcron' hook for executing tasks without OS cron
+- MysqlDb improvements like multiQuery() and callProcedure()
 - Made open source (MIT License)
 - Changed +403.php search to pages directory
 - Improved translation in `Language::currency()`
-- Bug fixes
+- Several bug fixes and other improvements
 
 Version 1.1.0
 -------------
