@@ -439,6 +439,53 @@
 			</div>
 			</div></td>
 		</tr>
+		<tr data-order="filter" id="_filter">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-AbstractDbCollection.html">AbstractDbCollection</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_filter">#</a>
+			<code>filter( <span>array <var>$filter</var></span>, <span>boolean <var>$return_copy</var> = <span class="php-keyword1">false</span></span> )</code>
+
+			<div class="description short">
+				<p>Filters the collection by given fields and values</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Filters the collection by given fields and values</p>
+
+<p>This method modifies the dataset of the existing <code>AbstractDbCollection</code> unless <code>$return_copy</code> is set to <code>true</code>.</p>
+
+<p>Example:</p>
+
+<pre><span class="php-var">$food</span> = <span class="php-keyword1">new</span> Food(); <span class="php-comment">// extends AbstractDbCollection</span>
+<span class="php-var">$food</span>-&gt;filter([<span class="php-quote">'type'</span> =&gt; <span class="php-quote">'vegetable'</span>, <span class="php-quote">'color'</span> =&gt; <span class="php-quote">'red'</span>]);</pre>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$filter</var></dt>
+						<dd>The filter to apply</dd>
+						<dt><var>$return_copy</var></dt>
+						<dd>If set to <code>true</code> returns a copy of the current filtered <code>AbstractDbCollection</code> instead of modifying the original</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-AbstractDbCollection.html">AbstractDbCollection</a></code><br>The filtered collection
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
 			</table>
 		</div>
 
