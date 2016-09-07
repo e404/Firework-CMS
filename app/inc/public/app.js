@@ -187,7 +187,7 @@ var app = {
 		init: function(){
 			$('body').click(function(event){
 				var el = $(event.target).closest('a');
-				if(!el.length) return;
+				if(!el.length || event.ctrlKey || event.metaKey) return;
 				var target = el.attr('target');
 				if(target && target!=='_self' && target!=='_parent' && target!=='_top') { // let _blank and addressed window links happen
 					return;
