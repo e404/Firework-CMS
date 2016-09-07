@@ -8,7 +8,12 @@ trait Inject {
 
 	protected static $injectedMethods = [];
 
-	public static function injectMethod($methodName, $methodFunction) {
+	public static function injectMethod($methodName, Closure $methodFunction) {
+		$reflection = new ReflectionFunction($methodFunction);
+		$params = $reflection->getParameters();
+		if(!$params || $params[0]->getName()!=='This') {
+			Error::fatal('Cannot inject method "'.$methodName.'": First parameter has to be $This');
+		}
 		self::$injectedMethods[strtoupper($methodName)] = $methodFunction;
 	}
 

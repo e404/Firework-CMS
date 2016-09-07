@@ -4,7 +4,12 @@ trait InjectStatic {
 
 	protected static $injectedStaticMethods = [];
 
-	public static function injectStaticMethod($methodName, $methodFunction) {
+	public static function injectStaticMethod($methodName, Closure $methodFunction) {
+		$reflection = new ReflectionFunction($methodFunction);
+		$params = $reflection->getParameters();
+		if(!$params || $params[0]->getName()!=='Self') {
+			Error::fatal('Cannot inject method "'.$methodName.'": First parameter has to be $Self');
+		}
 		self::$injectedStaticMethods[strtoupper($methodName)] = $methodFunction;
 	}
 
