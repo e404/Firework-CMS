@@ -12,6 +12,7 @@ class EMail extends ISystem {
 	protected $cc = array();
 	protected $bcc = array();
 	protected $subject = '';
+	protected $custom_headers = array();
 	protected $text = '';
 	protected $html = '';
 	protected $attachments = array();
@@ -161,6 +162,18 @@ class EMail extends ISystem {
 	}
 
 	/**
+	 * Adds a custom header
+	 * 
+	 * @access public
+	 * @param string $name
+	 * @param string $value
+	 * @return void
+	 */
+	public function addHeader($name, $value) {
+		$this->custom_headers[] = $name.': '.$value;
+	}
+
+	/**
 	 * Defines the email subject text.
 	 * 
 	 * @access public
@@ -234,6 +247,11 @@ class EMail extends ISystem {
 		if($this->cc) $headers[] = 'Cc: '.implode(', ',$this->cc);
 		if($this->bcc) $headers[] = 'Bcc: '.implode(', ',$this->bcc);
 		$headers[] = 'MIME-Version: 1.0';
+		if($this->custom_headers) {
+			foreach($this->custom_headers as $header) {
+				$headers[] = $header;
+			}
+		}
 		$boundary = 'Part-Alternative-'.md5(microtime().'a');
 		$boundaryMixed = 'Part-Mixed-'.md5(microtime().'m');
 		if($this->text && !$this->html && !$this->attachments) {
