@@ -178,5 +178,39 @@ abstract class AbstractDbCollection extends AbstractDbEntity implements Iterator
 		return ($this->_position >= 0) && ($this->_position < count($this->rows));
 	}
 
+	/**
+	 * Filters the collection by given fields and values
+	 * 
+	 * This method modifies the dataset of the existing `AbstractDbCollection` unless `$return_copy` is set to `true`.
+	 * 
+	 * Example:
+	 * <code>
+	 * $food = new Food(); // extends AbstractDbCollection
+	 * $food->filter(['type' => 'vegetable', 'color' => 'red']);
+	 * </code>
+	 * 
+	 * @access public
+	 * @param array $filter The filter to apply
+	 * @param bool $return_copy If set to `true` returns a copy of the current filtered `AbstractDbCollection` instead of modifying the original
+	 * @return self The filtered collection
+	 */
+	public function filter($filter, $return_copy=false) {
+		$this->loadFromDb();
+		$filtered_rows = [];
+		foreach($filter as $filter_field=>$filter_value) {
+			foreach($this->rows as $row) {
+				if(!isset($row[$filter_field]) || $row[$filter_field]!=$filter_value) continue;
+				$filtered_rows[] = $row;
+			}
+		}
+		if($return_copy) {
+			$obj = clone $this;
+			$obj->rows = $filtered_rows;
+			return $obj;
+		}else{
+			$this->rows = $filtered_rows;
+			return $this;
+		}
+	}
 	
 }
