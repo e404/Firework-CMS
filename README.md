@@ -27,6 +27,10 @@ You can read the entire [Class Reference online](http://www.fireworkcms.com/docs
 Changelog
 =========
 
+Version 1.3.0
+-------------
+- Current DEV version
+
 Version 1.2.0
 -------------
 - EMail class improvements
