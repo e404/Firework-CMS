@@ -317,26 +317,7 @@ var app = {
 					var target = $(hash);
 					target = target.length ? target : $('[name=' + hash.slice(1) +']');
 					if(target.length) {
-						app.scroll.to(target, function(){
-						app.utils.timechain(
-							300,
-							function(){
-								target.addClass('anchor-target-active');
-							},
-							300,
-							function(){
-								target.removeClass('anchor-target-active');
-							},
-							150,
-							function(){
-								target.addClass('anchor-target-active');
-							},
-							300,
-							function(){
-								target.removeClass('anchor-target-active');
-							}
-						);
-						});
+						app.scroll.to(target, app.scroll.blinkCallback);
 						return false;
 					};
 				}
@@ -348,9 +329,22 @@ var app = {
 			$('html,body').animate({
 				scrollTop: target.offset().top - parseInt(target.css('margin-top')) / 2
 			},function(){
-				if(callback) callback();
+				if(callback) callback(target);
 			});
 			return true;
+		},
+		blinkCallback: function(target){
+			target = $(target);
+			app.utils.timechain(
+				300,
+				function(){ target.addClass('anchor-target-active'); },
+				300,
+				function(){ target.removeClass('anchor-target-active'); },
+				150,
+				function(){ target.addClass('anchor-target-active'); },
+				300,
+				function(){ target.removeClass('anchor-target-active'); }
+			);
 		}
 	},
 	fullwidth: {
