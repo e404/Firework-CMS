@@ -105,7 +105,7 @@ class Session extends Db {
 	/**
 	 * Returns the value for the `$key` in the `Session`.
 	 *
-	 * If Not set, `null` is returned.
+	 * If not set, `null` is returned.
 	 * 
 	 * @access public
 	 * @param string $key
@@ -137,6 +137,23 @@ class Session extends Db {
 		}
 	}
 
+	/**
+	 * Returns the value for the `$key` in the `Session` and immediately removes it.
+	 *
+	 * If not set, `null` is returned.
+	 * 
+	 * @access public
+	 * @param string $key
+	 * @return mixed
+	 */
+	public function pop($key) {
+		$val = $this->get($key);
+		if($val!==null) {
+			$this->remove($key);
+		}
+		return $val;
+	}
+	
 	/**
 	 * Alias for `getSid()`.
 	 * 
