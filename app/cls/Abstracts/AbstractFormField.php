@@ -27,6 +27,7 @@ abstract class AbstractFormField extends AbstractHtmlElement {
 	protected $autocorrect = null;
 	protected $validation = array();
 	protected $maxlength = 0;
+	protected $disabled = false;
 
 	abstract protected function init();
 
@@ -67,6 +68,18 @@ abstract class AbstractFormField extends AbstractHtmlElement {
 	public function required($required=null) {
 		if($required===null) return $this->required;
 		$this->required = $required ? true : false;
+		return $this;
+	}
+
+	/**
+	 * Checks if the field is disabled or sets it disabled.
+	 * 
+	 * @access public
+	 * @param bool $disabled (optional) If omitted, the disabled status is returned (`bool`); if `true` or `false` the disabled status is set accordingly (default: null)
+	 */
+	public function disabled($disabled=null) {
+		if($disabled===null) return $this->disabled;
+		$this->disabled = $disabled ? true : false;
 		return $this;
 	}
 
@@ -167,7 +180,7 @@ abstract class AbstractFormField extends AbstractHtmlElement {
 	public function getGenericHtml() {
 		$userValue = $this->getAutofillValue();
 		return '<label><span>'.$this->getLabelHtml().
-			' </span><input type="'.$this->type.'"'.($this->name ? ' name="'.$this->name.'"' : '').($this->maxlength ? ' maxlength="'.$this->maxlength.'"' : '').
+			' </span><input type="'.$this->type.'"'.($this->name ? ' name="'.$this->name.'"' : '').($this->maxlength ? ' maxlength="'.$this->maxlength.'"' : '').($this->disabled ? ' disabled' : '').
 			' value="'.htmlspecialchars($userValue===null ? $this->value : $userValue).'"></label>';
 	}
 
