@@ -39,7 +39,7 @@ class TextField extends AbstractFormField {
 		if($this->multiline) {
 			$html.= '<textarea name="'.$this->name.'"'.($this->maxlength ? ' maxlength="'.$this->maxlength.'"' : '').($this->placeholder ? ' placeholder="'.htmlspecialchars($this->placeholder).'"' : '').$onchange.'>'.htmlspecialchars($userValue===null ? $this->value : $userValue).'</textarea>';
 		}else{
-			$html.= '<input type="'.$this->type.'" name="'.$this->name.'"'.($this->maxlength ? ' maxlength="'.$this->maxlength.'"' : '').($this->placeholder ? ' placeholder="'.htmlspecialchars($this->placeholder).'"' : '').' value="'.htmlspecialchars($userValue===null ? $this->value : $userValue).'"'.$onchange.'>';
+			$html.= '<input type="'.$this->type.'" name="'.$this->name.'"'.($this->maxlength ? ' maxlength="'.$this->maxlength.'"' : '').($this->disabled ? ' disabled' : '').($this->placeholder ? ' placeholder="'.htmlspecialchars($this->placeholder).'"' : '').' value="'.htmlspecialchars($userValue===null ? $this->value : $userValue).'"'.$onchange.'>';
 		}
 		$html.= '</label>';
 		return parent::getHtml($html);

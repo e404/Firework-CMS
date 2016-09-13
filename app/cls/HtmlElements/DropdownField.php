@@ -13,7 +13,7 @@ class DropdownField extends AbstractFormFieldWithOptions {
 	public function getHtml() {
 		$userValue = $this->getAutofillValue();
 		$html = '<label><span>'.$this->getLabelHtml().' </span>';
-		$html.= '<select name="'.$this->name.'">';
+		$html.= '<select name="'.$this->name.'"'.($this->disabled ? ' disabled' : '').'>';
 		if($this->blank_option) {
 			$html.= '<option value="">—</option>';
 		}
