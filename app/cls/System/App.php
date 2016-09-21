@@ -251,7 +251,7 @@ class App {
 		self::$uriprefix = self::$protocol.self::getHost().'/';
 		if(PHP_SAPI!=='cli') {
 			if(Config::get('env', 'protocol')==='https://' && !isset($_SERVER['HTTPS']) && Config::get('env', 'force_tls')) {
-				self::redirect(self::getLink());
+				self::redirect(self::getLink(), true);
 			}
 			if(!isset($_COOKIE['r'])) {
 				self::executeHooks('first-time-visit');
