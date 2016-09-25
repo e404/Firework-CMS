@@ -500,7 +500,7 @@ class App {
 		}
 		$html = str_replace('[[[LANG]]]',self::getLang(),$html);
 		$html = str_replace('[[[DESCRIPTION]]]',Config::get('htmlhead','description'),$html);
-		$html = str_replace('[[[BODYCLASS]]]', self::getLang().' '.(self::getUrlPart(0) ? 'page-'.self::getUrlPart(0) : 'page-start').' '.(count(self::getUrlPart())>1 ? 'sub' : 'root').' '.(self::isSandboxed() ? 'sandboxed' : 'production'),$html);
+		$html = str_replace('[[[BODYCLASS]]]', self::getLang().' '.(self::getUrlPart(0) ? 'page-'.self::getUrlPart(0) : 'page-start').' '.(count(self::getUrlPart())>1 ? 'sub' : 'root').' '.(self::isSandboxed() ? 'sandboxed' : 'production').' '.(User::getSessionUid() ? 'loggedin' : 'loggedout'),$html);
 		$html = preg_replace_callback('/\[\[\[HOOK:([^\]]+)\]\]\]\n?/', function($matches){
 			return self::executeHooks($matches[1]);
 		}, $html);
