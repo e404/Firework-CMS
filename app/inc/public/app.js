@@ -245,13 +245,26 @@ var app = {
 				}
 			};
 		},
-		confirm: function(callback, msg){
-			app.dialog({msg: msg ? msg : app.navigation.msg, ok: '{{Stay Here}}', cancel: '{{Leave Page}}', callback: function(stay){
-				if(!stay) {
-					app.changed(false);
+		confirm: function(callback, msg, dialogOptions){
+			var options = {
+				msg: msg ? msg : app.navigation.msg,
+				ok: '{{Stay Here}}',
+				cancel: '{{Leave Page}}',
+				callback: function(stay){
+					if(!stay) {
+						app.changed(false);
+					}
+					if(typeof callback==='function') {
+						callback(!stay);
+					}else if(!stay) {
+						var href = $(callback).attr('href');
+						if(href) location.href = href;
+					}
 				}
-				callback(!stay);
-			}});
+			};
+			if(dialogOptions) $.extend(true, options, dialogOptions);
+			app.dialog(options);
+			return false; // use case: <a href="link" onclick="return app.navigation.confirm(this)">
 		},
 		reloadaftererror: function(){
 			app.dialog({
