@@ -4,7 +4,7 @@
 ignore_user_abort(true);
 
 require_once('../global.php');
-ob_end_clean();
+@ob_end_clean();
 
 // With zero content length the browser stops listening for further data
 header('Content-Encoding: none');
@@ -22,8 +22,8 @@ if($_SERVER['REQUEST_METHOD']==='OPTIONS' && isset($_SERVER['HTTP_ORIGIN'])) {
 }
 
 // Flush the output to send the headers
-ob_end_flush(); // This is required for flush() to work due to a strange bug in some versions of PHP
-flush();
+@ob_end_flush(); // This is required for flush() to work due to a strange bug in some versions of PHP
+@flush();
 
 // ----
 // Everything below this line gets executed without the browser waiting for any output.
