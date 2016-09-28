@@ -369,6 +369,43 @@ abstract class AbstractDbRecord extends AbstractDbEntity {
 	}
 
 	/**
+	 * Finds a record by fields.
+	 * 
+	 * <code>
+	 * $all_available_books = Book::find(['available' => true]);
+	 * $one_black_book = Book::find(['color' => 'black'], true);
+	 * </code>
+	 * 
+	 * @access public
+	 * @static
+	 * @param array $fields Fields with values that have to match.
+	 * @param bool $single (optional) Default `false`. If `true` only one matching record is returned instead of an array.
+	 * @return mixed Returns an array of matching records or one record if `$single` is set to true or `null` if no record matches the search.
+	 */
+	public static function find(array $fields, $single=false) {
+		if(!$fields) {
+			Error::warning('No filter has been set.');
+			return null;
+		}
+		$db = self::db();
+		$query = $db->prepare("SELECT * FROM @VAL WHERE", $this->getTable());
+		foreach($fields as $field->$value) {
+			$query.= $db->prepare(" @VAR=@VAL AND", $field, $value);
+		}
+		$query = substr($query, 0, -4);
+		$result = $db->query($query);
+		if(!$result) return null;
+		$matches = array();
+		foreach($result as $row) {
+			$record = new self();
+			$record->importDbFields($row);
+			$matches[] = $record;
+		}
+		if($single) return $matches[0];
+		return $matches;
+	}
+
+	/**
 	 * Get DB field shortcut.
 	 * 
 	 * @access public
