@@ -381,7 +381,7 @@ abstract class AbstractDbRecord extends AbstractDbEntity {
 	 * @param bool $single (optional) Default `false`. If `true` only one matching record is returned instead of an array.
 	 * @return mixed Returns an array of matching records or one record if `$single` is set to true or `null` if no record matches the search.
 	 */
-	public static function find(array $fields) {
+	public function find(array $fields) {
 		if(!$fields) {
 			Error::warning('No filter has been set.');
 			return null;
