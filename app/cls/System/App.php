@@ -705,7 +705,7 @@ class App {
 	public static function renderajax($uri=null, $return=null) {
 		self::$path = self::resolver($uri===null ? $_SERVER['REQUEST_URI'] : $uri);
 		$class = substr(self::$path,5);
-		$class = preg_replace('/[^A-Za-z]+/','',$class);
+		$class = preg_replace('/[^A-Za-z0-9_]+/','',$class);
 		if($class && is_callable(array($class,'ajax'))) {
 			try {
 				$ajax = $class::ajax(explode('/',trim($class,'/')),array_merge($_POST,$_GET));
