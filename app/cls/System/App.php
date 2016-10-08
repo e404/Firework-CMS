@@ -1434,8 +1434,16 @@ class App {
 		$html = preg_replace('@\n\s*\n+@', "\n\n", $html);
 		$html = preg_replace('@\n([ ]{4,})@', "\n".'<span class="text-indention" style="padding-left: 2em;"></span>', $html);
 		$html = nl2br($html, false);
-		// TODO: Convert URLs to <a> links
-		return $html;
+		return preg_replace(
+			[
+				'@(\s|^)(www\..+?)(\s|$)@im',
+				'@(\s|^)(https?://)(.+?)(\s|$)@im',
+			],[
+				'$1http://$2$3',
+				'$1<a href="$2$3" target="_blank">$3</a>$4',
+			],
+			$html
+		);
 	}
 
 }
