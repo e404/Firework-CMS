@@ -1434,16 +1434,23 @@ class App {
 		$html = preg_replace('@\n\s*\n+@', "\n\n", $html);
 		$html = preg_replace('@\n([ ]{4,})@', "\n".'<span class="text-indention" style="padding-left: 2em;"></span>', $html);
 		$html = nl2br($html, false);
-		return preg_replace(
-			[
-				'@(\s|^)(www\..+?)(<|\s|$)@im',
-				'@(\s|^)(https?://)(.+?)(<|\s|$)@im',
-			],[
-				'$1http://$2$3',
-				'$1<a href="$2$3" class="auto-linked external" rel="external nofollow" target="_blank">$3</a>$4',
-			],
+		$html = preg_replace(
+			'@(\s|^)(www\..+?)(<|\s|$)@im',
+			'$1http://$2$3',
 			$html
 		);
+		$html = preg_replace_callback(
+			'@(\s|^)(https?://)(.+?)(<|\s|$)@im',
+			function($matches){
+				$display_url = $matches[3];
+				if(mb_strlen($display_url)>50) {
+					$display_url = mb_substr($display_url, 0, 25).'…'.mb_substr($display_url, -25);
+				}
+				return $matches[1].'<a href="'.$matches[2].$matches[3].'" class="auto-linked external" rel="external nofollow" target="_blank">'.$display_url.'</a>'.$matches[4];
+			},
+			$html
+		);
+		return $html;
 	}
 
 }
