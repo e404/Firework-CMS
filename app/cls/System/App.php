@@ -1443,8 +1443,8 @@ class App {
 			'@(\s|^)(https?://)(.+?)(<|\s|$)@im',
 			function($matches){
 				$display_url = $matches[3];
-				if(mb_strlen($display_url)>50) {
-					$display_url = mb_substr($display_url, 0, 25).'…'.mb_substr($display_url, -25);
+				if(mb_strlen($display_url)>40) {
+					$display_url = mb_substr($display_url, 0, 18).'…'.mb_substr($display_url, -18);
 				}
 				return $matches[1].'<a href="'.$matches[2].$matches[3].'" class="auto-linked external" rel="external nofollow" target="_blank">'.$display_url.'</a>'.$matches[4];
 			},
