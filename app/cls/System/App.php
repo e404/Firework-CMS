@@ -1436,11 +1436,11 @@ class App {
 		$html = nl2br($html, false);
 		return preg_replace(
 			[
-				'@(\s|^)(www\..+?)(\s|$)@im',
-				'@(\s|^)(https?://)(.+?)(\s|$)@im',
+				'@(\s|^)(www\..+?)(<|\s|$)@im',
+				'@(\s|^)(https?://)(.+?)(<|\s|$)@im',
 			],[
 				'$1http://$2$3',
-				'$1<a href="$2$3" target="_blank">$3</a>$4',
+				'$1<a href="$2$3" class="auto-linked external" rel="external nofollow" target="_blank">$3</a>$4',
 			],
 			$html
 		);
