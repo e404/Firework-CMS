@@ -1424,14 +1424,15 @@ class App {
 	 * Returns an HTML enrichted text, supporting paragraphs and URL auto detection.
 	 * 
 	 * @access public
+	 * @static
 	 * @param string $text The text input
 	 * @return string
 	 */
-	public function getRichHtml($text) {
+	public static function getRichHtml($text) {
 		$html = trim($text);
 		$html = preg_replace('@(\r\n|\n|\r)@', "\n", $html);
 		$html = preg_replace('@\n\s*\n+@', "\n\n", $html);
-		$html = preg_replace('@\n([ ]{4,})@', "\n".'<span class="indent"></span>', $html);
+		$html = preg_replace('@\n([ ]{4,})@', "\n".'<span class="text-indention" style="padding-left: 2em;"></span>', $html);
 		$html = nl2br($html, false);
 		return $html;
 	}
