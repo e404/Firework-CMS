@@ -22,7 +22,7 @@ if($_SERVER['REQUEST_METHOD']==='OPTIONS' && isset($_SERVER['HTTP_ORIGIN'])) {
 }
 
 // Flush the output to send the headers
-@ob_end_flush(); // This is required for flush() to work due to a strange bug in some versions of PHP
+if(@ob_get_level()) @ob_end_flush(); // This is required for flush() to work due to a strange bug in some versions of PHP
 @flush();
 
 // ----
