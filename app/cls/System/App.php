@@ -1429,11 +1429,12 @@ class App {
 	 * @return string
 	 */
 	public static function getRichHtml($text) {
-		$html = trim($text);
+		$html = htmlspecialchars(trim($text));
 		$html = preg_replace('@(\r\n|\n|\r)@', "\n", $html);
 		$html = preg_replace('@\n\s*\n+@', "\n\n", $html);
 		$html = preg_replace('@\n([ ]{4,})@', "\n".'<span class="text-indention" style="padding-left: 2em;"></span>', $html);
 		$html = nl2br($html, false);
+		// TODO: Convert URLs to <a> links
 		return $html;
 	}
 
