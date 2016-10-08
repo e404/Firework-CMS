@@ -260,8 +260,25 @@ abstract class AbstractDbRecord extends AbstractDbEntity {
 	 */
 	public function getFieldHtml($name, $empty_placeholder=null) {
 		$this->loadFromDb();
-		$value = $this->getField($name, false);
+		$value = $this->getStr($name, false);
 		return $value ? htmlspecialchars($value) : ($empty_placeholder===null ? Error::emptyField() : $empty_placeholder);
+	}
+
+	/**
+	 * Returns an HTML enrichted field value, supporting paragraphs and URL auto detection.
+	 * 
+	 * @access public
+	 * @param string $name The field's name
+	 * @param string $empty_placeholder (optional) If set, this value is returned if the field is empty; otherwise the value of `Error::emptyField()` is returned (default: null)
+	 * @return string
+	 * @see App::getRichHtml()
+	 * @see Error::setEmptyFieldPlaceholder()
+	 */
+	public function getFieldRichHtml($name, $empty_placeholder=null) {
+		$this->loadFromDb();
+		$value = $this->getStr($name, false);
+		if(!trim($value)) return ($empty_placeholder===null ? Error::emptyField() : $empty_placeholder);
+		return App::getRichHtml($value);
 	}
 
 	/**
