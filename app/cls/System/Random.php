@@ -8,8 +8,8 @@ class Random extends NISystem {
 	/**
 	 * Generates a random string.
 	 * 
-	 * The string contains upper-case letters, lower-case letters and numbers.
-	 * `[A-Za-z0-9]{$length}`
+	 * If `$chars` is not set, the string contains upper-case letters, lower-case letters and numbers.
+	 * `[0-9a-zA-Z]{$length}`
 	 *
 	 * @access public
 	 * @static
@@ -29,6 +29,27 @@ class Random extends NISystem {
 		$second = (string) $chars[$repl[2]%62];
 		return strtr(substr(base64_encode($bytes), 0, $length), '+/', $first.$second);
 
+	}
+
+	/**
+	 * Generates a random string with only consonants and numbers.
+	 * 
+	 * Can be used to avoid the unintended formation of real words.
+	 * The string contains upper-case consonants, lower-case consonants and numbers.
+	 * `[0-9b-df-hj-np-tv-zB-DF-HJ-NP-TV-Z]{$length}`
+	 *
+	 * @access public
+	 * @static
+	 * @param int $length The length of the generated random string
+	 * @return string
+	 * @see self::generateString()
+	 */
+	public static function generateStringSkippingVovels($length) {
+		$string = '';
+		while(strlen($string)<$length) {
+			$string.= str_replace(['a','e','i','o','u','A','E','I','O','U'], '', self::generateString($length));
+		}
+		return substr($string, 0, $length);
 	}
 
 	/**
