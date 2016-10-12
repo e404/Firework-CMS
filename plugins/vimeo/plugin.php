@@ -44,6 +44,7 @@ class VimeoVideo extends CustomHtmlTag {
 			}
 			if($atts['nointeraction']) {
 				$options[] = 'background=1';
+				$options[] = 'mute=0';
 			}
 			self::$counter++;
 			$element_id = 'vimeo'.self::$counter;
