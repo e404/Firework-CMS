@@ -13,7 +13,7 @@ app.plugins.vimeo = {
 				}else{
 					iframe[0].contentWindow.postMessage('{"method":"disableTextTrack","value":{"kind":"subtitles"}}', '*');
 				}
-			}, 1000);
+			}, 10000);
 		});
 	}
 };
