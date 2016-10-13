@@ -8,11 +8,13 @@ app.plugins.vimeo = {
 				var iframe = $(this);
 				iframe.closest('.video').addClass('loaded');
 				var subtitles = iframe.data('subtitles');
-				if(subtitles) {
-					iframe[0].contentWindow.postMessage('{"method":"enableTextTrack","value":{"language":"'+subtitles+'","kind":"subtitles"}}', '*');
-				}else{
-					iframe[0].contentWindow.postMessage('{"method":"disableTextTrack","value":{"kind":"subtitles"}}', '*');
-				}
+				setTimeout(function(){
+					if(subtitles) {
+						iframe[0].contentWindow.postMessage('{"method":"enableTextTrack","value":{"language":"'+subtitles+'","kind":"subtitles"}}', '*');
+					}else{
+						iframe[0].contentWindow.postMessage('{"method":"disableTextTrack","value":{"kind":"subtitles"}}', '*');
+					}
+				}, 2000);
 			});
 		});
 	}
