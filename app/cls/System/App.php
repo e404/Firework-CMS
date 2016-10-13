@@ -417,7 +417,7 @@ class App {
 		// Start buffered output
 		ob_start();
 		// Load plugins
-		$plugins_dir = Config::get('env', 'plugins_dir');
+		$plugins_dir = Config::get('dirs', 'plugins');
 		if($plugins_dir && ($load = Config::get('plugins', 'load'))) {
 			foreach($load as $plugin) {
 				$pluginfile = $plugins_dir.'/'.$plugin.'/plugin.php';
