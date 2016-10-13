@@ -49,7 +49,7 @@ class VimeoVideo extends CustomHtmlTag {
 			}
 			self::$counter++;
 			$element_id = 'vimeo'.self::$counter;
-			$html = '<div class="video vimeo"><div class="placeholder" style="padding-top:'.$h.'%;"></div><div class="video-wrapper"><iframe id="'.$element_id.'" src="https://player.vimeo.com/video/'.$atts['id'].'?api=1&amp;player_id='.$element_id.($options ? '&amp;'.implode('&amp;',$options) : '').'" frameborder="0"'.($atts['subtitles'] ? ' data-subtitles="'+$atts['nointeraction']+'"' : '').' allowfullscreen></iframe></div>';
+			$html = '<div class="video vimeo"><div class="placeholder" style="padding-top:'.$h.'%;"></div><div class="video-wrapper"><iframe id="'.$element_id.'" src="https://player.vimeo.com/video/'.$atts['id'].'?api=1&amp;player_id='.$element_id.($options ? '&amp;'.implode('&amp;',$options) : '').'" frameborder="0"'.($atts['subtitles'] ? ' data-subtitles="'.$atts['nointeraction'].'"' : '').' allowfullscreen></iframe></div>';
 			if($atts['nointeraction']) {
 				$html.= '<div class="video-cover"></div>';
 			}
