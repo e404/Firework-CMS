@@ -19,6 +19,7 @@ class VimeoVideo extends CustomHtmlTag {
 		$this->attr('aspect', '16:9');
 		$this->attr('loop', false);
 		$this->attr('nointeraction', false);
+		$this->attr('subtitles', '');
 
 		$this->setHandler(function($atts){
 			switch($atts['aspect']) {
