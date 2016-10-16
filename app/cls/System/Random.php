@@ -70,4 +70,16 @@ class Random extends NISystem {
 		return substr($code, 0, $length);
 	}
 
+	/**
+	 * Generates a random string that contains any bytes
+	 *
+	 * @access public
+	 * @static
+	 * @param mixed $length The length of the generated random string
+	 * @return string
+	 */
+	public static function generateBytes($length) {
+		return openssl_random_pseudo_bytes($length);
+	}
+
 }
