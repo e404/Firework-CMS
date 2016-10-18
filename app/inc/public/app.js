@@ -65,7 +65,10 @@ var app = {
 		}
 	},
 	dialog: function(userOptions){
-		if($('#dialog').length) return;
+		if($('#dialog').length) {
+			$('#dialog').remove();
+			app.overlay(false);
+		}
 		app.utils.blur();
 		var options = {
 			msg: '{{Should this action really be performed?}}',
