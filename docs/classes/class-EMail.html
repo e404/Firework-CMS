@@ -999,11 +999,51 @@ Those custom fields can be masked using curly brackets (e.g. <code>{firstname}</
 					<h4>Parameters</h4>
 					<div class="list"><dl>
 						<dt><var>$fields</var></dt>
-						<dd>(optional) Replacement field array like in <code>setReplacement</code> (default: null)</dd>
+						<dd>(optional) Replacement field array like in <code>setReplacement</code> (default: <code>null</code>)</dd>
 						<dt><var>$html_escape</var></dt>
-						<dd>(optional) If set to true, the replacement fields will be HTML escaped (default: true)</dd>
+						<dd>(optional) If set to <code>true</code>, the replacement fields will be HTML escaped (default: <code>true</code>)</dd>
 					</dl></div>
 
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="validateAddress" id="_validateAddress">
+
+			<td class="attributes"><code>
+				 public static
+				boolean
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_validateAddress">#</a>
+			<code>validateAddress( <span>string <var>$email_address</var></span>, <span>boolean <var>$check_mx</var> = <span class="php-keyword1">true</span></span> )</code>
+
+			<div class="description short">
+				<p>Checks if an E-mail address is valid</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Checks if an E-mail address is valid</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$email_address</var></dt>
+						<dd>The E-mail address to check</dd>
+						<dt><var>$check_mx</var></dt>
+						<dd>(optional) If set to <code>true</code>, the MX entry is checked and hosts are resolved and compared (default: <code>true</code>)</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						boolean<br><code>true</code> if valid, <code>false</code> if invalid
+					</div>
 
 
 
