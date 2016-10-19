@@ -441,8 +441,8 @@ class EMail extends ISystem {
 	 * Applies the previously set template files and replacements.
 	 * 
 	 * @access public
-	 * @param array $fields (optional) Replacement field array like in `setReplacement` (default: null)
-	 * @param bool $html_escape (optional) If set to true, the replacement fields will be HTML escaped (default: true)
+	 * @param array $fields (optional) Replacement field array like in `setReplacement` (default: `null`)
+	 * @param bool $html_escape (optional) If set to `true`, the replacement fields will be HTML escaped (default: `true`)
 	 * @return void
 	 */
 	public function applyTemplates(array $fields=null, $html_escape=true) {
@@ -456,6 +456,22 @@ class EMail extends ISystem {
 			if($html) $html = str_replace($field,nl2br($value),$html);
 		}
 		if($html) $this->html = $html;
+	}
+
+	/**
+	 * Checks if an E-mail address is valid
+	 * 
+	 * @access public
+	 * @static
+	 * @param string $email_address The E-mail address to check
+	 * @param bool $check_mx (optional) If set to `true`, the MX entry is checked and hosts are resolved and compared (default: `true`)
+	 * @return bool `true` if valid, `false` if invalid
+	 */
+	public static function validateAddress($email_address, $check_mx=true) {
+		if(!$email_address || !preg_match('/^[^@]+@[^@\.]+\.[^@]+$/', $email_address)) return false;
+		if(!$check_mx) return true;
+		if(!getmxrr(substr($email_address, strpos($email_address, '@')+1), $mxhosts) || $mxhosts===gethostbyname($mxhosts[0])) return false;
+		return true;
 	}
 
 }

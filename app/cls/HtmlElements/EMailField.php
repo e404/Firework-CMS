@@ -21,10 +21,8 @@ class EMailField extends AbstractFormField {
 
 	public function hasError() {
 		$value = $this->getUserValue();
-		if(($this->required && !$value) || !preg_match('/^[^@]+@[^@\.]+\.[^@]+$/',$value)) return true;
-		if($this->ignoremx) return false;
-		if(!getmxrr(substr($value,strpos($value,'@')+1),$mxhosts) || $mxhosts===gethostbyname($mxhosts[0])) return true;
-		return false;
+		if($this->required && !$value) return true;
+		return !EMail::validateAddress($value, !$this->ignoremx);
 	}
 
 }
