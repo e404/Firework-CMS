@@ -233,6 +233,7 @@ class MysqlDb extends AbstractDatabaseConnector {
 	 * @return bool `true` on success, `false` on error
 	 */
 	public function startTransaction() {
+		if($this->inTransaction()) return -1;
 		$this->transaction = true;
 		return $this->query("START TRANSACTION");
 	}
@@ -257,6 +258,16 @@ class MysqlDb extends AbstractDatabaseConnector {
 	public function commit() {
 		$this->transaction = false;
 		return $this->query("COMMIT");
+	}
+
+	/**
+	 * Checks if a transaction has been started.
+	 * 
+	 * @access public
+	 * @return bool `true` if a transaction has been started, `false` if not
+	 */
+	public function inTransaction() {
+		return $this->transaction;
 	}
 
 	/**

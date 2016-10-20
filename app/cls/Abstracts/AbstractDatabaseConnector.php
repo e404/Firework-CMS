@@ -54,6 +54,7 @@ abstract class AbstractDatabaseConnector {
 	abstract public function exportSqlFile($filename);
 	abstract public function escape($str);
 	abstract public function startTransaction();
+	abstract public function inTransaction();
 
 	/**
 	 * Alias for `startTransaction()`.
