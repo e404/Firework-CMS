@@ -257,11 +257,14 @@ class Language extends ISystem {
 	 * @param mixed $number
 	 * @param int $decimals (default: 0)
 	 * @param bool $separator (default: true)
+	 * @param bool $simple If set to `true`, '.00' will be removed if applicable (default: `false`)
 	 * @return string
 	 */
-	public function number($number, $decimals=0, $separator=true) {
+	public function number($number, $decimals=0, $separator=true, $simple=false) {
 		if(!is_numeric($number) || !$this->lang) return $number;
-		return number_format($number, $decimals, $this->number_dec_point, $separator ? $this->number_thsd_sep : '');
+		$number = number_format($number, $decimals, $this->number_dec_point, $separator ? $this->number_thsd_sep : '');
+		if($simple) $number = preg_replace('@'.preg_quote($this->number_dec_point).'0+$@','',$number);
+		return $number;
 	}
 
 	/**
@@ -269,7 +272,7 @@ class Language extends ISystem {
 	 * 
 	 * @access public
 	 * @param mixed $number
-	 * @param bool $simple If set to true, '.00' will be removed if applicable (default: false)
+	 * @param bool $simple If set to `true`, '.00' will be removed if applicable (default: `false`)
 	 * @return string
 	 */
 	public function currency($number, $simple=false) {
