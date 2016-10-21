@@ -484,7 +484,7 @@ This makes it easier to find and edit not yet translated strings.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_number">#</a>
-			<code>number( <span>mixed <var>$number</var></span>, <span>integer <var>$decimals</var> = <span class="php-num">0</span></span>, <span>boolean <var>$separator</var> = <span class="php-keyword1">true</span></span> )</code>
+			<code>number( <span>mixed <var>$number</var></span>, <span>integer <var>$decimals</var> = <span class="php-num">0</span></span>, <span>boolean <var>$separator</var> = <span class="php-keyword1">true</span></span>, <span>boolean <var>$simple</var> = <span class="php-keyword1">false</span></span> )</code>
 
 			<div class="description short">
 				<p>Translates a number to the right format.</p>
@@ -502,6 +502,8 @@ This makes it easier to find and edit not yet translated strings.</p>
 						<dd>(default: 0)</dd>
 						<dt><var>$separator</var></dt>
 						<dd>(default: true)</dd>
+						<dt><var>$simple</var></dt>
+						<dd>If set to <code>true</code>, '.00' will be removed if applicable (default: <code>false</code>)</dd>
 					</dl></div>
 
 					<h4>Returns</h4>
@@ -541,7 +543,7 @@ This makes it easier to find and edit not yet translated strings.</p>
 						<dt><var>$number</var></dt>
 						<dd></dd>
 						<dt><var>$simple</var></dt>
-						<dd>If set to true, '.00' will be removed if applicable (default: false)</dd>
+						<dd>If set to <code>true</code>, '.00' will be removed if applicable (default: <code>false</code>)</dd>
 					</dl></div>
 
 					<h4>Returns</h4>
