@@ -14,7 +14,9 @@ if(Config::get('env', 'published')) {
 			if(substr($value,0,1)==='[') {
 				// HTTP request header value
 				list($key, $value) = explode(':',str_replace(array('[',']'),'',$value),2);
-				if($_SERVER[trim($key)]===trim($value)) {
+				$key = trim($key);
+				$value = trim($value);
+				if((isset($_SERVER[$key]) && $_SERVER[$key]===$value) || (isset($_COOKIE[$key]) && $_COOKIE[$key]===$value)) {
 					$forbidden = false;
 					break;
 				}
