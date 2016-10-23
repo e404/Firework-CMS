@@ -605,11 +605,14 @@ class App {
 		if(!Config::get('debug')) {
 			// CDN replacements
 			$html = self::renderCdnReplacements($html);
-			// Optimize
-			$html = preg_replace(array('@\n+\s*@','@[\t ]+@'),array("\n",' '),$html);
-			$html = str_replace("\n<", '<', $html);
-			$html = substr_replace($html, "\n", strpos($html,'>')+1, 0);
-			$html = trim($html);
+			if(Config::get('env', 'optimize_html')) {
+				// Optimize HTML output
+				$html = preg_replace(array('@\n+\s*@','@[\t ]+@'),array("\n",' '),$html);
+				$html = preg_replace('@<(/div|/p|br|/h[1-6]|/address|/article|/aside|/audio|/video|/blockquote|/canvas|/dd|/dl|/fieldset|/footer|/form|/header|/hgroup|/hr|/noscript|/ol|/output|/pre|/section|/table|/tfoot|/ul|/figure|/figcaption)>\n<@', '<$1><', $html);
+				$html = str_replace("\n<", ' <', $html);
+				$html = substr_replace($html, "\n", strpos($html,'>')+1, 0);
+				$html = trim($html);
+			}
 		}
 		// We're done
 		return $html;
