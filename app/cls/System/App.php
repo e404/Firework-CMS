@@ -610,7 +610,6 @@ class App {
 				$html = preg_replace(array('@\n+\s*@','@[\t ]+@'),array("\n",' '),$html);
 				$html = preg_replace('@\s*</(div|p|br|h[1-6]|address|article|aside|audio|video|blockquote|canvas|dd|dl|fieldset|footer|form|header|hgroup|hr|noscript|ol|output|pre|section|table|tfoot|ul|figure|figcaption|body|html|meta|link)>\s*@', '<$1>', $html);
 				$html = preg_replace('@\s+<(br>\s*|div|p|h[1-6]|address|article|aside|audio|video|blockquote|canvas|dd|dl|fieldset|footer|form|header|hgroup|hr|noscript|ol|output|pre|section|table|tfoot|ul|figure|figcaption|body|html|meta|link)@', '<$1', $html);
-				$html = str_replace("\n<", ' <', $html);
 				$html = substr_replace($html, "\n", strpos($html,'>')+1, 0);
 				$html = trim($html);
 			}
