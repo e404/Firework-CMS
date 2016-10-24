@@ -143,6 +143,31 @@ abstract class AbstractDatabaseConnector {
 	}
 
 	/**
+	 * Transforms the resulting rows into object instancing `AbstractDbRecord`.
+	 * 
+	 * @access public
+	 * @param mixed $query The resulting query `array` or an SQL query `string`
+	 * @param string $recordClassName Class name instancing `AbstractDbRecord`
+	 * @return array An array of `AbstractDbRecord` objects with the primary keys as array keys.
+	 * @see self::query()
+	 */
+	public function queryIntoRecords($query, $recordClassName) {
+		if(!class_exists($recordClassName) || !((new $recordClassName) instanceof AbstractDbRecord)) {
+			Error::warning('Could not create records using class $recordClassName.');
+			return [];
+		}
+		if(!is_array($query)) $query = $this->query($query);
+		if(!$query) return [];
+		$result = [];
+		foreach($query as $row) {
+			$obj = new $recordClassName;
+			$obj->importDbFields($row);
+			$result[] = $obj;
+		}
+		return $result;
+	}
+
+	/**
 	 * Returns the column names of the query result.
 	 * 
 	 * @access public
