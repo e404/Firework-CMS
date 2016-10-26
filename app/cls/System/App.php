@@ -228,8 +228,7 @@ class App {
 			// Start session
 			self::$session = new Session();
 			if(($sandboxed = Config::get('debug', 'sandboxed')) && ($sid = self::getSid())) {
-				if(is_array($sandboxed) && in_array($sid, $sandboxed)) self::$sandboxed = true;
-				elseif($sandboxed) self::$sandboxed = true;
+				if($sandboxed===true || (is_array($sandboxed) && in_array($sid, $sandboxed))) self::$sandboxed = true;
 			}
 		}
 		$skin_functions = self::getSkinPath().'functions.php';
