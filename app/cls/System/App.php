@@ -923,6 +923,26 @@ class App {
 	}
 
 	/**
+	 * Manually sets the language.
+	 * 
+	 * @access public
+	 * @static
+	 * @param mixed $lang Either 2 character ISO language string or `Language` object.
+	 * @return Language
+	 */
+	public static function setLang($lang) {
+		if(is_string($lang)) {
+			return self::$lang->setLanguage($lang);
+		}elseif($lang instanceof Language) {
+			self::$lang = $lang;
+			return true;
+		}else{
+			Error::warning('Language could not be set.');
+			return false;
+		}
+	}
+
+	/**
 	 * Returns the current `Language` object.
 	 * 
 	 * @access public
