@@ -257,11 +257,17 @@ class Form extends AbstractHtmlElement {
 			'error' => array()
 		);
 		if($skip && !is_array($skip)) $skip = array($skip);
+		$was_sent = $this->wasSent();
 		foreach($record->getFields() as $key=>$value) {
 			if(in_array($key, $skip)) continue;
 			$field = $this->getField($key, true);
 			if(!$field) continue;
-			$field->injectUserValue($value);
+			if($was_sent && ($field instanceof CheckboxField)) {
+				$user_value = $field->getUserValue();
+				$field->injectUserValue($user_value ?: '');
+			}else{
+				$field->injectUserValue($value);
+			}
 			if($error_msg = $field->hasError()) {
 				$return['error'][$key] = $error_msg===true ? '' : $error_msg;
 				continue;
