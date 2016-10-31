@@ -1328,7 +1328,16 @@ class App {
 	 */
 	public static function adminNotification($msg, $subject=null) {
 		if(!$subject) $subject = 'Admin Notification';
-		mail(Config::get('email', 'admin_notify_addr'), $subject, $msg, "From: ".Config::get('email', 'admin_notify_addr')."\nContent-Type: text/plain; charset=utf-8");
+		mail(
+			Config::get('email', 'admin_notify_addr'),
+			$subject,
+			$msg,
+			implode("\n", array(
+				"From: ".Config::get('email', 'admin_notify_addr'),
+				'Content-Type: text/html; charset=UTF-8',
+				'Precedence: bulk'
+			))
+		);
 	}
 
 	/**
