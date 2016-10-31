@@ -287,12 +287,13 @@ class Language extends ISystem {
 	 * Translates a date to the right localized format.
 	 * 
 	 * @access public
-	 * @param mixed $str
+	 * @param mixed $str (optional, default: time())
 	 * @param bool $time (default: false)
 	 * @param bool $seconds (default: false)
 	 * @return string
 	 */
-	public function date($str, $time=false, $seconds=false) {
+	public function date($str=null, $time=false, $seconds=false) {
+		if(!$str) $str = time();
 		$ts = is_numeric($str) ? $str : strtotime($str);
 		if(!$ts) return null;
 		$date_format = $this->date_format;
