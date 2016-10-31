@@ -33,7 +33,22 @@ class EMail extends ISystem {
 	}
 
 	/**
-	 * Returns a obfuscated clickable email link.
+	 * Returns an obfuscated, not clickable representation of an email address.
+	 * 
+	 * @access public
+	 * @static
+	 * @param string $email The e-mail address
+	 * @return string
+	 */
+	public static function getObfuscatedAddress($email) {
+		if(!$email) return null;
+		$code = bin2hex($email);
+		$fake_address = 's'.mt_rand(100000,999999).'@example.'.(rand(0,1) ? 'com' : 'org');
+		return "<span class=\"m-protected\" data-real=\"$code\"><!--googleoff: index--><a href=\"mailto:$fake_address\">$fake_address</a> (This e-mail address is invalid because it is protected against spam bots. Please enable JavaScript to see the real address.)<!--googleon: index--></span>";
+	}
+
+	/**
+	 * Returns an obfuscated, clickable email link.
 	 * 
 	 * @access public
 	 * @static
