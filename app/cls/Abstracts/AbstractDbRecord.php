@@ -386,6 +386,23 @@ abstract class AbstractDbRecord extends AbstractDbEntity {
 	}
 
 	/**
+	 * Checks if the record is equal to another given record.
+	 * 
+	 * @access public
+	 * @param mixed $record The record to compare
+	 * @param bool $deep_scan (optional) If `true`, compares the entire object and all fields instead of IDs only (default: `true`)
+	 * @return bool `true` if equal, `false` otherwise
+	 */
+	public function equals($record, $deep_scan=true) {
+		if(!is_object($record) || get_class($record)!==get_class($this)) return false;
+		if($deep_scan) {
+			return $this==$record; // compares all record values natively (fast)
+		}else{
+			return $this->getId()==$record->getId(); // even faster when comparing field values are not needed
+		}
+	}
+
+	/**
 	 * Get DB field shortcut.
 	 * 
 	 * @access public
