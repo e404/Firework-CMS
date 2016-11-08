@@ -394,10 +394,10 @@ abstract class AbstractDbRecord extends AbstractDbEntity {
 	 * @return bool `true` if equal, `false` otherwise
 	 */
 	public function equals($record, $deep_scan=true) {
-		if(!is_object($record) || get_class($record)!==get_class($this)) return false;
 		if($deep_scan) {
 			return $this==$record; // compares all record values natively (fast)
 		}else{
+			if(!is_object($record) || get_class($record)!==get_class($this)) return false;
 			return $this->getId()==$record->getId(); // even faster when comparing field values are not needed
 		}
 	}
