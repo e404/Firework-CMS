@@ -37,6 +37,7 @@ class App {
 	protected static $uriprefix = '';
 	protected static $preload = array();
 	protected static $hooks = array();
+	protected static $filters = array();
 	protected static $cls_files = array();
 	protected static $sandboxed = false;
 	protected static $custom_tags = array();
@@ -1186,6 +1187,56 @@ class App {
 	public static function hasHooks($id) {
 		if(!isset(self::$hooks[$id])) return false;
 		return count(self::$hooks[$id]);
+	}
+
+	/**
+	 * Applies a filter for the given `$id`.
+	 * 
+	 * @access public
+	 * @static
+	 * @param string $id
+	 * @param mixed $param (default: null)
+	 * @return string
+	 * @see self::addFilter()
+	 * @see self::hasFilters()
+	 */
+	public static function applyFilter($id, $param=null) {
+		if(!isset(self::$filters[$id])) return $param;
+		foreach(self::$filters[$id] as $function) {
+			$param = $function($param);
+		}
+		return $param;
+	}
+
+	/**
+	 * Adds a filter function.
+	 * 
+	 * @access public
+	 * @static
+	 * @param string $id The filter id
+	 * @param function $function An executable function or class method reference
+	 * @return void
+	 * @see self::applyFilters()
+	 * @see self::hasFilters()
+	 */
+	public static function addFilter($id, callable $function) {
+		if(!isset(self::$filters[$id])) self::$filters[$id] = array();
+		self::$filters[$id][] = $function;
+	}
+
+	/**
+	 * Checks if there are filters for a certain id.
+	 * 
+	 * @access public
+	 * @static
+	 * @param string $id The filter id
+	 * @return mixed The number of the filters or `false` if none
+	 * @see self::addFilter()
+	 * @see self::applyFilters()
+	 */
+	public static function hasFilters($id) {
+		if(!isset(self::$filters[$id])) return false;
+		return count(self::$filters[$id]);
 	}
 
 	/**
