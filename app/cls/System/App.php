@@ -1200,7 +1200,7 @@ class App {
 	 * @see self::addFilter()
 	 * @see self::hasFilters()
 	 */
-	public static function applyFilter($id, $param=null) {
+	public static function applyFilters($id, $param=null) {
 		if(!isset(self::$filters[$id])) return $param;
 		foreach(self::$filters[$id] as $function) {
 			$param = $function($param);
