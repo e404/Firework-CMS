@@ -1924,6 +1924,135 @@ App::getUri([<span class="php-quote">'name'</span> =&gt; <span class="php-quote"
 			</div>
 			</div></td>
 		</tr>
+		<tr data-order="applyFilter" id="_applyFilter">
+
+			<td class="attributes"><code>
+				 public static
+				string
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_applyFilter">#</a>
+			<code>applyFilter( <span>string <var>$id</var></span>, <span>mixed <var>$param</var> = <span class="php-keyword1">null</span></span> )</code>
+
+			<div class="description short">
+				<p>Applies a filter for the given <code>$id</code>.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Applies a filter for the given <code>$id</code>.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$id</var></dt>
+						<dd></dd>
+						<dt><var>$param</var></dt>
+						<dd>(default: null)</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
+
+
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-App.html#_addFilter">App::addFilter()</a></code><br>
+							<code><a href="class-App.html#_hasFilters">App::hasFilters()</a></code><br>
+					</div>
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="addFilter" id="_addFilter">
+
+			<td class="attributes"><code>
+				 public static
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_addFilter">#</a>
+			<code>addFilter( <span>string <var>$id</var></span>, <span>callable <var>$function</var></span> )</code>
+
+			<div class="description short">
+				<p>Adds a filter function.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Adds a filter function.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$id</var></dt>
+						<dd>The filter id</dd>
+						<dt><var>$function</var></dt>
+						<dd>An executable function or class method reference</dd>
+					</dl></div>
+
+
+
+					<h4>See</h4>
+					<div class="list">
+							self::applyFilters()<br>
+							<code><a href="class-App.html#_hasFilters">App::hasFilters()</a></code><br>
+					</div>
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="hasFilters" id="_hasFilters">
+
+			<td class="attributes"><code>
+				 public static
+				mixed
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_hasFilters">#</a>
+			<code>hasFilters( <span>string <var>$id</var></span> )</code>
+
+			<div class="description short">
+				<p>Checks if there are filters for a certain id.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Checks if there are filters for a certain id.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$id</var></dt>
+						<dd>The filter id</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						mixed<br>The number of the filters or <code>false</code> if none
+					</div>
+
+
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-App.html#_addFilter">App::addFilter()</a></code><br>
+							self::applyFilters()<br>
+					</div>
+
+
+			</div>
+			</div></td>
+		</tr>
 		<tr data-order="sendCustomerMail" id="_sendCustomerMail">
 
 			<td class="attributes"><code>
