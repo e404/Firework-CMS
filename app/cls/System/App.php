@@ -283,6 +283,8 @@ class App {
 		}
 		// Make sure the site dir is added to the include path
 		set_include_path(get_include_path().PATH_SEPARATOR.self::getSiteDir());
+		// Execute init hooks
+		App::executeHooks('init');
 	}
 
 	/**
