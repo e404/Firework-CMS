@@ -202,6 +202,7 @@ class Language extends ISystem {
 			Error::warning('Could not add language directory: No language has been set.');
 			return false;
 		}
+		$this->load();
 		$filename = rtrim($dir, '/').'/'.$this->lang.'.csv';
 		$md5 = md5($filename);
 		$cachefile = "lang.{$this->lang}.$md5.private.phpdata";
@@ -219,6 +220,7 @@ class Language extends ISystem {
 		}
 		Cache::writeFile($cachefile, $strings, true);
 		$this->strings = array_merge($this->strings, $strings);
+		return true;
 	}
 
 	/**
