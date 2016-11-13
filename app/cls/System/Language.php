@@ -184,7 +184,41 @@ class Language extends ISystem {
 			$this->strings[$csv[0]] = $csv[1];
 		}
 		$this->loaded = true;
-		Cache::writeFile($cachefile,$this->strings,true);
+		Cache::writeFile($cachefile, $this->strings, true);
+	}
+
+	/**
+	 * Adds a language directory and loads its contents.
+	 * 
+	 * Requires a language to be set.
+	 * 
+	 * @access public
+	 * @param string $dir
+	 * @return `true` on success, `false` when no language file has been loaded
+	 * @see self::setLanguage()
+	 */
+	public function addStringsFromDirectory($dir) {
+		if(!$this->lang) {
+			Error::warning('Could not add language directory: No language has been set.');
+			return false;
+		}
+		$filename = rtrim($dir, '/').'/'.$this->lang.'.csv';
+		$md5 = md5($filename);
+		$cachefile = "lang.{$this->lang}.$md5.private.phpdata";
+		if(Cache::exists($cachefile) && !Cache::isOutdated($cachefile,$filename)) {
+			$this->strings = array_merge($this->strings, Cache::readFile($cachefile,true));
+			return true;
+		}
+		if(!file_exists($filename)) return false;
+		$filehandle = fopen($filename,'r');
+		$strings = array();
+		while(!feof($filehandle)) {
+			$csv = fgetcsv($filehandle,null,"\t",'"');
+			if(!$csv[0]) continue;
+			$strings[$csv[0]] = $csv[1];
+		}
+		Cache::writeFile($cachefile, $strings, true);
+		$this->strings = array_merge($this->strings, $strings);
 	}
 
 	/**
