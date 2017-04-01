@@ -7,6 +7,7 @@
  */
 class EMail extends ISystem {
 
+	protected $from_address = '';
 	protected $from = '';
 	protected $to = array();
 	protected $cc = array();
@@ -100,6 +101,7 @@ class EMail extends ISystem {
 	 * @return void
 	 */
 	public function setFrom($from, $name='') {
+		$this->from_address = $from;
 		$this->from = self::encodeContact($from, $name);
 	}
 
@@ -321,7 +323,7 @@ class EMail extends ISystem {
 				$body = '--'.$boundaryMixed."\n".implode("\n\n--".$boundaryMixed."\n",$att)."\n\n--".$boundaryMixed.'--';
 			}
 		}
-		return mail(implode(', ',$this->to), $this->subject, $body, implode("\n",$headers)) ? true : false;
+		return mail(implode(', ',$this->to), $this->subject, $body, implode("\n",$headers), '-r'.$this->from_address) ? true : false;
 	}
 
 	protected function transformHtmlToText($html) {

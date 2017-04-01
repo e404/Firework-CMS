@@ -224,11 +224,13 @@ class Error extends NISystem {
 			$url = '(CLI)';
 			$session = '-';
 		}
-		@mail($email, ($fatal ? 'Fatal Error' : 'Error Warning').' at '.App::getHost(), "<html><head><style>body{font-family:monospace;background:#555;margin:30px;padding:0;} .info,.error{background:#FFE8DF;padding:2em;margin:0 0 30px 0;border-top:2px solid #f00;font-size:16px;} .info{background:#fff;border-top:2px solid #3988FF;}</style></head><body>$error<div class=\"info\"><b>URL</b>: ".htmlspecialchars($url)."<br><br><b>Session</b>: $session<br><br><b>User Agent</b>: ".htmlspecialchars(PHP_SAPI==='cli' ? 'CLI' : $_SERVER['HTTP_USER_AGENT'])."</div></body></html>", implode("\n", array(
-			'From: '.$email,
-			'Content-Type: text/html; charset=UTF-8',
-			'Precedence: bulk'
-		)));
+		if($email) {
+			@mail($email, ($fatal ? 'Fatal Error' : 'Error Warning').' at '.App::getHost(), "<html><head><style>body{font-family:monospace;background:#555;margin:30px;padding:0;} .info,.error{background:#FFE8DF;padding:2em;margin:0 0 30px 0;border-top:2px solid #f00;font-size:16px;} .info{background:#fff;border-top:2px solid #3988FF;}</style></head><body>$error<div class=\"info\"><b>URL</b>: ".htmlspecialchars($url)."<br><br><b>Session</b>: $session<br><br><b>User Agent</b>: ".htmlspecialchars(PHP_SAPI==='cli' ? 'CLI' : $_SERVER['HTTP_USER_AGENT'])."</div></body></html>", implode("\n", array(
+				'From: '.$email,
+				'Content-Type: text/html; charset=UTF-8',
+				'Precedence: bulk'
+			)));
+		}
 		if($fatal) die();
 	}
 
