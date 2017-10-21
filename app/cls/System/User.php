@@ -148,8 +148,9 @@ class User extends AbstractDbRecord {
 	 * @return User
 	 */
 	public static function getUserByEMail($email) {
+		$email = trim($email);
 		if(!$email) return null;
-		$uid = self::db()->single(self::db()->prepare("SELECT `uid` FROM `users` WHERE `email`=@VAL LIMIT 1", $email));
+		$uid = self::db()->single(self::db()->prepare("SELECT `uid` FROM `users` WHERE `email` LIKE @VAL LIMIT 1", $email));
 		if(!$uid) return null;
 		return self::newInstance($uid);
 	}
