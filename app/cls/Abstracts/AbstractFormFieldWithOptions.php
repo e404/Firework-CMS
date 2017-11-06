@@ -54,6 +54,16 @@ abstract class AbstractFormFieldWithOptions extends AbstractFormField {
 		return $this;
 	}
 
+	/**
+	 * Returns all options as `array`.
+	 * 
+	 * @access public
+	 * @return array
+	 */
+	public function getOptions() {
+		return $this->options[$option_value];
+	}
+
 	/** @internal */
 	public function hasError() {
 		if(parent::hasError()) return true;
