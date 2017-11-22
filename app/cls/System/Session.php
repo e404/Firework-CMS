@@ -47,11 +47,14 @@ class Session extends Db {
 				}
 			}
 		}
-		if(!$valid) {
+		if(!$valid || (Config::get('session', 'browser_fingerprint') && $this->get('browser-fingerprint')!==$this->getBrowserFingerprint())) {
 			$this->sid = sha1(uniqid('',true).Config::get('session', 'salt'));
 			self::$db->query(self::$db->prepare("INSERT INTO sessions SET sid=@VAL, ip=@VAL, t=NOW()", $this->sid, $ip));
+			if(Config::get('session', 'browser_fingerprint')) {
+				$this->set('browser-fingerprint', self::getBrowserFingerprint());
+			}
 		}
-		setcookie('session',$this->sid,time()+86400*Config::get('session','lifetime_days'),'/',Config::get('session','cookiedomain'));
+		setcookie('session', $this->sid, time()+86400*Config::get('session','lifetime_days'), '/', Config::get('session','cookiedomain'));
 	}
 
 	/**
@@ -177,6 +180,22 @@ class Session extends Db {
 				}
 			}
 		}
+	}
+
+	/**
+	 * Calculates a fingerprint hash (32-bit hex value) based on browser information.
+	 *
+	 * @access public
+	 * @return string
+	 */
+	public function getBrowserFingerprint() {
+		$entropy = '';
+		$entropy.= $_SERVER['HTTP_HOST']."\n";
+		$entropy.= $_SERVER['HTTP_USER_AGENT']."\n";
+		$entropy.= $_SERVER['HTTP_ACCEPT']."\n";
+		$entropy.= $_SERVER['HTTP_ACCEPT_ENCODING']."\n";
+		$entropy.= $_SERVER['HTTP_ACCEPT_LANGUAGE']."\n";
+		return md5($entropy);
 	}
 
 }
