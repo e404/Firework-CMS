@@ -161,6 +161,11 @@ var app = {
 			}
 		},
 		blur: function(){
+			if(document.selection) {
+				document.selection.empty();
+			}else if(window.getSelection) {
+				window.getSelection().removeAllRanges();
+			}
 			$('input:focus, select:focus, a:focus, button:focus, :focus').first().blur();
 		},
 		json: {
