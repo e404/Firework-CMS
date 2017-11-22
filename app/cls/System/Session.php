@@ -47,7 +47,7 @@ class Session extends Db {
 				}
 			}
 		}
-		if(!$valid || (Config::get('session', 'browser_fingerprint') && $this->get('browser-fingerprint')!==$this->getBrowserFingerprint())) {
+		if(!$valid || (Config::get('session', 'browser_fingerprint') && $this->get('browser-fingerprint') && $this->get('browser-fingerprint')!==$this->getBrowserFingerprint())) {
 			$this->sid = sha1(uniqid('',true).Config::get('session', 'salt'));
 			self::$db->query(self::$db->prepare("INSERT INTO sessions SET sid=@VAL, ip=@VAL, t=NOW()", $this->sid, $ip));
 			if(Config::get('session', 'browser_fingerprint')) {
