@@ -83,6 +83,9 @@ class Password extends ISystem {
 			}
 		}
 		$match = $this->tryHashUrl($this->password_sha256.'/'.$hash);
+		if($match===false) {
+			Error::warning('Password hashing service call failed while matching passwords.');
+		}
 		return $match ?: false;
 	}
 

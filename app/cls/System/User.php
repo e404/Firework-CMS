@@ -85,7 +85,7 @@ class User extends AbstractDbRecord {
 	 * @return mixed
 	 */
 	public static function authenticate($email, $passhash) {
-		$user = self::db()->getRow(self::db()->prepare("SELECT `uid`, `passhash`, `active` FROM `users` WHERE `email`=@VAL LIMIT 1", $email, $passhash));
+		$user = self::db()->getRow(self::db()->prepare("SELECT `uid`, `passhash`, `active` FROM `users` WHERE `email`=@VAL LIMIT 1", $email));
 		if(!$user) return null;
 		$password = new Password($passhash, true);
 		if($new_hash = $password->match($user['passhash'])) {
