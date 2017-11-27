@@ -77,7 +77,8 @@ class Password extends ISystem {
 		}
 		if(preg_match('/^[0-9a-f]{64}$/', $hash)) {
 			if($hash===$this->password_sha256) {
-				return $hash;
+				$new_hash = $this->tryHashUrl($this->password_sha256);
+				return $new_hash ?: $hash;
 			}else{
 				return false;
 			}
