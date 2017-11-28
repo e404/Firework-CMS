@@ -72,6 +72,36 @@ class User extends AbstractDbRecord {
 	}
 
 	/**
+	 * Login user.
+	 * 
+	 * @access public
+	 * @return bool `true` on success, `false` on error
+	 */
+	public function login() {
+		$session = App::getSession();
+		if(!$session) return false;
+		$session->set('uid', $this->getId());
+		$expires_days = Config::get('session', 'login_valid_days');
+		if($expires_days<=0) $expires_days = 3;
+		$session->set('login-expires', time()+86400*$expires_days);
+		return true;
+	}
+
+	/**
+	 * Logout user.
+	 * 
+	 * @access public
+	 * @return bool `true` on success, `false` on error
+	 */
+	public function logout() {
+		$session = App::getSession();
+		if(!$session || $session->get('uid')!=$this->getId()) return false;
+		$session->remove('uid');
+		$session->remove('login-expires');
+		return true;
+	}
+
+	/**
 	 * Authenticates a user.
 	 *
 	 * If the authentication is successful, the user ID is returned.
