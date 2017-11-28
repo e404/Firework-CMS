@@ -146,7 +146,7 @@ class User extends AbstractDbRecord {
 	 * @access public
 	 * @static
 	 * @param callable $error_callback Callback function executed in case no user is logged in
-	 * @return mixed Returns `false` if no user is logged in, and a `User` object in case a user is logged in
+	 * @return User Returns a `User` object in case a user is logged in, otherwhise code execution is halted before anything can be returned
 	 */
 	public static function requireLogin($error_callback) {
 		if(!$error_callback || !is_callable($error_callback)) {
@@ -213,6 +213,12 @@ class User extends AbstractDbRecord {
 	public static function getSessionUid() {
 		$session = App::getSession();
 		if(!$session) return null;
+		$expires = $session->get('login-expires');
+		if($expires) {
+			if(time()>=$expires) {
+				return null;
+			}
+		}
 		return $session->get('uid');
 	}
 
