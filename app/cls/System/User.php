@@ -170,6 +170,7 @@ class User extends AbstractDbRecord {
 		$expires = $session->get('login-expires');
 		if($expires) {
 			if(time()>=$expires) {
+				$user->logout();
 				call_user_func($error_callback, self::LOGIN_EXPIRED, $user);
 				App::halt();
 			}
