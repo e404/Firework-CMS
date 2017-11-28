@@ -82,8 +82,9 @@ class User extends AbstractDbRecord {
 		if(!$session) return false;
 		$session->set('uid', $this->getId());
 		$expires_days = Config::get('session', 'login_valid_days');
-		if($expires_days<=0) $expires_days = 3;
-		$session->set('login-expires', time()+86400*$expires_days);
+		if($expires_days) {
+			$session->set('login-expires', time()+86400*$expires_days);
+		}
 		return true;
 	}
 
@@ -127,6 +128,56 @@ class User extends AbstractDbRecord {
 		}else{
 			return null;
 		}
+	}
+
+	/**
+	 * At the beginning of a page, a logged in user can be required.
+	 * 
+	 * Warning: Halts code execution if no user is logged in after executing `$error_callback` function.
+	 * `$error_callback` gets a parameter specifying the reason why it has failed, which is one of the following constants:
+	 * `User::NOT_LOGGED_IN`, `User::NON_EXISTENT`, `User::INACTIVE`, `User::LOGIN_EXPIRED`
+	 * When `User::INACTIVE` or `User::LOGIN_EXPIRED` is returned, the `User` object is given as a second parameter.
+	 * 
+	 * @access public
+	 * @static
+	 * @param callable $error_callback Callback function executed in case no user is logged in
+	 * @return mixed Returns `false` if no user is logged in, and a `User` object in case a user is logged in
+	 */
+	public static function requireLogin($error_callback) {
+		if(!$error_callback || !is_callable($error_callback)) {
+			Error::fatal('Given callback is non-callable in User::requireLogin($error_callback).');
+		}
+		$session = App::getSession();
+		$uid = $session->get('uid');
+		if(!$uid) {
+			call_user_func($error_callback, self::NOT_LOGGED_IN);
+			App::halt();
+		}
+		$user = new self($uid);
+		if(!$user->exists()) {
+			call_user_func($error_callback, self::NON_EXISTENT);
+			App::halt();
+		}
+		if(!$user->isActive()) {
+			call_user_func($error_callback, self::INACTIVE, $user);
+			App::halt();
+		}
+		$expires = $session->get('login-expires');
+		if($expires) {
+			if(time()>=$expires) {
+				call_user_func($error_callback, self::LOGIN_EXPIRED, $user);
+				App::halt();
+			}
+		}
+		if($expires) {
+			$expires_days = Config::get('session', 'login_valid_days');
+			if($expires_days) {
+				$session->set('login-expires', time()+86400*$expires_days);
+			}else{
+				$session->remove('login-expires');
+			}
+		}
+		return $user;
 	}
 
 	/**
