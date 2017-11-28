@@ -422,6 +422,49 @@ If the authentication fails because the user is inactive, <code>false</code> is 
 			</div>
 			</div></td>
 		</tr>
+		<tr data-order="requireLogin" id="_requireLogin">
+
+			<td class="attributes"><code>
+				 public static
+				mixed
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_requireLogin">#</a>
+			<code>requireLogin( <span>callable <var>$error_callback</var></span> )</code>
+
+			<div class="description short">
+				<p>At the beginning of a page, a logged in user can be required.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>At the beginning of a page, a logged in user can be required.</p>
+
+<p>Warning: Halts code execution if no user is logged in after executing <code>$error_callback</code> function.
+<code>$error_callback</code> gets a parameter specifying the reason why it has failed, which is one of the following constants:
+<code>User::NOT_LOGGED_IN</code>, <code>User::NON_EXISTENT</code>, <code>User::INACTIVE</code>, <code>User::LOGIN_EXPIRED</code>
+When <code>User::INACTIVE</code> or <code>User::LOGIN_EXPIRED</code> is returned, the <code>User</code> object is given as a second parameter.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$error_callback</var></dt>
+						<dd>Callback function executed in case no user is logged in</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						mixed<br>Returns <code>false</code> if no user is logged in, and a <code>User</code> object in case a user is logged in
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
 		<tr data-order="checkUid" id="_checkUid">
 
 			<td class="attributes"><code>
