@@ -34,9 +34,8 @@ class Session extends Db {
 		$ip = $this->getRemoteIp();
 		$valid = false;
 		if(isset($_COOKIE['session'])) {
-			$sid = $_COOKIE['session'];
-			$session = strlen($sid)<64
-				? self::$db->getRow(self::$db->prepare("SELECT * FROM sessions WHERE sid=@VAL LIMIT 1", $sid))
+			$session = strlen($_COOKIE['session'])===40
+				? self::$db->getRow(self::$db->prepare("SELECT * FROM sessions WHERE sid=@VAL LIMIT 1", $_COOKIE['session']))
 				: false;
 			if($session) {
 				$this->sid = $session['sid'];
@@ -48,13 +47,21 @@ class Session extends Db {
 			}
 		}
 		if(!$valid || (Config::get('session', 'browser_fingerprint') && $this->get('browser-fingerprint') && $this->get('browser-fingerprint')!==$this->getBrowserFingerprint())) {
-			$this->sid = sha1(uniqid('',true).Config::get('session', 'salt'));
+			$this->sid = self::generateSid();
 			self::$db->query(self::$db->prepare("INSERT INTO sessions SET sid=@VAL, ip=@VAL, t=NOW()", $this->sid, $ip));
 			if(Config::get('session', 'browser_fingerprint')) {
 				$this->set('browser-fingerprint', self::getBrowserFingerprint());
 			}
 		}
 		setcookie('session', $this->sid, time()+86400*Config::get('session','lifetime_days'), '/', Config::get('session','cookiedomain'));
+	}
+
+	/** @internal */
+	protected static function generateSid() {
+		$sid = hash('sha256', Random::generateBytes(64).uniqid('',true).Config::get('session', 'salt'), true);
+		$sid = strtr(base64_encode($sid), '=/+', '---');
+		$sid = substr($sid.str_repeat('-', 40), 0, 40);
+		return $sid;
 	}
 
 	/**
