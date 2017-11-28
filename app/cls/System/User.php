@@ -7,6 +7,11 @@ class User extends AbstractDbRecord {
 
 	use Inject;
 
+	const NOT_LOGGED_IN = 'not_logged_in';
+	const NON_EXISTENT = 'non_existent';
+	const INACTIVE = 'inactive';
+	const LOGIN_EXPIRED = 'login_expired';
+
 	protected static $uid_generator = null;
 
 	protected function getTable() {
