@@ -57,10 +57,10 @@ class Session extends Db {
 				}
 				if($multipart_fields) {
 					foreach($multipart_fields as $fieldname=>$parts) {
-						ksort($parts);
 						$value = '';
-						foreach($parts as $part) {
-							$value.= $part;
+						for($i=0; $i<count($parts); $i++) {
+							if(!isset($parts[$i])) continue;
+							$value.= $parts[$i];
 						}
 						$this->store[$fieldname] = $value;
 					}
