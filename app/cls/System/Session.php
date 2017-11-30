@@ -45,7 +45,7 @@ class Session extends Db {
 				foreach(self::$db->query(self::$db->prepare("SELECT * FROM sessionstore WHERE sid=@VAL", $this->sid)) as $row) {
 					$multipart = strstr($row['key'], '#');
 					if($multipart) {
-						$part = (int) substr($multipart, 2);
+						$part = (int) substr($multipart, 1);
 						$fieldname = substr($row['key'], 0, -strlen($multipart));
 						if(!isset($multipart_fields[$fieldname])) {
 							$multipart_fields[$fieldname] = [];
