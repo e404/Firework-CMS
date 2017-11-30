@@ -41,8 +41,29 @@ class Session extends Db {
 				$this->sid = $session['sid'];
 				$valid = true;
 				self::$db->query(self::$db->prepare("UPDATE sessions SET t=NOW(), ip=@VAL WHERE sid=@VAL LIMIT 1", $ip, $this->sid));
+				$multipart_fields = [];
 				foreach(self::$db->query(self::$db->prepare("SELECT * FROM sessionstore WHERE sid=@VAL", $this->sid)) as $row) {
-					$this->store[$row['key']] = $row['value'];
+					$multipart = strstr($row['key'], '#');
+					if($multipart) {
+						$part = (int) substr($multipart, 2);
+						$fieldname = substr($multipart, 0, -strlen($multipart));
+						if(!isset($multipart_fields[$fieldname])) {
+							$multipart_fields[$fieldname] = [];
+						}
+						$multipart_fields[$fieldname][$part] = $row['value'];
+					}else{
+						$this->store[$row['key']] = $row['value'];
+					}
+				}
+				if($multipart_fields) {
+					foreach($multipart_fields as $fieldname=>$parts) {
+						ksort($parts);
+						$value = '';
+						foreach($parts as $part) {
+							$value.= $part;
+						}
+						$this->store[$fieldname] = $value;
+					}
 				}
 			}
 		}
@@ -180,10 +201,19 @@ class Session extends Db {
 		if($this->changed) {
 			foreach($this->changed as $key=>$changed) {
 				$dbkey = self::$db->escape($key);
-				if($this->store[$key]===null) {
-					self::$db->query(self::$db->prepare("DELETE FROM sessionstore WHERE sid=@VAL AND `key`=@VAL", $this->sid, $dbkey));
-				}else{
-					self::$db->query(self::$db->prepare("REPLACE INTO sessionstore SET sid=@VAL, `key`=@VAL, `value`=@VAL", $this->sid, $dbkey, $this->store[$key]));
+				$dbvalue = $this->store[$key];
+				self::$db->query(self::$db->prepare("DELETE FROM sessionstore WHERE sid=@VAL AND (`key`=@VAL OR `key` LIKE @VAL)", $this->sid, $dbkey, $dbkey.'#%'));
+				if($dbvalue!==null) {
+					if(strlen($dbvalue)>255) {
+						$sql = '';
+						$chunks = str_split($dbvalue, 255);
+						for($i=0; $i<count($chunks); $i++) {
+							$sql.= self::$db->prepare("INSERT INTO sessionstore SET sid=@VAL, `key`=@VAL, `value`=@VAL", $this->sid, $dbkey.'#'.$i, $chunks[$i]).';';
+						}
+						self::$db->multiQuery($sql);
+					}else{
+						self::$db->query(self::$db->prepare("INSERT INTO sessionstore SET sid=@VAL, `key`=@VAL, `value`=@VAL", $this->sid, $dbkey, $dbvalue));
+					}
 				}
 			}
 		}
