@@ -46,7 +46,7 @@ class Session extends Db {
 					$multipart = strstr($row['key'], '#');
 					if($multipart) {
 						$part = (int) substr($multipart, 2);
-						$fieldname = substr($multipart, 0, -strlen($multipart));
+						$fieldname = substr($row['key'], 0, -strlen($multipart));
 						if(!isset($multipart_fields[$fieldname])) {
 							$multipart_fields[$fieldname] = [];
 						}
