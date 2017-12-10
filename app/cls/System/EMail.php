@@ -171,7 +171,8 @@ class EMail extends ISystem {
 	 *
 	 * @example
 	 * <code>
-	 * $email->getRecipients(); // Returns ['to' => ['test@example.com'], 'cc' => [], 'bcc' => []]
+	 * $email->getRecipients(); // Returns ['to' => ['test@example.com'], 'cc' => ['"John Doe" <john@example.org>'], 'bcc' => []]
+	 * $email->getRecipients(true); // Returns ['test@example.com', '"John Doe" <john@example.org>']
 	 * </code>
 	 */
 	public function getRecipients($mix_types=false) {

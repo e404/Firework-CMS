@@ -36,13 +36,33 @@ class SmtpEMail extends EMail {
 	}
 
 	protected function performSend(array $to, $subject, $body, array $headers, $from) {
-		if($this->performSmtpSend($to, $subject, $body, $headers, $from)) {
-			return true;
-		}
-		// Default sendmail fallback
+		if($this->performSmtpSend($subject, $body, $headers, $from)) return true;
+		// Fallback to default sendmail
 		return parent::performSend($to, $subject, $body, $headers, $from);
 	}
 
+	protected function performSmtpSend($subject, $body, array $headers, $from) {
+		if(!$this->openSmtpConnection()) return false;
+		$this->sendSmtpLine('MAIL FROM:<'.$from.'>');
+		$rcpts = preg_replace('/^[^<]+<([^>]+)>.*$/', '$1', $this->getRecipients(true));
+		foreach($rcpts as $rcpt) {
+			$this->sendSmtpLine('RCPT TO:<'.$rcpt.'>');
+		}
+		if(!$this->sendSmtpLine('DATA')) return false;
+		$headers_insert = preg_filter('/^/', 'To: ', $to, 1);
+		$headers_insert[] = 'Subject: '.$subject;
+		array_splice($headers, 1, 0, $headers_insert);
+		foreach($headers as $header) {
+			fwrite(self::$smtp_connection, "$cmd\r\n");
+		}
+		fwrite(self::$smtp_connection, "\r\n"); // Empty line signals beginning of body
+		$body_split = preg_split('/[\r\n]+/', trim($body));
+		foreach($body_split as $line) {
+			fwrite(self::$smtp_connection, $line."\r\n");
+		}
+		if(!$this->sendSmtpLine('.')) return false;
+		return true;
+	}
 	protected function openSmtpConnection() {
 		if(self::$smtp_connection) return self::$smtp_connection;
 		self::$smtp_connection = @fsockopen($this->smtp_host_ip, $this->smtp_port, $errno, $errstr, self::SMTP_TIMEOUT);
@@ -61,28 +81,6 @@ class SmtpEMail extends EMail {
 		return true;
 	}
 
-	protected function performSmtpSend(array $to, $subject, $body, array $headers, $from) {
-		if(!$this->openSmtpConnection()) return false;
-		$this->sendSmtpLine('MAIL FROM:<'.$from.'>');
-		foreach($to as $rcpt) {
-			if(!preg_match('/(<[^>]+>)/', $rcpt, $rcpt)) continue;
-			$this->sendSmtpLine('RCPT TO:<'.$rcpt[1].'>');
-		}
-		if(!$this->sendSmtpLine('DATA')) return false;
-		$headers_insert = preg_filter('/^/', 'To: ', $to, 1);
-		$headers_insert[] = 'Subject: '.$subject;
-		array_splice($headers, 1, 0, $headers_insert);
-		foreach($headers as $header) {
-			fwrite(self::$smtp_connection, "$cmd\r\n");
-		}
-		fwrite(self::$smtp_connection, "\r\n"); // Empty line signals beginning of body
-		$body_split = preg_split('/[\r\n]+/', trim($body));
-		foreach($body_split as $line) {
-			fwrite(self::$smtp_connection, $line."\r\n");
-		}
-		if(!$this->sendSmtpLine('.')) return false;
-		return true;
-	}
 
 	protected function readSmtpResponse($parse=false, $throw_warnings=true) {
 		$response = '';
