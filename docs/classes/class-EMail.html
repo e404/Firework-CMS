@@ -538,7 +538,8 @@
 					</div>
 					<h4>Example</h4>
 					<div class="list">
-							<span class="php-var">$email</span>-&gt;getRecipients(); <span class="php-comment">// Returns ['to' =&gt; ['test@example.com'], 'cc' =&gt; [], 'bcc' =&gt; []]</span><br>
+							<pre><span class="php-var">$email</span>-&gt;getRecipients(); <span class="php-comment">// Returns ['to' =&gt; ['test@example.com'], 'cc' =&gt; ['&quot;John Doe&quot; &lt;john@example.org&gt;'], 'bcc' =&gt; []]</span>
+<span class="php-var">$email</span>-&gt;getRecipients(<span class="php-keyword1">true</span>); <span class="php-comment">// Returns ['test@example.com', '&quot;John Doe&quot; &lt;john@example.org&gt;']</span></pre><br>
 					</div>
 
 
