@@ -4,6 +4,7 @@
  * EMail sending and handling class.
  *
  * @see EMailAttachment
+ * @see SmtpEMail
  */
 class EMail extends ISystem {
 
@@ -26,11 +27,16 @@ class EMail extends ISystem {
 	protected $templatereplacements = array();
 
 	protected static function encodeHeaderValue($string) {
-		return '=?UTF-8?Q?'.imap_8bit($string).'?=';
+		$ascii = mb_convert_encoding($str, 'ascii', $this->charset);
+		if($ascii===$string) return $string;
+		return '=?'.$this->charset.'?Q?'.str_replace('?','=3F',imap_8bit($string)).'?=';
 	}
 
 	protected static function encodeContact($email, $name='') {
-		return $name ? (preg_match('/^[A-Za-z0-9 _-]+$/',$name) ? '"'.$name.'"' : self::encodeHeaderValue($name)).' <'.$email.'>' : $email;
+		if(!$name) return $email;
+		$encoded_name = self::encodeHeaderValue($name);
+		if($encoded_name===$name && !strstr($name, '"')) return '"'.$name.'" <'.$email.'>';
+		return $encoded_name.' <'.$email.'>';
 	}
 
 	/**
@@ -44,7 +50,7 @@ class EMail extends ISystem {
 	public static function getObfuscatedAddress($email) {
 		if(!$email) return null;
 		$code = bin2hex($email);
-		$fake_address = 's'.mt_rand(100000,999999).'@example.'.(rand(0,1) ? 'com' : 'org');
+		$fake_address = 's'.rand(100000,999999).'@example.'.(rand(0,1) ? 'com' : 'org');
 		return "<span class=\"m-protected\" data-real=\"$code\"><!--googleoff: index--><a href=\"mailto:$fake_address\">$fake_address</a> (This e-mail address is invalid because it is protected against spam bots. Please enable JavaScript to see the real address.)<!--googleon: index--></span>";
 	}
 
@@ -256,10 +262,10 @@ class EMail extends ISystem {
 	 * @return bool true on success, false on error
 	 */
 	public function send() {
-		$headers = array();
 		if(!$this->from) {
 			return Error::warning('"From" address not set.');
 		}
+		$headers = [];
 		$headers[] = 'From: '.$this->from;
 		if($this->cc) $headers[] = 'Cc: '.implode(', ',$this->cc);
 		if($this->bcc) $headers[] = 'Bcc: '.implode(', ',$this->bcc);
@@ -323,7 +329,11 @@ class EMail extends ISystem {
 				$body = '--'.$boundaryMixed."\n".implode("\n\n--".$boundaryMixed."\n",$att)."\n\n--".$boundaryMixed.'--';
 			}
 		}
-		return mail(implode(', ',$this->to), $this->subject, $body, implode("\n",$headers), '-r'.$this->from_address) ? true : false;
+		return $this->performSend($this->to, $this->subject, $body, $headers, $this->from_address) ? true : false;
+	}
+
+	protected function performSend(array $to, $subject, $body, array $headers, $from) {
+		return mail(implode(', ',$to), $subject, $body, implode("\n",$headers), '-r'.$from) ? true : false;
 	}
 
 	protected function transformHtmlToText($html) {
