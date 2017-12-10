@@ -21,11 +21,11 @@ class SmtpEMail extends EMail {
 	protected static $smtp_connection = null;
 
 	public function __construct() {
-		$this->smtp_hostname = Config::get('smtp', 'host') ?: $this->smtp_hostname;
+		$this->smtp_hostname = Config::get('email', 'smtp_host') ?: $this->smtp_hostname;
 		$this->smtp_host_ip = gethostbyname($this->smtp_hostname);
-		$this->smtp_port = Config::get('smtp', 'port') ?: $this->smtp_port;
-		$this->smtp_username = Config::get('smtp', 'username');
-		$this->smtp_password = Config::get('smtp', 'password');
+		$this->smtp_port = Config::get('email', 'smtp_port') ?: $this->smtp_port;
+		$this->smtp_username = Config::get('email', 'smtp_username');
+		$this->smtp_password = Config::get('email', 'smtp_password');
 	}
 
 	public function __destruct() {
