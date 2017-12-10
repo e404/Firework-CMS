@@ -53,12 +53,12 @@ class SmtpEMail extends EMail {
 		$headers_insert[] = 'Subject: '.$this->subject;
 		array_splice($headers, 1, 0, $headers_insert);
 		foreach($headers as $header) {
-			fwrite(self::$smtp_connection, "$cmd\r\n");
+			$this->sendRawSmtpLine($header);
 		}
-		fwrite(self::$smtp_connection, "\r\n"); // Empty line signals beginning of body
+		$this->sendRawSmtpLine(''); // Empty line signals beginning of body
 		$body_split = preg_split('/[\r\n]+/', trim($body));
 		foreach($body_split as $line) {
-			fwrite(self::$smtp_connection, $line."\r\n");
+			$this->sendRawSmtpLine($line);
 		}
 		if(!$this->sendSmtpLine('.')) return false;
 		return true;
@@ -101,8 +101,12 @@ class SmtpEMail extends EMail {
 		return ['code' => (int) $lines[1][0], 'props' => $lines[2]];
 	}
 
+	protected function sendRawSmtpLine($cmd) {
+		return fwrite(self::$smtp_connection, "$cmd\r\n");
+	}
+
 	protected function sendSmtpLine($cmd, $parse=false, $throw_warnings=true) {
-		$success = fwrite(self::$smtp_connection, "$cmd\r\n");
+		$success = $this->sendRawSmtpLine($cmd);
 		if(!$success) return false;
 		return $this->readSmtpResponse($parse, $throw_warnings);
 	}
