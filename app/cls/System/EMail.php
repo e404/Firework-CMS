@@ -27,7 +27,7 @@ class EMail extends ISystem {
 	protected $templatereplacements = array();
 
 	protected function encodeHeaderValue($string) {
-		$ascii = mb_convert_encoding($str, 'ascii', $this->charset);
+		$ascii = mb_convert_encoding($string, 'ascii', $this->charset);
 		if($ascii===$string) return $string;
 		return '=?'.$this->charset.'?Q?'.str_replace('?','=3F',imap_8bit($string)).'?=';
 	}
