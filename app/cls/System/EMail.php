@@ -330,11 +330,11 @@ class EMail extends ISystem {
 				$body = '--'.$boundaryMixed."\n".implode("\n\n--".$boundaryMixed."\n",$att)."\n\n--".$boundaryMixed.'--';
 			}
 		}
-		return $this->performSend($this->to, $this->subject, $body, $headers, $this->from_address) ? true : false;
+		return $this->performSend($body, $headers) ? true : false;
 	}
 
-	protected function performSend(array $to, $subject, $body, array $headers, $from) {
-		return mail(implode(', ',$to), $subject, $body, implode("\n",$headers), '-r'.$from) ? true : false;
+	protected function performSend($body, array $headers) {
+		return mail(implode(', ',$this->to), $this->subject, $body, implode("\n",$headers), '-r'.$this->from_address) ? true : false;
 	}
 
 	protected function transformHtmlToText($html) {

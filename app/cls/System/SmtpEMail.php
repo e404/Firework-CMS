@@ -35,22 +35,22 @@ class SmtpEMail extends EMail {
 		}
 	}
 
-	protected function performSend(array $to, $subject, $body, array $headers, $from) {
-		if($this->performSmtpSend($subject, $body, $headers, $from)) return true;
+	protected function performSend($body, array $headers) {
+		if($this->performSmtpSend($body, $headers)) return true;
 		// Fallback to default sendmail
-		return parent::performSend($to, $subject, $body, $headers, $from);
+		return parent::performSend($body, $headers);
 	}
 
-	protected function performSmtpSend($subject, $body, array $headers, $from) {
+	protected function performSmtpSend($body, array $headers) {
 		if(!$this->openSmtpConnection()) return false;
-		$this->sendSmtpLine('MAIL FROM:<'.$from.'>');
+		$this->sendSmtpLine('MAIL FROM:<'.$this->from_address.'>');
 		$rcpts = preg_replace('/^[^<]+<([^>]+)>.*$/', '$1', $this->getRecipients(true));
 		foreach($rcpts as $rcpt) {
 			$this->sendSmtpLine('RCPT TO:<'.$rcpt.'>');
 		}
 		if(!$this->sendSmtpLine('DATA')) return false;
-		$headers_insert = preg_filter('/^/', 'To: ', $to, 1);
-		$headers_insert[] = 'Subject: '.$subject;
+		$headers_insert = preg_filter('/^/', 'To: ', $this->to, 1);
+		$headers_insert[] = 'Subject: '.$this->subject;
 		array_splice($headers, 1, 0, $headers_insert);
 		foreach($headers as $header) {
 			fwrite(self::$smtp_connection, "$cmd\r\n");
