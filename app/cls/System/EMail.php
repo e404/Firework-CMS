@@ -26,15 +26,15 @@ class EMail extends ISystem {
 	protected $texttemplate = '';
 	protected $templatereplacements = array();
 
-	protected static function encodeHeaderValue($string) {
+	protected function encodeHeaderValue($string) {
 		$ascii = mb_convert_encoding($str, 'ascii', $this->charset);
 		if($ascii===$string) return $string;
 		return '=?'.$this->charset.'?Q?'.str_replace('?','=3F',imap_8bit($string)).'?=';
 	}
 
-	protected static function encodeContact($email, $name='') {
+	protected function encodeContact($email, $name='') {
 		if(!$name) return $email;
-		$encoded_name = self::encodeHeaderValue($name);
+		$encoded_name = $this->encodeHeaderValue($name);
 		if($encoded_name===$name && !strstr($name, '"')) return '"'.$name.'" <'.$email.'>';
 		return $encoded_name.' <'.$email.'>';
 	}
@@ -108,7 +108,7 @@ class EMail extends ISystem {
 	 */
 	public function setFrom($from, $name='') {
 		$this->from_address = $from;
-		$this->from = self::encodeContact($from, $name);
+		$this->from = $this->encodeContact($from, $name);
 	}
 
 	/**
@@ -130,7 +130,7 @@ class EMail extends ISystem {
 	 * @return void
 	 */
 	public function addTo($to, $name='') {
-		$this->to[] = self::encodeContact($to, $name);
+		$this->to[] = $this->encodeContact($to, $name);
 	}
 
 	/**
@@ -142,7 +142,7 @@ class EMail extends ISystem {
 	 * @return void
 	 */
 	public function addCc($cc, $name='') {
-		$this->cc[] = self::encodeContact($cc, $name);
+		$this->cc[] = $this->encodeContact($cc, $name);
 	}
 
 	/**
@@ -205,7 +205,7 @@ class EMail extends ISystem {
 	 * @return void
 	 */
 	public function setSubject($subject) {
-		$this->subject = self::encodeHeaderValue($subject);
+		$this->subject = $this->encodeHeaderValue($subject);
 	}
 
 	/**
