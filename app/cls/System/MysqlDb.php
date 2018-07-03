@@ -1,5 +1,7 @@
 <?php
 
+if(!defined('MYSQLDB_LONG_QUERY_SEC')) define('MYSQLDB_LONG_QUERY_SEC', 1.0);
+
 /**
  * MySQL Database Connector.
  */
@@ -112,18 +114,21 @@ class MysqlDb extends AbstractDatabaseConnector {
 		}
 		$cache_query = ($this->cache_queries && preg_match('/^\s*(SELECT|SHOW)\s/si', $query));
 		if($cache_query && isset($this->query_cache[$query])) {
+			if(Config::get('debug') && Config::get('debug','db_queries')) {
+				Error::debug('Cached DB Query: "'.$query."\"\n→ 0 sec");
+			}
 			return $this->query_cache[$query];
 		}
 		$this->openConnection();
 		$time_start = microtime(true);
 		$query_obj = mysqli_query($this->connection,$query);
 		$this->error();
-		$duration = round(microtime(true)-$time_start, 4);
+		$duration = microtime(true)-$time_start;
 		if(Config::get('debug') && Config::get('debug','db_queries')) {
-			Error::debug('DB Query: "'.$query."\"\n→ ".$duration.' sec');
+			Error::debug('DB Query: "'.$query."\"\n→ ".round($duration,4).' sec');
 		}
-		if(!$this->ignore_long_queries && $duration>0.2) {
-			Error::warning('DB Query took a long time ('.$duration.' sec)');
+		if(!$this->ignore_long_queries && $duration>MYSQLDB_LONG_QUERY_SEC) {
+			Error::warning('DB Query took a long time ('.round($duration,4).' sec)');
 		}
 		if(is_bool($query_obj)) {
 			$result = $query_obj;
@@ -161,12 +166,12 @@ class MysqlDb extends AbstractDatabaseConnector {
 		$time_start = microtime(true);
 		$query_ok = mysqli_multi_query($this->connection, $query);
 		$this->error();
-		$duration = round(microtime(true)-$time_start, 4);
+		$duration = microtime(true)-$time_start;
 		if(Config::get('debug') && Config::get('debug','db_queries')) {
-			Error::debug('DB Multi Query: "'.substr($query,0,64).(strlen($query)>64 ? '"...' : '"')."\n→ ".$duration.' sec');
+			Error::debug('DB Multi Query: "'.substr($query,0,64).(strlen($query)>64 ? '"...' : '"')."\n→ ".round($duration,4).' sec');
 		}
-		if(!$this->ignore_long_queries && $duration>0.2) {
-			Error::warning('DB Query took a long time ('.$duration.' sec)');
+		if(!$this->ignore_long_queries && $duration>MYSQLDB_LONG_QUERY_SEC) {
+			Error::warning('DB Query took a long time ('.round($duration,4).' sec)');
 		}
 		$this->lastQuery = null;
 		$this->lastRowOffset = null;
