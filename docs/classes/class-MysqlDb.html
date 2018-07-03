@@ -191,6 +191,43 @@
 			</div>
 			</div></td>
 		</tr>
+		<tr data-order="enableCache" id="_enableCache">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_enableCache">#</a>
+			<code>enableCache( <span>boolean <var>$cache</var> = <span class="php-keyword1">true</span></span> )</code>
+
+			<div class="description short">
+				<p>Enables query caching for performance improvement.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Enables query caching for performance improvement.</p>
+
+<p>Query results get stored and returned if the exact same query (identified via <code>$query</code> string) gets called again.
+If there is any query other than <code>SELECT</code> or <code>SHOW</code>, the cache gets purged, unless a transaction has been started with <code>startTransaction()</code>.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$cache</var></dt>
+						<dd>If set to true, results will be cached (default: true)</dd>
+					</dl></div>
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
 		<tr data-order="connect" id="_connect">
 
 			<td class="attributes"><code>
