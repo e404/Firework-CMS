@@ -63,6 +63,7 @@ class SmtpEMail extends EMail {
 		if(!$this->sendSmtpLine('.')) return false;
 		return true;
 	}
+
 	protected function openSmtpConnection() {
 		if(self::$smtp_connection) return self::$smtp_connection;
 		self::$smtp_connection = @fsockopen($this->smtp_host_ip, $this->smtp_port, $errno, $errstr, self::SMTP_TIMEOUT);
@@ -80,7 +81,6 @@ class SmtpEMail extends EMail {
 		}
 		return true;
 	}
-
 
 	protected function readSmtpResponse($parse=false, $throw_warnings=true) {
 		$response = '';

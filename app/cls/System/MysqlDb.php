@@ -7,6 +7,8 @@ class MysqlDb extends AbstractDatabaseConnector {
 
 	protected $last_error = null;
 	protected $ignore_long_queries = false;
+	protected $cache_queries = false;
+	protected $query_cache = array();
 
 	protected function error() {
 		$error = mysqli_error($this->connection);
@@ -28,6 +30,20 @@ class MysqlDb extends AbstractDatabaseConnector {
 	 */
 	public function ignoreLongQueries($ignore=true) {
 		$this->ignore_long_queries = (bool) $ignore;
+	}
+
+	/**
+	 * Enables query caching for performance improvement.
+	 * 
+	 * Query results get stored and returned if the exact same query (identified via `$query` string) gets called again.
+	 * If there is any query other than `SELECT` or `SHOW`, the cache gets purged, unless a transaction has been started with `startTransaction()`.
+	 * 
+	 * @access public
+	 * @param bool $cache If set to true, results will be cached (default: true)
+	 * @return void
+	 */
+	public function enableCache($cache=true) {
+		$this->cache_queries = (bool) $cache;
 	}
 
 	/**
@@ -94,6 +110,9 @@ class MysqlDb extends AbstractDatabaseConnector {
 			}
 			return $result;
 		}
+		if($this->cache_queries && isset($this->query_cache[$query])) {
+			return $this->query_cache[$query];
+		}
 		$this->openConnection();
 		$time_start = microtime(true);
 		$query_obj = mysqli_query($this->connection,$query);
@@ -105,14 +124,24 @@ class MysqlDb extends AbstractDatabaseConnector {
 		if(!$this->ignore_long_queries && $duration>0.2) {
 			Error::warning('DB Query took a long time ('.$duration.' sec)');
 		}
-		if(is_bool($query_obj)) return $query_obj;
-		$result = array();
-		while($row = mysqli_fetch_assoc($query_obj)) {
-			$result[] = $row;
+		if(is_bool($query_obj)) {
+			$result = $query_obj;
+		}else{
+			$result = array();
+			while($row = mysqli_fetch_assoc($query_obj)) {
+				$result[] = $row;
+			}
+			$this->lastQuery = $result;
+			$this->lastRowOffset = null;
+			mysqli_free_result($query_obj);
 		}
-		$this->lastQuery = $result;
-		$this->lastRowOffset = null;
-		mysqli_free_result($query_obj);
+		if($this->cache_queries) {
+			if(preg_match('/^\s*(SELECT|SHOW)\s/si', $query)) {
+				$this->query_cache[$query] = $result;
+			}elseif(!$this->inTransaction()) {
+				$this->query_cache = array();
+			}
+		}
 		return $result;
 	}
 
@@ -126,6 +155,7 @@ class MysqlDb extends AbstractDatabaseConnector {
 	 * @return mixed array or `false` on error
 	 */
 	public function multiQuery($query) {
+		$this->query_cache = array();
 		$this->openConnection();
 		$time_start = microtime(true);
 		$query_ok = mysqli_multi_query($this->connection, $query);
@@ -193,6 +223,7 @@ class MysqlDb extends AbstractDatabaseConnector {
 			return null;
 		}
 		exec("mysql --host=".$this->host." --user=".$this->username." --password=".$this->password." ".$this->database." < ".$filename,$output,$return_var);
+		$this->query_cache = array();
 		return ($return_var===0);
 	}
 
