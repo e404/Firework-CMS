@@ -110,7 +110,8 @@ class MysqlDb extends AbstractDatabaseConnector {
 			}
 			return $result;
 		}
-		if($this->cache_queries && isset($this->query_cache[$query])) {
+		$cache_query = ($this->cache_queries && preg_match('/^\s*(SELECT|SHOW)\s/si', $query));
+		if($cache_query && isset($this->query_cache[$query])) {
 			return $this->query_cache[$query];
 		}
 		$this->openConnection();
@@ -136,7 +137,7 @@ class MysqlDb extends AbstractDatabaseConnector {
 			mysqli_free_result($query_obj);
 		}
 		if($this->cache_queries) {
-			if(preg_match('/^\s*(SELECT|SHOW)\s/si', $query)) {
+			if($cache_query) {
 				$this->query_cache[$query] = $result;
 			}elseif(!$this->inTransaction()) {
 				$this->query_cache = array();
