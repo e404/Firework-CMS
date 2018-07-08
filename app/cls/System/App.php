@@ -119,7 +119,7 @@ class App {
 			// Delete old sessions
 			"DELETE FROM sessions WHERE t<'".date('Y-m-d H:i:s', strtotime('-'.Config::get('session','lifetime_days').' days'))."'",
 			// Delete abandoned sessionstore values
-			'DELETE FROM sessionstore WHERE NOT EXISTS (SELECT sessions.sid FROM sessions WHERE sessions.sid=sessionstore.sid)',
+			'DELETE FROM sessionstore WHERE sid NOT IN (SELECT sid FROM sessions);',
 			// Delete expired trace links
 			'DELETE FROM links WHERE expires<=NOW()'
 		);
