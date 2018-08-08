@@ -112,7 +112,7 @@ class MysqlDb extends AbstractDatabaseConnector {
 			}
 			return $result;
 		}
-		$cache_query = ($this->cache_queries && preg_match('/^\s*(SELECT|SHOW)\s/si', $query));
+		$cache_query = ($this->cache_queries && !$this->transaction && preg_match('/^\s*(SELECT|SHOW)\s/si', $query));
 		if($cache_query && isset($this->query_cache[$query])) {
 			if(Config::get('debug') && Config::get('debug','db_queries')) {
 				Error::debug('Cached DB Query: "'.$query."\"\n→ 0 sec");
@@ -141,12 +141,10 @@ class MysqlDb extends AbstractDatabaseConnector {
 			$this->lastRowOffset = null;
 			mysqli_free_result($query_obj);
 		}
-		if($this->cache_queries) {
-			if($cache_query) {
-				$this->query_cache[$query] = $result;
-			}elseif(!$this->inTransaction()) {
-				$this->query_cache = array();
-			}
+		if($cache_query) {
+			$this->query_cache[$query] = $result;
+		}elseif($this->cache_queries) {
+			$this->query_cache = array();
 		}
 		return $result;
 	}
